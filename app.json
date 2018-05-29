@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/me/me",
-    "pages/recommend/recommend",
     "pages/cart/cart",
+    "pages/home/home",
+    "pages/me/me",
     "pages/classify/classify",
     "pages/index/index",
     "pages/logs/logs"
@@ -21,7 +21,7 @@
     "list": [
       {
         "text": "推荐",
-        "pagePath": "pages/recommend/recommend",
+        "pagePath": "pages/home/home",
         "iconPath": "images/homepage.png",
         "selectedIconPath": "images/homepage_fill.png"
       },

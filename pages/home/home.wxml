@@ -1,0 +1,34 @@
+<!--pages/home/home.wxml-->
+
+<!-- 搜索 -->
+<view class='flex-r-sb search-wrap'>
+  <view class='flex-r-fs search-input'>
+    <image class='search-icon' src='../../images/search.png'></image>
+    <input placeholder-class='input-style' placeholder='搜索商品名或商家名'></input>  
+  </view>
+  <view class='flex-r-c search-btn'>
+    <image class='search-icon' src='../../images/search.png'></image>
+    <text>搜索</text>
+  </view>
+</view>
+
+<!-- 分类 -->
+<view class='list-wrap'>
+
+  <view class='list-item'>
+    <image mode='aspectFill'></image>
+  </view>
+  
+  <view class='list-item'>
+    <image mode='aspectFill'></image>
+  </view>
+  
+  <view class='list-item'>
+    <image mode='aspectFill'></image>
+  </view>
+  
+  <view class='list-item'>
+    <image mode='aspectFill'></image>
+  </view>
+  
+</view>

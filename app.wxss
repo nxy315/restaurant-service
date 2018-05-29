@@ -3,6 +3,7 @@ page{
   font-size: 30rpx;  
   background-color: #f2f2f2;
   color: #1b1b1b;
+  box-sizing: border-box;
 }
 
 .container {
@@ -14,6 +15,12 @@ page{
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+/* color */
+.red{
+  color: #ff3c77;
+}
+
 
 /* text  */
 .tc{
@@ -81,4 +88,15 @@ page{
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+}
+
+/* checkbox */
+.check-box{
+  margin-right: 15rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.check-box image{
+  width: 100%;
+  height: 100%;
 }

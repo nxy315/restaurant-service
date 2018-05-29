@@ -1,2 +1,102 @@
 <!--pages/classify/classify.wxml-->
-<text>pages/classify/classify.wxml</text>
+<!-- banner -->
+<view class='banner-container'>
+  <swiper class='banner-wrap'
+    indicator-dots="{{swiperInit.dots}}"
+    indicator-color="{{swiperInit.dotsColor}}"
+    indicator-active-color="{{swiperInit.dotsActiveColor}}"
+    autoplay="{{swiperInit.autoplay}}"
+    interval="{{swiperInit.interval}}"
+    circular="{{swiperInit.circular}}"
+    duration="{{swiperInit.duration}}"
+  >
+    <block wx:for="{{bannerList}}" wx:key="{{index}}">
+      <swiper-item class='banner-item'>
+        <image mode='aspectFill'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+
+<!-- 筛选 -->
+<view class='filter-wrap'>
+  <view class='filter-item active'>全部</view>
+  <view class='filter-item'>烧腊卤水</view>
+  <view class='filter-item'>饭系列</view>
+  <view class='filter-item'>面系列</view>
+  <view class='filter-item'>汤系列</view>
+  <view class='filter-item'>点心系列</view>
+  <view class='filter-item'>小吃系列</view>
+  <view class='filter-item'>点心系列</view>
+</view>
+
+<!-- 筛选结果 -->
+<view class='result-wrap'>
+
+  <view class='flex-r-sb result-item'>
+    <image class='cover'></image>
+    <view class='flex-c-sb des-wrap'>
+      <view class='flex-c-fs des-top'>
+        <view class='title'>成品小龙虾</view>
+        <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+      </view>
+      <view class='flex-r-sb des-bottom'>
+        <text class='price'>￥36/盒</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='flex-r-sb result-item'>
+    <image class='cover'></image>
+    <view class='flex-c-sb des-wrap'>
+      <view class='flex-c-fs des-top'>
+        <view class='title'>成品小龙虾</view>
+        <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+      </view>
+      <view class='flex-r-sb des-bottom'>
+        <text class='price'>￥36/盒</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='flex-r-sb result-item'>
+    <image class='cover'></image>
+    <view class='flex-c-sb des-wrap'>
+      <view class='flex-c-fs des-top'>
+        <view class='title'>成品小龙虾</view>
+        <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+      </view>
+      <view class='flex-r-sb des-bottom'>
+        <text class='price'>￥36/盒</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='flex-r-sb result-item'>
+    <image class='cover'></image>
+    <view class='flex-c-sb des-wrap'>
+      <view class='flex-c-fs des-top'>
+        <view class='title'>成品小龙虾</view>
+        <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+      </view>
+      <view class='flex-r-sb des-bottom'>
+        <text class='price'>￥36/盒</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='flex-r-sb result-item'>
+    <image class='cover'></image>
+    <view class='flex-c-sb des-wrap'>
+      <view class='flex-c-fs des-top'>
+        <view class='title'>成品小龙虾</view>
+        <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+      </view>
+      <view class='flex-r-sb des-bottom'>
+        <text class='price'>￥36/盒</text>
+      </view>
+    </view>
+  </view>
+  
+</view>

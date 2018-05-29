@@ -1,1 +1,74 @@
 /* pages/classify/classify.wxss */
+
+/* Banner */
+.banner-wrap{
+  height: 388rpx;
+}
+
+.banner-item image{
+  width: 100%;
+  height: 100%;
+}
+
+/* 筛选 */
+.filter-wrap{
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.filter-item{
+  width: 25%;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-bottom: 1rpx dashed #ededed;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.filter-item.active{
+  background-color: #ff2e55;
+  color: #fff;
+}
+
+/* 筛选结果 */
+.result-wrap{
+  background-color: #fff;
+}
+.result-wrap .result-item{ 
+  padding: 24rpx;
+  height: 200rpx;
+  border-bottom: 1rpx solid #ececec;
+}
+.result-wrap .result-item .cover{
+  flex-shrink: 0;
+  margin-right: 24rpx;
+  width: 200rpx;
+  height: 200rpx;
+  background-color: pink;
+  border-radius: 8rpx;
+}
+.result-wrap .result-item .des-wrap{
+  flex-shrink: 1;
+  height: 100%;
+}
+.result-wrap .result-item .des-wrap .des-top{
+  align-items: flex-start;
+}
+.result-wrap .result-item .des-wrap .des-top .title{
+  margin-bottom: 5rpx;
+  font-size: 24rpx;
+}
+.result-wrap .result-item .des-wrap .des-top .des{
+  font-size: 20rpx;
+  color: #a4a4a4;
+}
+.result-wrap .result-item .des-wrap .des-bottom{
+  width: 100%;
+}
+.result-wrap .result-item .des-wrap .des-bottom .price{
+  font-size: 30rpx;
+  color: #fc3c6b;
+}

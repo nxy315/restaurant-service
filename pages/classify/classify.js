@@ -5,7 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    swiperInit: {
+      dots: true,
+      dotsColor: 'rgba(255, 60, 119, .3)',
+      dotsActiveColor: 'rgba(255, 60, 119, 1)',
+      autoplay: true,
+      interval: 3000,
+      circular: true,
+      duration: 500
+    },//swiper 配置
+
+    bannerList: [1, 2, 3],//banner 数据
   },
 
   /**

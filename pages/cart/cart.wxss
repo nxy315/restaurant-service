@@ -1,1 +1,107 @@
 /* pages/cart/cart.wxss */
+
+.cart-wrap{
+  margin-top: 16rpx;
+  margin-bottom: 120rpx;
+  background-color: #fff;
+}
+
+.cart-wrap .cart-title{
+  padding: 0 15rpx;
+  height: 80rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.cart-wrap .cart-item{
+  padding: 0 15rpx;
+  height: 210rpx;
+  font-size: 24rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.cart-wrap .cart-item .goods-info-wrap{
+  height: 168rpx;
+}
+.cart-wrap .cart-item .goods-info-wrap .cover{
+  margin-right: 20rpx;
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.cart-wrap .cart-item .goods-info-wrap .cover image{
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+}
+.cart-wrap .cart-item .goods-info-wrap .goods-info{
+  padding: 6rpx 0;
+  height: 100%;
+  align-items: flex-start;
+}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .name{}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .count{}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .count .reduce{
+  width: 40rpx;
+  height: 40rpx;
+}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .count .count-num{
+  margin: 0 32rpx;
+}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .count .plus{
+  width: 40rpx;
+  height: 40rpx;
+}
+.cart-wrap .cart-item .goods-info-wrap .goods-info .price{
+  font-size: 30rpx;
+  color: #ff3c77;
+}
+
+/* footer */
+.cart-wrap .cart-footer{
+  padding: 0 15rpx;
+  height: 72rpx;
+  line-height: 24rpx;
+  font-size: 22rpx;
+  color: #f83671;
+}
+.cart-wrap .cart-footer .title{
+  margin-right: 15rpx;
+  width: 120rpx;
+  height: 36rpx;
+  line-height: 38rpx;
+  border: 1rpx solid #ff3c77; 
+  border-radius: 18rpx;
+  text-align: center;
+}
+.cart-wrap .cart-footer .des{}
+
+/* 结算部分 */
+.bill-wrap{
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  padding: 0 15rpx;
+  width: 100vw;
+  height: 100rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #f3f3f3;
+}
+
+.bill-wrap .cal-wrap{}
+.bill-wrap .cal-wrap .clear{}
+.bill-wrap .cal-wrap .total{
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #a1a1a1;
+}
+.bill-wrap .cal-wrap .num{
+  font-weight: bold;
+}
+.bill-wrap .bill-btn{
+  width: 250rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  color: #fff;
+  text-align: center;
+  background-color: #fe4070;
+  border-radius: 37rpx;
+}
