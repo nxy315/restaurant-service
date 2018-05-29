@@ -1,0 +1,10 @@
+/* pages/recommend/recommend.wxss */
+.wrap{
+
+}
+
+.item{
+  margin-bottom: 20rpx;
+  height: 350rpx;
+  background-color: pink;
+}

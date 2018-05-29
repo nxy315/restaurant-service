@@ -1,0 +1,6 @@
+<!--pages/recommend/recommend.wxml-->
+<view class='wrap'>
+  <view class='item'></view>
+  <view class='item'></view>
+  <view class='item'></view>
+</view>

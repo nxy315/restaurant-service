@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/me/me",
+    "pages/recommend/recommend",
+    "pages/cart/cart",
+    "pages/classify/classify",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff3c77",
+    "navigationBarTitleText": "有餐无厨",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ff3c77",
+    "borderStyle": "#999",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "text": "推荐",
+        "pagePath": "pages/recommend/recommend",
+        "iconPath": "images/homepage.png",
+        "selectedIconPath": "images/homepage_fill.png"
+      },
+      {
+        "text": "分类",
+        "pagePath": "pages/classify/classify",
+        "iconPath": "images/class.png",
+        "selectedIconPath": "images/class_fill.png"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/cart/cart",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order_fill.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/me/me",
+        "iconPath": "images/people.png",
+        "selectedIconPath": "images/people_fill.png"
+      }
+    ]
+  }
+}
