@@ -1,0 +1,34 @@
+<!--pages/me/orders/orders.wxml-->
+
+<view id='orders'>
+  <!-- 状态栏 -->
+  <view class='flex-r-sa top-types-wrap'>
+    <!-- <view class='orders-item active'>全部</view>
+    <view class='orders-item'>待付款</view>
+    <view class='orders-item'>待发货</view>
+    <view class='orders-item'>已完成</view> -->
+    <view
+      wx:for="{{types}}"
+      wx:key="{{index}}"
+      class="top-types-item {{currentType == index ? 'active' : ''}}"
+      data-index='{{index}}'
+      bindtap='tapTypes'
+    >{{item.name}}</view>
+  </view>
+
+  <view class='orders-swiper-container'>
+    <swiper
+      class='orders-swiper-wrap'
+      current="{{currentType}}"
+      duration="{{swiperInit.duration}}"
+      bindchange="changeType"
+    >
+      <swiper-item>{{currentType}}</swiper-item>
+      <swiper-item>{{currentType}}</swiper-item>
+      <swiper-item>{{currentType}}</swiper-item>
+      <swiper-item>{{currentType}}</swiper-item>
+    </swiper>
+  </view>
+</view>
+
+

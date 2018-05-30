@@ -1,27 +1,24 @@
-// pages/me/me.js
+// pages/home/list/list.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    types: [
+      { name: '最新商家' },
+      { name: '人气商家' },
+    ],
+    currentType: 0
+  },
+
+  tapTypes(e) {
+    let i = e.target.dataset.index;
+    this.setData({
+      currentType: i
+    })
+  },
   
-  },
-
-  navigatePage(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */

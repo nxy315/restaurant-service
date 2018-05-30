@@ -15,20 +15,20 @@
 <!-- 分类 -->
 <view class='list-wrap'>
 
-  <view class='list-item'>
+  <navigator url='/pages/home/list/list' class='list-item'>
     <image mode='aspectFill'></image>
-  </view>
+  </navigator>
   
-  <view class='list-item'>
+  <navigator url='/pages/home/list/list'  class='list-item'>
     <image mode='aspectFill'></image>
-  </view>
+  </navigator>
   
-  <view class='list-item'>
+  <navigator url='/pages/home/list/list'  class='list-item'>
     <image mode='aspectFill'></image>
-  </view>
+  </navigator>
   
-  <view class='list-item'>
+  <navigator url='/pages/home/list/list'  class='list-item'>
     <image mode='aspectFill'></image>
-  </view>
+  </navigator>
   
 </view>

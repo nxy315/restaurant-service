@@ -1,11 +1,18 @@
 {
   "pages": [
-    "pages/cart/cart",
     "pages/home/home",
+    "pages/detail/detail",
+    "pages/home/list/list",
     "pages/me/me",
+    "pages/me/orders/orders",
+    "pages/cart/cart",
     "pages/classify/classify",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/me/wallet/wallet",
+    "pages/me/address/address",
+    "pages/me/star/star",
+    "pages/me/used/used"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -34,8 +41,8 @@
       {
         "text": "购物车",
         "pagePath": "pages/cart/cart",
-        "iconPath": "images/order.png",
-        "selectedIconPath": "images/order_fill.png"
+        "iconPath": "images/cart.png",
+        "selectedIconPath": "images/cart_fill.png"
       },
       {
         "text": "我的",

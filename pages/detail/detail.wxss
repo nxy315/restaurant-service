@@ -1,0 +1,38 @@
+/* pages/detail/detail.wxss */
+.goods-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 98rpx;
+  border-top: 2rpx solid #ebebeb;
+  background-color: #fff;
+}
+.goods-footer .icon-wrap{
+  flex: 1;
+  height: 98rpx;
+  font-size: 20rpx;
+  color: #959595
+}
+.goods-footer .icon-wrap:first-child{
+  border-right: 1rpx solid #ebebeb;
+}
+.goods-footer .icon-wrap image{
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.goods-footer .goods-btn{
+  width: 256rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  font-size: 26rpx;
+  color: #fff;
+  text-align: center;
+}
+.goods-footer .goods-btn.add-cart{
+  background-color: #ffd6e4;
+}
+.goods-footer .goods-btn.buy{
+  background-color: #fe4f88;
+}

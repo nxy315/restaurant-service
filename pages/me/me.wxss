@@ -54,10 +54,9 @@
 }
 .info-wrap .info-bottom image{
   margin-top: 5rpx;
-  margin-bottom: 20rpx;
+   margin-bottom: 10rpx; 
   width: 40rpx;
   height: 40rpx;
-  background-color: pink;
 }
 .type-wrap{
   padding: 0 40rpx;
@@ -77,7 +76,6 @@
   margin-bottom: 21rpx;
   width: 52rpx;
   height: 52rpx;
-  background-color: pink;
 }
 .menu-item{
   padding: 0 20rpx;

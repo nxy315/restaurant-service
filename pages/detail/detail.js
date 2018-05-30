@@ -1,4 +1,4 @@
-// pages/me/me.js
+// pages/detail/detail.js
 Page({
 
   /**
@@ -6,20 +6,6 @@ Page({
    */
   data: {
   
-  },
-
-  navigatePage(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
-    })
   },
 
   /**

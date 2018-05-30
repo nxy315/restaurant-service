@@ -1,0 +1,16 @@
+/* pages/me/orders/orders.wxss */
+
+#orders{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+}
+
+.orders-swiper-container{
+  flex: 1;
+}
+.orders-swiper-wrap{
+  height: 100%;
+}

@@ -12,12 +12,12 @@
     </view>
 
     <view class='flex-r-fs info-bottom'>
-      <view class='flex-c-c item'>
-        <image></image>
+      <view class='flex-c-c item' data-url='/pages/me/used/used' bindtap='navigatePage'>
+        <image src='../../images/like.png'></image>
         <text>常用清单</text>
       </view>
-      <view class='flex-c-c item'>
-        <image></image>
+      <view class='flex-c-c item' data-url='/pages/me/star/star' bindtap='navigatePage'>
+        <image src='../../images/star.png'></image>
         <text>我的收藏</text>
       </view>
     </view>
@@ -31,30 +31,30 @@
   <view class='order-wrap'>
     <view class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/list.png'></image>
         <text>我的订单</text>
       </view>
-      <view class='flex-r-c right'>
+      <view class='flex-r-c right' bindtap='toOrder'>
         <text>查看我的全部订单</text>
         <image src='../../images/arrow_down.png'></image>
       </view>
     </view>
 
     <view class='flex-r-sb type-wrap'>
-      <view class='flex-c-c type-item'>
-        <image></image>
+      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
+        <image src='../../images/order_will.png'></image>
         <text>待付款</text>
       </view>
-      <view class='flex-c-c type-item'>
-        <image></image>
+      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
+        <image src='../../images/order_car.png'></image>
         <text>待发货</text>
       </view>
-      <view class='flex-c-c type-item'>
-        <image></image>
+      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
+        <image src='../../images/order_done.png'></image>
         <text>已完成</text>
       </view>
-      <view class='flex-c-c type-item'>
-        <image></image>
+      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
+        <image src='../../images/order_all.png'></image>
         <text>全部订单</text>
       </view>
     </view>
@@ -62,9 +62,9 @@
 
   <!-- 余额  -->
   <view class='balance-wrap'>
-    <view class='flex-r-sb menu-item'>
+    <view class='flex-r-sb menu-item' data-url='/pages/me/wallet/wallet' bindtap='navigatePage'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/balance.png'></image>
         <text>余额</text>
       </view>
       <view class='flex-r-c right'>
@@ -76,9 +76,9 @@
   <!-- 菜单  -->
   <view class='menu-wrap'>
 
-    <view class='flex-r-sb menu-item'>
+    <view class='flex-r-sb menu-item' data-url='/pages/me/address/address' bindtap='navigatePage'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/location.png'></image>
         <text class='tc'>收货地址</text>
       </view>
       <view class='flex-r-c right'>
@@ -88,7 +88,7 @@
 
     <view class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/service.png'></image>
         <text class='tc'>售后服务</text>
       </view>
       <view class='flex-r-c right'>
@@ -98,7 +98,7 @@
 
     <view class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/feedback.png'></image>
         <text class='tc'>意见反馈</text>
       </view>
       <view class='flex-r-c right'>
@@ -108,7 +108,7 @@
 
     <view class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
-        <image></image>
+        <image src='../../images/exit.png'></image>
         <text class='tc'>退出登录</text>
       </view>
       <view class='flex-r-c right'>
