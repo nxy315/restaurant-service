@@ -8,7 +8,7 @@
     <text>有餐无厨发货</text>
   </view>
 
-  <view class='flex-r-fs cart-item'>
+  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
     <view class='check-box'>
       <image src='../../images/check_fill.png'></image>
     </view>
@@ -29,7 +29,7 @@
     </view>
   </view>
   
-  <view class='flex-r-fs cart-item'>
+  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
     <view class='check-box'>
       <image src='../../images/check_fill.png'></image>
     </view>
@@ -50,7 +50,7 @@
     </view>
   </view>
   
-  <view class='flex-r-fs cart-item'>
+  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
     <view class='check-box'>
       <image src='../../images/check_fill.png'></image>
     </view>
@@ -71,9 +71,30 @@
     </view>
   </view>
   
-  <view class='flex-r-fs cart-item'>
+  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
     <view class='check-box'>
-      <image src='../../images/check.png'></image>
+      <image src='../../images/check_fill.png'></image>
+    </view>
+
+    <view class='flex-r-fs goods-info-wrap'>
+      <view class='cover'>
+        <image mode='aspectFill'></image>
+      </view>
+      <view class='flex-c-sb goods-info'>
+        <text class='name'>脆皮乳猪</text>
+        <view class='flex-r-fs count'>
+          <image class='reduce' src='../../images/reduce.png'></image>
+          <text class='count-num'>1</text>
+          <image class='plus' src='../../images/plus.png'></image>
+        </view>
+        <text class='price'>398.00/头</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
+    <view class='check-box'>
+      <image src='../../images/check_fill.png'></image>
     </view>
 
     <view class='flex-r-fs goods-info-wrap'>

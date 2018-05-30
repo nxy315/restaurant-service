@@ -8,6 +8,15 @@ Page({
   
   },
 
+  // 编辑地址
+  editAddress(e) {
+    let id = e.currentTarget.dataset.id
+
+    wx.navigateTo({
+      url: '/pages/me/address/addAddress/addAddress',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

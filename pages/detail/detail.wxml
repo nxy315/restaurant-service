@@ -1,6 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <!-- 标题 -->
-<view>
+<view class='good-title'>
   <text>成品小龙虾(盒装)</text>
 </view>
 
@@ -9,26 +9,28 @@
   <view class='cover'>
     <image></image>
   </view>
-  <view class='name'>￥36/盒 (麻辣)</view>
+  <view class='red name'>￥36/盒 (麻辣)</view>
   <view class='des'>
-    <text class='red'>[简介]</text>
+    <text class='red'>[简介] </text>
     <text>成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</text>
   </view>
 </view>
 
 <!-- 图片 -->
-<view class='goods-images'>
-  <view>图文详情</view>
-  <image src=''></image>
+<view class='good-images'>
+  <view class='flex-r-c title-wrap'>
+    <view class='title-text'>图文详情</view>
+  </view>
+  <image class='good-image' src=''></image>
 </view>
 
 <!-- 底部固定 -->
 <view class='flex-r-fs goods-footer'>
-  <view class='flex-c-c icon-wrap'>
+  <view class='flex-c-c icon-wrap' data-url='/pages/classify/classify' bindtap='switchTap'>
     <image src='../../images/shop.png'></image>
     <text>店铺</text>
   </view>
-  <view class='flex-c-c icon-wrap'>
+  <view class='flex-c-c icon-wrap' data-url='/pages/cart/cart' bindtap='switchTap'>
     <image src='../../images/cart.png'></image>
     <text>购物车</text>
   </view>

@@ -1,18 +1,20 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/me/orders/orders",
+    "pages/me/address/addAddress/addAddress",
+    "pages/me/address/address",
     "pages/detail/detail",
     "pages/home/list/list",
     "pages/me/me",
-    "pages/me/orders/orders",
     "pages/cart/cart",
     "pages/classify/classify",
     "pages/index/index",
     "pages/logs/logs",
     "pages/me/wallet/wallet",
-    "pages/me/address/address",
     "pages/me/star/star",
-    "pages/me/used/used"
+    "pages/me/used/used",
+    "pages/seller/seller"
   ],
   "window": {
     "backgroundTextStyle": "light",

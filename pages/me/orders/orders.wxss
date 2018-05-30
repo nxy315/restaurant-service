@@ -9,8 +9,79 @@
 }
 
 .orders-swiper-container{
+  margin-top: 100rpx;
   flex: 1;
 }
 .orders-swiper-wrap{
   height: 100%;
 }
+
+/* 订单 */
+.order-item{
+  margin-bottom: 15rpx;
+  background-color: #fff;
+}
+.order-title{
+  padding: 0 25rpx;
+  height: 72rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.order-num{}
+.order-status{}
+.order-info{
+  height: 140rpx;
+  padding: 25rpx;
+  border-bottom: 1rpx solid #eaeaea;
+}
+.cover-wrap{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+}
+.cover{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 8rpx;
+  background-color: pink
+}
+.info-wrap{
+  flex: 1;
+  height: 100%;
+}
+.info-title{
+  margin: 5rpx 0 10rpx;
+  width: 100%;
+}
+.title-name{}
+.title-price{}
+.info-detail{
+  width: 100%;
+  font-size: 24rpx;
+  color: #848484;
+}
+.detail{}
+.count{}
+
+.order-opera{
+  padding: 25rpx;
+}
+.opera-price{}
+.info1{
+  margin-right: 15rpx;
+  color: #848484;
+}
+.info2{}
+.btn-wrap{
+  margin-top: 25rpx;
+}
+.pay{
+  margin-right: 25rpx;
+  padding: 0 25rpx;
+  height: 54rpx;
+  line-height: 54rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 27rpx;
+}
+.cancel{}

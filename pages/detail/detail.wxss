@@ -1,4 +1,55 @@
 /* pages/detail/detail.wxss */
+
+/* 商品标题 */
+.good-title{
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #fff;
+  text-align: center;
+}
+
+/* 商品信息 */
+#good-detail{
+  background-color: #fff;
+}
+
+#good-detail .cover{
+  height: 750rpx;
+  background-color: pink;
+}
+
+#good-detail .name{
+  padding-left: 25rpx;
+  height: 160rpx;
+  line-height: 160rpx;
+  border-bottom: 1rpx solid #f3f3f3;
+  font-size: 46rpx;
+}
+
+#good-detail .des{
+  padding: 20rpx 25rpx;
+  line-height: 38rpx;
+  font-size: 26rpx;
+}
+
+/* 图文详情 */
+.good-images{
+  background-color: #fff;
+}
+.good-images .title-wrap{
+  margin-bottom: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.good-images .title-wrap .title-text{
+  border-bottom: 2rpx solid #ff3c77;
+}
+.good-images .good-image{
+  width: 100%;
+  height: 1000rpx;
+  background-color: pink;
+}
+
 .goods-footer{
   position: fixed;
   bottom: 0;

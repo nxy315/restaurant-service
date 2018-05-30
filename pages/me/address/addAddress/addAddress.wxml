@@ -1,0 +1,24 @@
+<!--pages/me/address/addAddress/addAddress.wxml-->
+<view class='address-form'>
+  <view class='flex-r-fs form-item'>
+    <view class='title'>店铺名称 <text class='red'>*</text></view>
+    <input placeholder='请输入店铺名称'></input>
+  </view>
+  <view class='flex-r-fs form-item'>
+    <view class='title'>手机号码 <text class='red'>*</text></view>
+    <input placeholder='请输入收货人的手机号码'></input>
+  </view>
+  <view class='flex-r-fs form-item'>
+    <view class='title'>详细地址 <text class='red'>*</text></view>
+    <input placeholder='请写x市x区x路x号 不然无法算运费'></input>
+  </view>
+  <view class='flex-r-fs form-item'>
+    <view class='title'>渠道码(选填)</view>
+    <input placeholder='请输入渠道码'></input>
+  </view>
+
+  <view class='flex-r-c'>
+    <view class='add-address-btn' bindtap='saveAddress'>保存地址</view>
+  </view>
+</view>
+

@@ -15,7 +15,36 @@ Page({
       duration: 500
     },//swiper 配置
 
+    varietyIndex: 0,
+    variety: [
+      { name: '全部' },
+      { name: '烧腊卤水' },
+      { name: '饭系列' },
+      { name: '面系列' },
+      { name: '汤系列' },
+      { name: '点心系列' },
+      { name: '小吃系列' },
+      { name: '展开' },
+    ],// 商品分类
+
     bannerList: [1, 2, 3],//banner 数据
+  },
+
+  // 跳转详情
+  toDetail(e) {
+    let id = e.currentTarget.dataset.id;
+
+    wx.navigateTo({
+      url: '/pages/detail/detail',
+    })
+  },
+
+  // 选择品类
+  chooseVariety(e) {
+    let i = e.currentTarget.dataset.index;
+    this.setData({
+      varietyIndex: i
+    })
   },
 
   /**

@@ -1,0 +1,32 @@
+/* pages/me/address/addAddress/addAddress.wxss */
+.address-form{
+  padding: 0 25rpx 40rpx;
+  background-color: #fff;
+}
+
+.form-item{
+  height: 100rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.title{
+  margin-right: 30rpx;
+  width: 170rpx;
+  font-size: 26rpx;  
+  text-align: right;
+}
+input{
+  font-size: 26rpx;
+  flex: 1;
+}
+
+.add-address-btn{
+  margin-top: 40rpx;
+  width: 400rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 35rpx;
+}

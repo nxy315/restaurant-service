@@ -1,43 +1,11 @@
-// pages/me/orders/orders.js
+// pages/seller/seller.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    types: [
-      { name: '全部' },
-      { name: '待付款' },
-      { name: '待发货' },
-      { name: '已完成' },
-    ],
-    swiperInit: {
-      duration: 200
-    },
-    currentType: 0
-  },
-
-  tapTypes(e) {
-    let i = e.currentTarget.dataset.index;
-    this.setData({
-      currentType: i
-    })
-  },
-  /* 切换swiper，改变索引 */ 
-  changeType(e) {
-    let i = e.detail.current;
-    this.setData({
-      currentType: i
-    })
-  },
-
-  // 跳转详情
-  toDetail(e) {
-    let id = e.currentTarget.dataset.id;
-
-    wx.navigateTo({
-      url: '/pages/detail/detail',
-    })
+  
   },
 
   /**

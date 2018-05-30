@@ -21,20 +21,19 @@
 
 <!-- 筛选 -->
 <view class='filter-wrap'>
-  <view class='filter-item active'>全部</view>
-  <view class='filter-item'>烧腊卤水</view>
-  <view class='filter-item'>饭系列</view>
-  <view class='filter-item'>面系列</view>
-  <view class='filter-item'>汤系列</view>
-  <view class='filter-item'>点心系列</view>
-  <view class='filter-item'>小吃系列</view>
-  <view class='filter-item'>点心系列</view>
+  <view
+    wx:for='{{variety}}'
+    class='filter-item {{index == varietyIndex ? "active" : ""}}'
+    wx:key='{{index}}'
+    data-index="{{index}}"
+    bindtap='chooseVariety'
+  >{{item.name}}</view>
 </view>
 
 <!-- 筛选结果 -->
 <view class='result-wrap'>
 
-  <view class='flex-r-sb result-item'>
+  <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
     <image class='cover'></image>
     <view class='flex-c-sb des-wrap'>
       <view class='flex-c-fs des-top'>
@@ -47,7 +46,7 @@
     </view>
   </view>
   
-  <view class='flex-r-sb result-item'>
+  <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
     <image class='cover'></image>
     <view class='flex-c-sb des-wrap'>
       <view class='flex-c-fs des-top'>
@@ -60,7 +59,7 @@
     </view>
   </view>
   
-  <view class='flex-r-sb result-item'>
+  <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
     <image class='cover'></image>
     <view class='flex-c-sb des-wrap'>
       <view class='flex-c-fs des-top'>
@@ -73,7 +72,7 @@
     </view>
   </view>
   
-  <view class='flex-r-sb result-item'>
+  <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
     <image class='cover'></image>
     <view class='flex-c-sb des-wrap'>
       <view class='flex-c-fs des-top'>
@@ -86,7 +85,7 @@
     </view>
   </view>
   
-  <view class='flex-r-sb result-item'>
+  <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
     <image class='cover'></image>
     <view class='flex-c-sb des-wrap'>
       <view class='flex-c-fs des-top'>
