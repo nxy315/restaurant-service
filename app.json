@@ -1,17 +1,17 @@
 {
   "pages": [
+    "pages/me/wallet/wallet",
     "pages/home/home",
+    "pages/home/list/list",
     "pages/me/orders/orders",
     "pages/me/address/addAddress/addAddress",
     "pages/me/address/address",
     "pages/detail/detail",
-    "pages/home/list/list",
     "pages/me/me",
     "pages/cart/cart",
     "pages/classify/classify",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/me/wallet/wallet",
     "pages/me/star/star",
     "pages/me/used/used",
     "pages/seller/seller"

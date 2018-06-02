@@ -5,7 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    swiperInit: {
+      dots: true,
+      dotsColor: 'rgba(255, 60, 119, .3)',
+      dotsActiveColor: 'rgba(255, 60, 119, 1)',
+      duration: 300
+    },//swiper 配置
+    resultSwiper: {
+      duration: 200
+    },
+    types: [
+      { name: '全部' },
+      { name: '最新入驻' },
+      { name: '人气排名' },
+    ],
+    currentType: 0,
+  },
+
+  /* 切换swiper，改变索引 */
+  changeType(e) {
+    let i = e.detail.current;
+    this.setData({
+      currentType: i
+    })
+  },
+
+
+  tapTypes(e) {
+    let i = e.currentTarget.dataset.index;
+    this.setData({
+      currentType: i
+    })
   },
 
   /**

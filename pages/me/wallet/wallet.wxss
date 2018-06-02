@@ -1,1 +1,33 @@
 /* pages/me/wallet/wallet.wxss */
+.balance-wrap{
+  margin-bottom: 20rpx;
+  height: 360rpx;
+  color: #fff;
+  background-color: #ff3c77;
+}
+
+.balance-wrap .title{
+  font-size: 28rpx;
+}
+.balance-wrap .balance{
+  margin: 10rpx 0 36rpx;
+  font-size: 46rpx;
+  font-weight: bolder;
+}
+.balance-wrap .recharge{
+  width: 210rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 2rpx solid #fff;
+  border-radius: 31rpx;
+}
+
+/* 订单明细 */
+.record-wrap{
+  background-color: #fff;
+}
+.record-title{
+  height: 60rpx;
+}

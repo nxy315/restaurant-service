@@ -1,10 +1,11 @@
 /* pages/home/list/list.wxss */
 .result-list-wrap{
   margin-top: 100rpx;
+  padding: 0 2vw;
   flex-wrap: wrap;
 }
 
-.result-list-wrap .result-list-item{
+/* .result-list-wrap .result-list-item{
   margin-bottom: 2vw;
   width: 49vw;
   height: 466rpx;
@@ -30,4 +31,4 @@
   margin-right: 5rpx;
   width: 30rpx;
   height: 30rpx;
-}
+} */
