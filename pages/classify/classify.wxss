@@ -2,7 +2,7 @@
 
 /* Banner */
 .banner-wrap{
-  height: 388rpx;
+  height: 380rpx;
 }
 
 .banner-item image{

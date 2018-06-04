@@ -29,5 +29,19 @@
   background-color: #fff;
 }
 .record-title{
-  height: 60rpx;
+  margin-bottom: 10rpx;
+  padding-left: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-list{
+  padding: 0 20rpx;
+}
+.record-item{
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
 }

@@ -22,6 +22,12 @@ Page({
     currentType: 0,
   },
 
+  toList() {
+    wx.navigateTo({
+      url: '/pages/home/list/list',
+    })
+  },
+
   /* 切换swiper，改变索引 */
   changeType(e) {
     let i = e.detail.current;

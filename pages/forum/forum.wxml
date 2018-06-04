@@ -1,0 +1,197 @@
+<!--pages/forum/forum.wxml-->
+<!-- banner -->
+<view class='banner-wrap'>
+  <image mode='aspectFill' src=''></image>
+</view>
+
+<!-- type -->
+<view class='flex-r-sa top-types-wrap'>
+  <view wx:for="{{types}}" wx:key="{{index}}" class="flex-c-c top-types-item {{currentType == index ? 'active' : ''}}" data-index='{{index}}' bindtap='tapTypes'>
+     <image mode='aspectFill' wx:if="{{currentType != index}}" src='../../images/{{item.icon}}.png'></image>
+     <image mode='aspectFill' wx:if="{{currentType == index}}" src='../../images/{{item.icon}}_w.png'></image>
+    <view>{{item.name}}</view>
+  </view>
+</view>
+
+<!-- 帖子 -->
+<view class='posts-wrap'>
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <view class='type t1'>厂商</view>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-fs other-info'>
+        <view class='flex-r-fs info-wrap i1'>
+          <image src='../../images/like.png'></image>
+          <text>5646</text>
+        </view>
+        
+        <view class='flex-r-fs info-wrap i2'>
+          <image src='../../images/mark.png'></image>
+          <text>54</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <view class='type t2'>店铺</view>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-fs other-info'>
+        <view class='flex-r-fs info-wrap i1'>
+          <image src='../../images/like.png'></image>
+          <text>5646</text>
+        </view>
+        
+        <view class='flex-r-fs info-wrap i2'>
+          <image src='../../images/mark.png'></image>
+          <text>54</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <view class='type t2'>店铺</view>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-fs other-info'>
+        <view class='flex-r-fs info-wrap i1'>
+          <image src='../../images/like.png'></image>
+          <text>5646</text>
+        </view>
+        
+        <view class='flex-r-fs info-wrap i2'>
+          <image src='../../images/mark.png'></image>
+          <text>54</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <view class='type t2'>店铺</view>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-fs other-info'>
+        <view class='flex-r-fs info-wrap i1'>
+          <image src='../../images/like.png'></image>
+          <text>5646</text>
+        </view>
+        
+        <view class='flex-r-fs info-wrap i2'>
+          <image src='../../images/mark.png'></image>
+          <text>54</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='add-wrap'>
+  <image src='../../images/add.png'></image>
+</view>

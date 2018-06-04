@@ -8,6 +8,12 @@ Page({
   
   },
 
+  toRecharge() {
+    wx.redirectTo({
+      url: '/pages/me/wallet/recharge/recharge',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -35,5 +35,5 @@
     <text>购物车</text>
   </view>
   <view class='goods-btn add-cart'>加入购物车</view>
-  <view class='goods-btn buy'>立即购买</view>
+  <view class='goods-btn buy' bindtap='toClearing'>立即购买</view>
 </view>

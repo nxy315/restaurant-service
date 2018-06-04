@@ -1,0 +1,130 @@
+/* pages/clearing/clearing.wxss */
+.address-item{
+  padding: 10rpx 30rpx;
+  height: 122rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  background-color: #fff;
+}
+.address-item .address-check{
+  width: 51rpx;
+  height: 100%;
+}
+.address-item .address-check image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.address-item .address-info{
+  flex: 1;
+}
+.address-item .address-info .info-wrap .user-name{
+  margin-right: 45rpx;
+  font-weight: bold;
+}
+.address-item .address-info .info-wrap .user-tel{
+  margin-right: 22rpx;
+  font-weight: bolder;
+}
+.address-item .address-info .info-wrap .default-address{
+  padding: 0 14rpx;
+  height: 30rpx;
+  line-height: 31rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #fd0402;
+  border-radius: 15rpx;
+}
+.address-item .address-info .address-detail{
+  font-size: 24rpx;
+  color: #555555;
+}
+.address-item .edit-wrap{
+  margin-left: 45rpx;
+  width: 51rpx;
+  height: 100%;
+}
+.address-item .edit-wrap image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 发货信息 */
+.fill-list{
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+.fill-item{
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.fill-item .title{
+  width: 200rpx;
+}
+.fill-item input,.fill-item picker,.fill-item .right{
+  flex: 1;
+}
+.fill-item picker image{
+  width: 20rpx;
+  height: 20rpx;
+}
+/* 现金结算 */
+.useless{
+  margin: 15rpx 0;
+  padding-left: 25rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.useless image{
+  margin-right: 25rpx;
+  width: 45rpx;
+  height: 45rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.send-good{
+  margin-bottom: 0;
+}
+
+/* 温馨提示 */
+.notifiy-wrap{
+  background-color: #fff;
+}
+.notifiy-list{
+  padding: 10rpx 25rpx 20rpx 90rpx;
+}
+.notifiy-item{
+  margin-bottom: 15rpx;
+  font-size: 26rpx;
+  color: #9b9b9b;
+}
+
+/* 底部提交 */
+.submit-wrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-sizing: content-box;
+  padding: 0 3vw;
+  width: 94vw;
+  height: 100rpx;
+  background-color: #fff;
+}
+.submit-wrap .text{}
+.submit-wrap .text .t1{
+  font-size: 24rpx;
+}
+.submit-wrap .text .t2{
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ff3c77;
+}
+.submit-wrap .submit-btn{
+  width: 250rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 35rpx;
+}

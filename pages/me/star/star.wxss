@@ -1,1 +1,45 @@
 /* pages/me/star/star.wxss */
+.star-wrap{
+  background-color: #fff;
+}
+
+.star-item{
+  padding: 25rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.left{
+  flex: 1;
+}
+.cover{
+  margin-right: 15rpx;
+  width: 140rpx;
+  height: 140rpx;
+  background-color: pink;
+  border-radius: 8rpx;
+}
+.text{
+  align-items: flex-start;
+  flex: 1;
+  padding: 10rpx 0;
+  height: 120rpx;
+}
+.t1{}
+.t2{
+  color: #8e8e8e;
+}
+.to{
+  width: 40rpx;
+  height: 40rpx;
+  /* color: #bfbfbf; */
+}
+
+.icon-wrap{}
+.icon-wrap image{
+  margin-right: 5rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.icon1{
+  margin-right: 60rpx;
+}

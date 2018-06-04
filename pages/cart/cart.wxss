@@ -2,7 +2,7 @@
 
 .cart-wrap{
   margin-top: 16rpx;
-  margin-bottom: 120rpx;
+  padding-bottom: 120rpx;
   background-color: #fff;
 }
 

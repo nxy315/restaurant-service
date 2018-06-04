@@ -126,9 +126,9 @@
     <view class='check-box'>
       <image src='../../images/check_fill.png'></image>
     </view>
-    <view class='clear'>清空</view>
+    <view class='clear'>全选</view>
     <view class='total'>合计</view>
     <view class='red num'>￥1314</view>
   </view>
-  <view class='bill-btn'>去结算</view>
+  <view class='bill-btn' bindtap='toClear'>去结算</view>
 </view>

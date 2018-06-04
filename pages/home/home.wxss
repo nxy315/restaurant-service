@@ -1,37 +1,26 @@
 /* pages/home/home.wxss */
-
 .search-wrap{
-  padding: 0 20rpx;
-  height: 80rpx;
-  background-color: #fff;
+  height: 380rpx;
+  background-color: pink;
 }
-.search-wrap .search-icon{
-  width: 26rpx;
-  height: 26rpx;
+.search-box{
+  width: 500rpx;
+  height: 70rpx;
+  background-color: rgba(255, 255, 255, 0.6);
 }
-.search-wrap .search-input{
+.search-box input{
   flex: 1;
-  padding: 0 14rpx;
-  height: 52rpx;
-  border: 1rpx solid #cccccc;
-  border-radius: 26rpx;
+  padding-left: 25rpx;
+  font-size: 26rpx;
 }
-.search-wrap .search-input .input-style{
-  margin-left: 10rpx;
-  font-size: 24rpx;
+.search-btn{
+  width: 100rpx;
+  height: 70rpx;
+  background-color: #ff3c77;
 }
-.search-wrap .search-btn{
-  /* flex-shrink: 1; */
-  margin-left: 50rpx;
-  width: 128rpx;
-  height: 54rpx;
-  line-height: 54rpx;
-  border-radius: 27rpx;
-  background-color: #f0f0f0;
-}
-.search-wrap .search-btn text{
-  margin-left: 5rpx;
-  font-size: 22rpx;
+.search-btn image{
+  width: 42rpx;
+  height: 42rpx;
 }
 
 /* 分类 */
@@ -57,14 +46,14 @@
 }
 .item image{
   margin-bottom: 15rpx;
-  width: 90rpx;
-  height: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
   background-color: pink;
   border-radius: 50%;
 }
 .item text{
-  font-size: 22rpx;
-  color: #333333;
+  font-size: 26rpx;
+  color: #666666;
 }
 
 /* 结果列表 */

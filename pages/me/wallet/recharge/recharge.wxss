@@ -1,0 +1,25 @@
+/* pages/me/wallet/recharge/recharge.wxss */
+.wrap{
+  padding-top: 40rpx;
+}
+
+.picker{
+  padding: 0 20rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #fff;
+}
+.strong{
+  font-weight: bold;
+}
+
+.recharge{
+  margin: 40rpx auto 0;
+  width: 400rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 35rpx;
+}

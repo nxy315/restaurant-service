@@ -7,6 +7,11 @@ Page({
   data: {
   
   },
+  toClear() {
+    wx.navigateTo({
+      url: '/pages/clearing/clearing',
+    })
+  },
 
   // 购物车跳转详情页
   toDetail(e) {

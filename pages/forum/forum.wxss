@@ -1,0 +1,143 @@
+/* pages/forum/forum.wxss */
+.banner-wrap{
+  height: 380rpx;
+}
+.banner-wrap image{
+  width: 100%;
+  height: 380rpx;
+  background-color: pink;
+}
+.top-types-wrap{
+  margin-bottom: 0;
+  position: relative;
+  height: 100rpx;
+}
+.top-types-item{
+  line-height: 24rpx !important;
+  font-size: 26rpx !important;
+  height: 100rpx !important;
+  border: none !important;
+}
+.top-types-item.active{
+  color: #fff;
+  background-color: #ff2e55;
+}
+.top-types-item image{
+  margin-bottom: 13rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: transparent;
+}
+
+/* 文章内容 */
+.posts-wrap{
+  background-color: #fff;
+}
+
+.posts-item{
+  align-items: flex-start;
+  padding: 25rpx 120rpx 25rpx 25rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  font-size: 26rpx;
+}
+.posts-item .cover{
+  margin-right: 25rpx;
+  width: 75rpx;
+  height: 75rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar{
+  width: 75rpx;
+  height: 75rpx;
+  background-color: pink;
+}
+.posts-content{
+  flex: 1;
+}
+
+.name-wrap{
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.name-wrap .name{}
+.name-wrap .type{
+  margin-left: 15rpx;
+  padding: 0 14rpx;
+  height: 30rpx;
+  line-height: 31rpx;
+  font-size: 22rpx;
+  color: #fff;
+  border-radius: 15rpx;
+}
+/* 厂商 */
+.name-wrap .type.t1{
+  background-color: #06b80e;
+}
+/* 饭店 */
+.name-wrap .type.t2{
+  background-color: #fd0402;
+}
+
+.article{
+  margin-bottom: 15rpx;
+  line-height: 36rpx;
+}
+
+.imgs-wrap{
+  margin-bottom: 10rpx;
+  height: 162rpx;
+}
+.imgs-wrap image{
+  margin-right: 10rpx;
+  width: 162rpx;
+  height: 162rpx;
+  background-color: pink;
+}
+.imgs-wrap image:last-child{
+  margin-right: 0;
+}
+
+.location{
+  margin-bottom: 30rpx;
+  font-size: 20rpx;
+  color: #999;
+}
+.location .address{
+
+}
+.location .address image{
+  width: 20rpx;
+  height: 20rpx;
+}
+.location .address text{}
+.location .time{
+  margin-right: 5rpx;
+}
+
+.other-info{
+  font-size: 24rpx;
+}
+.info-wrap{}
+.info-wrap.i1{
+  margin-right: 90rpx;
+}
+.info-wrap.i2{}
+.info-wrap image{
+  margin-right: 10rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.info-wrap text{}
+
+
+/* 添加需求 */
+.add-wrap{
+  position: fixed;
+  right: 10rpx;
+  bottom: 10vh;
+}
+.add-wrap image{
+  width: 80rpx;
+  height: 80rpx;
+}

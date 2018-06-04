@@ -2,13 +2,16 @@
 <view class='flex-c-c balance-wrap'>
   <view class='title'>账户金额</view>
   <view class='balance'>100000</view>
-  <view class='recharge'>充值</view>
+  <view class='recharge' bindtap='toRecharge'>充值</view>
 </view>
 
 <view class='record-wrap'>
   <view class='record-title'>订单明细</view>
 
   <view class='record-list'>
-    <view class='record-item'></view>
+    <view class='record-item'>111</view>
+    <view class='record-item'>111</view>
+    <view class='record-item'>111</view>
+    <view class='record-item'>111</view>
   </view>
 </view>

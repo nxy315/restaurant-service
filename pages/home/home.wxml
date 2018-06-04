@@ -1,14 +1,12 @@
 <!--pages/home/home.wxml-->
 
 <!-- 搜索 -->
-<view class='flex-r-sb search-wrap'>
-  <view class='flex-r-fs search-input'>
-    <image class='search-icon' src='../../images/search.png'></image>
-    <input placeholder-class='input-style' placeholder='搜索商品名或商家名'></input>  
-  </view>
-  <view class='flex-r-c search-btn'>
-    <image class='search-icon' src='../../images/search.png'></image>
-    <text>搜索</text>
+<view class='flex-r-c search-wrap'>
+  <view class='flex-r-sb search-box'>
+    <input placeholder='请输入您要查找产品或品牌'></input>
+    <view class='flex-r-c search-btn' bindtap='toList'>
+      <image src='../../images/search_w.png'></image>
+    </view>
   </view>
 </view>
 
@@ -22,35 +20,35 @@
   >
     <swiper-item class='banner-item'>
       <view class='flex-r-fs page-wrap'>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
@@ -58,27 +56,31 @@
     </swiper-item>
     <swiper-item class='banner-item'>
       <view class='flex-r-fs page-wrap'>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
-        <view class='flex-c-c item'>
+        <view class='flex-c-c item' bindtap='toList'>
+          <image class='item-cover' src=''></image>
+          <text>特色专区</text>
+        </view>
+        <view class='flex-c-c item' bindtap='toList'>
           <image class='item-cover' src=''></image>
           <text>特色专区</text>
         </view>
@@ -88,10 +90,6 @@
 </view>
 
 <view class='flex-r-sa top-types-wrap'>
-    <!-- <view class='orders-item active'>全部</view>
-    <view class='orders-item'>待付款</view>
-    <view class='orders-item'>待发货</view>
-    <view class='orders-item'>已完成</view> -->
   <view
     wx:for="{{types}}"
     wx:key="{{index}}"
@@ -109,194 +107,181 @@
 >
   <swiper-item>
     <view class='flex-r-sb result-list'>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
-
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </navigator>
     </view>
   </swiper-item>
   <swiper-item>
     <view class='flex-r-sb result-list'>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
-
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+      
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </navigator>
     </view>
   </swiper-item>
   <swiper-item>
     <view class='flex-r-sb result-list'>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
-
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+      
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
-      <navigator url='/pages/detail/detail' class='result-list-item'>
-          <view class='cover'></view>
-          <view class='name'>中高档厨房餐具</view>
-          <view class='flex-r-sb info'>
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/eye.png'></image>
-              <text>123</text>    
-            </view>
+        </view>
+      </navigator>
+      <navigator url='/pages/store/store' class='result-list-item'>
+        <view class='cover'></view>
+        <view class='name'>中高档厨房餐具</view>
+        <view class='flex-r-sb info'>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <text>123</text>    
+          </view>
 
-            <view class='flex-r-fs icon-wrap'>
-              <image mode='aspectFill' src='../../../images/star_w.png'></image>
-              <text>123</text>    
-            </view>
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <text>123</text>    
           </view>
-        </navigator>
+        </view>
+      </navigator>
     </view>
   </swiper-item>
 </swiper>

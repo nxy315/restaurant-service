@@ -16,6 +16,11 @@ Page({
     })
   },
 
+  toClearing() {
+    wx.navigateTo({
+      url: '/pages/clearing/clearing',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

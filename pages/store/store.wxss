@@ -1,0 +1,26 @@
+/* pages/store/store.wxss */
+
+/* 图文介绍 */
+.introduce-wrap{
+  margin-bottom: 100rpx;
+}
+
+/* 底部按钮 */
+.intro-foot{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100rpx;
+  background-color: #fff;
+}
+.foot-btn{
+  margin: 0 auto;
+  width: 98vw;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #ff3c77;
+  color: #fff;
+  text-align: center;
+  border-radius: 8rpx;
+}

@@ -1,8 +1,14 @@
 {
   "pages": [
-    "pages/me/wallet/wallet",
     "pages/home/home",
+    "pages/forum/forum",
+    "pages/me/star/star",
+    "pages/pay/pay",
+    "pages/clearing/clearing",
+    "pages/store/store",
     "pages/home/list/list",
+    "pages/me/wallet/recharge/recharge",
+    "pages/me/wallet/wallet",
     "pages/me/orders/orders",
     "pages/me/address/addAddress/addAddress",
     "pages/me/address/address",
@@ -12,9 +18,9 @@
     "pages/classify/classify",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/me/star/star",
     "pages/me/used/used",
-    "pages/seller/seller"
+    "pages/seller/seller",
+    "pages/location/location"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,6 +45,12 @@
         "pagePath": "pages/classify/classify",
         "iconPath": "images/class.png",
         "selectedIconPath": "images/class_fill.png"
+      },
+      {
+        "text": "餐饮圈",
+        "pagePath": "pages/forum/forum",
+        "iconPath": "images/we.png",
+        "selectedIconPath": "images/we_fill.png"
       },
       {
         "text": "购物车",

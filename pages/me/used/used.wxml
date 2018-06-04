@@ -1,2 +1,108 @@
 <!--pages/me/used/used.wxml-->
-<text>pages/me/used/used.wxml</text>
+<view class='star-wrap'>
+  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+    <view class='flex-r-fs left'>
+      <image class='cover' src=''></image>
+      <view class='flex-c-sb text'>
+        <view class='t1'>重庆小面</view>
+        <view class='flex-r-fs t2'>
+          <view class='flex-r-fs icon-wrap icon1'>
+            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <image class='to' src='../../../images/arrow_down.png'></image>
+  </navigator>
+  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+    <view class='flex-r-fs left'>
+      <image class='cover' src=''></image>
+      <view class='flex-c-sb text'>
+        <view class='t1'>重庆小面</view>
+        <view class='flex-r-fs t2'>
+          <view class='flex-r-fs icon-wrap icon1'>
+            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <image class='to' src='../../../images/arrow_down.png'></image>
+  </navigator>
+  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+    <view class='flex-r-fs left'>
+      <image class='cover' src=''></image>
+      <view class='flex-c-sb text'>
+        <view class='t1'>重庆小面</view>
+        <view class='flex-r-fs t2'>
+          <view class='flex-r-fs icon-wrap icon1'>
+            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <image class='to' src='../../../images/arrow_down.png'></image>
+  </navigator>
+  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+    <view class='flex-r-fs left'>
+      <image class='cover' src=''></image>
+      <view class='flex-c-sb text'>
+        <view class='t1'>重庆小面</view>
+        <view class='flex-r-fs t2'>
+          <view class='flex-r-fs icon-wrap icon1'>
+            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <image class='to' src='../../../images/arrow_down.png'></image>
+  </navigator>
+  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+    <view class='flex-r-fs left'>
+      <image class='cover' src=''></image>
+      <view class='flex-c-sb text'>
+        <view class='t1'>重庆小面</view>
+        <view class='flex-r-fs t2'>
+          <view class='flex-r-fs icon-wrap icon1'>
+            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+            <text>123</text>    
+          </view>
+
+          <view class='flex-r-fs icon-wrap'>
+            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>123</text>    
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <image class='to' src='../../../images/arrow_down.png'></image>
+  </navigator>
+</view>

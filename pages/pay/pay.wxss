@@ -1,0 +1,50 @@
+/* pages/pay/pay.wxss */
+.useless{
+  margin: 15rpx 0;
+  padding: 0 25rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.useless .t1{}
+.useless .t2{
+  color: #ff3c77;
+}
+
+/* 支付方式 */
+.pay-way{
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+.pay-way .way-item{
+  height: 110rpx;
+}
+.pay-way .way-item image{
+  margin-right: 15rpx;
+  width: 72rpx;
+  height: 72rpx;
+}
+.pay-way .way-item .text{
+  align-items: flex-start;
+}
+.pay-way .way-item .text .t1{
+  font-size: 26rpx;
+  color: #303030;
+}
+.pay-way .way-item .text .t2{
+  font-size: 22rpx;
+  color: #808080;
+}
+
+/* 确认支付 */
+.add-address-btn{
+  margin: 40rpx auto 0;
+  width: 400rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 35rpx;
+}

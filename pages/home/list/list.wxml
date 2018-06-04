@@ -10,8 +10,8 @@
 </view>
 
 <view class='flex-r-sb result-list-wrap'>
-  
-  <navigator url='/pages/detail/detail' class='result-list-item'>
+
+  <navigator url='/pages/store/store' class='result-list-item'>
     <view class='cover'></view>
     <view class='name'>中高档厨房餐具</view>
     <view class='flex-r-sb info'>
@@ -26,8 +26,7 @@
       </view>
     </view>
   </navigator>
-  
-  <navigator url='/pages/detail/detail' class='result-list-item'>
+  <navigator url='/pages/store/store' class='result-list-item'>
     <view class='cover'></view>
     <view class='name'>中高档厨房餐具</view>
     <view class='flex-r-sb info'>
@@ -42,8 +41,7 @@
       </view>
     </view>
   </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
+  <navigator url='/pages/store/store' class='result-list-item'>
     <view class='cover'></view>
     <view class='name'>中高档厨房餐具</view>
     <view class='flex-r-sb info'>
@@ -58,8 +56,7 @@
       </view>
     </view>
   </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
+  <navigator url='/pages/store/store' class='result-list-item'>
     <view class='cover'></view>
     <view class='name'>中高档厨房餐具</view>
     <view class='flex-r-sb info'>
@@ -74,72 +71,7 @@
       </view>
     </view>
   </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
-    <view class='cover'></view>
-    <view class='name'>中高档厨房餐具</view>
-    <view class='flex-r-sb info'>
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/eye.png'></image>
-        <text>123</text>    
-      </view>
-
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/star_w.png'></image>
-        <text>123</text>    
-      </view>
-    </view>
-  </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
-    <view class='cover'></view>
-    <view class='name'>中高档厨房餐具</view>
-    <view class='flex-r-sb info'>
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/eye.png'></image>
-        <text>123</text>    
-      </view>
-
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/star_w.png'></image>
-        <text>123</text>    
-      </view>
-    </view>
-  </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
-    <view class='cover'></view>
-    <view class='name'>中高档厨房餐具</view>
-    <view class='flex-r-sb info'>
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/eye.png'></image>
-        <text>123</text>    
-      </view>
-
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/star_w.png'></image>
-        <text>123</text>    
-      </view>
-    </view>
-  </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
-    <view class='cover'></view>
-    <view class='name'>中高档厨房餐具</view>
-    <view class='flex-r-sb info'>
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/eye.png'></image>
-        <text>123</text>    
-      </view>
-
-      <view class='flex-r-fs icon-wrap'>
-        <image mode='aspectFill' src='../../../images/star_w.png'></image>
-        <text>123</text>    
-      </view>
-    </view>
-  </navigator>
-
-  <navigator url='/pages/detail/detail' class='result-list-item'>
+  <navigator url='/pages/store/store' class='result-list-item'>
     <view class='cover'></view>
     <view class='name'>中高档厨房餐具</view>
     <view class='flex-r-sb info'>
