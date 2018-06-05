@@ -5,14 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    list: [],//图片列表
+    name: '',//店铺名字
+    num: '',//店铺电话
+  },
+
+  getList(id) {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        id
+      },
+      success: data => {
+        let list
+        this.setData({
+          list
+        })
+      },
+    })
+  },
+
+  showAction: function () {
+    wx.makePhoneCall({
+      phoneNumber: '123456789'
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let id = options.id
+    // this.getList(id)
   },
 
   /**

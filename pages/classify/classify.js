@@ -1,4 +1,5 @@
 // pages/classify/classify.js
+const app = getApp();
 Page({
 
   /**
@@ -27,7 +28,25 @@ Page({
       { name: '展开' },
     ],// 商品分类
 
-    bannerList: [1, 2, 3],//banner 数据
+    bannerList: [],//广告数据
+  },
+  
+  // 广告数据
+  getAds(id) {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b169d7bb041d.html?adplace=${id}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      success: data => {
+        this.setData({
+          bannerList: data.data.data.ad_list
+        })
+      },
+    })
   },
 
   // 跳转详情
@@ -51,7 +70,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getAds(101)
   },
 
   /**

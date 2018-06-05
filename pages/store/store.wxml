@@ -5,5 +5,5 @@
 </view>
 
 <view class='flex-c-c intro-foot'>
-  <view class='foot-btn'>联系人： 重庆小面-李总 拨打电话</view>
+  <view class='foot-btn' bindtap="showAction">联系人： 重庆小面-李总 拨打电话</view>
 </view>

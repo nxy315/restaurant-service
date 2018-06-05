@@ -12,7 +12,7 @@
   >
     <block wx:for="{{bannerList}}" wx:key="{{index}}">
       <swiper-item class='banner-item'>
-        <image mode='aspectFill'></image>
+        <image mode='aspectFill' src='http://www.youcanwuchu.com/Public/Uploads/{{item.adpic}}'></image>
       </swiper-item>
     </block>
   </swiper>

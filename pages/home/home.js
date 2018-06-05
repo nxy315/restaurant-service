@@ -1,4 +1,5 @@
 // pages/home/home.js
+const app = getApp();
 Page({
 
   /**
@@ -11,6 +12,8 @@ Page({
       dotsActiveColor: 'rgba(255, 60, 119, 1)',
       duration: 300
     },//swiper 配置
+    keyword: '',//关键字
+    typeList: [],
     resultSwiper: {
       duration: 200
     },
@@ -20,11 +23,61 @@ Page({
       { name: '人气排名' },
     ],
     currentType: 0,
+    banner: '',//广告数据
   },
 
-  toList() {
+  //输入框
+  handelInput(e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  // 广告数据
+  getAds(id) {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b169d7bb041d.html?adplace=${id}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      success: data => {
+        this.setData({
+          banner: data.data.data.ad_list[0].adpic
+        })
+      },
+    })
+  },
+
+  getTypes() {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b150d64dee3d.html`,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      dataType: 'json',
+      success: data => {
+        let list = data.data.data.store_sort_list
+        let len = Math.ceil(list.length / 8)
+        
+        let arr = []
+        for(let i = 0; i < len; i++) {
+          arr[i] = list.slice(i * 8, (i + 1)*8)
+        }
+        this.setData({
+          typeList: arr
+        })
+      },
+    })
+  },
+
+  toList(e) {
+    let id = e.currentTarget.dataset.id ? e.currentTarget.dataset.id : ''
     wx.navigateTo({
-      url: '/pages/home/list/list',
+      url: `/pages/home/list/list?id=${id}&&keyword=${this.data.keyword}`,
     })
   },
 
@@ -48,7 +101,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getTypes();
+    this.getAds(100)
   },
 
   /**

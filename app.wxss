@@ -143,6 +143,9 @@ page{
 .result-list-item .name{
   margin: 10rpx 0 5rpx;
   padding: 0 15rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .result-list-item .info{
   padding: 0 15rpx;

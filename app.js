@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    reqUrl: 'https://api.youcanwuchu.com',
+    version: 'v2.0'
   }
 })
