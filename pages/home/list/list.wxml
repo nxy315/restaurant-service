@@ -17,7 +17,7 @@
     wx:for='{{list}}'
     wx:key='{{item.id}}'
   >
-    <view class='cover'></view>
+    <view class='cover' style='background-image: url("http://www.youcanwuchu.com/Public/Uploads/{{item.artpic}}")'></view>
     <view class='name'>{{item.name}}</view>
     <view class='flex-r-sb info'>
       <view class='flex-r-fs icon-wrap'>
