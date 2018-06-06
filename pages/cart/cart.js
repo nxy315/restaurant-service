@@ -5,12 +5,121 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    cartList: [
+      {id:1, name:'脆皮乳猪1', price: 200.0, unit: '头', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
+      {id:2, name:'脆皮乳猪2', price: 201.0, unit: '只', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
+      {id:3, name:'脆皮乳猪3', price: 202.0, unit: '盒', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
+      {id:4, name:'脆皮乳猪4', price: 203.0, unit: '根', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
+      {id:5, name:'脆皮乳猪5', price: 204.1, unit: '条', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
+    ],//购物车列表数据结构
+
+    checkAll: false,
+    money: 0,// 合计
   },
+
+  // 结算
   toClear() {
     wx.navigateTo({
       url: '/pages/clearing/clearing',
     })
+  },
+
+  // 选择\取消产品
+  chooseItem(e) {
+    let i = e.currentTarget.dataset.index;
+    let list = [...this.data.cartList];
+    let check = list[i].check
+    let count = list[i].count
+    if(!check && count == 0) {
+      count = 1
+    }
+    list.splice(i, 1, {...list[i], count, check: !list[i].check})
+    
+    this.setData({
+      cartList: list
+    }, () => {
+      this.calc();
+      this.judgeFn(list[i].check)
+    })
+  },
+
+  // 减
+  reduceCount(e) {
+    let i = e.currentTarget.dataset.index
+    if(this.data.cartList[i].count <= 0) return
+
+    let list = [...this.data.cartList]
+    let count = list[i].count - 1
+    if(count > 0) {
+      list.splice(i, 1, {...list[i], count, check: true})
+    } else {
+      list.splice(i, 1, {...list[i], count, check: false})
+    }
+
+    this.setData({
+      cartList: list
+    }, () => {
+      this.calc();
+      this.judgeFn(list[i].check)
+    })
+  },
+
+  // 加
+  plusCount(e) {
+    let i = e.currentTarget.dataset.index;
+
+    let list = [...this.data.cartList];
+    let count = list[i].count + 1
+    list.splice(i, 1, {...list[i], count, check: true})
+    this.setData({
+      cartList: list
+    }, () => {
+      this.judgeFn(list[i].check)
+    })
+  },
+
+  judgeFn(check) {
+    this.calc();
+
+    if(check) {
+      if(this.checkStatus()) {
+        this.setData({
+          checkAll: true
+        })
+      } else {
+        this.setData({
+          checkAll: false
+        })
+      }
+    } else {
+      this.setData({
+        checkAll: false
+      })
+    }
+  },
+
+  // 计算价格
+  calc() {
+    let list = [...this.data.cartList];
+    let money = 0;
+    for(let i = 0; i < list.length; i++) {
+      if(!list[i].check) continue
+      money += list[i].count*list[i].price
+    }
+
+    this.setData({
+      money
+    })
+  },
+
+  // 检查状态
+  checkStatus() {
+    let list = [...this.data.cartList]
+    for(let i = 0; i < list.length; i++) {
+      if(!list[i].check) return false
+    }
+
+    return true
   },
 
   // 购物车跳转详情页
@@ -19,6 +128,25 @@ Page({
 
     wx.navigateTo({
       url: '/pages/detail/detail',
+    })
+  },
+
+  // 全选、取消全选
+  handleAll() {
+    let list = [...this.data.cartList];
+    this.setData({
+      checkAll: !this.data.checkAll
+    }, () => {
+      for(let i = 0; i < list.length; i++) {
+        list[i].check = this.data.checkAll
+        if(this.data.checkAll && list[i].count == 0) list[i].count = 1
+      }
+
+      this.setData({
+        cartList: list
+      }, () => {
+        this.calc();
+      })
     })
   },
 

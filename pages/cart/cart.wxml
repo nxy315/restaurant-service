@@ -1,114 +1,32 @@
 <!--pages/cart/cart.wxml-->
 
 <view class='cart-wrap'>
-  <view class='flex-r-fs cart-title'>
+  <view class='flex-r-fs cart-title' bindtap='handleAll'>
     <view class='check-box'>
-      <image src='../../images/check.png'></image>
+      <!-- <image wx:if="{{!checkAll}}" src='../../images/check.png'></image>
+      <image wx:if="{{checkAll}}" src='../../images/check_fill.png'></image> -->
+      <image src='../../images/{{checkAll ? "check_fill" : "check"}}.png'></image>
     </view>
     <text>有餐无厨发货</text>
   </view>
 
-  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
+  <view class='flex-r-fs cart-item' wx:key='{{item.id}}' wx:for="{{cartList}}" data-id='{{item.id}}' data-index='{{index}}' bindtap='chooseItem'>
     <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
+      <image src='../../images/{{item.check ? "check_fill" : "check"}}.png'></image>
     </view>
 
     <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover'>
+      <view class='cover' catchtap='toDetail'>
         <image mode='aspectFill'></image>
       </view>
       <view class='flex-c-sb goods-info'>
-        <text class='name'>脆皮乳猪</text>
+        <text class='name'>{{item.name}}</text>
         <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png'></image>
-          <text class='count-num'>1</text>
-          <image class='plus' src='../../images/plus.png'></image>
+          <image class='reduce' src='../../images/reduce.png' data-index='{{index}}' catchtap='reduceCount'></image>
+          <text class='count-num'>{{item.count}}</text>
+          <image class='plus' src='../../images/plus.png' data-index='{{index}}' catchtap='plusCount'></image>
         </view>
-        <text class='price'>398.00/头</text>
-      </view>
-    </view>
-  </view>
-  
-  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
-    <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
-    </view>
-
-    <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover'>
-        <image mode='aspectFill'></image>
-      </view>
-      <view class='flex-c-sb goods-info'>
-        <text class='name'>脆皮乳猪</text>
-        <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png'></image>
-          <text class='count-num'>1</text>
-          <image class='plus' src='../../images/plus.png'></image>
-        </view>
-        <text class='price'>398.00/头</text>
-      </view>
-    </view>
-  </view>
-  
-  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
-    <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
-    </view>
-
-    <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover'>
-        <image mode='aspectFill'></image>
-      </view>
-      <view class='flex-c-sb goods-info'>
-        <text class='name'>脆皮乳猪</text>
-        <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png'></image>
-          <text class='count-num'>1</text>
-          <image class='plus' src='../../images/plus.png'></image>
-        </view>
-        <text class='price'>398.00/头</text>
-      </view>
-    </view>
-  </view>
-  
-  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
-    <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
-    </view>
-
-    <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover'>
-        <image mode='aspectFill'></image>
-      </view>
-      <view class='flex-c-sb goods-info'>
-        <text class='name'>脆皮乳猪</text>
-        <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png'></image>
-          <text class='count-num'>1</text>
-          <image class='plus' src='../../images/plus.png'></image>
-        </view>
-        <text class='price'>398.00/头</text>
-      </view>
-    </view>
-  </view>
-  
-  <view class='flex-r-fs cart-item' data-id='1' bindtap='toDetail'>
-    <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
-    </view>
-
-    <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover'>
-        <image mode='aspectFill'></image>
-      </view>
-      <view class='flex-c-sb goods-info'>
-        <text class='name'>脆皮乳猪</text>
-        <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png'></image>
-          <text class='count-num'>1</text>
-          <image class='plus' src='../../images/plus.png'></image>
-        </view>
-        <text class='price'>398.00/头</text>
+        <text class='price'>{{item.price}}/{{item.unit}}</text>
       </view>
     </view>
   </view>
@@ -123,12 +41,12 @@
 <!-- 结算部分 -->
 <view class='flex-r-sb bill-wrap'>
   <view class='flex-r-fs cal-wrap'>
-    <view class='check-box'>
-      <image src='../../images/check_fill.png'></image>
+    <view class='check-box' bindtap='handleAll'>
+      <image src='../../images/{{checkAll ? "check_fill" : "check"}}.png'></image>
     </view>
-    <view class='clear'>全选</view>
+    <view class='clear' bindtap='chooseAll' bindtap='handleAll'>全选</view>
     <view class='total'>合计</view>
-    <view class='red num'>￥1314</view>
+    <view class='red num'>￥{{money}}</view>
   </view>
   <view class='bill-btn' bindtap='toClear'>去结算</view>
 </view>
