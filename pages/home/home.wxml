@@ -1,9 +1,9 @@
 <!--pages/home/home.wxml-->
 
 <!-- 搜索 -->
-<view class='flex-r-c search-wrap'>
+<view class='flex-r-c search-wrap' style='background-image: url("http://www.youcanwuchu.com/Public/Uploads/{{banner}}")'>
   <view class='flex-r-sb search-box'>
-    <input placeholder='请输入您要查找产品或品牌'></input>
+    <input placeholder='请输入您要查找产品或品牌' bindinput='handelInput' value='{{keyword}}'></input>
     <view class='flex-r-c search-btn' bindtap='toList'>
       <image src='../../images/search_w.png'></image>
     </view>
@@ -18,71 +18,24 @@
     indicator-active-color="{{swiperInit.dotsActiveColor}}"
     duration="{{swiperInit.duration}}"
   >
-    <swiper-item class='banner-item'>
+    <swiper-item class='banner-item'
+      wx:for='{{typeList}}'
+      wx:key='{{index}}'
+      wx:for-index='index'
+      wx:for-item='item'
+    >
       <view class='flex-r-fs page-wrap'>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-      </view>
-    </swiper-item>
-    <swiper-item class='banner-item'>
-      <view class='flex-r-fs page-wrap'>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
-        </view>
-        <view class='flex-c-c item' bindtap='toList'>
-          <image class='item-cover' src=''></image>
-          <text>特色专区</text>
+        <view
+          class='flex-c-c item'
+          data-id='{{itm.id}}'
+          bindtap='toList'
+          wx:for='{{item}}'
+          wx:key='{{itm.id}}'
+          wx:for-index='i'
+          wx:for-item='itm'
+        >
+          <image mode='aspectFill' class='item-cover' src='http://www.youcanwuchu.com/Public/Uploads/{{itm.xcxpic}}'></image>
+          <text>{{itm.name}}</text>
         </view>
       </view>
     </swiper-item>

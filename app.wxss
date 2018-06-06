@@ -139,10 +139,16 @@ page{
 .result-list-item .cover{
   height: 49vw;
   background-color: #fff;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .result-list-item .name{
   margin: 10rpx 0 5rpx;
   padding: 0 15rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .result-list-item .info{
   padding: 0 15rpx;
