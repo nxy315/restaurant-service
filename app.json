@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/cart/cart",
+    "pages/classify/classify",
     "pages/home/home",
+    "pages/cart/cart",
     "pages/forum/forum",
     "pages/me/star/star",
     "pages/pay/pay",
@@ -15,7 +16,6 @@
     "pages/me/address/address",
     "pages/detail/detail",
     "pages/me/me",
-    "pages/classify/classify",
     "pages/index/index",
     "pages/logs/logs",
     "pages/me/used/used",

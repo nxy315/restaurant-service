@@ -6,21 +6,31 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
+    id: '',
+    word: '',
     types: [
-      { name: '最新商家' },
-      { name: '人气商家' },
+      { name: '最新商家', sort: 'id-desc' },
+      { name: '人气商家', sort: 'hit-desc' },
     ],
+    
     list: [
-      { id: 1, name: '中高档厨房餐具1', star: '10', eye: '1' },
-      { id: 2, name: '中高档厨房餐具2', star: '10', eye: '1' },
-      { id: 3, name: '中高档厨房餐具3', star: '10', eye: '1' },
-      { id: 4, name: '中高档厨房餐具4', star: '10', eye: '1' },
-      { id: 5, name: '中高档厨房餐具5', star: '10', eye: '1' },
-    ],
-    currentType: 0
+      [],[]
+    ],//列表数据
+    currentType: 0,
+    loading: true
   },
 
-  //收藏\取消收藏
+  
+  /**
+   * 首页厂商类型
+   * @method: GET 
+   * @url: /api/5b150d64dee3d.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
   collection(e) {
     let id = e.currentTarget.dataset.id
     wx.request({
@@ -39,8 +49,23 @@ Page({
     })
   },
 
-  //获取列表
+  
+  /**
+   * 厂商列表
+   * @method: GET 
+   * @url: /api/5b16a8b915bff.html
+   * 
+   * @param keyword :String     关键词
+   * @param sortid  :Int        分类id
+   * @param sort    :String     排序字段   全部:'' 最新:'id-desc'  人气:'hit-desc'
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
   getList(id, word) {
+    this.setData({
+      loading: true
+    })
     wx.request({
       method: 'get',
       url: `${app.globalData.reqUrl}/api/5b16a8b915bff.html`,
@@ -51,20 +76,32 @@ Page({
       },
       data: {
         sortid: id,
-        keyword: word, 
+        keyword: word,
+        sort: this.data.types[this.data.currentType].sort
       },
       success: data => {
+        let list = [...this.data.list]
+        list[this.data.currentType] = list[this.data.currentType].concat(data.data.data.store_list)
         this.setData({
-          list: data.data.data.store_list
+          list
         })
       },
+      complete: () => {
+        this.setData({
+          loading: false
+        })
+      }
     })
   },
 
   tapTypes(e) {
     let i = e.target.dataset.index;
+    let sort = e.target.dataset.sort;
     this.setData({
       currentType: i
+    }, () => {
+      if(this.data.list[this.data.currentType].length > 0) return 
+      this.getList(this.data.id, this.data.word)
     })
   },
   
@@ -74,6 +111,9 @@ Page({
   onLoad: function (options) {
     let id = options.id ? options.id : ''
     let word = options.keyword ? options.keyword : ''
+    this.setData({
+      id,word
+    })
     this.getList(id, word)
   },
 

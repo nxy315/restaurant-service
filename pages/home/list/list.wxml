@@ -1,23 +1,27 @@
 <!--pages/home/list/list.wxml-->
+
+<!-- 筛选头 -->
 <view class='flex-r-sa top-types-wrap'>
   <view
     wx:for="{{types}}"
     wx:key="{{index}}"
     class="top-types-item {{currentType == index ? 'active' : ''}}"
     data-index='{{index}}'
+    data-sort='{{item.sort}}'
     bindtap='tapTypes'
   >{{item.name}}</view>
 </view>
 
+<!-- 列表页 -->
 <view class='flex-r-sb result-list-wrap'>
 
   <navigator
     url='/pages/store/store?id={{item.id}}'
     class='result-list-item'
-    wx:for='{{list}}'
+    wx:for='{{list[currentType]}}'
     wx:key='{{item.id}}'
   >
-    <view class='cover' style='background-image: url("http://www.youcanwuchu.com/Public/Uploads/{{item.artpic}}")'></view>
+    <view class='cover' style='background-image: url("{{imgUrl + item.artpic}}")'></view>
     <view class='name'>{{item.name}}</view>
     <view class='flex-r-sb info'>
       <view class='flex-r-fs icon-wrap'>
@@ -32,5 +36,10 @@
     </view>
   </navigator>
 
+</view>
+
+<!-- loading -->
+<view class="flex-r-c loading-wrap">
+  <image wx:if="{{loading}}" mode="aspectFill" class="loading" src='../../../images/loading.gif'></image>
 </view>
 

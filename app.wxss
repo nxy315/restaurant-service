@@ -128,7 +128,7 @@ page{
 
 /* 结果列表页 */
 .result-list-item{
-  margin-bottom: 2vw;
+  margin-bottom: 18rpx;
   width: 47vw;
   height: 466rpx;
   background-color: rgba(255, 60, 119, .8);

@@ -74,3 +74,11 @@
 .result-swiper{
   height: 1000rpx;
 }
+
+.loading-wrap{
+  padding: 30rpx 0;
+}
+.loading{
+  width: 150rpx;
+  height: 150rpx;
+}

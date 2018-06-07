@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
@@ -13,7 +14,11 @@ Page({
       duration: 300
     },//swiper 配置
     keyword: '',//关键字
-    typeList: [],
+    typeList: [],//厂商类型数据列表
+    list: [
+      [],[],[]
+    ],//厂商列表
+    sort: ['', 'id-desc', 'hit-desc'],//厂商排序
     resultSwiper: {
       duration: 200
     },
@@ -23,7 +28,10 @@ Page({
       { name: '人气排名' },
     ],
     currentType: 0,
+    loading: [true, true, true],
     banner: '',//广告数据
+
+    swiperHeight: 500
   },
 
   //输入框
@@ -32,7 +40,26 @@ Page({
       keyword: e.detail.value
     })
   },
-  // 广告数据
+
+  /* 计算swiper的高度 */
+  calcuHeight() {
+    let height = Math.ceil(this.data.list[this.data.currentType].length/2)*484
+
+    this.setData({
+      swiperHeight: height != 0 ? height : 500
+    })
+  },
+
+  /**
+   * 获取广告图
+   * @method: GET 
+   * @url: /api/5b169d7bb041d.html
+   *
+   * @param adplace:String      100:首页 101:推荐 103:餐饮圈
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
   getAds(id) {
     wx.request({
       method: 'get',
@@ -50,6 +77,16 @@ Page({
     })
   },
 
+
+  /**
+   * 首页厂商类型
+   * @method: GET 
+   * @url: /api/5b150d64dee3d.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
   getTypes() {
     wx.request({
       method: 'get',
@@ -74,6 +111,61 @@ Page({
     })
   },
 
+
+  /**
+   * 厂商列表
+   * @method: GET 
+   * @url: /api/5b16a8b915bff.html
+   * 
+   * @param keyword :String     关键词
+   * @param sortid  :Int        分类id
+   * @param sort    :String     排序字段   全部:'' 最新:'id-desc'  人气:'hit-desc'
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getList(sort) {
+    this.calcuHeight();
+    let loading = [...this.data.loading]
+    loading[this.data.currentType] = true
+    this.setData({
+      loading
+    })
+
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b16a8b915bff.html`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      data: {
+        // sortid: '',
+        // keyword: '', 
+        sort
+      },
+      success: data => {
+        let list = [...this.data.list]
+        // list[this.data.currentType] = data.data.data.store_list.slice(0, 10)
+        list[this.data.currentType] = list[this.data.currentType].concat(data.data.data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
+        
+        this.setData({
+          list
+        }, () => {
+          this.calcuHeight();
+        })
+      },
+      complete: () => {
+        loading[this.data.currentType] = false
+        this.setData({
+          loading
+        })
+      }
+    })
+  },
+
+  /* 跳转厂商列表页 */
   toList(e) {
     let id = e.currentTarget.dataset.id ? e.currentTarget.dataset.id : ''
     wx.navigateTo({
@@ -83,13 +175,17 @@ Page({
 
   /* 切换swiper，改变索引 */
   changeType(e) {
+    this.calcuHeight();
     let i = e.detail.current;
     this.setData({
       currentType: i
+    }, () => {
+      if(this.data.list[this.data.currentType].length > 0) return
+      this.getList(this.data.sort[this.data.currentType])
     })
   },
 
-
+  /* 改变索引，切换swiper */
   tapTypes(e) {
     let i = e.currentTarget.dataset.index;
     this.setData({
@@ -103,6 +199,7 @@ Page({
   onLoad: function (options) {
     this.getTypes();
     this.getAds(100)
+    this.getList(this.data.sort[this.data.currentType])
   },
 
   /**
@@ -146,7 +243,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.getList(this.data.sort[this.data.currentType])
   },
 
   /**
