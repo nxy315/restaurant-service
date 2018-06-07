@@ -1,0 +1,4 @@
+<!--pages/forum/city/city.wxml-->
+<view>
+  <list-html data='{{city}}' binddetail='bindtap' search='{{value}}'></list-html>
+</view>

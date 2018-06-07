@@ -131,16 +131,18 @@ page{
   margin-bottom: 18rpx;
   width: 47vw;
   height: 466rpx;
-  background-color: rgba(255, 60, 119, .8);
-  color: #fff;
+  /* background-color: rgba(255, 60, 119, .8); */
+   background-color: #fff; 
+  color: #666;
   font-size: 26rpx;
+  box-shadow: 0 4rpx 6rpx 3rpx rgba(0,0,0,0.05);
 }
 
 .result-list-item .cover{
   height: 49vw;
   background-color: #fff;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 .result-list-item .name{
@@ -159,4 +161,8 @@ page{
   margin-right: 5rpx;
   width: 30rpx;
   height: 30rpx;
+}
+.result-list-item .info text{
+  color: #a0a0a0;
+  font-size: 24rpx;
 }

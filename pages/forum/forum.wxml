@@ -1,6 +1,6 @@
 <!--pages/forum/forum.wxml-->
 <!-- banner -->
-<view class='banner-wrap'>
+<view class='banner-wrap' bindtap='toCity'>
   <image mode='aspectFill' src=''></image>
 </view>
 

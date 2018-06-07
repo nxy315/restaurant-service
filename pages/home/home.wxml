@@ -81,12 +81,12 @@
         <view class='name'>{{itm.name}}</view>
         <view class='flex-r-sb info'>
           <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/eye.png'></image>
+            <image mode='aspectFill' src='../../images/eye_gray.png'></image>
             <text>{{itm.hit}}</text>
           </view>
 
           <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_w.png'></image>
+            <image mode='aspectFill' src='../../images/star_gray.png'></image>
             <text>{{itm.collection}}</text>    
           </view>
         </view>

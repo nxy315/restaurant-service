@@ -15,6 +15,12 @@ Page({
     bannerList: [],//广告数据
   },
 
+  toCity() {
+    wx.navigateTo({
+      url: '/pages/forum/city/city',
+    })
+  },
+
   // 广告数据
   getAds(id) {
     wx.request({

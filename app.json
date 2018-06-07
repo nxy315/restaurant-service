@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/classify/classify",
     "pages/home/home",
+    "pages/classify/classify",
     "pages/cart/cart",
     "pages/forum/forum",
     "pages/me/star/star",
@@ -20,7 +20,8 @@
     "pages/logs/logs",
     "pages/me/used/used",
     "pages/seller/seller",
-    "pages/location/location"
+    "pages/location/location",
+    "pages/forum/city/city"
   ],
   "window": {
     "backgroundTextStyle": "light",
