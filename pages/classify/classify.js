@@ -17,6 +17,14 @@ Page({
       circular: true,
       duration: 500
     },//swiper 配置
+    result: [
+      {id:1, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+      {id:2, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+      {id:3, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+      {id:4, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+      {id:5, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+      {id:6, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
+    ],//商品列表数据
 
     varietyIndex: 0,
     variety: [

@@ -21,7 +21,9 @@
     </swiper>
   </view>
 
+  <!-- 占位块 -->
   <view wx:if="{{suck}}" class='placeholder'></view>
+
   <!-- 筛选 -->
   <view class='flex-r-fs filter-wrap {{fold ? "f-fold" : "f-hidden"}} {{suck ? "suck" : ""}}'>
     <view class="flex-r-fs filter-item-container">
@@ -43,67 +45,21 @@
   <!-- 筛选结果 -->
   <view class='result-wrap'>
 
-    <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
+    <view
+      class='flex-r-sb result-item'
+      data-id='{{item.id}}'
+      wx:for='{{result}}'
+      wx:key='{{index}}'
+      bindtap='toDetail'
+    >
       <image class='cover'></image>
       <view class='flex-c-sb des-wrap'>
         <view class='flex-c-fs des-top'>
-          <view class='title'>成品小龙虾</view>
-          <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
+          <view class='title'>{{item.name}}</view>
+          <view class='des'>{{item.des}}</view>
         </view>
         <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥36/盒</text>
-        </view>
-      </view>
-    </view>
-    
-    <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
-      <image class='cover'></image>
-      <view class='flex-c-sb des-wrap'>
-        <view class='flex-c-fs des-top'>
-          <view class='title'>成品小龙虾</view>
-          <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
-        </view>
-        <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥36/盒</text>
-        </view>
-      </view>
-    </view>
-    
-    <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
-      <image class='cover'></image>
-      <view class='flex-c-sb des-wrap'>
-        <view class='flex-c-fs des-top'>
-          <view class='title'>成品小龙虾</view>
-          <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
-        </view>
-        <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥36/盒</text>
-        </view>
-      </view>
-    </view>
-    
-    <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
-      <image class='cover'></image>
-      <view class='flex-c-sb des-wrap'>
-        <view class='flex-c-fs des-top'>
-          <view class='title'>成品小龙虾</view>
-          <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
-        </view>
-        <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥36/盒</text>
-        </view>
-      </view>
-    </view>
-    
-    <view class='flex-r-sb result-item' data-id='1' bindtap='toDetail'>
-      <image class='cover'></image>
-      <view class='flex-c-sb des-wrap'>
-        <view class='flex-c-fs des-top'>
-          <view class='title'>成品小龙虾</view>
-          <view class='des'>成品小龙虾成品小龙虾成品品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</view>
-        </view>
-        <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥36/盒</text>
+          <text class='price'>￥{{item.price}}/{{item.unit}}</text>
         </view>
       </view>
     </view>

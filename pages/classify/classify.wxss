@@ -75,7 +75,6 @@
   border-bottom: 1rpx solid #ececec;
 }
 .result-wrap .result-item .cover{
-  flex-shrink: 0;
   margin-right: 24rpx;
   width: 200rpx;
   height: 200rpx;
@@ -83,8 +82,9 @@
   border-radius: 8rpx;
 }
 .result-wrap .result-item .des-wrap{
-  flex-shrink: 1;
+  flex: 1;
   height: 100%;
+  align-items: flex-start;
 }
 .result-wrap .result-item .des-wrap .des-top{
   align-items: flex-start;
