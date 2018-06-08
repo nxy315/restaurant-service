@@ -1,0 +1,35 @@
+<!--pages/me/userinfo/userinfo.wxml-->
+<view class='flex-c-fs wrap'>
+  <view class='avatar-wrap'>
+    <view class='flex-r-sb form-item avatar'>
+      <text class='name'>头像：</text>
+      <image mode='aspectFill'></image>
+    </view>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>昵称：</text>
+      <input placeholder='默认微信头像' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+    </view>
+  </view>
+
+  <view class='info-wrap'>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>姓名：</text>
+      <input placeholder='2-6个汉字或字母' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+    </view>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>手机号码：</text>
+      <input placeholder='请输入手机号码' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+    </view>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>公司名称：</text>
+      <input placeholder='请输入您的公司/品牌/店铺' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+    </view>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>所在地：</text>
+      <input placeholder='请输入您的经营所在地' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+    </view>
+
+    <view class='save-btn'>保存</view>
+  </view>
+</view>
+

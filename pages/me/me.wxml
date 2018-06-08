@@ -4,14 +4,22 @@
   <!-- 个人菜单  -->
   <view class='info-wrap'>
 
-    <view class='flex-r-fs info-top'>
-      <view class='flex-r-fs top-wrap'>
-        <text class='user-name'>NXY</text>
-        <view class='member'>普通会员</view>
+    <view class='flex-r-sb info-top' bindtap='toInfo'>
+      <view class='flex-r-fs'>
+        <view class='avatar'>
+          <image></image>
+        </view>
+
+        <view class='flex-r-fs top-wrap'>
+          <text class='user-name'>NXY</text>
+          <view class='member'>普通会员</view>
+        </view>
       </view>
+     
+      <image class='arrow' mode='aspectFill' src='../../images/arrow_down_w.png'></image>
     </view>
 
-    <view class='flex-r-fs info-bottom'>
+    <view class='flex-r-sa info-bottom'>
       <view class='flex-c-c item' data-url='/pages/me/used/used' bindtap='navigatePage'>
         <image src='../../images/like.png'></image>
         <text>常用清单</text>
@@ -20,11 +28,12 @@
         <image src='../../images/star.png'></image>
         <text>我的收藏</text>
       </view>
+      <view class='flex-c-c item' data-url='/pages/forum/mypost/mypost' bindtap='navigatePage'>
+        <image src='../../images/feedback.png'></image>
+        <text>我的发布</text>
+      </view>
     </view>
 
-    <view class='avatar'>
-      <image></image>
-    </view>
   </view>
 
   <!-- 订单  -->

@@ -45,7 +45,7 @@
 }
 
 .filter-item.active{
-  background-color: #ff2e55;
+  background-color: #fe4070;
   color: #fff;
 }
 
@@ -78,7 +78,7 @@
   margin-right: 24rpx;
   width: 200rpx;
   height: 200rpx;
-  background-color: pink;
+  background-color: #f2f2f2;
   border-radius: 8rpx;
 }
 .result-wrap .result-item .des-wrap{

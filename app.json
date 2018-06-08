@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/classify/classify",
-    "pages/cart/cart",
+    "pages/me/me",
+    "pages/me/userinfo/userinfo",
     "pages/forum/forum",
+    "pages/classify/classify",
+    "pages/store/store",
+    "pages/cart/cart",
     "pages/me/star/star",
     "pages/pay/pay",
     "pages/clearing/clearing",
-    "pages/store/store",
     "pages/home/list/list",
     "pages/me/wallet/recharge/recharge",
     "pages/me/wallet/wallet",
@@ -15,23 +17,23 @@
     "pages/me/address/addAddress/addAddress",
     "pages/me/address/address",
     "pages/detail/detail",
-    "pages/me/me",
     "pages/index/index",
     "pages/logs/logs",
     "pages/me/used/used",
     "pages/seller/seller",
     "pages/location/location",
-    "pages/forum/city/city"
+    "pages/forum/city/city",
+    "pages/forum/mypost/mypost"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ff3c77",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "有餐无厨",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#999",
-    "selectedColor": "#ff3c77",
+    "selectedColor": "#fe4070",
     "borderStyle": "#999",
     "backgroundColor": "#fff",
     "list": [

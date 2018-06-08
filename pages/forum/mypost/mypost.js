@@ -1,37 +1,25 @@
-// pages/me/me.js
+// pages/forum/mypost/mypost.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+
+    types: [
+      { name: '全部' },
+      { name: '显示中' },
+      { name: '未显示' },
+    ],
+    currentType: 0
   },
 
-  // 跳转至用户信息页
-  toInfo() {
-    wx.navigateTo({
-      url: '/pages/me/userinfo/userinfo',
-    })
-  },
 
-  navigatePage(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
-    })
-  },
-
-  showAction: function () {
-    wx.makePhoneCall({
-      phoneNumber: '13916344088'
+  /* change type */
+  tapTypes(e) {
+    let i = e.currentTarget.dataset.index;
+    this.setData({
+      currentType: i
     })
   },
 

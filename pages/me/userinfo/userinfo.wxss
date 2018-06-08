@@ -1,0 +1,47 @@
+/* pages/me/userinfo/userinfo.wxss */
+.wrap{
+  width: 100vw;
+  height: 100vh;
+}
+/* 头部 */
+.avatar-wrap{
+  width: 100%;
+  margin-bottom: 27rpx;
+  background-color: #fff;
+}
+
+/* 详情 */
+.info-wrap{
+  flex: 1;
+  width: 100%;
+  background-color: #fff;
+}
+
+.form-item{
+  padding: 0 40rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  border-bottom: 1rpx solid #e8e8e8; 
+}
+.form-item .name{
+  margin-right: 30rpx;
+  width: 150rpx;
+  color: #666;
+}
+.form-item input{
+  flex: 1;
+}
+.form-item image{
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+}
+.avatar{
+  height: 148rpx;
+  line-height: 148rpx;
+}
+
+.save-btn{
+  margin-top: 90rpx;
+}

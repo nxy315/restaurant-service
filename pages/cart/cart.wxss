@@ -30,7 +30,7 @@
 .cart-wrap .cart-item .goods-info-wrap .cover image{
   width: 100%;
   height: 100%;
-  background-color: pink;
+  background-color: #f2f2f2;
 }
 .cart-wrap .cart-item .goods-info-wrap .goods-info{
   padding: 6rpx 0;

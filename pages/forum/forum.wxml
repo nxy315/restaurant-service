@@ -23,7 +23,7 @@
     <view class='posts-content'>
       <view class='flex-r-fs name-wrap'>
         <view class='name'>NXY</view>
-        <view class='type t1'>厂商</view>
+        <image mode='aspectFill' class='type' src='../../images/verdor.png'></image>
       </view>
 
       <view class='article'>
@@ -67,7 +67,6 @@
     <view class='posts-content'>
       <view class='flex-r-fs name-wrap'>
         <view class='name'>NXY</view>
-        <view class='type t2'>店铺</view>
       </view>
 
       <view class='article'>
@@ -111,7 +110,6 @@
     <view class='posts-content'>
       <view class='flex-r-fs name-wrap'>
         <view class='name'>NXY</view>
-        <view class='type t2'>店铺</view>
       </view>
 
       <view class='article'>
@@ -155,7 +153,6 @@
     <view class='posts-content'>
       <view class='flex-r-fs name-wrap'>
         <view class='name'>NXY</view>
-        <view class='type t2'>店铺</view>
       </view>
 
       <view class='article'>

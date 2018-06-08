@@ -7,20 +7,26 @@
 
 /* 底部按钮 */
 .intro-foot{
+  padding: 0 2vw;
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100vw;
+  width: 96vw;
   height: 100rpx;
   background-color: #fff;
 }
-.foot-btn{
-  margin: 0 auto;
-  width: 98vw;
+.btn{
   height: 80rpx;
   line-height: 80rpx;
-  background-color: #ff3c77;
+  background-color: #fe4070;
   color: #fff;
   text-align: center;
   border-radius: 8rpx;
+}
+.foot-btn{
+  flex: 1;
+}
+.call{
+  margin-right: 2vw;
+  width: 180rpx;
 }

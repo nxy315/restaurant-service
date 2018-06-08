@@ -7,50 +7,48 @@
   position: relative;
 }
 .info-wrap .avatar{
-  position: absolute;
-  left: 75rpx;
-  bottom: 50rpx;
-  width: 152rpx;
-  height: 152rpx;
+  margin-right: 38rpx;
+  width: 123rpx;
+  height: 123rpx;
   overflow: hidden;
   border-radius: 50%;
 }
 .info-wrap .avatar image{
   width: 100%;
   height: 100%;
-  background-color: pink;
+  background-color: #f2f2f2;
 }
 .info-wrap .info-top{
-  position: relative;
-  padding-left: 245rpx;
-  height: 170rpx;
+  padding: 0 55rpx;
+  height: 240rpx;
   background-color: #ff3c77;
   color: #fff;
+  align-items: center;
 }
 .info-wrap .info-top .top-wrap{
-  position: absolute;
-  left: 245rpx;
-  bottom: 20rpx;
   font-size: 26rpx;
 }
 .info-wrap .info-top .top-wrap .user-name{
-  margin-right: 15rpx;
+  margin-right: 20rpx;
 }
 .info-wrap .info-top .top-wrap .member{
-  padding: 0 15rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 25rpx;
+  border-radius: 20rpx;
 }
+.info-top .arrow{
+  width: 45rpx;
+  height: 45rpx;
+}
+
 .info-wrap .info-bottom{
-  padding-left: 245rpx;
   height: 122rpx;
   font-size: 28rpx;
   color: #5a5a5a;
 }
 .info-wrap .info-bottom .item{
-  margin-right: 65rpx;
 }
 .info-wrap .info-bottom image{
   margin-top: 5rpx;

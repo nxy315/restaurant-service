@@ -1,4 +1,4 @@
-// pages/me/me.js
+// pages/me/userinfo/userinfo.js
 Page({
 
   /**
@@ -6,33 +6,6 @@ Page({
    */
   data: {
   
-  },
-
-  // 跳转至用户信息页
-  toInfo() {
-    wx.navigateTo({
-      url: '/pages/me/userinfo/userinfo',
-    })
-  },
-
-  navigatePage(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
-    })
-  },
-
-  showAction: function () {
-    wx.makePhoneCall({
-      phoneNumber: '13916344088'
-    })
   },
 
   /**

@@ -133,7 +133,7 @@ page{
   height: 466rpx;
   /* background-color: rgba(255, 60, 119, .8); */
    background-color: #fff; 
-  color: #666;
+  color: #333;
   font-size: 26rpx;
   box-shadow: 0 4rpx 6rpx 3rpx rgba(0,0,0,0.05);
 }
@@ -165,4 +165,17 @@ page{
 .result-list-item .info text{
   color: #a0a0a0;
   font-size: 24rpx;
+}
+
+/* 保存按钮 */
+
+.save-btn{
+  margin: 0 auto;
+  width: 400rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #fff;
+  background-color: #fe4070;
+  text-align: center;
+  border-radius: 35rpx;
 }

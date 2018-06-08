@@ -1,43 +1,23 @@
-/* pages/forum/forum.wxss */
-.banner-wrap{
-  /* height: 380rpx; */
-  height: 200px;
-}
-.banner-wrap image{
-  width: 100%;
-  height: 380rpx;
-  background-color: #f2f2f2;
-}
+/* pages/forum/mypost/mypost.wxss */
 .top-types-wrap{
-  margin-bottom: 0;
-  position: relative;
-  height: 100rpx;
-}
-.top-types-item{
-  line-height: 24rpx !important;
-  font-size: 26rpx !important;
-  height: 100rpx !important;
-  border: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 .top-types-item.active{
   color: #fff;
   background-color: #fe4070;
 }
-.top-types-item image{
-  margin-bottom: 13rpx;
-  width: 40rpx;
-  height: 40rpx;
-  background-color: transparent;
-}
 
 /* 文章内容 */
 .posts-wrap{
+  margin-top: 88rpx;
   background-color: #fff;
 }
 
 .posts-item{
   align-items: flex-start;
-  padding: 25rpx 120rpx 25rpx 25rpx;
+  padding: 25rpx 50rpx 25rpx 25rpx;
   border-bottom: 1rpx solid #e8e8e8;
   font-size: 26rpx;
 }
@@ -75,12 +55,12 @@
 
 .imgs-wrap{
   margin-bottom: 10rpx;
-  height: 162rpx;
+  height: 184rpx;
 }
 .imgs-wrap image{
   margin-right: 10rpx;
-  width: 162rpx;
-  height: 162rpx;
+  width: 184rpx;
+  height: 184rpx;
   background-color: #f2f2f2;
 }
 .imgs-wrap image:last-child{
@@ -119,14 +99,14 @@
 }
 .info-wrap text{}
 
+.handle-btn{
+  margin-left: 15rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border: 1rpx solid #fe4070;
+  text-align: center;
+  border-radius: 20rpx;
+  color: #fe4070;
+}
 
-/* 添加需求 */
-.add-wrap{
-  position: fixed;
-  right: 10rpx;
-  bottom: 10vh;
-}
-.add-wrap image{
-  width: 80rpx;
-  height: 80rpx;
-}

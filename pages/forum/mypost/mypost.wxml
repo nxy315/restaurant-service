@@ -1,0 +1,167 @@
+<!--pages/forum/mypost/mypost.wxml-->
+
+<view class='flex-r-sa top-types-wrap'>
+  <view
+    wx:for="{{types}}"
+    wx:key="{{index}}"
+    class="top-types-item {{currentType == index ? 'active' : ''}}"
+    data-index='{{index}}'
+    bindtap='tapTypes'
+  >{{item.name}}</view>
+</view>
+
+<!-- 帖子 -->
+<view class='posts-wrap'>
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <image mode='aspectFill' class='type' src='../../../images/verdor.png'></image>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-sb other-info'>
+        <view class='flex-r-fs'>
+          <view class='flex-r-fs info-wrap i1'>
+            <image src='../../../images/like.png'></image>
+            <text>5646</text>
+          </view>
+          
+          <view class='flex-r-fs info-wrap i2'>
+            <image src='../../../images/mark.png'></image>
+            <text>54</text>
+          </view>
+        </view>
+        
+        <view class='flex-r-fs'>
+          <view class='handle-btn'>修改</view>
+          <view class='handle-btn'>取消显示</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <image mode='aspectFill' class='type' src='../../../images/verdor.png'></image>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-sb other-info'>
+        <view class='flex-r-fs'>
+          <view class='flex-r-fs info-wrap i1'>
+            <image src='../../../images/like.png'></image>
+            <text>5646</text>
+          </view>
+          
+          <view class='flex-r-fs info-wrap i2'>
+            <image src='../../../images/mark.png'></image>
+            <text>54</text>
+          </view>
+        </view>
+        
+        <view class='flex-r-fs'>
+          <view class='handle-btn'>重新发布</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='flex-r-fs posts-item'>
+    <view class='cover'>
+      <image class='avatar' mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='posts-content'>
+      <view class='flex-r-fs name-wrap'>
+        <view class='name'>NXY</view>
+        <image mode='aspectFill' class='type' src='../../../images/verdor.png'></image>
+      </view>
+
+      <view class='article'>
+        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+      </view>
+
+      <view class='imgs-wrap'>
+        <image src=''></image>
+        <image src=''></image>
+        <image src=''></image>
+      </view>
+
+      <view class='flex-r-sb location'>
+        <view class='flex-r-fs address'>
+          <image src='../../../images/location.png'></image>
+          <text>上海市徐汇区</text>
+        </view>
+
+        <view class='time'>10:25</view>
+      </view>
+
+      <view class='flex-r-sb other-info'>
+        <view class='flex-r-fs'>
+          <view class='flex-r-fs info-wrap i1'>
+            <image src='../../../images/like.png'></image>
+            <text>5646</text>
+          </view>
+          
+          <view class='flex-r-fs info-wrap i2'>
+            <image src='../../../images/mark.png'></image>
+            <text>54</text>
+          </view>
+        </view>
+        
+        <view class='flex-r-fs'>
+          <view class='handle-btn'>修改</view>
+          <view class='handle-btn'>取消显示</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

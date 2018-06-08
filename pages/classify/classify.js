@@ -11,7 +11,7 @@ Page({
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
-      dotsActiveColor: 'rgba(255, 60, 119, 1)',
+      dotsActiveColor: 'rgba(254, 64, 112, 1)',
       autoplay: true,
       interval: 3000,
       circular: true,

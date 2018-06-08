@@ -1,9 +1,10 @@
 /* pages/home/home.wxss */
 .search-wrap{
-  height: 380rpx;
+  /* height: 380rpx; */
+  height: 200px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
 }
 .search-box{
   width: 500rpx;
@@ -18,7 +19,7 @@
 .search-btn{
   width: 100rpx;
   height: 70rpx;
-  background-color: #ff3c77;
+  background-color: #fe4070;
 }
 .search-btn image{
   width: 42rpx;
@@ -51,7 +52,6 @@
   width: 100rpx;
   height: 100rpx;
   background-color: #f2f2f2;
-  border-radius: 50%;
 }
 .item text{
   font-size: 26rpx;
@@ -65,7 +65,7 @@
 }
 .top-types-item.active{
   color: #fff;
-  background-color: #ff2e55;
+  background-color: #fe4070;
 }
 .result-list{
   flex-wrap: wrap;

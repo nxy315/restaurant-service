@@ -10,7 +10,7 @@ Page({
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
-      dotsActiveColor: 'rgba(255, 60, 119, 1)',
+      dotsActiveColor: 'rgba(254, 64, 112, 1)',
       duration: 300
     },//swiper 配置
     keyword: '',//关键字

@@ -10,6 +10,13 @@ Page({
     num: '',//店铺电话
   },
 
+  // 信息报错
+  callErr() {
+    wx.makePhoneCall({
+      phoneNumber: '13916344088'
+    })
+  },
+
   getList(id) {
     wx.request({
       method: 'get',
@@ -40,6 +47,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '重庆小面',
+    })
     let id = options.id
     // this.getList(id)
   },
