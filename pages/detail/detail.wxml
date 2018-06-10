@@ -1,18 +1,18 @@
 <!--pages/detail/detail.wxml-->
 <!-- 标题 -->
-<view class='good-title'>
+<!-- <view class='good-title'>
   <text>成品小龙虾(盒装)</text>
-</view>
+</view> -->
 
 <!-- 商品详情信息 -->
 <view id='good-detail'>
   <view class='cover'>
-    <image></image>
+    <image mode='aspectFill' src='{{imgUrl+detail.artpic}}'></image>
   </view>
-  <view class='red name'>￥36/盒 (麻辣)</view>
+  <view class='red name'>￥{{detail.sell_price}}{{detail.spec?'/'+detail.spec:''}} (麻辣)</view>
   <view class='des'>
     <text class='red'>[简介] </text>
-    <text>成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾成品小龙虾</text>
+    <text>{{detail.introduction}}</text>
   </view>
 </view>
 

@@ -1,11 +1,47 @@
 // pages/detail/detail.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    imgUrl: app.globalData.imgUrl,
+    detail: {},
+    brand: '',//产品标题
+  },
+
+  /**
+   * 获取商品详情
+   * @method: GET 
+   * @url: /api/5b1c7c61216d6.html
+   *
+   * @param id:int              产品id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getDetail(id) {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b1c7c61216d6.html?id=${id}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      success: data => {
+        let detail = data.data.data.detail
+        wx.setNavigationBarTitle({
+          title: detail.name,
+        })
+        // // // let list
+        this.setData({
+          // list
+          detail
+        })
+      },
+    })
   },
 
   switchTap(e) {
@@ -25,7 +61,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let id = options.id
+    console.log(id)
+    this.getDetail(id);
   },
 
   /**

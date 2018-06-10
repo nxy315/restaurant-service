@@ -15,7 +15,11 @@
 
 #good-detail .cover{
   height: 750rpx;
-  background-color: pink;
+  background-color: #f2f2f2;
+}
+#good-detail .cover image{
+  width: 100%;
+  height: 100%;
 }
 
 #good-detail .name{
@@ -47,7 +51,7 @@
 .good-images .good-image{
   width: 100%;
   height: 1000rpx;
-  background-color: pink;
+  background-color: #f2f2f2;
 }
 
 .goods-footer{

@@ -5,5 +5,5 @@
 </view>
 
 <view class='flex-r-c intro-foot'>
-  <view class='btn call' bindtap='callErr'>信息报错</view><view class='btn foot-btn' bindtap="showAction">联系人： 重庆小面-李总 拨打电话</view>
+  <view class='btn call' bindtap='callErr'>信息报错</view><view class='btn foot-btn' bindtap="showAction">联系人： {{contact}} 拨打电话</view>
 </view>

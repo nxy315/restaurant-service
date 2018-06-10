@@ -1,13 +1,16 @@
 // pages/store/store.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     list: [],//图片列表
     name: '',//店铺名字
-    num: '',//店铺电话
+    num: null,//店铺电话
+    contact: '',//联系人
   },
 
   // 信息报错
@@ -17,21 +20,38 @@ Page({
     })
   },
 
-  getList(id) {
+  /**
+   * 获取商家详情
+   * @method: GET 
+   * @url: /api/5b1c788f5b08d.html
+   *
+   * @param id:int              商家id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getDetail(id) {
     wx.request({
       method: 'get',
-      url: `${app.globalData.reqUrl}`,
+      url: `${app.globalData.reqUrl}/api/5b1c788f5b08d.html?id=${id}`,
       dataType: 'json',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
       },
       data: {
         id
       },
       success: data => {
-        let list
+        data = data.data.data.detail
+        wx.setNavigationBarTitle({
+          title: data.brand,
+        })
+        // // let list
         this.setData({
-          list
+          // list
+          num: data.tel,
+          contact: data.contact
         })
       },
     })
@@ -39,7 +59,7 @@ Page({
 
   showAction: function () {
     wx.makePhoneCall({
-      phoneNumber: '123456789'
+      phoneNumber: this.data.num
     })
   },
 
@@ -47,11 +67,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '重庆小面',
-    })
     let id = options.id
-    // this.getList(id)
+    this.getDetail(id)
   },
 
   /**

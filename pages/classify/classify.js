@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     suck: false,
     fold: false,
     swiperInit: {
@@ -17,33 +18,11 @@ Page({
       circular: true,
       duration: 500
     },//swiper 配置
-    result: [
-      {id:1, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-      {id:2, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-      {id:3, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-      {id:4, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-      {id:5, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-      {id:6, name:'成品小龙虾1', price:'30', unit:'盒', des: '成品小龙虾成品小龙虾成品小龙虾成品小龙虾'},
-    ],//商品列表数据
+    resultId: '',
+    result: [],//商品列表数据
 
     varietyIndex: 0,
-    variety: [
-      { name: '全部' },
-      { name: '烧腊卤水' },
-      { name: '饭系列' },
-      { name: '面系列' },
-      { name: '汤系列' },
-      { name: '点心系列' },
-      { name: '小吃系列' },
-      { name: '面系列' },
-      { name: '汤系列' },
-      { name: '点心系列' },
-      { name: '小吃系列' },
-      { name: '面系列' },
-      { name: '汤系列' },
-      { name: '点心系列' },
-      { name: '小吃系列' },
-    ],// 商品分类
+    variety: [],// 商品分类
 
     bannerList: [],//广告数据
   },
@@ -81,6 +60,64 @@ Page({
       },
     })
   },
+
+  /**
+   * 获取分类
+   * @method: GET 
+   * @url: /api/5b16b2355d474.html
+   *
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getVariety() {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b16b2355d474.html`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      success: data => {
+        this.setData({
+          variety: data.data.data.sort_lsit,
+          varietyIndex: 0,
+          resultId: data.data.data.sort_lsit[0].id
+        }, () => {
+          this.getResult(this.data.resultId);
+        })
+      },
+    })
+  },
+
+  /**
+   * 获取商品
+   * @method: GET 
+   * @url: /api/5b16b2ab1de15.html
+   *
+   * @param sortid:int          分类id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getResult(id) {
+    wx.request({
+      method: 'get',
+      url: `${app.globalData.reqUrl}/api/5b16b2ab1de15.html?sortid=${id}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': app.globalData.version
+      },
+      success: data => {
+        this.setData({
+          result: data.data.data.shop_list
+        })
+      },
+    })
+  },
+
   upper(e){
     console.log('upper')
   },
@@ -117,15 +154,19 @@ Page({
     let id = e.currentTarget.dataset.id;
 
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: `/pages/detail/detail?id=${id}`,
     })
   },
 
   // 选择品类
   chooseVariety(e) {
+    let id = e.currentTarget.dataset.id;
     let i = e.currentTarget.dataset.index;
     this.setData({
-      varietyIndex: i
+      varietyIndex: i,
+      resultId: id
+    }, () => {
+      this.getResult(id)
     })
   },
 
@@ -134,6 +175,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(101)
+    this.getVariety();
   },
 
   /**
@@ -147,7 +189,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getVariety();
   },
 
   /**

@@ -15,7 +15,7 @@
     >
       <block wx:for="{{bannerList}}" wx:key="{{index}}">
         <swiper-item class='banner-item'>
-          <image mode='aspectFill' src='http://www.youcanwuchu.com/Public/Uploads/{{item.adpic}}'></image>
+          <image mode='aspectFill' src='{{imgUrl+item.adpic}}'></image>
         </swiper-item>
       </block>
     </swiper>
@@ -31,12 +31,13 @@
         wx:for='{{variety}}'
         class='filter-item {{index == varietyIndex ? "active" : ""}}'
         wx:key='{{index}}'
+        data-id="{{item.id}}"
         data-index="{{index}}"
         bindtap='chooseVariety'
       >{{item.name}}</view>
     </view>
 
-    <view class="flex-r-c fold-wrap" bindtap='foldToggle'>
+    <view wx:if='{{variety.length>8}}' class="flex-r-c fold-wrap" bindtap='foldToggle'>
       <image wx:if='{{fold}}' mode="aspectFill" class="fold" src='../../images/fold.png'></image>
       <image wx:if='{{!fold}}' mode="aspectFill" class="fold" src='../../images/unfold.png'></image>
     </view>
@@ -52,14 +53,14 @@
       wx:key='{{index}}'
       bindtap='toDetail'
     >
-      <image class='cover'></image>
+      <image class='cover' src='{{imgUrl+item.artpic}}'></image>
       <view class='flex-c-sb des-wrap'>
         <view class='flex-c-fs des-top'>
           <view class='title'>{{item.name}}</view>
-          <view class='des'>{{item.des}}</view>
+          <view class='des'>{{item.introduction}}</view>
         </view>
         <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥{{item.price}}/{{item.unit}}</text>
+          <text class='price'>￥{{item.sell_price}}{{item.spec?'/'+item.spec:''}}</text>
         </view>
       </view>
     </view>
