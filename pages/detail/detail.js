@@ -22,25 +22,18 @@ Page({
    * @header[user-token]        验签
    */
   getDetail(id) {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b1c7c61216d6.html?id=${id}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      success: data => {
-        let detail = data.data.data.detail
-        wx.setNavigationBarTitle({
-          title: detail.name,
-        })
-        // // // let list
-        this.setData({
-          // list
-          detail
-        })
-      },
+    app.get('/api/5b1c7c61216d6.html', {
+      id
+    }, data => {
+      let detail = data.detail
+      wx.setNavigationBarTitle({
+        title: detail.name,
+      })
+      // // // let list
+      this.setData({
+        // list
+        detail
+      })
     })
   },
 

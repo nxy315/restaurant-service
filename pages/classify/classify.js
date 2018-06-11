@@ -45,19 +45,12 @@ Page({
    * @header[user-token]        验签
    */
   getAds(id) {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b169d7bb041d.html?adplace=${id}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      success: data => {
-        this.setData({
-          bannerList: data.data.data.ad_list
-        })
-      },
+    app.get('/api/5b169d7bb041d.html', {
+      adplace: id
+    }, data => {
+      this.setData({
+        bannerList: data.ad_list
+      })
     })
   },
 
@@ -71,23 +64,14 @@ Page({
    * @header[user-token]        验签
    */
   getVariety() {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b16b2355d474.html`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      success: data => {
-        this.setData({
-          variety: data.data.data.sort_lsit,
-          varietyIndex: 0,
-          resultId: data.data.data.sort_lsit[0].id
-        }, () => {
-          this.getResult(this.data.resultId);
-        })
-      },
+    app.get('/api/5b16b2355d474.html', {}, data => {
+      this.setData({
+        variety: data.sort_lsit,
+        varietyIndex: 0,
+        resultId: data.sort_lsit[0].id
+      }, () => {
+        this.getResult(this.data.resultId);
+      })
     })
   },
 
@@ -102,19 +86,12 @@ Page({
    * @header[user-token]        验签
    */
   getResult(id) {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b16b2ab1de15.html?sortid=${id}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      success: data => {
-        this.setData({
-          result: data.data.data.shop_list
-        })
-      },
+    app.get('/api/5b16b2ab1de15.html', {
+      sortid: id
+    }, data => {
+      this.setData({
+        result: data.shop_list
+      })
     })
   },
 

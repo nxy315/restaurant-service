@@ -1,4 +1,5 @@
 // pages/cart/cart.js
+const app = getApp();
 Page({
 
   /**
@@ -15,6 +16,12 @@ Page({
 
     checkAll: false,
     money: 0,// 合计
+  },
+
+  getCart() {
+    app.get('', {}, data => {
+
+    })
   },
 
   // 结算
@@ -154,7 +161,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // this.getCart()
   },
 
   /**

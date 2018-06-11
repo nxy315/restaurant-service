@@ -31,29 +31,19 @@ Page({
    * @header[user-token]        验签
    */
   getDetail(id) {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b1c788f5b08d.html?id=${id}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      data: {
-        id
-      },
-      success: data => {
-        data = data.data.data.detail
-        wx.setNavigationBarTitle({
-          title: data.brand,
-        })
-        // // let list
-        this.setData({
-          // list
-          num: data.tel,
-          contact: data.contact
-        })
-      },
+    app.get('/api/5b1c788f5b08d.html', {
+      id
+    }, data => {
+      data = data.detail
+      wx.setNavigationBarTitle({
+        title: data.brand,
+      })
+      // // let list
+      this.setData({
+        // list
+        num: data.tel,
+        contact: data.contact
+      })
     })
   },
 

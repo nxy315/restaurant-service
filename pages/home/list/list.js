@@ -23,9 +23,9 @@ Page({
 
   
   /**
-   * 首页厂商类型
+   * 收藏厂商
    * @method: GET 
-   * @url: /api/5b150d64dee3d.html
+   * @url: 
    * 
    * @header[version]           版本号
    * @header[access-token]      验签
@@ -33,20 +33,9 @@ Page({
    */
   collection(e) {
     let id = e.currentTarget.dataset.id
-    wx.request({
-      method: 'post',
-      url: `${app.globalData.reqUrl}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        id
-      },
-      success: data => {
-        
-      },
-    })
+    // app.get('',{},()=>{
+
+    // })
   },
 
   
@@ -66,31 +55,21 @@ Page({
     this.setData({
       loading: true
     })
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b16a8b915bff.html`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      data: {
-        sortid: id,
-        keyword: word,
-        sort: this.data.types[this.data.currentType].sort
-      },
-      success: data => {
-        let list = [...this.data.list]
-        list[this.data.currentType] = list[this.data.currentType].concat(data.data.data.store_list)
-        this.setData({
-          list
-        })
-      },
-      complete: () => {
-        this.setData({
-          loading: false
-        })
-      }
+    
+    app.get('/api/5b16a8b915bff.html', {
+      sortid: id,
+      keyword: word,
+      sort: this.data.types[this.data.currentType].sort
+    }, data => {
+      let list = [...this.data.list]
+      list[this.data.currentType] = list[this.data.currentType].concat(data.store_list)
+      this.setData({
+        list
+      })
+    }, () => {
+      this.setData({
+        loading: false
+      })
     })
   },
 

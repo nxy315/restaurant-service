@@ -34,6 +34,48 @@ App({
       }
     })
   },
+  get(url, params, fn, finalFn){
+    let arr = []
+    let paramsStr = ''
+    if(JSON.stringify(params) != '{}') {
+      for(let item in params) {
+        arr.push(`${item}=${params[item]}`)
+      }
+      paramsStr = '?' + arr.join('&')
+    }
+    
+    
+    wx.request({
+      method: 'get',
+      url: `${this.globalData.reqUrl+url+paramsStr}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': this.globalData.version
+      },
+      success: data => {
+        fn && fn(data.data.data)
+      },
+      complete: () => {
+        finalFn && finalFn()
+      }
+    })
+  },
+  post(url, params, fn) {
+    wx.request({
+      method: 'post',
+      url: `${this.globalData.reqUrl+url}`,
+      dataType: 'json',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'version': this.globalData.version
+      },
+      data: params,
+      success: data => {
+        fn && fn()
+      },
+    })
+  },
   globalData: {
     userInfo: null,
     reqUrl: 'https://api.youcanwuchu.com',//请求域名

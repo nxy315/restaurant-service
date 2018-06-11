@@ -61,19 +61,12 @@ Page({
    * @header[user-token]        验签
    */
   getAds(id) {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b169d7bb041d.html?adplace=${id}`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      success: data => {
-        this.setData({
-          banner: data.data.data.ad_list[0].adpic
-        })
-      },
+    app.get('/api/5b169d7bb041d.html', {
+      adplace: id
+    }, data => {
+      this.setData({
+        banner: data.ad_list[0].adpic
+      })
     })
   },
 
@@ -88,26 +81,17 @@ Page({
    * @header[user-token]        验签
    */
   getTypes() {
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b150d64dee3d.html`,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      dataType: 'json',
-      success: data => {
-        let list = data.data.data.store_sort_list
-        let len = Math.ceil(list.length / 8)
-        
-        let arr = []
-        for(let i = 0; i < len; i++) {
-          arr[i] = list.slice(i * 8, (i + 1)*8)
-        }
-        this.setData({
-          typeList: arr
-        })
-      },
+    app.get('/api/5b150d64dee3d.html', {}, data => {
+      let list = data.store_sort_list
+      let len = Math.ceil(list.length / 8)
+      
+      let arr = []
+      for(let i = 0; i < len; i++) {
+        arr[i] = list.slice(i * 8, (i + 1)*8)
+      }
+      this.setData({
+        typeList: arr
+      })
     })
   },
 
@@ -132,36 +116,23 @@ Page({
       loading
     })
 
-    wx.request({
-      method: 'get',
-      url: `${app.globalData.reqUrl}/api/5b16a8b915bff.html`,
-      dataType: 'json',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'version': app.globalData.version
-      },
-      data: {
-        // sortid: '',
-        // keyword: '', 
-        sort
-      },
-      success: data => {
-        let list = [...this.data.list]
-        // list[this.data.currentType] = data.data.data.store_list.slice(0, 10)
-        list[this.data.currentType] = list[this.data.currentType].concat(data.data.data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
-        
-        this.setData({
-          list
-        }, () => {
-          this.calcuHeight();
-        })
-      },
-      complete: () => {
-        loading[this.data.currentType] = false
-        this.setData({
-          loading
-        })
-      }
+    app.get('/api/5b16a8b915bff.html', {
+      sort
+    }, data => {
+      let list = [...this.data.list]
+      // list[this.data.currentType] = data.data.data.store_list.slice(0, 10)
+      list[this.data.currentType] = list[this.data.currentType].concat(data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
+      
+      this.setData({
+        list
+      }, () => {
+        this.calcuHeight();
+      })
+    }, () => {
+      loading[this.data.currentType] = false
+      this.setData({
+        loading
+      })
     })
   },
 
