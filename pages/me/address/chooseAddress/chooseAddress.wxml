@@ -1,5 +1,4 @@
-<!--pages/me/address/address.wxml-->
-
+<!--pages/me/address/chooseAddress/chooseAddress.wxml-->
 <view class='address-list'>
 
   <view class='flex-r-sb address-item'>
@@ -50,3 +49,4 @@
 <view class='flex-r-c add-address-wrap'>
   <view class='button-primary' style='width: 400rpx;' bindtap='editAddress'>新增地址</view>
 </view>
+

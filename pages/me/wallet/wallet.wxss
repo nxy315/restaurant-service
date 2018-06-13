@@ -21,7 +21,7 @@
   text-align: center;
   font-size: 28rpx;
   border: 2rpx solid #fff;
-  border-radius: 31rpx;
+  border-radius: 8rpx;
 }
 
 /* 订单明细 */

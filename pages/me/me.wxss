@@ -16,6 +16,7 @@
 .info-wrap .avatar image{
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   background-color: #f2f2f2;
 }
 .info-wrap .info-top{
@@ -42,7 +43,17 @@
   width: 45rpx;
   height: 45rpx;
 }
-
+.login{
+  margin: 0 auto;
+  width: 210rpx;
+  height: 62rpx;
+  line-height: 58rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 2rpx solid #fff;
+  border-radius: 8rpx;
+  color: #fff;
+}
 .info-wrap .info-bottom{
   height: 122rpx;
   font-size: 28rpx;

@@ -8,5 +8,5 @@
     </view>
   </picker>
 
-  <view class='recharge' bindtap='recharge'>充值</view>
+  <view class='button-primary' style='width: 400rpx;margin: 40rpx auto 0' bindtap='recharge'>充值</view>
 </view>

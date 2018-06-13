@@ -1,0 +1,61 @@
+/* pages/me/address/chooseAddress/chooseAddress.wxss */
+.address-list{
+  background-color: #fff;
+}
+.address-list .address-item{
+  padding: 20rpx 30rpx;
+  height: 122rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.address-list .address-item .address-check{
+  width: 51rpx;
+  height: 100%;
+}
+.address-list .address-item .address-check image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.address-list .address-item .address-info{
+  flex: 1;
+}
+.address-list .address-item .address-info .info-wrap{}
+.address-list .address-item .address-info .info-wrap .user-name{
+  margin-right: 45rpx;
+  font-weight: bold;
+}
+.address-list .address-item .address-info .info-wrap .user-tel{
+  margin-right: 22rpx;
+  font-weight: bolder;
+}
+.address-list .address-item .address-info .info-wrap .default-address{
+  padding: 0 14rpx;
+  height: 30rpx;
+  line-height: 31rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #fd0402;
+  border-radius: 15rpx;
+}
+.address-list .address-item .address-info .address-detail{
+  font-size: 24rpx;
+  color: #555555;
+}
+.address-list .address-item .edit-wrap{
+  margin-left: 45rpx;
+  width: 51rpx;
+  height: 100%;
+}
+.address-list .address-item .edit-wrap image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 增加地址 */
+.add-address-wrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}

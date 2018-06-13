@@ -96,12 +96,3 @@
 .bill-wrap .cal-wrap .num{
   font-weight: bold;
 }
-.bill-wrap .bill-btn{
-  width: 250rpx;
-  height: 74rpx;
-  line-height: 74rpx;
-  color: #fff;
-  text-align: center;
-  background-color: #fe4070;
-  border-radius: 37rpx;
-}

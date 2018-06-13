@@ -7,9 +7,7 @@
 <!-- type -->
 <view class='flex-r-sa top-types-wrap'>
   <view wx:for="{{types}}" wx:key="{{index}}" class="flex-c-c top-types-item {{currentType == index ? 'active' : ''}}" data-index='{{index}}' bindtap='tapTypes'>
-     <image mode='aspectFill' wx:if="{{currentType != index}}" src='../../images/{{item.icon}}.png'></image>
-     <image mode='aspectFill' wx:if="{{currentType == index}}" src='../../images/{{item.icon}}_w.png'></image>
-    <view>{{item.name}}</view>
+    <view class='item-text'>{{item.name}}</view>
   </view>
 </view>
 

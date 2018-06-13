@@ -47,10 +47,12 @@
   <view
     wx:for="{{types}}"
     wx:key="{{index}}"
-    class="top-types-item {{currentType == index ? 'active' : ''}}"
+    class="flex-r-c top-types-item {{currentType == index ? 'active' : ''}}"
     data-index='{{index}}'
     bindtap='tapTypes'
-  >{{item.name}}</view>
+  >
+    <view class='item-text'>{{item.name}}</view>
+  </view>
 </view>
 
 

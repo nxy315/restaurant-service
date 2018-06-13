@@ -36,15 +36,3 @@
   font-size: 22rpx;
   color: #808080;
 }
-
-/* 确认支付 */
-.add-address-btn{
-  margin: 40rpx auto 0;
-  width: 400rpx;
-  height: 70rpx;
-  line-height: 70rpx;
-  color: #fff;
-  background-color: #fe4070;
-  text-align: center;
-  border-radius: 35rpx;
-}

@@ -69,5 +69,5 @@
     <text class='t1'>合计(含运费)总计：</text>
     <text class='t2'>￥789</text>
   </view>
-  <view class='submit-btn' bindtap='pay'>提交订单</view>
+  <view class='button-primary' style='width: 250rpx;' bindtap='pay'>提交订单</view>
 </view>

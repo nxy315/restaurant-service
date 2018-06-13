@@ -63,10 +63,6 @@
   margin-bottom: 15rpx;
   position: relative;
 }
-.top-types-item.active{
-  color: #fff;
-  background-color: #fe4070;
-}
 .result-list{
   flex-wrap: wrap;
   padding: 0 2vw;

@@ -1,9 +1,9 @@
 <!--pages/me/userinfo/userinfo.wxml-->
 <view class='flex-c-fs wrap'>
   <view class='avatar-wrap'>
-    <view class='flex-r-sb form-item avatar'>
+    <view class='flex-r-sb form-item avatar' bindtap='chooseAvatar'>
       <text class='name'>头像：</text>
-      <image mode='aspectFill'></image>
+      <image mode='aspectFill' src='{{cover}}'></image>
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>昵称：</text>
@@ -29,7 +29,7 @@
       <input placeholder='请输入您的经营所在地' placeholder-style='font-size: 24rpx; color: #989898;'></input>
     </view>
 
-    <view class='save-btn'>保存</view>
+    <view class='button-primary' style='margin: 90rpx auto 0;width: 450rpx;'>保存</view>
   </view>
 </view>
 

@@ -4,22 +4,29 @@
   <!-- 个人菜单  -->
   <view class='info-wrap'>
 
-    <view class='flex-r-sb info-top' bindtap='toInfo'>
-      <view class='flex-r-fs'>
-        <view class='avatar'>
-          <image></image>
-        </view>
+    <view class='flex-r-sb info-top'>
+      <view class='flex-r-sb' wx:if='{{isLogin}}' bindtap='toInfo' style='flex: 1;'>
+        <view class='flex-r-fs'>
+          <view class='avatar'>
+            <image src='{{userInfo.avatarUrl}}'></image>
+          </view>
 
-        <view class='flex-r-fs top-wrap'>
-          <text class='user-name'>NXY</text>
-          <view class='member'>普通会员</view>
+          <view class='flex-r-fs top-wrap'>
+            <text class='user-name'>{{userInfo.nickName}}</text>
+            <view class='member'>普通会员</view>
+          </view>
         </view>
+      
+        <image class='arrow' mode='aspectFill' src='../../images/arrow_down_w.png'></image>
       </view>
-     
-      <image class='arrow' mode='aspectFill' src='../../images/arrow_down_w.png'></image>
+
+      <block class='flex-r-c'>
+        <button class='login' wx:if='{{!isLogin}}' open-type='getUserInfo' bindtap='login' bindgetuserinfo="bindGetUserInfo">立即登录</button>
+      </block>
+      
     </view>
 
-    <view class='flex-r-sa info-bottom'>
+    <view wx:if='{{isLogin}}' class='flex-r-sa info-bottom'>
       <view class='flex-c-c item' data-url='/pages/me/used/used' bindtap='navigatePage'>
         <image src='../../images/like.png'></image>
         <text>常用清单</text>
@@ -37,7 +44,7 @@
   </view>
 
   <!-- 订单  -->
-  <view class='order-wrap'>
+  <view wx:if='{{isLogin}}' class='order-wrap'>
     <view class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
         <image src='../../images/list.png'></image>
@@ -70,11 +77,11 @@
   </view>
 
   <!-- 余额  -->
-  <view class='balance-wrap'>
+  <view wx:if='{{isLogin}}' class='balance-wrap'>
     <view class='flex-r-sb menu-item' data-url='/pages/me/wallet/wallet' bindtap='navigatePage'>
       <view class='flex-r-c left'>
         <image src='../../images/balance.png'></image>
-        <text>余额</text>
+        <text>我的钱包</text>
       </view>
       <view class='flex-r-c right'>
         <image src='../../images/arrow_down.png'></image>
@@ -85,7 +92,7 @@
   <!-- 菜单  -->
   <view class='menu-wrap'>
 
-    <view class='flex-r-sb menu-item' data-url='/pages/me/address/address' bindtap='navigatePage'>
+    <view wx:if='{{isLogin}}' class='flex-r-sb menu-item' data-url='/pages/me/address/address' bindtap='navigatePage'>
       <view class='flex-r-c left'>
         <image src='../../images/location.png'></image>
         <text class='tc'>收货地址</text>
@@ -115,7 +122,7 @@
       </view>
     </view>
 
-    <view class='flex-r-sb menu-item'>
+    <view wx:if='{{isLogin}}' bindtap='logout' class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
         <image src='../../images/exit.png'></image>
         <text class='tc'>退出登录</text>

@@ -1,58 +1,18 @@
-// pages/me/me.js
-const app = getApp()
-
+// pages/me/address/chooseAddress/chooseAddress.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    isLogin: false,
+  
   },
+  // 编辑地址
+  editAddress(e) {
+    let id = e.currentTarget.dataset.id
 
-  // 跳转至用户信息页
-  toInfo() {
     wx.navigateTo({
-      url: '/pages/me/userinfo/userinfo',
-    })
-  },
-
-  login() {
-    this.setData({
-      isLogin: true
-    })
-  },
-  logout() {
-    wx.removeStorageSync('token')
-    this.setData({
-      isLogin: false
-    })
-  },
-  bindGetUserInfo(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
-  },
-
-  navigatePage(e) {
-    console.log(e)
-    let url = e.currentTarget.dataset.url
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
-    })
-  },
-
-  showAction: function () {
-    wx.makePhoneCall({
-      phoneNumber: '13916344088'
+      url: '/pages/me/address/addAddress/addAddress',
     })
   },
 

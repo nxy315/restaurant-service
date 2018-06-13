@@ -17,4 +17,4 @@
 </view>
 
 <!-- 确认支付 -->
-<view class='add-address-btn'>确认支付</view>
+<view class='button-primary' style='margin: 40rpx auto 0;width: 400rpx;'>确认支付</view>

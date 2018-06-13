@@ -35,13 +35,8 @@
   width: 108rpx;
   height: 108rpx;
   border-radius: 50%;
-  background-color: #f2f2f2;
 }
 .avatar{
   height: 148rpx;
   line-height: 148rpx;
-}
-
-.save-btn{
-  margin-top: 90rpx;
 }
