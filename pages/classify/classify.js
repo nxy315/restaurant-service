@@ -26,6 +26,9 @@ Page({
 
     bannerList: [],//广告数据
   },
+
+  loadImage(e) {
+  },
   
   foldToggle() {
     this.setData({
@@ -65,6 +68,8 @@ Page({
    */
   getVariety() {
     app.get('/api/5b16b2355d474.html', {}, data => {
+      data.sort_lsit.unshift({ name: '全部', id:'0'})
+
       this.setData({
         variety: data.sort_lsit,
         varietyIndex: 0,

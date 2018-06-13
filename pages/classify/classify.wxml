@@ -53,7 +53,7 @@
       wx:key='{{index}}'
       bindtap='toDetail'
     >
-      <image class='cover' src='{{imgUrl+item.artpic}}'></image>
+      <image bindload='loadImage' lazy-load='{{true}}' class='cover' src='{{imgUrl+item.artpic}}'></image>
       <view class='flex-c-sb des-wrap'>
         <view class='flex-c-fs des-top'>
           <view class='title'>{{item.name}}</view>
@@ -61,6 +61,7 @@
         </view>
         <view class='flex-r-sb des-bottom'>
           <text class='price'>￥{{item.sell_price}}{{item.spec?'/'+item.spec:''}}</text>
+
         </view>
       </view>
     </view>
