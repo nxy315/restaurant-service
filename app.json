@@ -17,8 +17,6 @@
     "pages/me/address/addAddress/addAddress",
     "pages/me/address/address",
     "pages/detail/detail",
-    "pages/index/index",
-    "pages/logs/logs",
     "pages/me/used/used",
     "pages/seller/seller",
     "pages/location/location",
