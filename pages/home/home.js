@@ -7,6 +7,7 @@ Page({
    */
   data: {
     imgUrl: app.globalData.imgUrl,
+    suck: false,
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
@@ -15,9 +16,10 @@ Page({
     },//swiper 配置
     keyword: '',//关键字
     typeList: [],//厂商类型数据列表
-    list: [
-      [],[],[]
-    ],//厂商列表
+    // list: [
+    //   [], [], []
+    // ],//厂商列表
+    list: [],//厂商列表
     sort: ['', 'id-desc', 'hit-desc'],//厂商排序
     resultSwiper: {
       duration: 200
@@ -28,7 +30,7 @@ Page({
       { name: '人气排名' },
     ],
     currentType: 0,
-    loading: [true, true, true],
+    // loading: [true, true, true],
     banner: '',//广告数据
 
     swiperHeight: 500
@@ -70,6 +72,13 @@ Page({
     })
   },
 
+  /**
+   * 滚动
+   */
+  scroll(e) {
+    app.scroll(e, 440, 'suck', this)
+  },
+
 
   /**
    * 首页厂商类型
@@ -109,29 +118,29 @@ Page({
    * @header[user-token]        验签
    */
   getList(sort) {
-    this.calcuHeight();
-    let loading = [...this.data.loading]
-    loading[this.data.currentType] = true
-    this.setData({
-      loading
-    })
+    // this.calcuHeight();
+    // let loading = [...this.data.loading]
+    // loading[this.data.currentType] = true
+    // this.setData({
+    //   loading
+    // })
 
     app.get('/api/5b16a8b915bff.html', {
       sort
     }, data => {
-      let list = [...this.data.list]
+      // let list = [...this.data.list]
       // list[this.data.currentType] = data.data.data.store_list.slice(0, 10)
-      list[this.data.currentType] = list[this.data.currentType].concat(data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
-      
+      // list[this.data.currentType] = list[this.data.currentType].concat(data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
+      let list = data.store_list
       this.setData({
         list
       }, () => {
-        this.calcuHeight();
+        // this.calcuHeight();
       })
     }, () => {
-      loading[this.data.currentType] = false
+      // loading[this.data.currentType] = false
       this.setData({
-        loading
+        loading: false
       })
     })
   },
@@ -145,22 +154,30 @@ Page({
   },
 
   /* 切换swiper，改变索引 */
-  changeType(e) {
-    this.calcuHeight();
-    let i = e.detail.current;
-    this.setData({
-      currentType: i
-    }, () => {
-      if(this.data.list[this.data.currentType].length > 0) return
-      this.getList(this.data.sort[this.data.currentType])
-    })
-  },
+  // changeType(e) {
+  //   // this.calcuHeight();
+  //   let i = e.detail.current;
+  //   this.setData({
+  //     currentType: i
+  //   }, () => {
+  //     if(this.data.list[this.data.currentType].length > 0) return
+  //     this.getList(this.data.sort[this.data.currentType])
+  //   })
+  // },
 
   /* 改变索引，切换swiper */
   tapTypes(e) {
+    // let i = e.currentTarget.dataset.index;
+    // this.setData({
+    //   currentType: i
+    // })
     let i = e.currentTarget.dataset.index;
     this.setData({
-      currentType: i
+      currentType: i,
+      list: [],
+      loading: true
+    }, () => {
+      this.getList(this.data.sort[this.data.currentType]);
     })
   },
 
@@ -215,7 +232,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getList(this.data.sort[this.data.currentType])
+    // this.getList(this.data.sort[this.data.currentType])
   },
 
   /**

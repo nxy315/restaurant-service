@@ -27,10 +27,11 @@
   align-items: center;
 }
 .info-wrap .info-top .top-wrap{
+  align-items: flex-start;
   font-size: 26rpx;
 }
 .info-wrap .info-top .top-wrap .user-name{
-  margin-right: 20rpx;
+  margin-bottom: 15rpx;
 }
 .info-wrap .info-top .top-wrap .member{
   padding: 0 20rpx;

@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    // this.login()
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -104,8 +105,63 @@ App({
   /**
    * 用户登录
    */
-  login() {
-    
+  // login() {
+  //   wx.login({
+  //     success: res => {
+  //       let code = res.code
+  //       wx.getUserInfo({
+  //         withCredentials: true,
+  //         success: response => {
+  //           console.log(response)
+  //           this.post(`/api/5b25e319e44c0.html`, {
+  //             code,
+  //             signature: response.signature,
+  //             rawData: response.rawData,
+  //             encryptedData: response.encryptedData,
+  //             iv: response.iv
+  //           }, data => {
+  //             wx.setStorage({
+  //               key: 'token',
+  //               data: data.uid,
+  //               success: () => {
+  //                 this.getToken(data.uid)
+  //               }
+  //             })
+  //           })
+  //         }
+  //       })
+  //     }
+  //   })
+  // },
+
+  /**
+   * 获取token
+   */
+  getToken(uid) {
+    this.get('/api/5b260352d8f9e.html', {uid}, data => {
+      console.log(data)
+    })
+  },
+
+  /**
+   * 页面滚动(吸顶条固定)
+   */
+  scroll(e, height, data, that) {
+    // console.log(e)
+    let direction = e.detail.deltaY
+    if (direction < 0) {
+      if (e.detail.scrollTop >= height) {
+        that.setData({
+          [data]: true
+        })
+      }
+    } else {
+      if (e.detail.scrollTop <= height) {
+        that.setData({
+          [data]: false
+        })
+      }
+    }
   },
 
   /**

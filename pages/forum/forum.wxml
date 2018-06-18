@@ -1,11 +1,17 @@
 <!--pages/forum/forum.wxml-->
+<scroll-view style="height: 100vh;" class="flex-c-fs" scroll-y="true" bindscroll="scroll">
+
+
 <!-- banner -->
 <view class='banner-wrap' bindtap='toCity'>
   <image mode='aspectFill' src=''></image>
 </view>
 
+<!-- 占位块 -->
+<view wx:if="{{suck}}" style='height: 88rpx;' class='placeholder'></view>
+
 <!-- type -->
-<view class='flex-r-sa top-types-wrap'>
+<view class='flex-r-sa top-types-wrap {{suck ? "suck" : ""}}'>
   <view wx:for="{{types}}" wx:key="{{index}}" class="flex-c-c top-types-item {{currentType == index ? 'active' : ''}}" data-index='{{index}}' bindtap='tapTypes'>
     <view class='item-text'>{{item.name}}</view>
   </view>
@@ -187,6 +193,15 @@
   </view>
 </view>
 
-<view class='add-wrap'>
+<view class='add-wrap demand {{open ? "open" : ""}}' bindtap='postForm'>
+  <view class='flex-r-c'>发布需求</view>
+</view>
+<view class='add-wrap output {{open ? "open" : ""}}' bindtap='postForm'>
+  <view class='flex-r-c'>发布产品</view>
+</view>
+<view class='add-wrap close-btn {{open ? "open" : ""}}' bindtap='openPost'>
   <image src='../../images/add.png'></image>
 </view>
+
+
+</scroll-view>

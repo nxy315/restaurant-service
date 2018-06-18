@@ -11,7 +11,7 @@
             <image src='{{userInfo.avatarUrl}}'></image>
           </view>
 
-          <view class='flex-r-fs top-wrap'>
+          <view class='flex-c-fs top-wrap'>
             <text class='user-name'>{{userInfo.nickName}}</text>
             <view class='member'>普通会员</view>
           </view>
@@ -51,7 +51,7 @@
         <text>我的订单</text>
       </view>
       <view class='flex-r-c right' bindtap='toOrder'>
-        <text>查看我的全部订单</text>
+        <text>全部订单</text>
         <image src='../../images/arrow_down.png'></image>
       </view>
     </view>

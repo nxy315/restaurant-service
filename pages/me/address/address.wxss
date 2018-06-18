@@ -1,53 +1,61 @@
 /* pages/me/address/address.wxss */
-.address-list{
+.address-wrap{
+  padding-bottom: 100rpx;
+}
+.address-item{
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+  height: 230rpx;
+  border-top: 1rpx solid #ebecee;
+  border-bottom: 1rpx solid #ebecee;
   background-color: #fff;
 }
-.address-list .address-item{
-  padding: 20rpx 30rpx;
-  height: 122rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+.top-wrap{
+  height: 150rpx;
+  border-bottom: 1rpx solid #ebecee;
 }
-.address-list .address-item .address-check{
-  width: 51rpx;
-  height: 100%;
-}
-.address-list .address-item .address-check image{
-  width: 30rpx;
-  height: 30rpx;
-}
-.address-list .address-item .address-info{
-  flex: 1;
-}
-.address-list .address-item .address-info .info-wrap{}
-.address-list .address-item .address-info .info-wrap .user-name{
-  margin-right: 45rpx;
+.title{
+  padding-top: 24rpx;
+  width: 100%;
+  align-items: left;
+  font-size: 32rpx;
+  color: #141414;
   font-weight: bold;
 }
-.address-list .address-item .address-info .info-wrap .user-tel{
-  margin-right: 22rpx;
-  font-weight: bolder;
+.name{
+  margin-right: 18rpx;
 }
-.address-list .address-item .address-info .info-wrap .default-address{
-  padding: 0 14rpx;
-  height: 30rpx;
-  line-height: 31rpx;
-  font-size: 22rpx;
-  color: #fff;
-  background-color: #fd0402;
-  border-radius: 15rpx;
+.address{
+  margin-top: 18rpx;
+  width: 100%;
+  font-size: 28rpx;
+  color: #6f6f6f;
 }
-.address-list .address-item .address-info .address-detail{
-  font-size: 24rpx;
-  color: #555555;
+
+
+.foot-wrap{
+  flex: 1;
+  height: 74rpx;
 }
-.address-list .address-item .edit-wrap{
-  margin-left: 45rpx;
-  width: 51rpx;
-  height: 100%;
+.check{
+  width: 33rpx;
+  height: 33rpx;
 }
-.address-list .address-item .edit-wrap image{
-  width: 40rpx;
-  height: 40rpx;
+.default-address{
+  padding-left: 15rpx;
+  font-size: 28rpx;
+  color: #595959;
+}
+
+.edit-del{
+  margin-left: 27rpx;
+  color: #767678;
+  font-size: 28rpx;
+}
+.edit-del image{
+  margin-right: 13rpx;
+  width: 28rpx;
+  height: 28rpx;
 }
 
 /* 增加地址 */
@@ -58,14 +66,4 @@
   width: 100%;
   height: 100rpx;
   background-color: #fff;
-}
-
-.add-address-btn{
-  width: 400rpx;
-  height: 70rpx;
-  line-height: 70rpx;
-  color: #fff;
-  background-color: #fe4070;
-  text-align: center;
-  border-radius: 35rpx;
 }

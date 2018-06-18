@@ -1,0 +1,84 @@
+/* pages/forum/post/post.wxss */
+page{
+  background-color: #fff;
+}
+.input-wrap{
+  padding: 24rpx;
+  background-color: #fff;
+  align-items: flex-start;
+}
+.textarea{
+  font-size: 28rpx;
+}
+.camera-wrap{
+  margin-top: 40rpx;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #eeeaeb;
+  background-color: #fbfbfb;
+}
+.camera-wrap image{
+  margin-bottom: 5rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.camera-wrap view{
+  color: #919191;
+  font-size: 20rpx;
+}
+.block{
+  height: 15rpx;
+  background-color: #f2f2f2;
+}
+
+/* 联系信息 */
+.info-wrap{
+  padding: 24rpx 0;
+}
+.title{
+  padding: 0 24rpx 24rpx;
+}
+
+.address{
+  padding: 24rpx;
+  border-top: 1rpx solid #e8e8e8;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.address .arrow{
+  width:45rpx;
+  height:45rpx;
+}
+.address-info{
+  margin-left: 15rpx;
+  align-items: flex-start;
+  font-size: 28rpx;
+  color: #1f1f1f;
+}
+.address-title{
+  margin-bottom: 15rpx;
+}
+.default{
+  margin-right: 15rpx;
+  padding: 5rpx 10rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #fe4070;
+  border-radius: 8rpx;
+}
+.name{
+  margin-right: 15rpx;
+}
+.tel{}
+
+.post{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  background-color: #fe4070;
+  color: #fff;
+}

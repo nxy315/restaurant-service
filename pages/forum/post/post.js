@@ -1,30 +1,49 @@
-// pages/me/userinfo/userinfo.js
-const app = getApp()
+// pages/forum/post/post.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cover: ''
+    cover: []
   },
-  chooseAvatar() {
+
+  showActionSheet() {
     wx.chooseImage({
       count: 1,
       success: res => {
+        let list = [...this.data.cover]
         this.setData({
           cover: res.tempFilePaths
         })
       }
     })
   },
+
+  /**
+   * 选择地址
+   */
+  chooseAddress() {
+    wx.navigateTo({
+      url: '/pages/me/address/chooseAddress/chooseAddress',
+    })
+  },
+
+  /**
+   * 发布
+   */
+  post() {
+    wx.switchTab({
+      url: '/pages/forum/forum',
+    })
+  },
+  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      cover: app.globalData.userInfo.avatarUrl
-    })
+  
   },
 
   /**
@@ -54,4 +73,25 @@ Page({
   onUnload: function () {
   
   },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
 })

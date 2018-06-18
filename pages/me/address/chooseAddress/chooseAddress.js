@@ -7,6 +7,15 @@ Page({
   data: {
   
   },
+
+  /**
+   * 选择地址 
+   */
+  chooseAddress() {
+    wx.navigateBack({})
+  },
+
+
   // 编辑地址
   editAddress(e) {
     let id = e.currentTarget.dataset.id

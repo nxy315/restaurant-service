@@ -25,8 +25,8 @@
   <view wx:if="{{suck}}" class='placeholder'></view>
 
   <!-- 筛选 -->
-  <view class='flex-r-fs filter-wrap {{fold ? "f-fold" : "f-hidden"}} {{suck ? "suck" : ""}}'>
-    <view class="flex-r-fs filter-item-container">
+  <view class='filter-wrap {{suck ? "suck" : ""}}'>
+    <view class="flex-r-fs filter-item-container {{fold ? 'f-fold' : 'f-hidden'}} {{variety.length > 8 ? 'over' : 'un-over'}}">
       <view
         wx:for='{{variety}}'
         class='filter-item {{index == varietyIndex ? "active" : ""}}'
@@ -45,26 +45,57 @@
 
   <!-- 筛选结果 -->
   <view class='result-wrap'>
-
-    <view
-      class='flex-r-sb result-item'
-      data-id='{{item.id}}'
+    <view class='item-container'
       wx:for='{{result}}'
       wx:key='{{index}}'
-      bindtap='toDetail'
     >
-      <image bindload='loadImage' lazy-load='{{true}}' class='cover' src='{{imgUrl+item.artpic}}'></image>
-      <view class='flex-c-sb des-wrap'>
-        <view class='flex-c-fs des-top'>
-          <view class='title'>{{item.name}}</view>
-          <view class='des'>{{item.introduction}}</view>
-        </view>
-        <view class='flex-r-sb des-bottom'>
-          <text class='price'>￥{{item.sell_price}}{{item.spec?'/'+item.spec:''}}</text>
-
+      <view class='flex-r-sb result-item'>
+        <image
+          data-id='{{item.id}}'
+          bindtap='toDetail'
+          bindload='loadImage'
+          lazy-load='{{true}}'
+          class='cover'
+          src='{{imgUrl+item.artpic}}'
+        ></image>
+        <view class='flex-c-sb des-wrap'>
+          <view class='flex-c-fs des-top'
+            data-id='{{item.id}}'
+            bindtap='toDetail'
+          >
+            <view class='title'>{{item.name}}</view>
+            <view class='des'>{{item.introduction}}</view>
+          </view>
+          <view class='flex-r-sb des-bottom'>
+            <text class='price'>￥{{item.sell_price}}{{item.spec?'/'+item.spec:''}}</text>
+            <view wx:if='{{item.size.length <= 0 || !item.size}}' class='flex-r-sb'>
+              <image data-index='{{index}}' bindtap='reduceCount' class='count-btn' src='../../images/reduce2.png'></image>
+              <view class='count'>{{item.count}}</view>
+              <image data-index='{{index}}' bindtap='addCount' class='count-btn' src='../../images/add2.png'></image>
+            </view>  
+            <view data-index='{{index}}' bindtap='chooseSize' wx:if='{{item.size.length > 0}}' class='choose-size'>{{item.fold  ? '选规格' : '收起'}}</view>
+          </view>
         </view>
       </view>
+
+      <!-- 规格 -->
+      <view class='flex-c-fs size' wx:if='{{item.size.length > 0 && !item.fold}}'>
+        <view class='flex-r-sb size-item'
+          wx:for='{{item.size}}'
+          wx:for-item='size'
+          wx:for-index='i'
+          wx:key='{{i}}'
+        >
+          <text class='price'>￥{{size.sell_price}}/{{size.spec}}</text>
+          <view class='flex-r-sb'>
+            <image data-index='{{index}}' data-i='{{i}}' data-type='2' bindtap='reduceCount' class='count-btn' src='../../images/reduce2.png'></image>
+            <view class='count'>{{size.count}}</view>
+            <image data-index='{{index}}' data-i='{{i}}' data-type='2' bindtap='addCount' class='count-btn' src='../../images/add2.png'></image>
+          </view>
+        </view>
+      </view> 
     </view>
+    
     
   </view>
   

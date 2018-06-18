@@ -1,13 +1,15 @@
- {
+{
   "pages": [
     "pages/home/home",
     "pages/me/me",
+    "pages/forum/post/post",
+    "pages/forum/forum",
+    "pages/cart/cart",
+    "pages/me/address/address",
     "pages/classify/classify",
     "pages/me/orders/orders",
     "pages/me/userinfo/userinfo",
-    "pages/forum/forum",
     "pages/store/store",
-    "pages/cart/cart",
     "pages/me/star/star",
     "pages/pay/pay",
     "pages/clearing/clearing",
@@ -15,7 +17,6 @@
     "pages/me/wallet/recharge/recharge",
     "pages/me/wallet/wallet",
     "pages/me/address/addAddress/addAddress",
-    "pages/me/address/address",
     "pages/detail/detail",
     "pages/me/used/used",
     "pages/seller/seller",

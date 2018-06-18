@@ -18,7 +18,7 @@
   </view>
 
   <view class='flex-r-c'>
-    <view class='add-address-btn' bindtap='saveAddress'>保存地址</view>
+    <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='saveAddress'>保存地址</view>
   </view>
 </view>
 

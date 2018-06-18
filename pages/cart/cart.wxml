@@ -10,7 +10,14 @@
     <text>有餐无厨发货</text>
   </view>
 
-  <view class='flex-r-fs cart-item' wx:key='{{item.id}}' wx:for="{{cartList}}" data-id='{{item.id}}' data-index='{{index}}' bindtap='chooseItem'>
+  <view
+    class='flex-r-fs cart-item'
+    wx:key='{{item.id}}'
+    wx:for="{{cartList}}"
+    data-id='{{item.id}}'
+    data-index='{{index}}'
+    bindtap='chooseItem'
+  >
     <view class='check-box'>
       <image src='../../images/{{item.check ? "check_fill" : "check"}}.png'></image>
     </view>
@@ -22,9 +29,9 @@
       <view class='flex-c-sb goods-info'>
         <text class='name'>{{item.name}}</text>
         <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce.png' data-index='{{index}}' catchtap='reduceCount'></image>
+          <image class='reduce' src='../../images/reduce2.png' data-index='{{index}}' catchtap='reduceCount'></image>
           <text class='count-num'>{{item.count}}</text>
-          <image class='plus' src='../../images/plus.png' data-index='{{index}}' catchtap='plusCount'></image>
+          <image class='plus' src='../../images/add2.png' data-index='{{index}}' catchtap='plusCount'></image>
         </view>
         <text class='price'>{{item.price}}/{{item.unit}}</text>
       </view>

@@ -1,5 +1,5 @@
 <!--pages/clearing/clearing.wxml-->
-<navigator url='/pages/me/address/address' class='flex-r-sb address-item'>
+<navigator url='/pages/me/address/chooseAddress/chooseAddress' class='flex-r-sb address-item'>
   <view class='flex-r-fs address-check'>
     <image src='../../images/location.png'></image>
   </view>

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    suck: false,
     types: [
       { icon: 'sort_light', name: '全部' },
       { icon: 'post', name: '产品需求' },
@@ -13,12 +14,18 @@ Page({
     ],
     currentType: 0,
     bannerList: [],//广告数据
+    open: false,
   },
 
   toCity() {
     wx.navigateTo({
       url: '/pages/forum/city/city',
     })
+  },
+
+  /* 滚动 */
+  scroll(e) {
+    app.scroll(e, 200, 'suck', this)
   },
 
   // 广告数据
@@ -43,6 +50,27 @@ Page({
     let i = e.currentTarget.dataset.index;
     this.setData({
       currentType: i
+    })
+  },
+
+  /**
+   * 打开发布需求
+   */
+  openPost() {
+    this.setData({
+      open: !this.data.open
+    })
+  },
+
+  /**
+   * 发布需求
+   */
+  postForm() {
+    wx.navigateTo({
+      url: '/pages/forum/post/post',
+    })
+    this.setData({
+      open: false
     })
   },
 

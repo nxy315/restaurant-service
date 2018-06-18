@@ -19,14 +19,3 @@ input{
   font-size: 26rpx;
   flex: 1;
 }
-
-.add-address-btn{
-  margin-top: 40rpx;
-  width: 400rpx;
-  height: 70rpx;
-  line-height: 70rpx;
-  color: #fff;
-  background-color: #fe4070;
-  text-align: center;
-  border-radius: 35rpx;
-}

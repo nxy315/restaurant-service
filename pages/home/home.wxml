@@ -1,4 +1,5 @@
 <!--pages/home/home.wxml-->
+<scroll-view style="height: 100vh;" class="flex-c-fs" scroll-y="true" bindscroll="scroll">
 
 <!-- 搜索 -->
 <view class='flex-r-c search-wrap' style='background-image: url("{{imgUrl+banner}}")'>
@@ -23,7 +24,7 @@
       wx:key='{{index}}'
       wx:for-index='index'
       wx:for-item='item'
-    >
+    > 
       <view class='flex-r-fs page-wrap'>
         <view
           class='flex-c-c item'
@@ -39,11 +40,14 @@
         </view>
       </view>
     </swiper-item>
-  </swiper>
+  </swiper> 
 </view>
 
+<!-- 占位块 -->
+<view wx:if="{{suck}}" class='placeholder' style='height: 88rpx;'></view>
+
 <!-- 排序按钮 -->
-<view class='flex-r-sa top-types-wrap'>
+<view class='flex-r-sa top-types-wrap {{suck ? "suck" : ""}}'>
   <view
     wx:for="{{types}}"
     wx:key="{{index}}"
@@ -57,7 +61,7 @@
 
 
 <!-- swiper -->
-<swiper
+<!-- <swiper
   class='result-swiper'
   current="{{currentType}}"
   duration="{{swiperInit.duration}}"
@@ -69,14 +73,14 @@
     wx:for-item='item'
     wx:for-index='index'
     wx:key='index'
-  >
+  > -->
     <view class='flex-r-sb result-list'>
       <navigator
-        wx:for='{{item}}'
+        wx:for='{{list}}'
         wx:for-item='itm'
         wx:for-index='idx'
         wx:key='idx'
-        url='/pages/store/store'
+        url='/pages/store/store?id={{item.id}}'
         class='result-list-item'
       >
         <view class='cover' style='background-image: url("{{imgUrl + itm.artpic}}")'></view>
@@ -95,8 +99,12 @@
       </navigator>
     </view>
 
-    <view class="flex-r-c loading-wrap">
-      <image wx:if='{{loading[currentType] && (currentType == index)}}' mode="aspectFill" class='loading' src="../../images/loading.gif"></image>
+    <view class="flex-r-c loading-wrap" wx:if='{{loading}}' >
+      <!-- <image wx:if='{{loading[currentType] && (currentType == index)}}' mode="aspectFill" class='loading' src="../../images/loading.gif"></image> -->
+      <image mode="aspectFill" class='loading' src="../../images/loading.gif"></image>
     </view>
-  </swiper-item>
-</swiper>
+  <!-- </swiper-item>
+</swiper> -->
+
+
+</scroll-view>

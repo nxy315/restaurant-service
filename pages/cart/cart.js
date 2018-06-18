@@ -6,15 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    cartList: [
-      {id:1, name:'脆皮乳猪1', price: 200.0, unit: '头', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
-      {id:2, name:'脆皮乳猪2', price: 201.0, unit: '只', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
-      {id:3, name:'脆皮乳猪3', price: 202.0, unit: '盒', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
-      {id:4, name:'脆皮乳猪4', price: 203.0, unit: '根', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
-      {id:5, name:'脆皮乳猪5', price: 204.1, unit: '条', count:1, des:'烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check:false},
-    ],//购物车列表数据结构
+    cartList: [],//购物车列表数据结构
 
-    checkAll: false,
+    checkAll: true,
     money: 0,// 合计
   },
 
@@ -161,6 +155,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     // this.getCart()
   },
 
@@ -175,7 +170,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      cartList: [
+        { id: 1, name: '脆皮乳猪1', price: 200.0, unit: '头', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 2, name: '脆皮乳猪2', price: 201.0, unit: '只', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 3, name: '脆皮乳猪3', price: 202.0, unit: '盒', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 4, name: '脆皮乳猪4', price: 203.0, unit: '根', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 5, name: '脆皮乳猪5', price: 204.1, unit: '条', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+      ]
+    }, () => {
+      wx.setTabBarBadge({
+        index: 3,
+        text: `${this.data.cartList.length}`
+      })
+      this.calc();
+    })
   },
 
   /**

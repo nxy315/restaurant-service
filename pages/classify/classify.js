@@ -9,6 +9,7 @@ Page({
     imgUrl: app.globalData.imgUrl,
     suck: false,
     fold: false,
+    allCount: 0,//购物车总数量
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
@@ -94,9 +95,114 @@ Page({
     app.get('/api/5b16b2ab1de15.html', {
       sortid: id
     }, data => {
+      let list = data.shop_list
+      for (let i = 0; i < list.length; i++) {
+        list[i].size = []
+        list[i].count = 0
+        list[i].fold = true
+      }
+      list[0].size = [
+        { sell_price: 30, spec: '个', count: 0},
+        { sell_price: 31, spec: '个', count: 0 },
+        { sell_price: 32, spec: '个', count: 0 },
+      ]
       this.setData({
         result: data.shop_list
       })
+    })
+  },
+
+  /**
+   * 选择规格
+   */
+  chooseSize(e) {
+    let i = e.currentTarget.dataset.index
+    let list = [...this.data.result]
+    list[i].fold = !list[i].fold
+    this.setData({
+      result: list
+    })
+  },
+
+  /**
+   * 减数量
+   */
+  reduceCount(e) {
+    let type = e.currentTarget.dataset.type
+    let i = e.currentTarget.dataset.index
+    let list = [...this.data.result]
+    if (!type) {
+      if (list[i].count > 0) {
+        list[i].count = list[i].count - 1
+        this.setData({
+          result: list,
+          allCount: this.data.allCount - 1
+        }, () => {
+          if (this.data.allCount <= 0) {
+            this.removeCart()
+          } else {
+            this.cartCount();
+          }
+        })
+      }
+    } else {
+      let sizeIndex = e.currentTarget.dataset.i
+      if (list[i].size[sizeIndex].count > 0) {
+        list[i].size[sizeIndex].count = list[i].size[sizeIndex].count - 1
+        this.setData({
+          result: list,
+          allCount: this.data.allCount - 1
+        }, () => {
+          if (this.data.allCount <= 0) {
+            this.removeCart()
+          } else {
+            this.cartCount();
+          }
+        })
+      }
+    }
+
+    
+  },
+
+  /**
+   * 加数量
+   */
+  addCount(e) {
+    let type = e.currentTarget.dataset.type
+    let i = e.currentTarget.dataset.index
+    let list = [...this.data.result]
+    if(!type) {
+      list[i].count = list[i].count + 1
+    } else {
+      let sizeIndex = e.currentTarget.dataset.i
+      list[i].size[sizeIndex].count = list[i].size[sizeIndex].count + 1
+    }
+
+    this.setData({
+      result: list,
+      allCount: this.data.allCount + 1
+    }, () => {
+      this.cartCount();
+    })
+    
+  },
+
+  /**
+   * 清空购物车
+   */
+  removeCart() {
+    wx.removeTabBarBadge({
+      index: 3
+    })
+  },
+  /**
+   * 购物车+-1
+   */
+  cartCount() {
+    wx.setTabBarBadge({
+      index: 3,
+      text: `${this.data.allCount}`
     })
   },
 
@@ -105,30 +211,7 @@ Page({
   },
   /* 滚动 */
   scroll(e) {
-    // console.log(e)
-    let direction = e.detail.deltaY
-    if (direction < 0) {
-      if (e.detail.scrollTop >= 200) {
-        this.setData({
-          suck: true
-        })
-      }
-    } else {
-      if (e.detail.scrollTop <= 200) {
-        this.setData({
-          suck: false
-        })
-      }
-    }
-    // if(e.detail.scrollTop >= 200) {
-    //   this.setData({
-    //     suck: true
-    //   })
-    // } else {
-    //   this.setData({
-    //     suck: false
-    //   })
-    // }
+    app.scroll(e, 200, 'suck', this)
   },
 
   // 跳转详情
@@ -157,7 +240,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(101)
-    this.getVariety();
+    // this.getVariety();
   },
 
   /**
@@ -172,20 +255,34 @@ Page({
    */
   onShow: function () {
     this.getVariety();
+    this.setData({
+      allCount: 0
+    }, () => {
+      this.removeCart();//测试用，进来清空购物车
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    setTimeout(() => {
+      this.setData({
+        varietyIndex: 0
+      })
+    }, 1000)
+    
+    
+    wx.removeTabBarBadge({
+      index: 3,
+    })
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    
   },
 
 

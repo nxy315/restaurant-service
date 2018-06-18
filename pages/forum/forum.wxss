@@ -19,8 +19,44 @@
   position: fixed;
   right: 20rpx;
   bottom: 10vh;
+  width: 80rpx;
+  height: 80rpx;
+  transition: .2s;
+  transform-origin: center center;
+}
+.demand{
+  opacity: 0;
+}
+.output{
+  opacity: 0;
+}
+.close-btn.open{
+  transform: rotate(135deg)
+}
+.demand.open{
+  opacity: 1;
+  transform: translateY(-180rpx);
+}
+.output.open{
+  transform: translateY(-90rpx);
+  opacity: 1;
+}
+.add-wrap view{
+  box-sizing: content-box;
+  padding: 0 20rpx;
+  width: 40rpx;
+  height: 80rpx;
+  line-height: 24rpx;
+  border-radius: 50%;
+  color: #fff;
+  background-color: #ff3c77;
+  font-size: 20rpx;
+  font-weight: bold;
+  text-align: center;
 }
 .add-wrap image{
   width: 80rpx;
   height: 80rpx;
+  background-color: #fff;
+  border-radius: 40rpx;
 }

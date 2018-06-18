@@ -69,7 +69,7 @@
   height: 36rpx;
   line-height: 38rpx;
   border: 1rpx solid #ff3c77; 
-  border-radius: 18rpx;
+  border-radius: 8rpx;
   text-align: center;
 }
 .cart-wrap .cart-footer .des{}

@@ -1,9 +1,9 @@
 <!--pages/me/address/chooseAddress/chooseAddress.wxml-->
 <view class='address-list'>
 
-  <view class='flex-r-sb address-item'>
+  <view class='flex-r-sb address-item' bindtap='chooseAddress'>
     <view class='flex-r-fs address-check'>
-      <image src='../../../images/check_fill.png'></image>
+      <image src='../../../../images/check_fill.png'></image>
     </view>
     <view class='address-info'>
       <view class='flex-r-fs info-wrap'>
@@ -14,33 +14,7 @@
       <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
     </view>
     <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
-    </view>
-  </view>
-  
-  <view class='flex-r-sb address-item'>
-    <view class='address-info'>
-      <view class='info-wrap'>
-        <text class='user-name'>尼宵阳</text>
-        <text class='user-tel'>17721140500</text>
-      </view>
-      <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
-    </view>
-    <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
-    </view>
-  </view>
-  
-  <view class='flex-r-sb address-item'>
-    <view class='address-info'>
-      <view class='info-wrap'>
-        <text class='user-name'>尼宵阳</text>
-        <text class='user-tel'>17721140500</text>
-      </view>
-      <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
-    </view>
-    <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
+      <image src='../../../../images/edit.png'></image>
     </view>
   </view>
 

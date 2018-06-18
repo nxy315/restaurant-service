@@ -1,50 +1,35 @@
 <!--pages/me/address/address.wxml-->
-
-<view class='address-list'>
-
-  <view class='flex-r-sb address-item'>
-    <view class='flex-r-fs address-check'>
-      <image src='../../../images/check_fill.png'></image>
-    </view>
-    <view class='address-info'>
-      <view class='flex-r-fs info-wrap'>
-        <text class='user-name'>尼宵阳</text>
-        <text class='user-tel'>17721140500</text>
-        <view class='default-address'>默认</view>
+<view class='address-wrap'>
+  <view
+    class='address-item'
+    wx:for='{{addressList}}'
+    wx:key='{{index}}'
+  >
+    <view class='flex-c-fs top-wrap'>
+      <view class='flex-r-fs title'>
+        <text class='name'>{{item.name}}</text>
+        <text class='tel'>{{item.tel}}</text>
       </view>
-      <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
+      <view class='address'>{{item.address}}</view>
     </view>
-    <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
+    <view class='flex-r-sb foot-wrap'>
+      <view class='flex-r-fs foot-left' data-id='1' data-index='{{index}}' bindtap='setDefault'>
+        <image wx:if='{{!item.default}}' class='check' src='../../../images/check.png'></image>
+        <image wx:if='{{item.default}}' class='check' src='../../../images/check_fill.png'></image>
+        <text class='default-address'>{{item.default ? '默认地址' : '设为默认'}}</text>
+      </view>
+      <view class='flex-r-fs foot-right'>
+        <view class='flex-r-fs edit-del' data-id='1' data-index='{{index}}' bindtap='editAddress'>
+          <image src='../../../images/edit_address.png'></image> 
+          <text>编辑</text>
+        </view>
+        <view class='flex-r-fs edit-del' data-id='1' data-index='{{index}}' bindtap='delAddress'>
+          <image src='../../../images/delete.png'></image> 
+          <text>删除</text>
+        </view>
+      </view>
     </view>
   </view>
-  
-  <view class='flex-r-sb address-item'>
-    <view class='address-info'>
-      <view class='info-wrap'>
-        <text class='user-name'>尼宵阳</text>
-        <text class='user-tel'>17721140500</text>
-      </view>
-      <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
-    </view>
-    <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
-    </view>
-  </view>
-  
-  <view class='flex-r-sb address-item'>
-    <view class='address-info'>
-      <view class='info-wrap'>
-        <text class='user-name'>尼宵阳</text>
-        <text class='user-tel'>17721140500</text>
-      </view>
-      <view class='address-detail'>上海市松江区松江大学城上海市松江区松江大学城上海市松江区松江大学城</view>
-    </view>
-    <view class='flex-r-c edit-wrap' data-id="1" bindtap='editAddress'>
-      <image src='../../../images/edit.png'></image>
-    </view>
-  </view>
-
 </view>
 
 <view class='flex-r-c add-address-wrap'>
