@@ -14,7 +14,7 @@ Page({
     swiperInit: {
       duration: 200
     },
-    currentType: 0
+    currentType: -1
   },
 
   tapTypes(e) {
@@ -44,7 +44,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let i = options.index
+    this.setData({
+      currentType: i
+    })
   },
 
   /**

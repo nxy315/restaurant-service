@@ -50,28 +50,23 @@
         <image src='../../images/list.png'></image>
         <text>我的订单</text>
       </view>
-      <view class='flex-r-c right' bindtap='toOrder'>
+      <view class='flex-r-c right' data-url='/pages/me/orders/orders' data-index='0' bindtap='navigatePage'>
         <text>全部订单</text>
         <image src='../../images/arrow_down.png'></image>
       </view>
     </view>
 
     <view class='flex-r-sb type-wrap'>
-      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
-        <image src='../../images/order_will.png'></image>
-        <text>待付款</text>
-      </view>
-      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
-        <image src='../../images/order_car.png'></image>
-        <text>待发货</text>
-      </view>
-      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
-        <image src='../../images/order_done.png'></image>
-        <text>已完成</text>
-      </view>
-      <view class='flex-c-c type-item' data-url='/pages/me/orders/orders' bindtap='navigatePage'>
-        <image src='../../images/order_all.png'></image>
-        <text>全部订单</text>
+      <view
+        class='flex-c-c type-item'
+        data-url='/pages/me/orders/orders'
+        data-index='{{item.num}}'
+        bindtap='navigatePage'
+        wx:for='{{orders}}'
+        wx:key='{{index}}'
+      >
+        <image src='../../images/{{item.icon}}.png'></image>
+        <text>{{item.name}}</text>
       </view>
     </view>
   </view>

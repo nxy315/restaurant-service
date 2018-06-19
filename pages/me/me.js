@@ -9,6 +9,12 @@ Page({
   data: {
     userInfo: {},
     isLogin: false,
+    orders: [
+      { name: '待付款', icon: 'order_will', num: 1 },
+      { name: '待发货', icon: 'order_car', num: 2 },
+      { name: '已完成', icon: 'order_done', num: 3 },
+      { name: '全部订单', icon: 'order_all', num: 0 },
+    ],
   },
 
   // 跳转至用户信息页
@@ -37,16 +43,11 @@ Page({
   },
 
   navigatePage(e) {
+    let i = e.currentTarget.dataset.index
     console.log(e)
     let url = e.currentTarget.dataset.url
     wx.navigateTo({
-      url: url,
-    })
-  },
-  // 订单页
-  toOrder() {
-    wx.navigateTo({
-      url: '/pages/me/orders/orders',
+      url: `${url}?index=${i}`,
     })
   },
 

@@ -6,16 +6,24 @@ Page({
    */
   data: {
     choice: [
-      '充值3000送2%得3060',
-      '充值5000送3%得5150',
-      '充值10000送5%得10500'
+      { name: '充值3000送2%得3060', check: true },
+      { name: '充值5000送3%得5150', check: false },
+      { name: '充值10000送5%得10500', check: false }
     ],
     index: 0
   },
 
-  bindPickerChange(e) {
+  choose(e) {
+    let index = e.currentTarget.dataset.index
+    let list = [...this.data.choice]
+    if (list[index].check) return
+
+    for (let i = 0; i < list.length; i++) {
+      list[i].check = false
+    }
+    list[index].check = true
     this.setData({
-      index: e.detail.value
+      choice: list
     })
   },
 

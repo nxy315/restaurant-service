@@ -1,12 +1,22 @@
 <!--pages/me/wallet/recharge/recharge.wxml-->
 
 <view class='wrap'>
-  <view></view>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{choice}}">
-    <view class='picker'>
-      <text class='strong'>充值金额：</text>{{choice[index]}}
+  <view class='picker'>
+    <text class='strong'>充值金额：</text>
+    <view>
+      <view
+        class='flex-r-fs'
+        wx:for='{{choice}}'
+        wx:key='{{index}}'
+        data-index='{{index}}'
+        bindtap='choose'
+      >
+        <image wx:if='{{!item.check}}' class='check' src='../../../../images/check.png'></image>
+        <image wx:if='{{item.check}}' class='check' src='../../../../images/check_fill.png'></image>
+        <text>{{item.name}}</text>
+      </view>
     </view>
-  </picker>
+  </view>
 
   <view class='button-primary' style='width: 400rpx;margin: 40rpx auto 0' bindtap='recharge'>充值</view>
 </view>
