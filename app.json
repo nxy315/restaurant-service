@@ -23,7 +23,8 @@
     "pages/location/location",
     "pages/forum/city/city",
     "pages/forum/mypost/mypost",
-    "pages/me/address/chooseAddress/chooseAddress"
+    "pages/me/address/chooseAddress/chooseAddress",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

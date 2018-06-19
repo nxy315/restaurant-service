@@ -1,7 +1,8 @@
 //app.js
 App({
   onLaunch: function () {
-    // this.login()
+    // this.getUserData();
+    this.login()
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -48,13 +49,14 @@ App({
   /**
    * get请求拦截
    * 
-   * @header[version]           版本号
-   * @header[access-token]      验签
-   * @header[user-token]        验签
+   * @header[version]             版本号
+   * @header[access-token]    加密数据
+   * @header[user-token]        token
    */
   get(url, params, fn, finalFn){
     let arr = []
     let paramsStr = ''
+    let token = wx.getStorageSync('token')
     if(JSON.stringify(params) != '{}') {
       for(let item in params) {
         arr.push(`${item}=${params[item]}`)
@@ -68,7 +70,8 @@ App({
       dataType: 'json',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
-        'version': this.globalData.version
+        'version': this.globalData.version,
+        'user-token': token
       },
       success: data => {
         fn && fn(data.data.data)
@@ -82,9 +85,9 @@ App({
   /**
    * post请求拦截 
    * 
-   * @header[version]           版本号
+   * @header[version]               版本号
    * @header[access-token]      验签
-   * @header[user-token]        验签
+   * @header[user-token]         验签
    */
   post(url, params, fn) {
     wx.request({
@@ -102,37 +105,43 @@ App({
     })
   },
 
+  getUserData() {
+    this.get('/api/5b260352d8f9e.html', {}, data => {
+      console.log(data)
+    })
+  },
+
   /**
    * 用户登录
    */
-  // login() {
-  //   wx.login({
-  //     success: res => {
-  //       let code = res.code
-  //       wx.getUserInfo({
-  //         withCredentials: true,
-  //         success: response => {
-  //           console.log(response)
-  //           this.post(`/api/5b25e319e44c0.html`, {
-  //             code,
-  //             signature: response.signature,
-  //             rawData: response.rawData,
-  //             encryptedData: response.encryptedData,
-  //             iv: response.iv
-  //           }, data => {
-  //             wx.setStorage({
-  //               key: 'token',
-  //               data: data.uid,
-  //               success: () => {
-  //                 this.getToken(data.uid)
-  //               }
-  //             })
-  //           })
-  //         }
-  //       })
-  //     }
-  //   })
-  // },
+  login() {
+    wx.login({
+      success: res => {
+        let code = res.code
+        wx.getUserInfo({
+          withCredentials: true,
+          success: response => {
+            console.log(response)
+            this.post(`/api/5b25e319e44c0.html`, {
+              code,
+              signature: response.signature,
+              rawData: response.rawData,
+              encryptedData: response.encryptedData,
+              iv: response.iv
+            }, data => {
+              wx.setStorage({
+                key: 'token',
+                data: data.user_token,
+                success: () => {
+                  this.getUserData()
+                }
+              })
+            })
+          }
+        })
+      }
+    })
+  },
 
   /**
    * 获取token

@@ -9,12 +9,35 @@ Page({
     cartList: [],//购物车列表数据结构
 
     checkAll: true,
-    money: 0,// 合计
+    money: 0,//合计
   },
 
+  /**
+   * 购物车列表
+   * @method: GET 
+   * @url: /api/
+   * 
+   * @param keyword :String     关键词
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
   getCart() {
-    app.get('', {}, data => {
-
+    // app.get('', {}, data => {})
+    this.setData({
+      cartList: [
+        { id: 1, name: '脆皮乳猪1', price: 200.0, unit: '头', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 2, name: '脆皮乳猪2', price: 201.0, unit: '只', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 3, name: '脆皮乳猪3', price: 202.0, unit: '盒', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 4, name: '脆皮乳猪4', price: 203.0, unit: '根', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+        { id: 5, name: '脆皮乳猪5', price: 204.1, unit: '条', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
+      ]
+    }, () => {
+      wx.setTabBarBadge({
+        index: 3,
+        text: `${this.data.cartList.length}`
+      })
+      this.calc();
     })
   },
 
@@ -132,7 +155,9 @@ Page({
     })
   },
 
-  // 全选、取消全选
+  /**
+   * 全选、取消全选
+   */ 
   handleAll() {
     let list = [...this.data.cartList];
     this.setData({
@@ -156,7 +181,6 @@ Page({
    */
   onLoad: function (options) {
     
-    // this.getCart()
   },
 
   /**
@@ -170,21 +194,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      cartList: [
-        { id: 1, name: '脆皮乳猪1', price: 200.0, unit: '头', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 2, name: '脆皮乳猪2', price: 201.0, unit: '只', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 3, name: '脆皮乳猪3', price: 202.0, unit: '盒', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 4, name: '脆皮乳猪4', price: 203.0, unit: '根', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 5, name: '脆皮乳猪5', price: 204.1, unit: '条', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-      ]
-    }, () => {
-      wx.setTabBarBadge({
-        index: 3,
-        text: `${this.data.cartList.length}`
-      })
-      this.calc();
-    })
+    this.getCart()
   },
 
   /**
