@@ -96,18 +96,24 @@ Page({
       sortid: id
     }, data => {
       let list = data.shop_list
+      let count = this.data.allCount
       for (let i = 0; i < list.length; i++) {
-        list[i].size = []
-        list[i].count = 0
         list[i].fold = true
+        if(list[i].nums) {
+          count += parseInt(list[i].nums)
+        }
+        for (let j = 0; j < list[i].products_list.length; j ++) {
+          if (list[i].products_list[j].nums) {
+            count += parseInt(list[i].products_list[j].nums)
+          }
+        }
       }
-      list[0].size = [
-        { sell_price: 30, spec: '个', count: 0},
-        { sell_price: 31, spec: '个', count: 0 },
-        { sell_price: 32, spec: '个', count: 0 },
-      ]
+      console.log(count)
       this.setData({
-        result: data.shop_list
+        result: data.shop_list,
+        allCount: count
+      }, () => {
+        this.cartCount();
       })
     })
   },
@@ -128,64 +134,105 @@ Page({
    * 减数量
    */
   reduceCount(e) {
-    let type = e.currentTarget.dataset.type
-    let i = e.currentTarget.dataset.index
-    let list = [...this.data.result]
+    let data = e.currentTarget.dataset
+    let type = data.type,
+      i = data.index,
+      gid = parseInt(data.gid),
+      pid = parseInt(data.pid),
+      price = parseFloat(data.price),
+      spec = data.spec,
+      gname = data.gname,
+      list = [...this.data.result]
+
     if (!type) {
-      if (list[i].count > 0) {
-        list[i].count = list[i].count - 1
-        this.setData({
-          result: list,
-          allCount: this.data.allCount - 1
-        }, () => {
-          if (this.data.allCount <= 0) {
-            this.removeCart()
-          } else {
-            this.cartCount();
-          }
+      if (list[i].nums > 0) {
+        this.operaCard(gid, pid, price, spec, -1, gname, () => {
+          list[i].nums = list[i].nums - 1
+          this.setData({
+            result: list,
+            allCount: this.data.allCount - 1
+          }, () => {
+            if (this.data.allCount <= 0) {
+              this.removeCart()
+            } else {
+              this.cartCount();
+            }
+          })
         })
+        
       }
     } else {
       let sizeIndex = e.currentTarget.dataset.i
-      if (list[i].size[sizeIndex].count > 0) {
-        list[i].size[sizeIndex].count = list[i].size[sizeIndex].count - 1
-        this.setData({
-          result: list,
-          allCount: this.data.allCount - 1
-        }, () => {
-          if (this.data.allCount <= 0) {
-            this.removeCart()
-          } else {
-            this.cartCount();
-          }
+      if (list[i].products_list[sizeIndex].nums > 0) {
+        this.operaCard(gid, pid, price, spec, -1, gname, () => {
+          list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums - 1
+          this.setData({
+            result: list,
+            allCount: this.data.allCount - 1
+          }, () => {
+            if (this.data.allCount <= 0) {
+              this.removeCart()
+            } else {
+              this.cartCount();
+            }
+          })
         })
       }
     }
-
-    
   },
 
   /**
    * 加数量
    */
   addCount(e) {
-    let type = e.currentTarget.dataset.type
-    let i = e.currentTarget.dataset.index
-    let list = [...this.data.result]
-    if(!type) {
-      list[i].count = list[i].count + 1
-    } else {
-      let sizeIndex = e.currentTarget.dataset.i
-      list[i].size[sizeIndex].count = list[i].size[sizeIndex].count + 1
-    }
+    let data = e.currentTarget.dataset
+    let type = data.type,
+      i = data.index,
+      gid = parseInt(data.gid),
+      pid = parseInt(data.pid),
+      price = parseFloat(data.price),
+      spec = data.spec,
+      gname = data.gname,
+      list = [...this.data.result]
 
-    this.setData({
-      result: list,
-      allCount: this.data.allCount + 1
-    }, () => {
-      this.cartCount();
+    this.operaCard(gid, pid, price, spec, 1, gname, () => {
+      if (!type) {
+        list[i].nums = list[i].nums + 1
+      } else {
+        let sizeIndex = e.currentTarget.dataset.i
+        list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums + 1
+      }
+
+      this.setData({
+        result: list,
+        allCount: this.data.allCount + 1
+      }, () => {
+        this.cartCount();
+      })
     })
-    
+  },
+
+  /**
+   * 购物车加减
+   * @method: POST 
+   * @url: /api/5b29ad2a751fa.html
+   *
+   * @param gid:String @require       商品ID
+   * @param pid:String @require       规格ID
+   * @param price:String @require     价格
+   * @param spec:String @require      规格名
+   * @param nums:String @require      数量(1或-1)
+   * @param gname:String @require     商品名
+   * @header[version]                 版本号
+   * @header[access-token]            验签
+   * @header[user-token]              验签
+   */
+  operaCard(gid, pid, price, spec, nums, gname, fn) {
+    app.post('/api/5b29ad2a751fa.html', {
+      gid, pid, price, spec, nums, gname
+    }, data => {
+      fn && fn()
+    })
   },
 
   /**

@@ -1,24 +1,25 @@
-<!--pages/me/address/addAddress/addAddress.wxml-->
+<!--pages/me/address/editAddress/editAddress.wxml-->
 <view class='address-form'>
   <view class='flex-r-fs form-item'>
     <view class='title'>店铺名称 <text class='red'>*</text></view>
-    <input placeholder='请输入店铺名称' data-key='realname' bindinput='inputHandler'></input>
+    <input placeholder='请输入店铺名称' value='{{ajaxData.realname}}' data-key='realname' bindinput='inputHandler'></input>
   </view>
   <view class='flex-r-fs form-item'>
     <view class='title'>手机号码 <text class='red'>*</text></view>
-    <input placeholder='请输入收货人的手机号码' data-key='tel' bindinput='inputHandler'></input>
+    <input placeholder='请输入收货人的手机号码' value='{{ajaxData.tel}}' data-key='tel' bindinput='inputHandler'></input>
   </view>
   <view class='flex-r-fs form-item'>
     <view class='title'>详细地址 <text class='red'>*</text></view>
-    <input placeholder='请写x市x区x路x号 不然无法算运费' data-key='address' bindinput='inputHandler'></input>
+    <input placeholder='请写x市x区x路x号 不然无法算运费' value='{{ajaxData.address}}' data-key='address' bindinput='inputHandler'></input>
   </view>
   <view class='flex-r-fs form-item'>
     <view class='title'>渠道码(选填)</view>
-    <input placeholder='请输入渠道码' data-key='channel' bindinput='inputHandler'></input>
+    <input placeholder='请输入渠道码' value='{{ajaxData.channel!="null" ? ajaxData.channel : ""}}' data-key='channel' bindinput='inputHandler'></input>
   </view>
 
   <view class='flex-r-c'>
     <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='saveAddress'>保存地址</view>
   </view>
 </view>
+
 

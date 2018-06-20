@@ -67,30 +67,74 @@
             <view class='des'>{{item.introduction}}</view>
           </view>
           <view class='flex-r-sb des-bottom'>
-            <text class='price'>￥{{item.sell_price}}{{item.spec?'/'+item.spec:''}}</text>
-            <view wx:if='{{item.size.length <= 0 || !item.size}}' class='flex-r-sb'>
-              <image data-index='{{index}}' bindtap='reduceCount' class='count-btn' src='../../images/reduce2.png'></image>
-              <view class='count'>{{item.count}}</view>
-              <image data-index='{{index}}' bindtap='addCount' class='count-btn' src='../../images/add2.png'></image>
+            <text class='price'>￥{{item.products_list[0].sell_price}}{{item.products_list[0].spec_1?'/'+item.products_list[0].spec_1:''}}</text>
+            <view wx:if='{{item.products_list.length <= 1}}' class='flex-r-sb'>
+              <image
+                class='count-btn'
+                src='../../images/reduce2.png'
+                data-index='{{index}}'
+                bindtap='reduceCount'
+                data-gid='{{item.products_list[0].goods_id}}'
+                data-pid='{{item.products_list[0].id}}'
+                data-price='{{item.products_list[0].sell_price}}'
+                data-spec='{{item.products_list[0].spec_1}}'
+                data-gname='{{item.name}}'
+              ></image>
+              <view class='count'>{{item.nums}}</view>
+              <image
+                class='count-btn'
+                src='../../images/add2.png'
+                data-index='{{index}}'
+                bindtap='addCount'
+                data-gid='{{item.products_list[0].goods_id}}'
+                data-pid='{{item.products_list[0].id}}'
+                data-price='{{item.products_list[0].sell_price}}'
+                data-spec='{{item.products_list[0].spec_1}}'
+                data-gname='{{item.name}}'
+              ></image>
             </view>  
-            <view data-index='{{index}}' bindtap='chooseSize' wx:if='{{item.size.length > 0}}' class='choose-size'>{{item.fold  ? '选规格' : '收起'}}</view>
+            <view data-index='{{index}}' bindtap='chooseSize' wx:if='{{item.products_list.length > 1}}' class='choose-size'>{{item.fold  ? '选规格' : '收起'}}</view>
           </view>
         </view>
       </view>
 
       <!-- 规格 -->
-      <view class='flex-c-fs size' wx:if='{{item.size.length > 0 && !item.fold}}'>
+      <view class='flex-c-fs size' wx:if='{{item.products_list.length > 1 && !item.fold}}'>
         <view class='flex-r-sb size-item'
-          wx:for='{{item.size}}'
+          wx:for='{{item.products_list}}'
           wx:for-item='size'
           wx:for-index='i'
           wx:key='{{i}}'
         >
-          <text class='price'>￥{{size.sell_price}}/{{size.spec}}</text>
+          <text class='price'>￥{{size.sell_price}}/{{size.spec_1}}</text>
           <view class='flex-r-sb'>
-            <image data-index='{{index}}' data-i='{{i}}' data-type='2' bindtap='reduceCount' class='count-btn' src='../../images/reduce2.png'></image>
-            <view class='count'>{{size.count}}</view>
-            <image data-index='{{index}}' data-i='{{i}}' data-type='2' bindtap='addCount' class='count-btn' src='../../images/add2.png'></image>
+            <image
+              class='count-btn'
+              src='../../images/reduce2.png'
+              data-type='2'
+              data-index='{{index}}'
+              data-i='{{i}}'
+              data-gid='{{size.goods_id}}'
+              data-pid='{{size.id}}'
+              data-price='{{size.sell_price}}'
+              data-spec='{{size.spec_1}}'
+              data-gname='{{item.name}}'
+              bindtap='reduceCount'
+            ></image>
+            <view class='count'>{{size.nums}}</view>
+            <image
+              class='count-btn'
+              src='../../images/add2.png'
+              data-type='2'
+              data-index='{{index}}'
+              data-i='{{i}}'
+              data-gid='{{size.goods_id}}'
+              data-pid='{{size.id}}'
+              data-price='{{size.sell_price}}'
+              data-spec='{{size.spec_1}}'
+              data-gname='{{item.name}}'
+              bindtap='addCount'
+            ></image>
           </view>
         </view>
       </view> 

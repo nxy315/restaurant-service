@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     types: [
       { name: '全部' },
       { name: '待付款' },
@@ -33,7 +34,9 @@ Page({
     app.get('/api/5b26780224c31.html', {
       ostate: this.data.currentType
     }, data => {
-      console.log(data)
+      this.setData({
+        orders: data.orders_list
+      })
     })
   },
 

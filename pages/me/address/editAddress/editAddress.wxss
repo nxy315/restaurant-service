@@ -1,0 +1,21 @@
+/* pages/me/address/editAddress/editAddress.wxss */
+.address-form{
+  padding: 0 25rpx 40rpx;
+  background-color: #fff;
+}
+
+.form-item{
+  height: 100rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.title{
+  margin-right: 30rpx;
+  width: 170rpx;
+  font-size: 26rpx;  
+  text-align: right;
+}
+input{
+  font-size: 26rpx;
+  flex: 1;
+}

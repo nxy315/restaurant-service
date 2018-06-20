@@ -25,22 +25,31 @@
         <view class='order-status red'>{{types[currentType].name}}</view>
       </view>
 
-      <view class='flex-r-fs order-info' data-id='1' bindtap='toDetail'>
+      <view
+        class='flex-r-fs order-info'
+        data-id='1'
+        wx:for='{{item.details_data}}'
+        wx:for-item='good'
+        wx:for-index='idx'
+        wx:key='{{idx}}'
+        bindtap='toDetail'
+      >
         <view class='cover-wrap'>
-          <image mode='aspectFill' class='cover' src=''></image>
+          <image mode='aspectFill' class='cover' src='{{imgUrl+good.artpic}}'></image>
         </view>
         <view class='flex-c-fs info-wrap'>
           <view class='flex-r-sb info-title'>
-            <view class='title-name'>成品小龙虾</view>
-            <view class='title-price'>￥36.00</view>
+            <view class='title-name'>{{good.gname}}</view>
+            <view class='title-price'>{{good.gprice}}</view>
           </view>
 
           <view class='flex-r-sb info-detail'>
-            <view class='detail'>商品描述商品描述商品描述</view>
-            <view class='count'>x1</view>
+            <view class='detail'>{{good.introduction}}</view>
+            <view class='count'>x{{good.gnums}}</view>
           </view>
         </view>
       </view>
+
     </view>
   </view>
 </view>

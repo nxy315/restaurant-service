@@ -23,17 +23,17 @@
     </view>
 
     <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover' catchtap='toDetail'>
-        <image mode='aspectFill'></image>
+      <view class='cover' data-id='{{item.id}}' catchtap='toDetail'>
+        <image mode='aspectFill' src='{{imgUrl+item.artpic}}'></image>
       </view>
       <view class='flex-c-sb goods-info'>
-        <text class='name'>{{item.name}}</text>
+        <text class='name'>{{item.gname}}</text>
         <view class='flex-r-fs count'>
           <image class='reduce' src='../../images/reduce2.png' data-index='{{index}}' catchtap='reduceCount'></image>
-          <text class='count-num'>{{item.count}}</text>
+          <text class='count-num'>{{item.nums}}</text>
           <image class='plus' src='../../images/add2.png' data-index='{{index}}' catchtap='plusCount'></image>
         </view>
-        <text class='price'>{{item.price}}/{{item.unit}}</text>
+        <text class='price'>{{item.price}}/{{item.spec}}</text>
       </view>
     </view>
   </view>

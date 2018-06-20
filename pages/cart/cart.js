@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
     cartList: [],//购物车列表数据结构
 
     checkAll: true,
@@ -15,7 +16,7 @@ Page({
   /**
    * 购物车列表
    * @method: GET 
-   * @url: /api/
+   * @url: /api/5b29aaa68d36e.html
    * 
    * @param keyword :String     关键词
    * @header[version]           版本号
@@ -23,21 +24,20 @@ Page({
    * @header[user-token]        验签
    */
   getCart() {
-    // app.get('', {}, data => {})
-    this.setData({
-      cartList: [
-        { id: 1, name: '脆皮乳猪1', price: 200.0, unit: '头', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 2, name: '脆皮乳猪2', price: 201.0, unit: '只', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 3, name: '脆皮乳猪3', price: 202.0, unit: '盒', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 4, name: '脆皮乳猪4', price: 203.0, unit: '根', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-        { id: 5, name: '脆皮乳猪5', price: 204.1, unit: '条', count: 1, des: '烤乳猪烤乳猪烤乳猪烤乳猪烤乳猪', check: true },
-      ]
-    }, () => {
-      wx.setTabBarBadge({
-        index: 3,
-        text: `${this.data.cartList.length}`
+    app.get('/api/5b29aaa68d36e.html', {}, data => {
+      let list = data.shoppingcart
+      for (let i = 0; i < list.length; i++) {
+        list[i].check = true
+      }
+      this.setData({
+        cartList: data.shoppingcart
+      }, () => {
+        wx.setTabBarBadge({
+          index: 3,
+          text: `${data.total_num}`
+        })
+        this.calc();
       })
-      this.calc();
     })
   },
 
@@ -128,7 +128,7 @@ Page({
     let money = 0;
     for(let i = 0; i < list.length; i++) {
       if(!list[i].check) continue
-      money += list[i].count*list[i].price
+      money += parseInt(list[i].nums)*parseFloat(list[i].price)
     }
 
     this.setData({
@@ -151,7 +151,7 @@ Page({
     let id = e.currentTarget.dataset.id;
 
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: `/pages/detail/detail?id=${id}`,
     })
   },
 

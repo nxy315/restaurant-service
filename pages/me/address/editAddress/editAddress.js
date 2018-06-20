@@ -1,4 +1,4 @@
-// pages/me/address/addAddress/addAddress.js
+// pages/me/address/editAddress/editAddress.js
 const app = getApp()
 const phoneReg = /^13[0-9]{9}$|14[0-9]{9}$|15[0-9]{9}$|16[0-9]{9}$|17[0-9]{9}$|18[0-9]{9}$|19[0-9]{9}$/
 Page({
@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: '',
     ajaxData: {
       realname: '',
       tel: '',
@@ -16,9 +17,30 @@ Page({
   },
 
   /**
-   * 新增地址
+   * 获取单条地址信息
+   * @method: GET
+   * @url: /api/5b2674d017179.html
+   *
+   * @param id:Int              地址id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getAddress(id) {
+    app.get('/api/5b2674d017179.html', {
+      id
+    }, data => {
+      let { realname, tel, address, channel } = data.info
+      this.setData({
+        ajaxData: { realname, tel, address, channel }
+      })
+    })
+  },
+
+  /**
+   * 编辑地址
    * @method: POST
-   * @url: /api/5b2673319f025.html
+   * @url: /api/5b26768b638cb.html
    *
    * @param realname:String     真实姓名
    * @param tel:String          手机号
@@ -50,9 +72,18 @@ Page({
         icon: 'none'
       })
     }
-    wx.navigateBack({
-      delta: 1
+
+    app.post('/api/5b26768b638cb.html', {
+      id: this.data.id,
+      ...this.data.ajaxData
+    }, data => {
+      if(data.status == 1) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
     })
+    
   },
 
   /**
@@ -71,7 +102,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let id = options.id
+    this.setData({
+      id
+    }, () => {
+      this.getAddress(id)
+    })
   },
 
   /**
@@ -102,4 +138,24 @@ Page({
   
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+  
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+  
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+  
+  }
 })

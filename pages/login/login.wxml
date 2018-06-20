@@ -1,2 +1,2 @@
 <!--pages/login/login.wxml-->
-<button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo"></button>
+<button wx:if='{{!hasScope}}' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">确认授权</button>

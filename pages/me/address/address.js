@@ -1,36 +1,59 @@
 // pages/me/address/address.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    addressList: [
-      { name: 'nxy', tel: '17721140500', address: '上海市徐家汇1号线下水道1', default: true },
-      { name: 'nxy', tel: '17721140501', address: '上海市徐家汇1号线下水道2', default: false },
-      { name: 'nxy', tel: '17721140502', address: '上海市徐家汇1号线下水道3', default: false },
-      { name: 'nxy', tel: '17721140503', address: '上海市徐家汇1号线下水道4', default: false },
-      { name: 'nxy', tel: '17721140504', address: '上海市徐家汇1号线下水道5', default: false },
-    ]
+    addressList: []
+  },
+  /**
+   * 获取地址列表
+   * @method: GET 
+   * @url: /api/5b266fc349914.html
+   *
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  getAddress() {
+    app.get('/api/5b266fc349914.html', {}, data => {
+      this.setData({
+        addressList: data.address_list
+      })
+    })
   },
 
   /**
-   * 设为默认
+   * 设为默认地址
+   * @method: GET 
+   * @url: /api/5b267aa787b35.html
+   *  
+   * @param id:Int              地址id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
    */
   setDefault(e) {
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index
     let list = [...this.data.addressList]
-    if (list[index].default) return
+    if (list[index].is_default == 1) return
 
-    for (let i = 0; i < list.length; i++) {
-      list[i].default = false
-    }
-    list[index].default = true
-
-    this.setData({
-      addressList: list
+    app.get('/api/5b267aa787b35.html', {
+      id: parseInt(id)
+    }, data => {
+      this.getAddress()
     })
+    // for (let i = 0; i < list.length; i++) {
+    //   list[i].is_default = 0
+    // }
+    // list[index].is_default = 1
+
+    // this.setData({
+    //   addressList: list
+    // })
   },
 
   // 编辑地址
@@ -38,7 +61,7 @@ Page({
     let id = e.currentTarget.dataset.id
 
     wx.navigateTo({
-      url: '/pages/me/address/addAddress/addAddress',
+      url: `/pages/me/address/editAddress/editAddress?id=${id}`,
     })
   },
   delAddress() {
@@ -62,7 +85,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getAddress()
   },
 
   /**

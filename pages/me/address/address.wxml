@@ -7,26 +7,26 @@
   >
     <view class='flex-c-fs top-wrap'>
       <view class='flex-r-fs title'>
-        <text class='name'>{{item.name}}</text>
+        <text class='name'>{{item.realname}}</text>
         <text class='tel'>{{item.tel}}</text>
       </view>
       <view class='address'>{{item.address}}</view>
     </view>
     <view class='flex-r-sb foot-wrap'>
-      <view class='flex-r-fs foot-left' data-id='1' data-index='{{index}}' bindtap='setDefault'>
-        <image wx:if='{{!item.default}}' class='check' src='../../../images/check.png'></image>
-        <image wx:if='{{item.default}}' class='check' src='../../../images/check_fill.png'></image>
-        <text class='default-address'>{{item.default ? '默认地址' : '设为默认'}}</text>
+      <view class='flex-r-fs foot-left' data-id='{{item.id}}' data-index='{{index}}' bindtap='setDefault'>
+        <image wx:if='{{item.is_default != 1}}' class='check' src='../../../images/check.png'></image>
+        <image wx:if='{{item.is_default == 1}}' class='check' src='../../../images/check_fill.png'></image>
+        <text class='default-address'>{{item.is_default == 1 ? '默认地址' : '设为默认'}}</text>
       </view>
       <view class='flex-r-fs foot-right'>
-        <view class='flex-r-fs edit-del' data-id='1' data-index='{{index}}' bindtap='editAddress'>
+        <view class='flex-r-fs edit-del' data-id='{{item.id}}' data-index='{{index}}' bindtap='editAddress'>
           <image src='../../../images/edit_address.png'></image> 
           <text>编辑</text>
         </view>
-        <view class='flex-r-fs edit-del' data-id='1' data-index='{{index}}' bindtap='delAddress'>
+        <!-- <view class='flex-r-fs edit-del' data-id='1' data-index='{{index}}' bindtap='delAddress'>
           <image src='../../../images/delete.png'></image> 
           <text>删除</text>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    isLogin: false,
+    userInfo: null,
     orders: [
       { name: '待付款', icon: 'order_will', num: 1 },
       { name: '待发货', icon: 'order_car', num: 2 },
@@ -61,7 +60,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**
