@@ -8,12 +8,9 @@
   height: 100vh;
 }
 
-.orders-swiper-container{
+.orders-container{
   margin-top: 100rpx;
   flex: 1;
-}
-.orders-swiper-wrap{
-  height: 100%;
 }
 
 /* 订单 */

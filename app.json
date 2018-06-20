@@ -1,17 +1,18 @@
 {
   "pages": [
+    "pages/me/orders/orders",
+    "pages/me/star/star",
     "pages/home/home",
+    "pages/classify/classify",
+    "pages/login/login",
     "pages/me/wallet/recharge/recharge",
     "pages/me/me",
     "pages/forum/post/post",
     "pages/forum/forum",
     "pages/cart/cart",
     "pages/me/address/address",
-    "pages/classify/classify",
-    "pages/me/orders/orders",
     "pages/me/userinfo/userinfo",
     "pages/store/store",
-    "pages/me/star/star",
     "pages/pay/pay",
     "pages/clearing/clearing",
     "pages/home/list/list",
@@ -23,8 +24,7 @@
     "pages/location/location",
     "pages/forum/city/city",
     "pages/forum/mypost/mypost",
-    "pages/me/address/chooseAddress/chooseAddress",
-    "pages/login/login"
+    "pages/me/address/chooseAddress/chooseAddress"
   ],
   "window": {
     "backgroundTextStyle": "light",

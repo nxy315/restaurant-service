@@ -1,103 +1,25 @@
 <!--pages/me/star/star.wxml-->
 <view class='star-wrap'>
-  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+  <navigator
+    url='/pages/store/store?id={{item.store_id}}'
+    wx:for='{{starList}}'
+    wx:key='{{index}}'
+    class='flex-r-sb star-item'
+    >
     <view class='flex-r-fs left'>
       <image class='cover' src=''></image>
       <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
+        <view class='t1'>{{item.store_info.brand}}</view>
         <view class='flex-r-fs t2'>
           <view class='flex-r-fs icon-wrap icon1'>
             <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
+            <text>{{item.store_info.hit}}</text>    
           </view>
 
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
-          </view>
-        </view>
-      </view>
-    </view>
-    
-    <image class='to' src='../../../images/arrow_down.png'></image>
-  </navigator>
-  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
-    <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
-      <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
-        <view class='flex-r-fs t2'>
-          <view class='flex-r-fs icon-wrap icon1'>
-            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
-          </view>
-
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
-          </view>
-        </view>
-      </view>
-    </view>
-    
-    <image class='to' src='../../../images/arrow_down.png'></image>
-  </navigator>
-  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
-    <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
-      <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
-        <view class='flex-r-fs t2'>
-          <view class='flex-r-fs icon-wrap icon1'>
-            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
-          </view>
-
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
-          </view>
-        </view>
-      </view>
-    </view>
-    
-    <image class='to' src='../../../images/arrow_down.png'></image>
-  </navigator>
-  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
-    <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
-      <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
-        <view class='flex-r-fs t2'>
-          <view class='flex-r-fs icon-wrap icon1'>
-            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
-          </view>
-
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
-          </view>
-        </view>
-      </view>
-    </view>
-    
-    <image class='to' src='../../../images/arrow_down.png'></image>
-  </navigator>
-  <navigator url='/pages/store/store' class='flex-r-sb star-item'>
-    <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
-      <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
-        <view class='flex-r-fs t2'>
-          <view class='flex-r-fs icon-wrap icon1'>
-            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
-          </view>
-
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
+          <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
+            <!-- <image wx:if='{{item.check}}' mode='aspectFill' src='../../../images/star_fill.png'></image> -->
+            <image wx:if='{{!item.check}}' mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <text>{{item.store_info.collection}}</text>
           </view>
         </view>
       </view>

@@ -77,6 +77,7 @@ App({
         fn && fn(data.data.data)
       },
       complete: () => {
+        wx.hideLoading()
         finalFn && finalFn()
       }
     })
