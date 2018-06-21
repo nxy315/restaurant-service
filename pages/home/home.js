@@ -155,6 +155,7 @@ Page({
       this.getAds(100)
       this.getList(this.data.sort[this.data.currentType])
     } catch (err) {
+      console.log(err == -14)
       if(err == -14) {
         await login()
         this.getTypes();

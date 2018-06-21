@@ -10,7 +10,6 @@ Page({
    */
   data: {
     hasScope: true,
-    test: 1,
   },
 
   /**
@@ -27,30 +26,28 @@ Page({
       let data = await getData('/api/5b260352d8f9e.html',{})
       app.globalData.userInfo = data.info
     } catch (err) {
-      console.log(err)
+      if(err == -14) {
+        await login()
+      }
     }
   },
 
   /**
    * 授权操作
    */
-  bindGetUserInfo(e) {
+  async bindGetUserInfo(e) {
     if (e.detail.errMsg == 'getUserInfo:ok') {
-      login()
+      await login()
+      wx.switchTab({
+        url: '/pages/home/home',
+      })
     }
-  },
-
-  async test() {
-    console.log(this.data.test)
-    await wxSetData(this, {test:2})
-    console.log(this.data.test)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.test()
     let token = wx.getStorageSync('token')
     if(token) {
       this.getUserData()
