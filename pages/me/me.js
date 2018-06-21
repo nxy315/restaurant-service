@@ -1,6 +1,6 @@
 // pages/me/me.js
 const app = getApp()
-import { getData } from '../../utils/ajax'
+import { getData, login } from '../../utils/ajax'
 import { wxSetData } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
@@ -16,6 +16,29 @@ Page({
       { name: '已完成', icon: 'order_done', num: 3 },
       { name: '全部订单', icon: 'order_all', num: 0 },
     ],
+  },
+
+  /**
+   * 获取用户信息
+   * @method: GET 
+   * @url: /api/5b260352d8f9e.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async getUserData() {
+    try {
+      let data = await getData('/api/5b260352d8f9e.html', {})
+      app.globalData.userInfo = data.info
+      this.setData({
+        userInfo: data.info
+      })
+    } catch (err) {
+      if (err == -14) {
+        await login()
+      }
+    }
   },
 
   // 跳转至用户信息页
@@ -62,9 +85,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    
   },
 
   /**
@@ -78,7 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getUserData()
   },
 
   /**

@@ -21,13 +21,19 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  async getUserData(fn) {
+  async getUserData() {
     try {
       let data = await getData('/api/5b260352d8f9e.html',{})
       app.globalData.userInfo = data.info
+      wx.switchTab({
+        url: '/pages/home/home',
+      })
     } catch (err) {
       if(err == -14) {
         await login()
+        wx.switchTab({
+          url: '/pages/home/home',
+        })
       }
     }
   },
@@ -49,24 +55,21 @@ Page({
    */
   onLoad: function (options) {
     let token = wx.getStorageSync('token')
-    if(token) {
-      this.getUserData()
-      wx.switchTab({
-        url: '/pages/home/home',
-      })
-    } else {
-      wx.getSetting({
-        success: res => {
-          if (res.authSetting['scope.userInfo']) {
-            login()
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          if(token) {
+            this.getUserData()
           } else {
-            this.setData({
-              hasScope: false
-            })
+            login()
           }
+        } else {
+          this.setData({
+            hasScope: false
+          })
         }
-      })
-    }
+      }
+    })
   },
 
   /**

@@ -3,8 +3,22 @@
 
 
 <!-- banner -->
-<view class='banner-wrap' bindtap='toCity'>
-  <image mode='aspectFill' src=''></image>
+<view class='banner-container'>
+  <swiper class='banner-wrap'
+    indicator-dots="{{swiperInit.dots}}"
+    indicator-color="{{swiperInit.dotsColor}}"
+    indicator-active-color="{{swiperInit.dotsActiveColor}}"
+    autoplay="{{swiperInit.autoplay}}"
+    interval="{{swiperInit.interval}}"
+    circular="{{swiperInit.circular}}"
+    duration="{{swiperInit.duration}}"
+  >
+    <block wx:for="{{bannerList}}" wx:key="{{index}}">
+      <swiper-item class='banner-item'>
+        <image mode='aspectFill' src='{{imgUrl+item.adpic}}'></image>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>
 
 <!-- 占位块 -->

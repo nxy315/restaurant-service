@@ -35,9 +35,29 @@ Page({
     wx.chooseImage({
       count: 1,
       success: res => {
-        this.setData({
-          cover: res.tempFilePaths
+        let tempFilePaths = res.tempFilePaths
+        let token = wx.getStorageSync('token')
+        console.log(tempFilePaths[0])
+        wx.uploadFile({
+          url: 'https://api.youcanwuchu.com/api/5b2b65086fd13.html',
+          filePath: tempFilePaths[0],
+          header: {
+            'content-type': 'multipart/form-data',
+            'version': 'v2.0',
+            'user-token': token
+          },
+          formData: {
+            file: tempFilePaths[0]
+          },
+          name: 'avator',
+          success: rs => {
+            console.log(rs)
+            //do something
+          }
         })
+        // this.setData({
+        //   cover: tempFilePaths
+        // })
       }
     })
   },
@@ -57,7 +77,8 @@ Page({
    * @header[user-token]               验签
    */
   async saveInfo() {
-    let data = await postData('/api/5b266d4146e02.html', this.data.ajaxDaat)
+    let data = await postData('/api/5b266d4146e02.html', this.data.ajaxData)
+
     wx.navigateBack({
       delta: 1
     })

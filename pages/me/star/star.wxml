@@ -7,7 +7,7 @@
     class='flex-r-sb star-item'
     >
     <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
+      <image class='cover' src='{{imgUrl+item.store_info.artpic}}'></image>
       <view class='flex-c-sb text'>
         <view class='t1'>{{item.store_info.brand}}</view>
         <view class='flex-r-fs t2'>
@@ -18,7 +18,7 @@
 
           <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
             <!-- <image wx:if='{{item.check}}' mode='aspectFill' src='../../../images/star_fill.png'></image> -->
-            <image wx:if='{{!item.check}}' mode='aspectFill' src='../../../images/star_gray.png'></image>
+            <image mode='aspectFill' src='../../../images/star.png'></image>
             <text>{{item.store_info.collection}}</text>
           </view>
         </view>
