@@ -1,5 +1,7 @@
 // pages/me/address/addAddress/addAddress.js
 const app = getApp()
+import {  postData } from '../../../../utils/ajax'
+var regeneratorRuntime = require('../../../../libs/runtime')
 const phoneReg = /^13[0-9]{9}$|14[0-9]{9}$|15[0-9]{9}$|16[0-9]{9}$|17[0-9]{9}$|18[0-9]{9}$|19[0-9]{9}$/
 Page({
 
@@ -28,7 +30,7 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  saveAddress() {
+  async saveAddress() {
     if (!this.data.ajaxData.realname) {
       return wx.showToast({
         title: '店铺不能为空',
@@ -50,6 +52,7 @@ Page({
         icon: 'none'
       })
     }
+    await postData('/api/5b2673319f025.html', this.data.ajaxData)
     wx.navigateBack({
       delta: 1
     })

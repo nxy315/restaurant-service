@@ -1,5 +1,8 @@
 // pages/cart/cart.js
 const app = getApp();
+import { getData } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
   /**
@@ -18,30 +21,28 @@ Page({
    * @method: GET 
    * @url: /api/5b29aaa68d36e.html
    * 
-   * @param keyword :String     关键词
    * @header[version]           版本号
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getCart() {
-    app.get('/api/5b29aaa68d36e.html', {}, data => {
-      let list = data.shoppingcart
-      for (let i = 0; i < list.length; i++) {
-        list[i].check = true
-      }
-      this.setData({
-        cartList: data.shoppingcart
-      }, () => {
-        wx.setTabBarBadge({
-          index: 3,
-          text: `${data.total_num}`
-        })
-        this.calc();
-      })
+  async getCart() {
+    let data = await getData('/api/5b29aaa68d36e.html', {})
+
+    let list = data.shoppingcart
+    for (let i = 0; i < list.length; i++) {
+      list[i].check = true
+    }
+    await wxSetData(this, {cartList: data.shoppingcart});
+    wx.setTabBarBadge({
+      index: 3,
+      text: `${data.total_num}`
     })
+    this.calc();
   },
 
-  // 结算
+  /**
+   * 去结算页
+   */
   toClear() {
     wx.navigateTo({
       url: '/pages/clearing/clearing',
@@ -53,11 +54,11 @@ Page({
     let i = e.currentTarget.dataset.index;
     let list = [...this.data.cartList];
     let check = list[i].check
-    let count = list[i].count
+    let count = list[i].nums
     if(!check && count == 0) {
       count = 1
     }
-    list.splice(i, 1, {...list[i], count, check: !list[i].check})
+    list.splice(i, 1, {...list[i], nums, check: !list[i].check})
     
     this.setData({
       cartList: list
@@ -70,14 +71,14 @@ Page({
   // 减
   reduceCount(e) {
     let i = e.currentTarget.dataset.index
-    if(this.data.cartList[i].count <= 0) return
+    if(this.data.cartList[i].nums <= 0) return
 
     let list = [...this.data.cartList]
-    let count = list[i].count - 1
+    let count = list[i].nums - 1
     if(count > 0) {
-      list.splice(i, 1, {...list[i], count, check: true})
+      list.splice(i, 1, {...list[i], nums, check: true})
     } else {
-      list.splice(i, 1, {...list[i], count, check: false})
+      list.splice(i, 1, {...list[i], nums, check: false})
     }
 
     this.setData({
@@ -93,8 +94,8 @@ Page({
     let i = e.currentTarget.dataset.index;
 
     let list = [...this.data.cartList];
-    let count = list[i].count + 1
-    list.splice(i, 1, {...list[i], count, check: true})
+    let count = list[i].nums + 1
+    list.splice(i, 1, {...list[i], nums, check: true})
     this.setData({
       cartList: list
     }, () => {
@@ -122,7 +123,7 @@ Page({
     }
   },
 
-  // 计算价格
+  // 计算总价
   calc() {
     let list = [...this.data.cartList];
     let money = 0;

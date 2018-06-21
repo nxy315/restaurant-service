@@ -1,7 +1,7 @@
 <!--pages/store/store.wxml-->
+<import src='../../utils/wxParse/wxParse.wxml' />
 <view class='introduce-wrap'>
-  <image class='introduce'></image>
-  <image class='introduce'></image>
+  <template is='wxParse' data='{{wxParseData: detail.nodes}}'/>
 </view>
 
 <view class='flex-r-c intro-foot'>

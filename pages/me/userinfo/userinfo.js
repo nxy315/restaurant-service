@@ -1,5 +1,8 @@
 // pages/me/userinfo/userinfo.js
 const app = getApp()
+import { getData, postData } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**
@@ -53,13 +56,10 @@ Page({
    * @header[access-token]             验签
    * @header[user-token]               验签
    */
-  saveInfo() {
-    app.post('/api/5b266d4146e02.html', this.data.ajaxData, data => {
-      if(data.status == 1) {
-        wx.navigateBack({
-          delta: 1
-        })
-      }
+  async saveInfo() {
+    let data = await postData('/api/5b266d4146e02.html', this.data.ajaxDaat)
+    wx.navigateBack({
+      delta: 1
     })
   },
 

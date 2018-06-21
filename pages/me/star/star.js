@@ -1,5 +1,8 @@
 // pages/me/star/star.js
 const app = getApp()
+import { getData, postData } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**
@@ -19,18 +22,14 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]          验签
    */
-  collect(e) {
-    wx.showLoading({
-      title: ''
-    })
+  async collect(e) {
     let index = e.currentTarget.dataset.index
-    app.get('/api/5b29c482c6ce3.html', {}, data => {
-      let list = [...this.data.starList]
-      list[index].check = !list[index].check
+    let data = await getData('/api/5b29c482c6ce3.html', {})
+    let list = [...this.data.starList]
+    list[index].check = !list[index].check
 
-      this.setData({
-        starList: list
-      })
+    this.setData({
+      starList: list
     })
   },
 
@@ -43,15 +42,14 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]          验签
    */
-  getStarList() {
-    app.get('/api/5b29c53fe42e8.html', {}, data => {
-      let list = data.collection_list
-      for (let i = 0; i < list.length; i++) {
-        list[i].check = true
-      }
-      this.setData({
-        starList: data.collection_list
-      })
+  async getStarList() {
+    let data = await getData('/api/5b29c53fe42e8.html', {})
+    let list = data.collection_list
+    for (let i = 0; i < list.length; i++) {
+      list[i].check = true
+    }
+    this.setData({
+      starList: data.collection_list
     })
   },
 

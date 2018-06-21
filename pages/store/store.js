@@ -1,4 +1,8 @@
 // pages/store/store.js
+const WxParse = require('../../utils/wxParse/wxParse.js')
+import { getData } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../libs/runtime')
 const app = getApp();
 Page({
 
@@ -30,20 +34,16 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getDetail(id) {
-    app.get('/api/5b1c788f5b08d.html', {
-      id
-    }, data => {
-      data = data.detail
-      wx.setNavigationBarTitle({
-        title: data.brand,
-      })
-      // // let list
-      this.setData({
-        // list
-        num: data.tel,
-        contact: data.contact
-      })
+  async getDetail(id) {
+    let data = await getData('/api/5b1c788f5b08d.html', {id})
+    data = data.detail
+    WxParse.wxParse('detail', 'html', data.text, this, 5)
+    wx.setNavigationBarTitle({
+      title: data.brand,
+    })
+    this.setData({
+      num: data.tel,
+      contact: data.contact
     })
   },
 

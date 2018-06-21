@@ -1,5 +1,8 @@
 // pages/home/home.js
 const app = getApp();
+import { getData, postData, login } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
   /**
@@ -30,6 +33,7 @@ Page({
       { name: '人气排名' },
     ],
     currentType: 0,
+    loading: true,
     // loading: [true, true, true],
     banner: '',//广告数据
 
@@ -62,13 +66,13 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getAds(id) {
-    app.get('/api/5b169d7bb041d.html', {
+  async getAds(id) {
+    let data = await getData('/api/5b169d7bb041d.html', {
       adplace: id
-    }, data => {
-      this.setData({
-        banner: data.ad_list[0].adpic
-      })
+    })
+
+    this.setData({
+      banner: data.ad_list[0].adpic
     })
   },
 
@@ -89,18 +93,18 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getTypes() {
-    app.get('/api/5b150d64dee3d.html', {}, data => {
-      let list = data.store_sort_list
-      let len = Math.ceil(list.length / 8)
-      
-      let arr = []
-      for(let i = 0; i < len; i++) {
-        arr[i] = list.slice(i * 8, (i + 1)*8)
-      }
-      this.setData({
-        typeList: arr
-      })
+  async getTypes() {
+    let data = await getData('/api/5b150d64dee3d.html', {})
+    
+    let list = data.store_sort_list
+    let len = Math.ceil(list.length / 8)
+    
+    let arr = []
+    for(let i = 0; i < len; i++) {
+      arr[i] = list.slice(i * 8, (i + 1)*8)
+    }
+    this.setData({
+      typeList: arr
     })
   },
 
@@ -117,31 +121,12 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getList(sort) {
-    // this.calcuHeight();
-    // let loading = [...this.data.loading]
-    // loading[this.data.currentType] = true
-    // this.setData({
-    //   loading
-    // })
+  async getList(sort) {
+    let data = await getData('/api/5b16a8b915bff.html',{sort})
 
-    app.get('/api/5b16a8b915bff.html', {
-      sort
-    }, data => {
-      // let list = [...this.data.list]
-      // list[this.data.currentType] = data.data.data.store_list.slice(0, 10)
-      // list[this.data.currentType] = list[this.data.currentType].concat(data.store_list.slice(0, parseInt(Math.abs(Math.random()*10))))
-      let list = data.store_list
-      this.setData({
-        list
-      }, () => {
-        // this.calcuHeight();
-      })
-    }, () => {
-      // loading[this.data.currentType] = false
-      this.setData({
-        loading: false
-      })
+    this.setData({
+      list: data.store_list,
+      loading: false
     })
   },
 
@@ -153,42 +138,37 @@ Page({
     })
   },
 
-  /* 切换swiper，改变索引 */
-  // changeType(e) {
-  //   // this.calcuHeight();
-  //   let i = e.detail.current;
-  //   this.setData({
-  //     currentType: i
-  //   }, () => {
-  //     if(this.data.list[this.data.currentType].length > 0) return
-  //     this.getList(this.data.sort[this.data.currentType])
-  //   })
-  // },
-
   /* 改变索引，切换swiper */
-  tapTypes(e) {
-    // let i = e.currentTarget.dataset.index;
-    // this.setData({
-    //   currentType: i
-    // })
+  async tapTypes(e) {
     let i = e.currentTarget.dataset.index;
-    this.setData({
+    await wxSetData(this, {
       currentType: i,
       list: [],
       loading: true
-    }, () => {
-      this.getList(this.data.sort[this.data.currentType]);
     })
+    this.getList(this.data.sort[this.data.currentType]);
+  },
+
+  async load() {
+    try {
+      this.getTypes();
+      this.getAds(100)
+      this.getList(this.data.sort[this.data.currentType])
+    } catch (err) {
+      if(err == -14) {
+        await login()
+        this.getTypes();
+        this.getAds(100)
+        this.getList(this.data.sort[this.data.currentType])
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.stopPullDownRefresh()
-    this.getTypes();
-    this.getAds(100)
-    this.getList(this.data.sort[this.data.currentType])
+    this.load();
   },
 
   /**

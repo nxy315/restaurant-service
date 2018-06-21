@@ -1,5 +1,8 @@
 // pages/me/orders/orders.js
 const app = getApp()
+import { getData, postData } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**
@@ -30,13 +33,10 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]          验签
    */
-  getOrderList() {
-    app.get('/api/5b26780224c31.html', {
-      ostate: this.data.currentType
-    }, data => {
-      this.setData({
-        orders: data.orders_list
-      })
+  async getOrderList() {
+    let data = await getData('/api/5b26780224c31.html', {ostate: this.data.currentType})
+    this.setData({
+      orders: data.orders_list
     })
   },
 

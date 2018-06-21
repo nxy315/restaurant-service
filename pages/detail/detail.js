@@ -1,5 +1,8 @@
 // pages/detail/detail.js
 const app = getApp();
+import { getData } from '../../utils/ajax'
+var regeneratorRuntime = require('../../libs/runtime')
+
 Page({
 
   /**
@@ -21,20 +24,13 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getDetail(id) {
-    app.get('/api/5b1c7c61216d6.html', {
-      id
-    }, data => {
-      let detail = data.detail
-      wx.setNavigationBarTitle({
-        title: detail.name,
-      })
-      // // // let list
-      this.setData({
-        // list
-        detail
-      })
+  async getDetail(id) {
+    let data = await getData('/api/5b1c7c61216d6.html', {id})
+    let detail = data.detail
+    wx.setNavigationBarTitle({
+      title: detail.name,
     })
+    this.setData({detail})
   },
 
   switchTap(e) {

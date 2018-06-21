@@ -1,6 +1,8 @@
 // pages/me/me.js
 const app = getApp()
-
+import { getData } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
   /**

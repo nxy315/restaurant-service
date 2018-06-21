@@ -1,14 +1,14 @@
 {
   "pages": [
-    "pages/login/login",
-    "pages/cart/cart",
     "pages/classify/classify",
+    "pages/login/login",
+    "pages/home/home",
+    "pages/cart/cart",
     "pages/me/me",
     "pages/me/address/address",
     "pages/me/address/addAddress/addAddress",
     "pages/me/orders/orders",
     "pages/me/star/star",
-    "pages/home/home",
     "pages/me/wallet/recharge/recharge",
     "pages/forum/post/post",
     "pages/forum/forum",

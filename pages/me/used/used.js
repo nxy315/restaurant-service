@@ -1,4 +1,8 @@
 // pages/me/used/used.js
+
+import { getData, postData } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**

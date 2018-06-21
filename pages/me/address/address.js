@@ -1,5 +1,8 @@
 // pages/me/address/address.js
 const app = getApp()
+import { getData } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**
@@ -8,6 +11,7 @@ Page({
   data: {
     addressList: []
   },
+
   /**
    * 获取地址列表
    * @method: GET 
@@ -17,11 +21,10 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getAddress() {
-    app.get('/api/5b266fc349914.html', {}, data => {
-      this.setData({
-        addressList: data.address_list
-      })
+  async getAddress() {
+    let data = await getData('/api/5b266fc349914.html', {})
+    this.setData({
+      addressList: data.address_list
     })
   },
 
@@ -35,17 +38,14 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  setDefault(e) {
+  async setDefault(e) {
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index
     let list = [...this.data.addressList]
     if (list[index].is_default == 1) return
 
-    app.get('/api/5b267aa787b35.html', {
-      id: parseInt(id)
-    }, data => {
-      this.getAddress()
-    })
+    await getData('/api/5b267aa787b35.html', {id: parseInt(id)})
+    this.getAddress()
     // for (let i = 0; i < list.length; i++) {
     //   list[i].is_default = 0
     // }

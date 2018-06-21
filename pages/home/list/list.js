@@ -1,5 +1,8 @@
 // pages/home/list/list.js
 const app = getApp();
+import { getData, login } from '../../../utils/ajax'
+import { wxSetData } from '../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
   /**
@@ -31,11 +34,8 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  collection(e) {
+  async collection(e) {
     let id = e.currentTarget.dataset.id
-    // app.get('',{},()=>{
-
-    // })
   },
 
   
@@ -51,25 +51,18 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getList(id, word) {
-    this.setData({
-      loading: true
-    })
-    
-    app.get('/api/5b16a8b915bff.html', {
-      sortid: id,
-      keyword: word,
+  async getList(sortid, keyword) {
+    this.setData({loading: true})
+    let data = await getData('/api/5b16a8b915bff.html', {
+      sortid,
+      keyword,
       sort: this.data.types[this.data.currentType].sort
-    }, data => {
-      let list = [...this.data.list]
-      list[this.data.currentType] = list[this.data.currentType].concat(data.store_list)
-      this.setData({
-        list
-      })
-    }, () => {
-      this.setData({
-        loading: false
-      })
+    })
+    let list = [...this.data.list]
+    list[this.data.currentType] = list[this.data.currentType].concat(data.store_list)
+    this.setData({
+      list,
+      loading: false
     })
   },
 

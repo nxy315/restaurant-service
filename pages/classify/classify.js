@@ -1,5 +1,9 @@
 // pages/classify/classify.js
 const app = getApp();
+
+import { getData, postData } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
   /**
@@ -48,13 +52,10 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getAds(id) {
-    app.get('/api/5b169d7bb041d.html', {
-      adplace: id
-    }, data => {
-      this.setData({
-        bannerList: data.ad_list
-      })
+  async getAds(id) {
+    let data = await getData('/api/5b169d7bb041d.html',{adplace: id})
+    this.setData({
+      bannerList: data.ad_list
     })
   },
 
@@ -67,18 +68,15 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getVariety() {
-    app.get('/api/5b16b2355d474.html', {}, data => {
-      data.sort_lsit.unshift({ name: '全部', id:'0'})
-
-      this.setData({
-        variety: data.sort_lsit,
-        varietyIndex: 0,
-        resultId: data.sort_lsit[0].id
-      }, () => {
-        this.getResult(this.data.resultId);
-      })
+  async getVariety() {
+    let data = await getData('/api/5b16b2355d474.html', {})
+    data.sort_lsit.unshift({ name: '全部', id:'0'})
+    await wxSetData(this, {
+      variety: data.sort_lsit,
+      varietyIndex: 0,
+      resultId: data.sort_lsit[0].id
     })
+    this.getResult(this.data.resultId);
   },
 
   /**
@@ -91,30 +89,27 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  getResult(id) {
-    app.get('/api/5b16b2ab1de15.html', {
-      sortid: id
-    }, data => {
-      let list = data.shop_list
-      let count = this.data.allCount
-      for (let i = 0; i < list.length; i++) {
-        list[i].fold = true
-        if(list[i].nums) {
-          count += parseInt(list[i].nums)
-        }
-        for (let j = 0; j < list[i].products_list.length; j ++) {
-          if (list[i].products_list[j].nums) {
-            count += parseInt(list[i].products_list[j].nums)
-          }
+  async getResult(id) {
+    let data = await getData('/api/5b16b2ab1de15.html', {sortid: id})
+
+    let list = data.shop_list
+    let count = this.data.allCount
+    for (let i = 0; i < list.length; i++) {
+      list[i].fold = true
+      if(list[i].nums) {
+        count += parseInt(list[i].nums)
+      }
+      for (let j = 0; j < list[i].products_list.length; j ++) {
+        if (list[i].products_list[j].nums) {
+          count += parseInt(list[i].products_list[j].nums)
         }
       }
-      console.log(count)
-      this.setData({
-        result: data.shop_list,
-        allCount: count
-      }, () => {
-        this.cartCount();
-      })
+    }
+    this.setData({
+      result: data.shop_list,
+      allCount: count
+    }, () => {
+      this.cartCount();
     })
   },
 
@@ -133,7 +128,7 @@ Page({
   /**
    * 减数量
    */
-  reduceCount(e) {
+  async reduceCount(e) {
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -146,37 +141,33 @@ Page({
 
     if (!type) {
       if (list[i].nums > 0) {
-        this.operaCard(gid, pid, price, spec, -1, gname, () => {
-          list[i].nums = list[i].nums - 1
-          this.setData({
-            result: list,
-            allCount: this.data.allCount - 1
-          }, () => {
-            if (this.data.allCount <= 0) {
-              this.removeCart()
-            } else {
-              this.cartCount();
-            }
-          })
+        this.operaCard(gid, pid, price, spec, -1, gname)
+        list[i].nums = list[i].nums - 1
+        await wxSetData(this, {
+          result: list,
+          allCount: this.data.allCount - 1
         })
-        
+        if (this.data.allCount <= 0) {
+          this.removeCart()
+        } else {
+          this.cartCount();
+        }
       }
     } else {
       let sizeIndex = e.currentTarget.dataset.i
       if (list[i].products_list[sizeIndex].nums > 0) {
-        this.operaCard(gid, pid, price, spec, -1, gname, () => {
-          list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums - 1
-          this.setData({
-            result: list,
-            allCount: this.data.allCount - 1
-          }, () => {
-            if (this.data.allCount <= 0) {
-              this.removeCart()
-            } else {
-              this.cartCount();
-            }
-          })
+        this.operaCard(gid, pid, price, spec, -1, gname)
+        list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums - 1
+        await wxSetData(this, {
+          result: list,
+          allCount: this.data.allCount - 1
         })
+
+        if (this.data.allCount <= 0) {
+          this.removeCart()
+        } else {
+          this.cartCount();
+        }
       }
     }
   },
@@ -184,7 +175,7 @@ Page({
   /**
    * 加数量
    */
-  addCount(e) {
+  async addCount(e) {
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -195,21 +186,19 @@ Page({
       gname = data.gname,
       list = [...this.data.result]
 
-    this.operaCard(gid, pid, price, spec, 1, gname, () => {
-      if (!type) {
-        list[i].nums = list[i].nums + 1
-      } else {
-        let sizeIndex = e.currentTarget.dataset.i
-        list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums + 1
-      }
+    this.operaCard(gid, pid, price, spec, 1, gname)
+    if (!type) {
+      list[i].nums = list[i].nums + 1
+    } else {
+      let sizeIndex = e.currentTarget.dataset.i
+      list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums + 1
+    }
 
-      this.setData({
-        result: list,
-        allCount: this.data.allCount + 1
-      }, () => {
-        this.cartCount();
-      })
+    await wxSetData(this, {
+      result: list,
+      allCount: this.data.allCount + 1
     })
+    this.cartCount();
   },
 
   /**
@@ -227,11 +216,9 @@ Page({
    * @header[access-token]            验签
    * @header[user-token]              验签
    */
-  operaCard(gid, pid, price, spec, nums, gname, fn) {
-    app.post('/api/5b29ad2a751fa.html', {
+  async operaCard(gid, pid, price, spec, nums, gname) {
+    await postData('/api/5b29ad2a751fa.html',{
       gid, pid, price, spec, nums, gname
-    }, data => {
-      fn && fn()
     })
   },
 
@@ -302,6 +289,7 @@ Page({
    */
   onShow: function () {
     this.getVariety();
+    
     this.setData({
       allCount: 0
     }, () => {
