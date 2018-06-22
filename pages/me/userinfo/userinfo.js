@@ -49,7 +49,7 @@ Page({
           formData: {
             file: tempFilePaths[0]
           },
-          name: 'avator',
+          name: 'user_pic',
           success: rs => {
             console.log(rs)
             //do something
