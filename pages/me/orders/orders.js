@@ -11,16 +11,23 @@ Page({
   data: {
     imgUrl: app.globalData.imgUrl,
     types: [
-      { name: '全部' },
-      { name: '待付款' },
-      { name: '待发货' },
-      { name: '已完成' },
+      { name: '全部', type: 0 },
+      { name: '待付款', type: 1 },
+      { name: '待发货', type: 2 },
+      { name: '已完成', type: 8 },
     ],
+    noData: false,
     orders: [],//订单数据
     swiperInit: {
       duration: 200
     },
     currentType: -1
+  },
+
+  qugg() {
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
   },
 
   /**
@@ -35,16 +42,18 @@ Page({
    */
   async getOrderList() {
     let data = await getData('/api/5b26780224c31.html', {ostate: this.data.currentType})
-    this.setData({
-      orders: data.orders_list
-    })
+    if(data.orders_list.length <= 0) {
+      await wxSetData(this, {noData: true})
+    } else {
+      await wxSetData(this, { noData: false, orders: data.orders_list })
+
+    }
   },
 
-  tapTypes(e) {
+  async tapTypes(e) {
     let i = e.currentTarget.dataset.index;
-    this.setData({
-      currentType: i
-    })
+    await wxSetData(this, {currentType: i})
+    this.getOrderList()
   },
   /* 切换swiper，改变索引 */ 
   changeType(e) {
@@ -69,9 +78,9 @@ Page({
   onLoad: function (options) {
     let i = options.index
     this.setData({
-      // currentType: i
-      currentType: 0
+      currentType: i
     }, () => {
+      console.log(this.data.currentType)
       this.getOrderList()
     })
   },

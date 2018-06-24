@@ -1,8 +1,10 @@
 /* pages/cart/cart.wxss */
-
+.block{
+  height: 16rpx;
+  background-color: #f2f2f2;
+}
 .cart-wrap{
-  margin-top: 16rpx;
-  padding-bottom: 120rpx;
+  margin-bottom: 120rpx; 
   background-color: #fff;
 }
 
@@ -40,15 +42,16 @@
 .cart-wrap .cart-item .goods-info-wrap .goods-info .name{}
 .cart-wrap .cart-item .goods-info-wrap .goods-info .count{}
 .cart-wrap .cart-item .goods-info-wrap .goods-info .count .reduce{
-  width: 40rpx;
-  height: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .cart-wrap .cart-item .goods-info-wrap .goods-info .count .count-num{
+  font-size: 26rpx;
   margin: 0 32rpx;
 }
 .cart-wrap .cart-item .goods-info-wrap .goods-info .count .plus{
-  width: 40rpx;
-  height: 40rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .cart-wrap .cart-item .goods-info-wrap .goods-info .price{
   font-size: 30rpx;
@@ -96,3 +99,4 @@
 .bill-wrap .cal-wrap .num{
   font-weight: bold;
 }
+

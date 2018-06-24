@@ -1,6 +1,14 @@
 <!--pages/classify/classify.wxml-->
 
-<scroll-view style="height: 100vh;" class="flex-c-fs" scroll-y="true" bindscroll="scroll">
+<scroll-view
+  style='height: 100vh'
+  scroll-top='{{top}}'
+  enable-back-to-top='{{true}}'
+  bindscrolltolower='reachBottom'
+  class="flex-c-fs"
+  scroll-y="true"
+  bindscroll="scroll"
+>
 
   <!-- banner -->
   <view class='banner-container'>
@@ -140,8 +148,11 @@
       </view> 
     </view>
     
-    
+    <view style='height: 88rpx;line-height: 68rpx;text-align: center;'>{{end ? '无更多数据' : '数据加载中...'}}</view>
   </view>
   
+  <view class='to-top' wx:if='{{toTop}}' bindtap='goTop'>
+    <image src='../../images/top.png'></image>
+  </view>
 </scroll-view>
 

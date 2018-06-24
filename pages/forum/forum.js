@@ -95,9 +95,11 @@ Page({
   /**
    * 发布需求
    */
-  postForm() {
+  postForm(e) {
+    let type = e.currentTarget.dataset.type
+
     wx.navigateTo({
-      url: '/pages/forum/post/post',
+      url: `/pages/forum/post/post?type=${type}`,
     })
     this.setData({
       open: false

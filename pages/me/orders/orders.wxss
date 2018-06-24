@@ -69,16 +69,22 @@
 }
 .info2{}
 .btn-wrap{
-  margin-top: 25rpx;
+  padding-right: 24rpx;
+  height: 90rpx;
 }
 .pay{
-  margin-right: 25rpx;
-  padding: 0 25rpx;
-  height: 54rpx;
-  line-height: 52rpx;
+  margin-left: 15rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  border: 1rpx solid #fe4070;
   text-align: center;
-  border: 1rpx solid #eaeaea;
   border-radius: 8rpx;
+  color: #fe4070;
+  font-size: 24rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .cancel{
   padding: 0 25rpx;

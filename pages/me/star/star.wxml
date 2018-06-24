@@ -16,15 +16,21 @@
             <text>{{item.store_info.hit}}</text>    
           </view>
 
-          <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
-            <!-- <image wx:if='{{item.check}}' mode='aspectFill' src='../../../images/star_fill.png'></image> -->
+          <!-- <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
             <image mode='aspectFill' src='../../../images/star.png'></image>
             <text>{{item.store_info.collection}}</text>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>
     
     <image class='to' src='../../../images/arrow_down.png'></image>
   </navigator>
+</view>
+
+
+<view class='flex-c-fs nodata' wx:if='{{noData}}'>
+  <image mode='aspectFit' src='../../../images/nodata.png'></image>
+  <view style='margin-top: 30rpx;color: #acacac;'>您还未有收藏商家</view>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='qugg'>去逛逛</view>
 </view>

@@ -66,6 +66,9 @@
   box-sizing: content-box;
   position: relative;
 }
+.result-list-wrap{
+   min-height: 100vh; 
+}
 .result-list{
   margin-top: 15rpx;
   flex-wrap: wrap;

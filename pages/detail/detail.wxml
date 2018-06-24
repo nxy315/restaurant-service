@@ -1,8 +1,5 @@
 <!--pages/detail/detail.wxml-->
-<!-- 标题 -->
-<!-- <view class='good-title'>
-  <text>成品小龙虾(盒装)</text>
-</view> -->
+<import src='../../utils/wxParse/wxParse.wxml' />
 
 <!-- 商品详情信息 -->
 <view id='good-detail'>
@@ -21,7 +18,9 @@
   <view class='flex-r-c title-wrap'>
     <view class='title-text'>图文详情</view>
   </view>
-  <image class='good-image' src=''></image>
+  <view class='introduce-wrap'>
+    <template is='wxParse' data='{{wxParseData: detail2.nodes}}'/>
+  </view> 
 </view>
 
 <!-- 底部固定 -->

@@ -102,8 +102,19 @@ let login = async () => {
   }) 
 }
 
+/**
+ * 收藏
+ */
+let collectStore = async id => {
+  let data = await getData('/api/5b29c482c6ce3.html', { id: id })
+  return new Promise((resolve, reject) => {
+    resolve(data)
+  })
+}
+
 module.exports = {
   login: login,
   getData: getData,
-  postData: postData
+  postData: postData,
+  collectStore: collectStore
 }

@@ -16,13 +16,27 @@ App({
           [data]: true
         })
       }
+
+      if (e.detail.scrollTop >= 1500) {
+        that.setData({
+          toTop: true
+        })
+      }
     } else {
       if (e.detail.scrollTop <= height) {
         that.setData({
           [data]: false
         })
       }
+
+      if (e.detail.scrollTop <= 1500) {
+        that.setData({
+          toTop: false
+        })
+      }
     }
+
+    
   },
 
   

@@ -29,6 +29,7 @@
   color: #666;
 }
 .form-item input{
+  text-align: right;
   flex: 1;
 }
 .form-item image{

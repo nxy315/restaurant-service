@@ -1,6 +1,6 @@
 // pages/cart/cart.js
 const app = getApp();
-import { getData } from '../../utils/ajax'
+import { getData, postData } from '../../utils/ajax'
 import { wxSetData } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
@@ -14,6 +14,8 @@ Page({
 
     checkAll: true,
     money: 0,//合计
+    noData: false,
+    allCount: 0,
   },
 
   /**
@@ -29,15 +31,25 @@ Page({
     let data = await getData('/api/5b29aaa68d36e.html', {})
 
     let list = data.shoppingcart
-    for (let i = 0; i < list.length; i++) {
-      list[i].check = true
-    }
-    await wxSetData(this, {cartList: data.shoppingcart});
+    
+    await wxSetData(this, { noData: true, allCount: data.total_num != null ? data.total_num : 0 })
     wx.setTabBarBadge({
       index: 3,
-      text: `${data.total_num}`
+      text: `${this.data.allCount}`
     })
-    this.calc();
+
+    if(list.length <= 0) {
+      await wxSetData(this, { noData: true })
+    } else {
+      await wxSetData(this, { noData: false })
+
+      for (let i = 0; i < list.length; i++) {
+        list[i].check = true
+      }
+      await wxSetData(this, { cartList: data.shoppingcart });
+
+      this.calc();
+    }
   },
 
   /**
@@ -49,57 +61,107 @@ Page({
     })
   },
 
+  /**
+   * 去逛逛
+   */
+  qugg() {
+    wx.switchTab({
+      url: '/pages/classify/classify',
+    })
+  },
+
   // 选择\取消产品
-  chooseItem(e) {
+  async chooseItem(e) {
     let i = e.currentTarget.dataset.index;
     let list = [...this.data.cartList];
     let check = list[i].check
     let count = list[i].nums
-    if(!check && count == 0) {
-      count = 1
+    if (!check && list[i].nums == 0) {
+      list[i].nums = 1
     }
-    list.splice(i, 1, {...list[i], nums, check: !list[i].check})
+    list.splice(i, 1, {...list[i], check: !list[i].check})
     
-    this.setData({
-      cartList: list
-    }, () => {
-      this.calc();
-      this.judgeFn(list[i].check)
-    })
+    await wxSetData(this, { cartList: list })
+    this.judgeFn(list[i].check)
   },
 
   // 减
-  reduceCount(e) {
-    let i = e.currentTarget.dataset.index
-    if(this.data.cartList[i].nums <= 0) return
+  async reduceCount(e) {
+    let data = e.currentTarget.dataset
+    let type = data.type,
+      i = data.index,
+      gid = parseInt(data.gid),
+      pid = parseInt(data.pid),
+      price = parseFloat(data.price),
+      spec = data.spec,
+      gname = data.gname,
+      list = [...this.data.cartList]
 
-    let list = [...this.data.cartList]
-    let count = list[i].nums - 1
-    if(count > 0) {
-      list.splice(i, 1, {...list[i], nums, check: true})
+    
+
+    if (parseInt(list[i].nums) <= 0) return
+
+    await this.operaCard(gid, pid, price, spec, -1, gname)
+    console.log(parseInt(this.data.allCount))
+    await wxSetData(this, { allCount: (parseInt(this.data.allCount) - 1) == 0 ? 0 : (parseInt(this.data.allCount) - 1)})
+    wx.setTabBarBadge({
+      index: 3,
+      text: `${this.data.allCount}`
+    })
+
+    list[i].nums = parseInt(list[i].nums) - 1
+    if (list[i].nums == 0) {
+      list.splice(i, 1)
     } else {
-      list.splice(i, 1, {...list[i], nums, check: false})
+      list.splice(i, 1, { ...list[i], nums: list[i].nums, check: list[i].nums == 0 ? false : true })
     }
 
-    this.setData({
-      cartList: list
-    }, () => {
-      this.calc();
-      this.judgeFn(list[i].check)
-    })
+    await wxSetData(this, { cartList: list })
+    if (list.length <= 0) {
+      await wxSetData(this, { noData: true })
+      return false
+    }
+    this.judgeFn(list[i].check)
   },
 
   // 加
-  plusCount(e) {
-    let i = e.currentTarget.dataset.index;
+  async plusCount(e) {
+    let data = e.currentTarget.dataset
+    let type = data.type,
+      i = data.index,
+      gid = parseInt(data.gid),
+      pid = parseInt(data.pid),
+      price = parseFloat(data.price),
+      spec = data.spec,
+      gname = data.gname,
+      list = [...this.data.cartList]
 
-    let list = [...this.data.cartList];
-    let count = list[i].nums + 1
-    list.splice(i, 1, {...list[i], nums, check: true})
-    this.setData({
-      cartList: list
-    }, () => {
-      this.judgeFn(list[i].check)
+    await this.operaCard(gid, pid, price, spec, 1, gname)
+    list[i].nums = parseInt(list[i].nums) + 1
+    list.splice(i, 1, {...list[i], check: true})
+
+    await wxSetData(this, { cartList: list })
+    this.judgeFn(list[i].check)
+  },
+
+  /**
+   * 购物车加减
+   * @method: POST 
+   * @url: /api/5b29ad2a751fa.html
+   *
+   * @param gid:String @require       商品ID
+   * @param pid:String @require       规格ID
+   * @param price:String @require     价格
+   * @param spec:String @require      规格名
+   * @param nums:String @require      数量(1或-1)
+   * @param gname:String @require     商品名
+   * @header[version]                 版本号
+   * @header[access-token]            验签
+   * @header[user-token]              验签
+   */
+  async operaCard(gid, pid, price, spec, nums, gname) {
+    await postData('/api/5b29ad2a751fa.html', {
+      gid, pid, price, spec, nums, gname
     })
   },
 

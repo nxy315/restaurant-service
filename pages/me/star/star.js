@@ -1,6 +1,6 @@
 // pages/me/star/star.js
 const app = getApp()
-import { getData, postData } from '../../../utils/ajax'
+import { getData, postData, collectStore } from '../../../utils/ajax'
 import { wxSetData } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
 Page({
@@ -10,7 +10,8 @@ Page({
    */
   data: {
     imgUrl: app.globalData.imgUrl,
-    starList: []
+    starList: [],
+    noData: false,
   },
 
   /**
@@ -46,11 +47,18 @@ Page({
   async getStarList() {
     let data = await getData('/api/5b29c53fe42e8.html', {})
     let list = data.collection_list
-    for (let i = 0; i < list.length; i++) {
-      list[i].check = true
+    if(list.length <= 0) {
+      await wxSetData(this, {noData: true})
+      return
     }
     this.setData({
       starList: data.collection_list
+    })
+  },
+
+  qugg() {
+    wx.switchTab({
+      url: '/pages/home/home',
     })
   },
 

@@ -12,16 +12,22 @@ page{
 }
 .camera-wrap{
   margin-top: 40rpx;
+  margin-right: 24rpx;
   width: 130rpx;
   height: 130rpx;
   border-radius: 8rpx;
   border: 1rpx solid #eeeaeb;
   background-color: #fbfbfb;
+  overflow: hidden;
 }
 .camera-wrap image{
   margin-bottom: 5rpx;
   width: 40rpx;
   height: 40rpx;
+}
+.camera-wrap image.upload-img{
+  width: 100%;
+  height: 100%;
 }
 .camera-wrap view{
   color: #919191;

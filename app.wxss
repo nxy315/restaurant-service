@@ -1,5 +1,5 @@
 /**app.wxss**/
-/* @import "/utils/wxParse/wxParse.wxss"; */
+
 page{
   font-size: 30rpx;  
   background-color: #f2f2f2;
@@ -145,7 +145,7 @@ button{
 .result-list-item{
   margin-bottom: 18rpx;
   width: 47vw;
-  height: 466rpx;
+  height: 485rpx;
   /* background-color: rgba(255, 60, 119, .8); */
    background-color: #fff; 
   color: #333;
@@ -170,18 +170,19 @@ button{
   white-space: nowrap;
 }
 .result-list-item .info{
-  padding: 0 15rpx;
+  padding: 15rpx;
 }
 .result-list-item .info .icon-wrap{
+  align-items: center;
 }
 .result-list-item .info image{
-  margin-right: 5rpx;
-  width: 30rpx;
-  height: 30rpx;
+  margin-right: 8rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .result-list-item .info text{
   color: #a0a0a0;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
 
 /* 保存按钮 */
@@ -301,11 +302,14 @@ button{
   margin-left: 15rpx;
   padding: 0 20rpx;
   height: 40rpx;
-  line-height: 40rpx;
   border: 1rpx solid #fe4070;
   text-align: center;
   border-radius: 8rpx;
   color: #fe4070;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 占位块 */
@@ -319,4 +323,31 @@ button{
   top: 0;
   left: 0;
   width: 100vw;
+}
+
+/* 暂无数据 */
+.nodata{
+  padding-top: 100rpx;
+  width: 100vw;
+  height: 400rpx;
+}
+
+.nodata image{
+  width: 100%;
+  height: 300rpx;
+}
+
+/* 返回顶部 */
+.to-top{
+  position: fixed;
+  bottom: 4vh;
+  right: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.to-top image{
+  width: 80rpx;
+  height: 80rpx;
 }

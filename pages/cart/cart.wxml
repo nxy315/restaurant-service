@@ -1,6 +1,6 @@
 <!--pages/cart/cart.wxml-->
-
-<view class='cart-wrap'>
+<view class='block'></view>
+<view class='cart-wrap' wx:if='{{!noData}}'>
   <view class='flex-r-fs cart-title' bindtap='handleAll'>
     <view class='check-box'>
       <!-- <image wx:if="{{!checkAll}}" src='../../images/check.png'></image>
@@ -29,9 +29,29 @@
       <view class='flex-c-sb goods-info'>
         <text class='name'>{{item.gname}}</text>
         <view class='flex-r-fs count'>
-          <image class='reduce' src='../../images/reduce2.png' data-index='{{index}}' catchtap='reduceCount'></image>
+          <image
+            class='reduce'
+            src='../../images/reduce2.png'
+            data-index='{{index}}'
+            catchtap='reduceCount'
+            data-gid='{{item.gid}}'
+            data-pid='{{item.pid}}'
+            data-price='{{item.price}}'
+            data-spec='{{item.spec}}'
+            data-gname='{{item.gname}}'
+          ></image>
           <text class='count-num'>{{item.nums}}</text>
-          <image class='plus' src='../../images/add2.png' data-index='{{index}}' catchtap='plusCount'></image>
+          <image
+            class='plus'
+            src='../../images/add2.png'
+            data-index='{{index}}'
+            catchtap='plusCount'
+            data-gid='{{item.gid}}'
+            data-pid='{{item.pid}}'
+            data-price='{{item.price}}'
+            data-spec='{{item.spec}}'
+            data-gname='{{item.gname}}'
+          ></image>
         </view>
         <text class='price'>{{item.price}}/{{item.spec}}</text>
       </view>
@@ -46,7 +66,7 @@
 </view>
 
 <!-- 结算部分 -->
-<view class='flex-r-sb bill-wrap'>
+<view class='flex-r-sb bill-wrap' wx:if='{{!noData}}'>
   <view class='flex-r-fs cal-wrap'>
     <view class='check-box' bindtap='handleAll'>
       <image src='../../images/{{checkAll ? "check_fill" : "check"}}.png'></image>
@@ -56,4 +76,10 @@
     <view class='red num'>￥{{money}}</view>
   </view>
   <view class='button-primary' style='width: 250rpx;' bindtap='toClear'>去结算</view>
+</view>
+
+<view class='flex-c-fs nodata' wx:if='{{noData}}'>
+  <image mode='aspectFit' src='../../images/nodata.png'></image>
+  <view style='margin-top: 30rpx;color: #acacac;'>购物车是空的</view>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='qugg'>去逛逛</view>
 </view>

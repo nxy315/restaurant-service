@@ -1,5 +1,5 @@
 /* pages/detail/detail.wxss */
-
+ @import "../../utils/wxParse/wxParse.wxss";
 /* 商品标题 */
 .good-title{
   height: 90rpx;
@@ -16,6 +16,7 @@
 #good-detail .cover{
   height: 750rpx;
   background-color: #f2f2f2;
+  overflow: hidden;
 }
 #good-detail .cover image{
   width: 100%;

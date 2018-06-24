@@ -1,9 +1,9 @@
 <!--pages/store/store.wxml-->
-<!-- <import src='../../utils/wxParse/wxParse.wxml' />
+<import src='../../utils/wxParse/wxParse.wxml' />
 <view class='introduce-wrap'>
   <template is='wxParse' data='{{wxParseData: detail.nodes}}'/>
-</view> -->
+</view> 
 
 <view class='flex-r-c intro-foot'>
   <view class='btn call' bindtap='callErr'>信息报错</view><view class='btn foot-btn' bindtap="showAction">联系人： {{contact}} 拨打电话</view>
-</view>
+</view> 

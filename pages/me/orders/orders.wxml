@@ -6,15 +6,15 @@
     <view
       wx:for="{{types}}"
       wx:key="{{index}}"
-      class="flex-r-c top-types-item {{currentType == index ? 'active' : ''}}"
-      data-index='{{index}}'
+      class="flex-r-c top-types-item {{currentType == item.type ? 'active' : ''}}"
+      data-index='{{item.type}}'
       bindtap='tapTypes'
     >
       <view class='item-text'>{{item.name}}</view>
     </view>
   </view>
 
-  <view class='orders-container'>
+  <view wx:if='{{!noData}}' class='orders-container'>
     <view
       class='order-item'
       wx:for='{{orders}}'
@@ -22,7 +22,11 @@
     >
       <view class='flex-r-sb order-title'>
         <view class='order-num'>订单号：{{item.onumber}}</view>
-        <view class='order-status red'>{{types[currentType].name}}</view>
+        <!-- 1:待付款 2:待发货 6:已取消 8:已完成 -->
+        <view class='order-status red' wx:if='{{item.ostate == 1}}'>待付款</view>
+        <view class='order-status red' wx:if='{{item.ostate == 2}}'>待发货</view>
+        <view class='order-status red' wx:if='{{item.ostate == 6}}'>已取消</view>
+        <view class='order-status red' wx:if='{{item.ostate == 8}}'>已完成</view>
       </view>
 
       <view
@@ -50,7 +54,19 @@
         </view>
       </view>
 
+      <view class='flex-r-fe btn-wrap'>
+        <view class='pay' wx:if='{{item.ostate == 1}}'>立即支付</view>
+        <view class='pay' wx:if='{{item.ostate == 1}}'>取消订单</view>
+      </view>
+
     </view>
+  </view>
+
+  
+  <view class='flex-c-fs nodata' style='padding-top: 230rpx;' wx:if='{{noData}}'>
+    <image mode='aspectFit' src='../../../images/nodata.png'></image>
+    <view style='margin-top: 30rpx;color: #acacac;'>您还未有购买记录</view>
+    <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='qugg'>去逛逛</view>
   </view>
 </view>
 

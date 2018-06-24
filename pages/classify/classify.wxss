@@ -71,6 +71,7 @@
 .result-wrap{
   flex: 1;
   background-color: #fff;
+  min-height: 90vh;
 }
 .result-wrap .result-item{ 
   padding: 24rpx;

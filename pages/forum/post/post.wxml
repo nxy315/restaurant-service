@@ -1,19 +1,33 @@
 <!--pages/forum/post/post.wxml-->
 <view class='flex-c-fs input-wrap'>
-  <textarea class='textarea' auto-height='{{true}}' style='width: 702rpx;' placeholder='请输入您要寻找的产品、服务等具体的要求'></textarea>
-  <view class='flex-c-c camera-wrap' bindtap='showActionSheet'>
-    <image src='../../../images/camera.png'></image>
-    <view>上传图片</view>
+  <textarea class='textarea' value='{{ajaxData.content}}' bindinput='handleInput' auto-height='{{true}}' style='width: 702rpx;' placeholder='请输入您要寻找的产品、服务等具体的要求'></textarea>
+
+
+  <view class='flex-r-fs'>
+    <view
+      class='camera-wrap'
+      wx:for='{{images}}'
+      wx:key='{{index}}'
+    >
+      <image class='upload-img' mode='aspectFill' src='{{item}}'></image>
+    </view> 
+
+
+    <view wx:if='{{images.length < 3}}' class='flex-c-c camera-wrap' bindtap='uploadImage'>
+      <image src='../../../images/camera.png'></image>
+      <view>上传图片</view>
+    </view>
   </view>
+  
 </view>
 
 <view class='block'></view>
 
-<view class='info-wrap'>
+<!-- <view class='info-wrap'>
   <view class='title'>联系信息</view>
-</view>
+</view> -->
 
-<view class='flex-r-sb address' bindtap='chooseAddress'>
+<!-- <view class='flex-r-sb address' bindtap='chooseAddress'>
   <view class='flex-r-fs'>
     <image class='arrow' src='../../../images/location.png'></image>
     <view class='flex-c-c address-info'>
@@ -27,6 +41,6 @@
   </view>
   
   <image class='arrow' src='../../../images/arrow_down.png'></image>
-</view>
+</view> -->
 
-<view class='post' bindtap='post'>发布</view>
+<view class='post' bindtap='prePost'>发布</view>

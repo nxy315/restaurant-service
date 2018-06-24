@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toTop: false,
     imgUrl: app.globalData.imgUrl,
     suck: false,
     fold: false,
@@ -24,12 +25,15 @@ Page({
       duration: 500
     },//swiper 配置
     resultId: '',
-    result: [],//商品列表数据
-
     varietyIndex: 0,
     variety: [],// 商品分类
-
     bannerList: [],//广告数据
+    page: 1,
+    pagenum: 6,
+    loadMore: true,
+    end: false,
+    result: [],//商品列表数据
+    top: 0,
   },
 
   loadImage(e) {
@@ -74,9 +78,10 @@ Page({
     await wxSetData(this, {
       variety: data.sort_lsit,
       varietyIndex: 0,
-      resultId: data.sort_lsit[0].id
+      resultId: data.sort_lsit[0].id,
+      result: [],
+      page: 1
     })
-    this.getResult(this.data.resultId);
   },
 
   /**
@@ -90,27 +95,28 @@ Page({
    * @header[user-token]        验签
    */
   async getResult(id) {
-    let data = await getData('/api/5b16b2ab1de15.html', {sortid: id})
+    let data = await getData('/api/5b16b2ab1de15.html', {
+      sortid: this.data.resultId,
+      page: this.data.page,
+      pagenum: this.data.pagenum
+    })
 
     let list = data.shop_list
     let count = this.data.allCount
     for (let i = 0; i < list.length; i++) {
       list[i].fold = true
-      if(list[i].nums) {
-        count += parseInt(list[i].nums)
-      }
-      for (let j = 0; j < list[i].products_list.length; j ++) {
-        if (list[i].products_list[j].nums) {
-          count += parseInt(list[i].products_list[j].nums)
-        }
-      }
     }
-    this.setData({
-      result: data.shop_list,
-      allCount: count
-    }, () => {
-      this.cartCount();
+    let end
+    data.shop_list < this.data.pagenum ? end = true : end = false
+    let result = [...this.data.result]
+    result = result.concat(data.shop_list)
+
+    await wxSetData(this, {
+      result,
+      loadMore: true,
+      end,
     })
+    this.cartCount();
   },
 
   /**
@@ -156,7 +162,7 @@ Page({
     } else {
       let sizeIndex = e.currentTarget.dataset.i
       if (list[i].products_list[sizeIndex].nums > 0) {
-        this.operaCard(gid, pid, price, spec, -1, gname)
+        await this.operaCard(gid, pid, price, spec, -1, gname)
         list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums - 1
         await wxSetData(this, {
           result: list,
@@ -186,12 +192,12 @@ Page({
       gname = data.gname,
       list = [...this.data.result]
 
-    this.operaCard(gid, pid, price, spec, 1, gname)
+    await this.operaCard(gid, pid, price, spec, 1, gname)
     if (!type) {
-      list[i].nums = list[i].nums + 1
+      list[i].nums = parseInt(list[i].nums) + 1
     } else {
       let sizeIndex = e.currentTarget.dataset.i
-      list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums + 1
+      list[i].products_list[sizeIndex].nums = parseInt(list[i].products_list[sizeIndex].nums) + 1
     }
 
     await wxSetData(this, {
@@ -243,6 +249,12 @@ Page({
   upper(e){
     console.log('upper')
   },
+
+  goTop() {
+    this.setData({
+      top: 200
+    })
+  },
   /* 滚动 */
   scroll(e) {
     app.scroll(e, 200, 'suck', this)
@@ -258,14 +270,55 @@ Page({
   },
 
   // 选择品类
-  chooseVariety(e) {
+  async chooseVariety(e) {
     let id = e.currentTarget.dataset.id;
     let i = e.currentTarget.dataset.index;
-    this.setData({
+
+    await wxSetData(this, {
       varietyIndex: i,
-      resultId: id
-    }, () => {
-      this.getResult(id)
+      resultId: id,
+      result: [],
+      page: 1,
+      end: false,
+      top: 200,
+    })
+    this.getResult()
+  },
+
+  /**
+   * 底部加载更多
+   */
+  async reachBottom() {
+
+    if (!this.data.loadMore || this.data.end) return
+
+    let page = this.data.page + 1
+    await wxSetData(this, { loadMore: false, page })
+    this.getResult()
+  },
+
+  async show() {
+    await this.getVariety();
+    this.getResult();
+    this.getCart();
+  },
+
+  /**
+   * 购物车数量
+   * @method: GET 
+   * @url: /api/5b29aaa68d36e.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async getCart() {
+    let data = await getData('/api/5b29aaa68d36e.html', {})
+
+    await wxSetData(this, { allCount: data.total_num != null ? data.total_num : 0 })
+    wx.setTabBarBadge({
+      index: 3,
+      text: `${data.total_num != null ? data.total_num : '0'}`
     })
   },
 
@@ -288,13 +341,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getVariety();
-    
-    this.setData({
-      allCount: 0
-    }, () => {
-      this.removeCart();//测试用，进来清空购物车
-    })
+    this.show()
   },
 
   /**
@@ -303,14 +350,10 @@ Page({
   onHide: function () {
     setTimeout(() => {
       this.setData({
-        varietyIndex: 0
+        varietyIndex: 0,
+        result: []
       })
     }, 1000)
-    
-    
-    wx.removeTabBarBadge({
-      index: 3,
-    })
   },
 
   /**

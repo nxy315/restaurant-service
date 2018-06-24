@@ -207,10 +207,10 @@
   </view>
 </view>
 
-<view class='add-wrap demand {{open ? "open" : ""}}' bindtap='postForm'>
+<view class='add-wrap demand {{open ? "open" : ""}}' data-type='1' bindtap='postForm'>
   <view class='flex-r-c'>发布需求</view>
 </view>
-<view class='add-wrap output {{open ? "open" : ""}}' bindtap='postForm'>
+<view class='add-wrap output {{open ? "open" : ""}}' data-type='2' bindtap='postForm'>
   <view class='flex-r-c'>发布产品</view>
 </view>
 <view class='add-wrap close-btn {{open ? "open" : ""}}' bindtap='openPost'>

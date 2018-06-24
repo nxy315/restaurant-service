@@ -1,4 +1,5 @@
 // pages/detail/detail.js
+const WxParse = require('../../utils/wxParse/wxParse.js')
 const app = getApp();
 import { getData } from '../../utils/ajax'
 var regeneratorRuntime = require('../../libs/runtime')
@@ -27,6 +28,7 @@ Page({
   async getDetail(id) {
     let data = await getData('/api/5b1c7c61216d6.html', {id})
     let detail = data.detail
+    WxParse.wxParse('detail2', 'html', detail.text, this, 0)
     wx.setNavigationBarTitle({
       title: detail.name,
     })

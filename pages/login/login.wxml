@@ -1,2 +1,6 @@
 <!--pages/login/login.wxml-->
-<button wx:if='{{!hasScope}}' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">确认授权</button>
+<view wx:if='{{!hasScope}}' class='flex-c-c wrap'>
+  <image class='logo' src='../../images/logo.jpg'></image>
+  <view class='name'>有餐无厨</view>
+  <button class='button-primary' style='width: 300rpx;' open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">点击登录</button> 
+</view>

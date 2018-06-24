@@ -41,3 +41,60 @@ export function wxSetData(_this, obj) {
         })
     })
 }
+
+/**
+ * 去设置
+ */
+export function wxOpenSetting() {
+  return new Promise((resolve, reject) => {
+    wx.openSetting({
+      complete: () => {
+        resolve()
+      }
+    })
+  })
+}
+
+/**
+ * 获取权限
+ */
+export function wxGetSetting(scope) {
+  return new Promise((resolve, reject) => {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting[scope]) {
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      }
+    })
+  })
+}
+
+/**
+ * 加载loading
+ */
+export function wxShowLoading(title) {
+  return new Promise((resolve, reject) => {
+    wx.showLoading({
+      title,
+      success: res => {
+        resolve()
+      }
+    })
+  })
+}
+
+/**
+ * 获取坐标
+ */
+export function wxGetLocation() {
+  return new Promise((resolve, reject) => {
+    wx.getLocation({
+      success: res => {
+        resolve(res)
+      },
+    })
+  })
+}

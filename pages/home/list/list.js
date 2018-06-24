@@ -9,19 +9,42 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toTop: false,
     imgUrl: app.globalData.imgUrl,
     id: '',
     word: '',
-    types: [
-      { name: '最新商家', sort: 'id-desc' },
-      { name: '人气商家', sort: 'hit-desc' },
-    ],
-    
-    list: [
-      [],[]
-    ],//列表数据
+    sort: ['id-desc', 'hit-desc'],
+    types: [{ name: '最新商家' }, { name: '人气商家' }],
+    page: 1,
+    pagenum: 6,
+    loadMore: true,
+    end: false,
+    list: [],//列表数据
     currentType: 0,
-    loading: true
+    top: 0,
+  },
+
+  goTop() {
+    this.setData({
+      top: 0
+    })
+  },
+
+  scroll(e) {
+    let direction = e.detail.deltaY
+    if (direction < 0) {
+      if (e.detail.scrollTop >= 1000) {
+        this.setData({
+          toTop: true
+        })
+      }
+    } else {
+      if (e.detail.scrollTop <= 1000) {
+        this.setData({
+          toTop: false
+        })
+      }
+    }
   },
 
   
@@ -51,42 +74,63 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  async getList(sortid, keyword) {
-    this.setData({loading: true})
+  async getList() {
+    let mydata = this.data
+    let sortid = mydata.id,
+        keyword = mydata.word,
+        sort = mydata.sort[mydata.currentType],
+        page = mydata.page,
+        pagenum = mydata.pagenum
+
     let data = await getData('/api/5b16a8b915bff.html', {
-      sortid,
-      keyword,
-      sort: this.data.types[this.data.currentType].sort
+      sortid, keyword, sort, page, pagenum
     })
+    let end
+    data.store_list < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
-    list[this.data.currentType] = list[this.data.currentType].concat(data.store_list)
+    data = list.concat(data.store_list)
+
     this.setData({
-      list,
-      loading: false
+      list: data,
+      loadMore: true,
+      end
     })
   },
 
-  tapTypes(e) {
-    let i = e.target.dataset.index;
-    let sort = e.target.dataset.sort;
-    this.setData({
-      currentType: i
-    }, () => {
-      if(this.data.list[this.data.currentType].length > 0) return 
-      this.getList(this.data.id, this.data.word)
+  /* 改变索引 */
+  async tapTypes(e) {
+    let i = e.currentTarget.dataset.index;
+    await wxSetData(this, {
+      currentType: i,
+      list: [],
+      page: 1,
+      end: false,
+      top: 0,
     })
+    this.getList()
   },
   
+  async load(id, word) {
+    await wxSetData(this, { id, word } )
+    this.getList()
+  },
+
+  async reachBottom() {
+
+    if (!this.data.loadMore || this.data.end) return
+
+    let page = this.data.page + 1
+    await wxSetData(this, { loadMore: false, page })
+    this.getList()
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let id = options.id ? options.id : ''
     let word = options.keyword ? options.keyword : ''
-    this.setData({
-      id,word
-    })
-    this.getList(id, word)
+    this.load(id, word)
   },
 
   /**

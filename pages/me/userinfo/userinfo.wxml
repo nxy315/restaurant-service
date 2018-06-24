@@ -12,6 +12,7 @@
   </view>
 
   <view class='info-wrap'>
+    <view class='info-title' style='padding: 24rpx;font-weight: bold;'>联系信息</view>
     <view class='flex-r-sb form-item'>
       <text class='name'>姓名：</text>
       <input placeholder='2-6个汉字或字母' value='{{ajaxData.realname}}' data-key='realname' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>

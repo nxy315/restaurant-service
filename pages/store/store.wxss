@@ -1,5 +1,5 @@
 /* pages/store/store.wxss */
-
+@import "../../utils/wxParse/wxParse.wxss"; 
 /* 图文介绍 */
 .introduce-wrap{
   margin-bottom: 100rpx;

@@ -1,6 +1,6 @@
 // pages/home/home.js
 const app = getApp();
-import { getData, postData, login } from '../../utils/ajax'
+import { getData, postData, login, collectStore } from '../../utils/ajax'
 import { wxSetData } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
@@ -9,8 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    top: 0,
     imgUrl: app.globalData.imgUrl,
     suck: false,
+    toTop: false,
     swiperInit: {
       dots: true,
       dotsColor: 'rgba(255, 60, 119, .3)',
@@ -24,20 +26,74 @@ Page({
     // ],//厂商列表
     list: [],//厂商列表
     sort: ['', 'id-desc', 'hit-desc'],//厂商排序
-    resultSwiper: {
-      duration: 200
-    },
+    page: 1,
+    pagenum: 6,
+    loadMore: true,
+    end: false,
     types: [
       { name: '全部' },
       { name: '最新入驻' },
       { name: '人气排名' },
     ],
     currentType: 0,
-    loading: true,
-    // loading: [true, true, true],
+    resultSwiper: {
+      duration: 200
+    },
     banner: '',//广告数据
 
     swiperHeight: 500
+  },
+
+  goTop() {
+    this.setData({
+      top: 420
+    })
+  },
+
+  async collect(e) {
+    let index = e.currentTarget.dataset.index
+    let id = e.currentTarget.dataset.id
+    let list = [...this.data.list]
+
+    wx.showLoading({
+      title: '',
+    })
+    let data = await collectStore(id)
+    if (list[index].is_collection == 1) {
+      list[index].is_collection = 0
+      list[index].collection = parseInt(list[index].collection) - 1
+      await wxSetData(this, {list})
+      wx.showToast({
+        title: '取消收藏',
+      })
+    } else {
+      list[index].is_collection = 1
+      list[index].collection = parseInt(list[index].collection) + 1
+      await wxSetData(this, { list })
+      wx.showToast({
+        title: '收藏成功',
+      })
+    }
+    wx.hideLoading()
+  },
+
+  /**
+   * 购物车数量
+   * @method: GET 
+   * @url: /api/5b29aaa68d36e.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async getCart() {
+    let data = await getData('/api/5b29aaa68d36e.html', {})
+
+    await wxSetData(this, { allCount: data.total_num != null ? data.total_num : 0 })
+    wx.setTabBarBadge({
+      index: 3,
+      text: `${data.total_num != null ? data.total_num : '0'}`
+    })
   },
 
   //输入框
@@ -80,7 +136,7 @@ Page({
    * 滚动
    */
   scroll(e) {
-    app.scroll(e, 440, 'suck', this)
+    app.scroll(e, 420, 'suck', this)
   },
 
 
@@ -121,12 +177,22 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  async getList(sort) {
-    let data = await getData('/api/5b16a8b915bff.html',{sort})
-
+  async getList() {
+    let data = await getData('/api/5b16a8b915bff.html', { 
+      sort: this.data.sort[this.data.currentType],
+      page: this.data.page,
+      pagenum: this.data.pagenum
+    })
+    wx.hideLoading()
+    let end
+    data.store_list < this.data.pagenum ? end = true : end = false
+    let list = [...this.data.list]
+    data = list.concat(data.store_list)
+    
     this.setData({
-      list: data.store_list,
-      loading: false
+      list: data,
+      loadMore: true,
+      end
     })
   },
 
@@ -138,31 +204,44 @@ Page({
     })
   },
 
-  /* 改变索引，切换swiper */
+  /* 改变索引 */
   async tapTypes(e) {
     let i = e.currentTarget.dataset.index;
     await wxSetData(this, {
       currentType: i,
       list: [],
-      loading: true
+      page: 1,
+      end: false,
+      top: 420,
     })
-    this.getList(this.data.sort[this.data.currentType]);
+    this.getList();
   },
 
   async load() {
     try {
       this.getTypes();
       this.getAds(100)
-      this.getList(this.data.sort[this.data.currentType])
+      this.getList()
+      this.getCart()
     } catch (err) {
       console.log(err == -14)
       if(err == -14) {
         await login()
         this.getTypes();
         this.getAds(100)
-        this.getList(this.data.sort[this.data.currentType])
+        this.getList()
+        this.getCart()
       }
     }
+  },
+
+  async reachBottom() {
+
+    if (!this.data.loadMore || this.data.end) return
+
+    let page = this.data.page+1
+    await wxSetData(this, { loadMore: false, page })
+    this.getList()
   },
 
   /**
@@ -184,7 +263,7 @@ Page({
    */
   onShow: function () {
     this.setData({
-      keyword: ''
+      keyword: '',
     })
   },
 
@@ -192,7 +271,11 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    setTimeout(() => {
+      this.setData({
+        top: 0
+      })
+    }, 500)
   },
 
   /**
@@ -209,11 +292,12 @@ Page({
     wx.stopPullDownRefresh()
   },
 
+  
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    // this.getList(this.data.sort[this.data.currentType])
+    
   },
 
   /**
