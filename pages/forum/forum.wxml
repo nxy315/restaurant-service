@@ -33,178 +33,61 @@
 
 <!-- 帖子 -->
 <view class='posts-wrap'>
-  <view class='flex-r-fs posts-item'>
+  <view class='flex-r-fs posts-item'
+    wx:for='{{list}}'
+    wx:key='{{index}}'
+  >
     <view class='cover'>
-      <image class='avatar' mode='aspectFill' src=''></image>
+      <image class='avatar' mode='aspectFill' src='{{"https://api.youcanwuchu.com/Public/UserUploads/"+item.user_pic}}'></image>
     </view>
 
     <view class='posts-content'>
       <view class='flex-r-fs name-wrap'>
-        <view class='name'>NXY</view>
-        <image mode='aspectFill' class='type' src='../../images/verdor.png'></image>
+        <view class='name'>{{item.nickname}}</view>
+        <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
       </view>
 
       <view class='article'>
-        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
+        {{item.content}}
       </view>
 
       <view class='imgs-wrap'>
-        <image src=''></image>
-        <image src=''></image>
-        <image src=''></image>
+        <image
+          mode='aspectFill'
+          wx:for='{{item.quan_image_list}}'
+          wx:key='{{idx}}'
+          wx:for-item='itm'
+          wx:for-index='idx'
+          src='{{itm.image}}'></image>
       </view>
 
       <view class='flex-r-sb location'>
         <view class='flex-r-fs address'>
           <image src='../../images/location.png'></image>
-          <text>上海市徐汇区</text>
+          <text>{{item.address}}</text>
         </view>
 
-        <view class='time'>10:25</view>
+        <view class='time'>{{add_time}}</view>
       </view>
 
       <view class='flex-r-fs other-info'>
-        <view class='flex-r-fs info-wrap i1'>
+        <view class='flex-r-fs info-wrap i1'
+          data-index='{{index}}'
+          data-id='{{item.id}}'
+          bindtap='like'
+        >
           <image src='../../images/like.png'></image>
-          <text>5646</text>
+          <text>{{item.zan}}</text>
         </view>
         
         <view class='flex-r-fs info-wrap i2'>
           <image src='../../images/mark.png'></image>
-          <text>54</text>
+          <text>{{item.huifu}}</text>
         </view>
       </view>
     </view>
   </view>
 
-  <view class='flex-r-fs posts-item'>
-    <view class='cover'>
-      <image class='avatar' mode='aspectFill' src=''></image>
-    </view>
-
-    <view class='posts-content'>
-      <view class='flex-r-fs name-wrap'>
-        <view class='name'>NXY</view>
-      </view>
-
-      <view class='article'>
-        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
-      </view>
-
-      <view class='imgs-wrap'>
-        <image src=''></image>
-        <image src=''></image>
-        <image src=''></image>
-      </view>
-
-      <view class='flex-r-sb location'>
-        <view class='flex-r-fs address'>
-          <image src='../../images/location.png'></image>
-          <text>上海市徐汇区</text>
-        </view>
-
-        <view class='time'>10:25</view>
-      </view>
-
-      <view class='flex-r-fs other-info'>
-        <view class='flex-r-fs info-wrap i1'>
-          <image src='../../images/like.png'></image>
-          <text>5646</text>
-        </view>
-        
-        <view class='flex-r-fs info-wrap i2'>
-          <image src='../../images/mark.png'></image>
-          <text>54</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class='flex-r-fs posts-item'>
-    <view class='cover'>
-      <image class='avatar' mode='aspectFill' src=''></image>
-    </view>
-
-    <view class='posts-content'>
-      <view class='flex-r-fs name-wrap'>
-        <view class='name'>NXY</view>
-      </view>
-
-      <view class='article'>
-        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
-      </view>
-
-      <view class='imgs-wrap'>
-        <image src=''></image>
-        <image src=''></image>
-        <image src=''></image>
-      </view>
-
-      <view class='flex-r-sb location'>
-        <view class='flex-r-fs address'>
-          <image src='../../images/location.png'></image>
-          <text>上海市徐汇区</text>
-        </view>
-
-        <view class='time'>10:25</view>
-      </view>
-
-      <view class='flex-r-fs other-info'>
-        <view class='flex-r-fs info-wrap i1'>
-          <image src='../../images/like.png'></image>
-          <text>5646</text>
-        </view>
-        
-        <view class='flex-r-fs info-wrap i2'>
-          <image src='../../images/mark.png'></image>
-          <text>54</text>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class='flex-r-fs posts-item'>
-    <view class='cover'>
-      <image class='avatar' mode='aspectFill' src=''></image>
-    </view>
-
-    <view class='posts-content'>
-      <view class='flex-r-fs name-wrap'>
-        <view class='name'>NXY</view>
-      </view>
-
-      <view class='article'>
-        黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，黄焖鸡米饭，
-      </view>
-
-      <view class='imgs-wrap'>
-        <image src=''></image>
-        <image src=''></image>
-        <image src=''></image>
-      </view>
-
-      <view class='flex-r-sb location'>
-        <view class='flex-r-fs address'>
-          <image src='../../images/location.png'></image>
-          <text>上海市徐汇区</text>
-        </view>
-
-        <view class='time'>10:25</view>
-      </view>
-
-      <view class='flex-r-fs other-info'>
-        <view class='flex-r-fs info-wrap i1'>
-          <image src='../../images/like.png'></image>
-          <text>5646</text>
-        </view>
-        
-        <view class='flex-r-fs info-wrap i2'>
-          <image src='../../images/mark.png'></image>
-          <text>54</text>
-        </view>
-      </view>
-    </view>
-  </view>
 </view>
 
 <view class='add-wrap demand {{open ? "open" : ""}}' data-type='1' bindtap='postForm'>

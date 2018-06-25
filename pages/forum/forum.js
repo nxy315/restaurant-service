@@ -28,6 +28,7 @@ Page({
     currentType: 0,
     bannerList: [],//广告数据
     open: false,
+    list: [],
   },
 
   toCity() {
@@ -71,9 +72,44 @@ Page({
    * @header[user-token]        验签
    */
   async getList() {
-    let data = getData('/api/5b2b753401e58.html', { page: 1, pagenum: 6, type:0})
-    console.log(data)
+    let data = await getData('/api/5b2b753401e58.html', { page: 1, pagenum: 6, type:0})
+    this.setData({
+      list: data.quan_list
+    })
   }, 
+
+  /**
+   * 点赞
+   * @method: GET 
+   * @url: /api/5b309d0170036.html
+   *
+   * @param quan_id:Int @require    id
+   * @header[version]               版本号
+   * @header[access-token]          验签
+   * @header[user-token]            验签
+   */
+  async like(e) {
+    let target = e.currentTarget.dataset
+    let index = target.index,
+      quan_id = target.id
+
+    try {
+      await getData('/api/5b309d0170036.html', { quan_id })
+      let list = [...this.data.list]
+      list.splice(index, 1, { ...list[index], zan: parseInt(list[index].zan) + 1 })
+      this.setData({
+        list
+      })
+      wx.showToast({
+        title: '点赞成功',
+      })
+    } catch (e) {
+      wx.showModal({
+        title: '提示',
+        content: '您已经赞过了',
+      })
+    }
+  },
 
 
   tapTypes(e) {

@@ -32,6 +32,8 @@ let getData = async (url, params) => {
           resolve(response.data.data)
         } else if(response.data.code == -14) {
           reject(-14)
+        } else {
+          reject(response.data.code)
         }
       },
       fail: error => {

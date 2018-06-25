@@ -39,24 +39,26 @@ Page({
    * @header[user-token]        验签
    */
   async setDefault(e) {
+    wx.showLoading({
+      title: '',
+    })
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index
     let list = [...this.data.addressList]
     if (list[index].is_default == 1) return
 
     await getData('/api/5b267aa787b35.html', {id: parseInt(id)})
-    this.getAddress()
-    // for (let i = 0; i < list.length; i++) {
-    //   list[i].is_default = 0
-    // }
-    // list[index].is_default = 1
 
-    // this.setData({
-    //   addressList: list
-    // })
+    for (let i = 0; i < list.length; i++) {
+      list[i].is_default = 0
+    }
+    list[index].is_default = 1
+
+    await wxSetData(this, { addressList: list})
+    wx.hideLoading()
   },
 
-  // 编辑地址
+  // 编辑地址页面
   editAddress(e) {
     let id = e.currentTarget.dataset.id
 
@@ -64,9 +66,50 @@ Page({
       url: `/pages/me/address/editAddress/editAddress?id=${id}`,
     })
   },
-  delAddress() {
-
+  //新增地址页面
+  addAddress() {
+    wx.navigateTo({
+      url: `/pages/me/address/addAddress/addAddress`,
+    })
   },
+
+  /**
+   * 删除地址
+   * @method: GET 
+   * @url: /api/5b2f94c3df504.html
+   *  
+   * @param id:Int              地址id
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async delAddress(e) {
+    let id = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+
+    wx.showLoading({
+      title: '',
+    })
+    let data = await getData('/api/5b2f94c3df504.html', {id})
+    wx.hideLoading()
+    
+    if(data.status == 1) {
+      let list = [...this.data.addressList]
+      list.splice(index, 1)
+      this.setData({
+        addressList: list
+      })
+      wx.showToast({
+        icon: 'success',
+        title: '删除成功',
+      })
+    } else {
+      wx.showToast({
+        title: '删除失败',
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -8,7 +8,7 @@
       <view class='flex-r-sb' bindtap='toInfo' style='flex: 1;'>
         <view class='flex-r-fs'>
           <view class='avatar'>
-            <image src='{{userInfo.user_pic}}'></image>
+            <image mode='aspectFill' src='{{userInfo.user_pic}}'></image>
           </view>
 
           <view class='flex-c-fs top-wrap'>

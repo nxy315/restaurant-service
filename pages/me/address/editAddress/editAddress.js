@@ -22,7 +22,7 @@ Page({
   /**
    * 获取单条地址信息
    * @method: GET
-   * @url: /api/5b2674d017179.html
+   * @url: /api/5b2674d017179.htmled
    *
    * @param id:Int              地址id
    * @header[version]           版本号
