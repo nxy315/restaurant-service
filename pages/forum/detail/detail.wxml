@@ -1,0 +1,96 @@
+<!--pages/forum/detail/detail.wxml-->
+<view>
+  <view class='flex-r-fs topic-title'>
+    <view class='topic-avator'>
+      <image mode='aspectFill' src=''></image>
+    </view>
+
+    <view class='flex-c-c topic-info'>
+      <view class='flex-r-fs topic-name'>
+        <text>原来是你</text>
+        <image mode='aspectFit' src='../../../images/verdor.png'></image>
+      </view>
+      <view class='topic-des'>
+        <view class='flex-r-fs address'>
+          <image mode='aspectFill' src='../../../images/location.png'></image>
+          <text>上海市普陀区</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='topic-content'>
+   input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四 input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四 input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四 input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四
+  </view>
+
+  <view class='topic-images'>
+    <image mode='widthFix' src='http://pic.5442.com/2014/0623/22/03.jpg'></image>
+    <image mode='widthFix' src='http://p0.ifengimg.com/pmop/2018/0613/15F072E73F6234EA2B7D1BACDC4B277B5D34FC46_size1606_w402_h196.gif'></image>
+    <image mode='widthFix' src='http://p0.ifengimg.com/pmop/2018/0613/F2CF8C4FFA5C2F0FB6D7E4DFA1CD1D265E152ECE_size42_w640_h357.jpeg'></image>
+  </view>
+
+  <view class='block'></view>
+
+  <!-- 评论 -->
+  <view class='comments'>
+    <view class='head'>评论</view>
+
+    <view class='flex-r-fs comment-item'>
+      <view class='avator'>
+        <image mode='aspectFill' src=''></image>
+      </view>
+
+      <view class='info'>
+        <view class='flex-r-sb title'>
+          <view class='name'>Snopi</view>
+          <view class='flex-r-fs zan-wrap'>
+            <image mode='aspectFill' src='../../../images/zan.png'></image>
+            <text>546</text>
+          </view>
+        </view>
+        <view class='content'> input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四</view>
+        <view class='foot'>昨天 12:00</view>
+      </view>
+    </view>
+
+
+    <view class='flex-r-fs comment-item'>
+      <view class='avator'>
+        <image mode='aspectFill' src=''></image>
+      </view>
+
+      <view class='info'>
+        <view class='flex-r-sb title'>
+          <view class='name'>Snopi</view>
+          <view class='flex-r-fs zan-wrap'>
+            <image mode='aspectFill' src='../../../images/zan.png'></image>
+            <text>546</text>
+          </view>
+        </view>
+        <view class='content'> input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四</view>
+        <view class='foot'>昨天 12:00</view>
+      </view>
+    </view>
+
+
+    <view class='flex-r-fs comment-item'>
+      <view class='avator'>
+        <image mode='aspectFill' src=''></image>
+      </view>
+
+      <view class='info'>
+        <view class='flex-r-sb title'>
+          <view class='name'>Snopi</view>
+          <view class='flex-r-fs zan-wrap'>
+            <image mode='aspectFill' src='../../../images/zan.png'></image>
+            <text>546</text>
+          </view>
+        </view>
+        <view class='content'> input 组件是一个 native 组件,字体是系统字体,所以无法设置 font-family;官方文档有说明相关讨论四</view>
+        <view class='foot'>昨天 12:00</view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

@@ -111,6 +111,13 @@ Page({
     }
   },
 
+  checkDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/forum/detail/detail?id=${id}`,
+    })
+  },
+
 
   tapTypes(e) {
     let i = e.currentTarget.dataset.index;

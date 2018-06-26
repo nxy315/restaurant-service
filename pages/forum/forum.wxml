@@ -47,7 +47,7 @@
         <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
       </view>
 
-      <view class='article'>
+      <view class='article' data-id='{{item.id}}' bindtap='checkDetail'>
         {{item.content}}
       </view>
 

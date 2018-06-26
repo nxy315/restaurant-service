@@ -5,6 +5,7 @@ page{
   background-color: #f2f2f2;
   color: #1b1b1b;
   box-sizing: border-box;
+  font-family: Arial, sans-serif, Helvetica Neue, Helvetica;
 }
 button{
   background-color: transparent;

@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/forum/forum",
+    "pages/forum/detail/detail",
     "pages/me/me",
     "pages/forum/mypost/mypost",
-    "pages/forum/forum",
     "pages/login/login",
     "pages/me/orders/orders",
     "pages/cart/cart",

@@ -1,0 +1,131 @@
+/* pages/forum/detail/detail.wxss */
+page{
+  background-color: #fff;
+}
+
+/* 头部 */
+.topic-title{
+  padding: 0 30rpx;
+  height: 124rpx;
+}
+.topic-avator{
+  margin-right: 18rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
+  background-color: #f2f2f2;
+}
+.topic-avator image{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 32rpx;
+}
+.topic-info{
+  align-items: flex-start;
+}
+.topic-name{
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #151515;
+}
+.topic-name image{
+  margin-left: 5rpx;
+  width: 35rpx;
+  height: 35rpx;
+}
+.topic-des{}
+.address{
+  font-size: 22rpx;
+  color: #919191;
+}
+.address image{
+  width: 28rpx;
+  height: 28rpx;
+}
+.address text{
+
+}
+
+.topic-content{
+  margin-bottom: 30rpx;
+  line-height: 40rpx;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+}
+
+.topic-images{
+  padding: 0 30rpx;
+}
+.topic-images image{
+  margin-bottom: 30rpx;
+  width: 100%;
+}
+
+.block{
+  height: 15rpx;
+  background-color: #f0f0f0;
+}
+
+/* 评论 */
+.comments{
+  padding: 43rpx 30rpx;
+}
+
+.head{
+  font-weight: bolder;
+  color: #151515;
+  font-size: 30rpx;
+}
+.comment-item{
+  padding: 28rpx 0;
+  align-items: flex-start;
+}
+.avator{
+  margin-right: 18rpx;
+  width: 62rpx;
+  height: 62rpx;
+  border-radius: 31rpx;
+  background-color: #f2f2f2;
+}
+.avator image{
+  width: 62rpx;
+  height: 62rpx;
+  border-radius: 31rpx;
+}
+
+.info{
+  flex: 1;
+}
+.title{
+  height: 40rpx;
+}
+.name{
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #151515;
+}
+.zan-wrap{
+  align-items: center;
+}
+.zan-wrap image{
+  margin-top: -3rpx;
+  margin-right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.zan-wrap text{
+  font-size: 22rpx;
+  color: #868686;
+}
+
+.content{
+  line-height: 40rpx;
+  font-size: 26rpx;
+  color: #030303;
+}
+.foot{
+  margin-top: 25rpx;
+  font-size: 22rpx;
+  color: #919191;
+}
