@@ -1,7 +1,7 @@
 // pages/home/home.js
 const app = getApp();
 import { getData, postData, login, collectStore } from '../../utils/ajax'
-import { wxSetData } from '../../utils/wxApi.Pkg'
+import { wxSetData, wxLogin } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
@@ -223,6 +223,7 @@ Page({
       this.getAds(100)
       this.getList()
       this.getCart()
+      this.pay()
     } catch (err) {
       console.log(err == -14)
       if(err == -14) {
@@ -231,8 +232,29 @@ Page({
         this.getAds(100)
         this.getList()
         this.getCart()
+        this.pay()
       }
     }
+  },
+
+  async pay() {
+    let res = await wxLogin()
+    let data = await getData('/api/5b33064ad13bd.html', { oid: 10148})
+    let info = JSON.parse(data.info)
+    console.log(info.timeStamp)
+    console.log(info.nonceStr)
+    console.log(info.package)
+    console.log(info.signType)
+    console.log(info.paySign)
+    wx.requestPayment({
+      timeStamp: info.timeStamp,
+      nonceStr: info.nonceStr,
+      package: 'prepay_id=wx27142943939068470e5e62191476957628',
+      signType: info.signType,
+      paySign: info.paySign,
+      success: res => {
+      }
+    })
   },
 
   async reachBottom() {

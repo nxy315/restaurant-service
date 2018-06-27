@@ -1,7 +1,7 @@
 // pages/login/login.js
 const app = getApp()
 import { getData, login } from '../../utils/ajax'
-import { wxSetData } from '../../utils/wxApi.Pkg'
+import { wxSetData, wxLogin } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
@@ -49,6 +49,8 @@ Page({
       })
     }
   },
+
+  
 
   /**
    * 生命周期函数--监听页面加载
