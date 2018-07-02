@@ -69,7 +69,7 @@ page{
 
 /* 评论 */
 .comments{
-  padding: 43rpx 30rpx;
+  padding: 43rpx 30rpx 100rpx;
 }
 
 .head{
@@ -128,4 +128,28 @@ page{
   margin-top: 25rpx;
   font-size: 22rpx;
   color: #919191;
+}
+
+/* 留言框 */
+.huifu-wrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0 2vw;
+  width: 96vw;
+  height: 88rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #eaeaea;
+}
+.huifu-wrap input{
+  flex: 1;
+}
+.huifu-wrap .send{
+  margin-left: 2vw;
+  width: 140rpx;
+  height: 70rpx;
+  border-radius: 8rpx;
+  background-color: #fe4070;
+  color: #fff;
+  font-size: 26rpx;
 }

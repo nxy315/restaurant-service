@@ -1,7 +1,7 @@
 // pages/forum/forum.js
 const app = getApp();
 import { getData } from '../../utils/ajax'
-import { wxSetData } from '../../utils/wxApi.Pkg'
+import { wxSetData, wxPreview } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 Page({
 
@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    top: 0,
+    loadMore: true,
+    end: false,
     imgUrl: app.globalData.imgUrl,
     suck: false,
     types: [
@@ -25,6 +28,8 @@ Page({
       circular: true,
       duration: 500
     },//swiper 配置
+    page: 1,
+    pagenum: 6,
     currentType: 0,
     bannerList: [],//广告数据
     open: false,
@@ -72,11 +77,33 @@ Page({
    * @header[user-token]        验签
    */
   async getList() {
-    let data = await getData('/api/5b2b753401e58.html', { page: 1, pagenum: 6, type:0})
-    this.setData({
-      list: data.quan_list
+    wx.showLoading({
+      title: '',
     })
-  }, 
+    let data = await getData('/api/5b2b753401e58.html', { page: this.data.page, pagenum: this.data.pagenum, type: this.data.currentType})
+    wx.hideLoading()
+    let end
+    data.quan_list.length < this.data.pagenum ? end = true : end = false
+    let list = [...this.data.list]
+    data = list.concat(data.quan_list)
+
+    this.setData({
+      list: data,
+      loadMore: true,
+      end
+    })
+  },
+
+  /**
+   * 触底加载更多
+   */
+  async reachBottom() {
+    if (!this.data.loadMore || this.data.end) return
+
+    let page = this.data.page + 1
+    await wxSetData(this, { loadMore: false, page })
+    this.getList()
+  },
 
   /**
    * 点赞
@@ -111,6 +138,21 @@ Page({
     }
   },
 
+  /**
+   * 预览
+   */
+  async preview(e) {
+    let index = e.currentTarget.dataset.index
+    let idx = e.currentTarget.dataset.idx
+    let list = [...this.data.list]
+    let preUrls = list[index].quan_image_list
+    let urls = []
+    for(let i = 0; i < preUrls.length; i++) {
+      urls.push(preUrls[i].image)
+    }
+    wxPreview(urls[idx], urls)
+  },
+
   checkDetail(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
@@ -119,11 +161,11 @@ Page({
   },
 
 
-  tapTypes(e) {
+  async tapTypes(e) {
+    await wxSetData(this, {page: 1})
     let i = e.currentTarget.dataset.index;
-    this.setData({
-      currentType: i
-    })
+    await wxSetData(this, { currentType: i, list: [] })
+    this.getList()
   },
 
   /**
@@ -154,7 +196,6 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(102)
-    this.getList()
   },
 
   /**
@@ -168,7 +209,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      page: 1,
+      list: []
+    }, () => {
+      this.getList()
+    })
   },
 
   /**

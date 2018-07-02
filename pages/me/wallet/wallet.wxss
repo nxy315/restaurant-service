@@ -2,17 +2,18 @@
 .balance-wrap{
   margin-bottom: 20rpx;
   height: 360rpx;
-  color: #fff;
-  background-color: #ff3c77;
+  background-color: #fff;
 }
 
 .balance-wrap .title{
+  color: #333333;
   font-size: 28rpx;
 }
 .balance-wrap .balance{
   margin: 10rpx 0 36rpx;
   font-size: 46rpx;
   font-weight: bolder;
+  color: #fe4070;
 }
 .balance-wrap .recharge{
   width: 210rpx;
@@ -20,7 +21,8 @@
   line-height: 62rpx;
   text-align: center;
   font-size: 28rpx;
-  border: 2rpx solid #fff;
+  color: #fe4070;
+  border: 2rpx solid #fe4070;
   border-radius: 8rpx;
 }
 

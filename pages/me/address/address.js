@@ -45,7 +45,7 @@ Page({
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index
     let list = [...this.data.addressList]
-    if (list[index].is_default == 1) return
+    if (list[index].is_default == 1) return wx.hideLoading()
 
     await getData('/api/5b267aa787b35.html', {id: parseInt(id)})
 

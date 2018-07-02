@@ -2,7 +2,7 @@
 
 <view class='wrap'>
   <view class='picker'>
-    <text class='strong'>充值金额：</text>
+    <!-- <text class='strong'>充值金额：</text> -->
     <view>
       <view
         class='flex-r-fs'

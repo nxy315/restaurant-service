@@ -182,6 +182,7 @@ Page({
    * 加数量
    */
   async addCount(e) {
+    console.log(e)
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -193,6 +194,7 @@ Page({
       list = [...this.data.result]
 
     await this.operaCard(gid, pid, price, spec, 1, gname)
+    console.log(list[i])
     if (!type) {
       list[i].nums = parseInt(list[i].nums) + 1
     } else {

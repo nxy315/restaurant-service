@@ -1,10 +1,10 @@
 <!--pages/home/home.wxml-->
 <scroll-view
   style='height: 100vh'
+  class="flex-c-fs"
   scroll-top='{{top}}'
   enable-back-to-top='{{true}}'
   bindscrolltolower='reachBottom'
-  class="flex-c-fs"
   scroll-y="true"
   bindscroll="scroll"
 >

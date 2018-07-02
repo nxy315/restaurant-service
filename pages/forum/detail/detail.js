@@ -1,7 +1,7 @@
 // pages/forum/detail/detail.js
 const app = getApp();
-import { getData } from '../../../utils/ajax'
-import { wxSetData } from '../../../utils/wxApi.Pkg'
+import { getData, postData } from '../../../utils/ajax'
+import { wxSetData, wxPreview } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imgUrl: app.globalData.imgUrl,
+    content: '',//回复内容
     id: '',
     info: null
   },
@@ -30,6 +32,48 @@ Page({
   },
 
   /**
+   * 回复内容
+   */
+  handleInput(e) {
+    let value = e.detail.value
+
+    this.setData({
+      content: value
+    })
+  },
+
+  /**
+   * 预览
+   */
+  async preview(e) {
+    let index = e.currentTarget.dataset.index
+    let info = {...this.data.info}
+    let preUrls = info.quan_image_list
+    let urls = []
+    for (let i = 0; i < preUrls.length; i++) {
+      urls.push(preUrls[i].image)
+    }
+    wxPreview(urls[index], urls)
+  },
+
+  /**
+   * 评论回复
+   * @method: POST 
+   * @url: /api/5b30a9a557f51.html
+   *
+   * @param quan_id:Int         帖子id
+   * @param content:String      回复内容
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async sendHuifu() {
+    let data = await postData('/api/5b30a9a557f51.html', { quan_id: this.data.info.id, content: this.data.content})
+    await wxSetData(this, {content: ''})
+    this.getInfo();
+  },
+  
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -40,7 +84,6 @@ Page({
       this.getInfo()
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,16 +1,55 @@
 // pages/me/wallet/recharge/recharge.js
+const app = getApp()
+import { getData, pay, postData, login } from '../../../../utils/ajax'
+import { wxSetData } from '../../../../utils/wxApi.Pkg'
+var regeneratorRuntime = require('../../../../libs/runtime')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    choice: [
-      { name: '充值3000送2%得3060', check: true },
-      { name: '充值5000送3%得5150', check: false },
-      { name: '充值10000送5%得10500', check: false }
-    ],
-    index: 0
+    choice: [],
+    index: 0,
+    money: null
+  },
+
+  /**
+   * 充值下单
+   * @method: POST 
+   * @url: /api/5b3333808c1e4.html
+   * 
+   * @params total: float       充值金额
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async recharge() {
+    let data = await postData('/api/5b3333808c1e4.html', {total: this.data.money})
+    pay(data.oid)
+  },
+
+  /**
+   * 获取充值类型
+   * @method: GET 
+   * @url: /api/5b333609090a0.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async getChoice() {
+    let data = await getData('/api/5b333609090a0.html', {})
+    let list = data.info
+    let choice = []
+    for(let key in list) {
+      choice.push({money: key, name: list[key], check: false})
+    }
+    choice[0].check = true
+    this.setData({
+      choice,
+      money: choice[0].money
+    })
   },
 
   choose(e) {
@@ -23,20 +62,16 @@ Page({
     }
     list[index].check = true
     this.setData({
-      choice: list
+      choice: list,
+      money: list[index].money
     })
   },
 
-  recharge() {
-    wx.redirectTo({
-      url: '/pages/me/wallet/wallet',
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getChoice()
   },
 
   /**

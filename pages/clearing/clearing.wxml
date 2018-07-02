@@ -3,15 +3,16 @@
   <view class='flex-r-fs address-check'>
     <image src='../../images/location.png'></image>
   </view>
-  <view class='address-info'>
+  <view class='flex-r-fs' style='flex:1;' wx:if='{{!address}}'>暂无地址</view>
+  <view class='address-info' wx:if='{{address}}'>
     <view class='flex-r-fs info-wrap'>
-      <text class='user-name'>尼宵阳</text>
-      <text class='user-tel'>17721140500</text>
+      <text class='user-name'>{{address.realname}}</text>
+      <text class='user-tel'>{{address.tel}}</text>
       <view class='default-address'>默认</view>
     </view>
-    <view class='address-detail'>上海市松江区松江大学城</view>
+    <view class='address-detail'>{{address.address}}</view>
   </view>
-  <view class='flex-r-c edit-wrap' data-id="1">
+  <view class='flex-r-c edit-wrap'>
     <image src='../../images/arrow_down.png'></image>
   </view>
 </navigator>
@@ -31,19 +32,19 @@
   <view class='fill-list'>
     <view class='flex-r-fs fill-item'>
       <view class='title'>订单备注</view>
-      <input placeholder='例如加急要货或明天早上要货等'></input>
+      <input value='{{remarks}}' bindinput='handleChange' placeholder='例如加急要货或明天早上要货等'></input>
     </view>
     <view class='flex-r-fs fill-item'>
       <view class='title'>运费类型</view>
-      <picker class='flex-r-fs' bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
-        {{times[index]}}
+      <picker class='flex-r-fs' bindchange="bindPickerChange" range-key='name' range="{{times}}">
+        {{times[index].name}}
         <image mode='aspectFill' src='../../images/triangle_down_fill.png'></image>
       </picker>
       <picker></picker>
     </view>
     <view class='flex-r-fs fill-item'>
       <view class='title'>运费</view>
-      <view class='right'>￥90</view>
+      <view class='right'>{{info.yunfei?'￥'+info.yunfei:'￥0'}}</view>
     </view>
   </view>
 </view>
@@ -67,7 +68,7 @@
 <view class='flex-r-sb submit-wrap'>
   <view class='flex-r-fs text'>
     <text class='t1'>合计(含运费)总计：</text>
-    <text class='t2'>￥789</text>
+    <text class='t2'>{{info.total_price?'￥'+info.total_price:''}}</text>
   </view>
   <view class='button-primary' style='width: 250rpx;' bindtap='pay'>提交订单</view>
 </view>

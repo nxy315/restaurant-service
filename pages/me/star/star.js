@@ -15,7 +15,7 @@ Page({
   },
 
   /**
-   * 收藏取消收藏
+   * 取消收藏
    * @method: GET 
    * @url: /api/5b29c482c6ce3.html
    *
@@ -24,11 +24,13 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]          验签
    */
-  async collect(e) {
-    let index = e.currentTarget.dataset.index
-    let data = await getData('/api/5b29c482c6ce3.html', {})
+  async removeCollection(e) {
+    let dataset = e.currentTarget.dataset
+    let index = dataset.index,
+        id = dataset.id
+    let data = await getData('/api/5b29c482c6ce3.html', {id})
     let list = [...this.data.starList]
-    list[index].check = !list[index].check
+    list.splice(index, 1)
 
     this.setData({
       starList: list

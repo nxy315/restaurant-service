@@ -1,6 +1,6 @@
 // pages/home/list/list.js
 const app = getApp();
-import { getData, login } from '../../../utils/ajax'
+import { getData, login, collectStore } from '../../../utils/ajax'
 import { wxSetData } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
 Page({
@@ -28,6 +28,34 @@ Page({
     this.setData({
       top: 0
     })
+  },
+
+  async collect(e) {
+    let dataset = e.currentTarget.dataset
+    let index = dataset.index,
+      id = dataset.id
+    let list = [...this.data.list]
+
+    wx.showLoading({
+      title: '',
+    })
+    let data = await collectStore(id)
+    if (list[index].is_collection == 1) {
+      list[index].is_collection = 0
+      list[index].collection = parseInt(list[index].collection) - 1
+      await wxSetData(this, { list })
+      wx.showToast({
+        title: '取消收藏',
+      })
+    } else {
+      list[index].is_collection = 1
+      list[index].collection = parseInt(list[index].collection) + 1
+      await wxSetData(this, { list })
+      wx.showToast({
+        title: '收藏成功',
+      })
+    }
+    wx.hideLoading()
   },
 
   scroll(e) {

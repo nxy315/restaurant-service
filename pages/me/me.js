@@ -55,8 +55,8 @@ Page({
   },
   logout() {
     wx.removeStorageSync('token')
-    this.setData({
-      isLogin: false
+    wx.redirectTo({
+      url: '/pages/login/login',
     })
   },
   bindGetUserInfo(e) {

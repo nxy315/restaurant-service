@@ -9,14 +9,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    list: []
+  },
+
+  qugg() {
+    wx.switchTab({
+      url: '/pages/classify/classify',
+    })
+  },
+
+  /**
+   * 获取常用清单
+   * @method: POST 
+   * @url: /api/5b30b4b3b7c8d.html
+   * 
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async getUsedList() {
+    let data = await postData('/api/5b30b4b3b7c8d.html', {})
+    console.log(data)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getUsedList()
   },
 
   /**

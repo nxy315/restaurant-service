@@ -51,8 +51,9 @@ Page({
   },
 
   async collect(e) {
-    let index = e.currentTarget.dataset.index
-    let id = e.currentTarget.dataset.id
+    let dataset = e.currentTarget.dataset
+    let index = dataset.index,
+        id = dataset.id
     let list = [...this.data.list]
 
     wx.showLoading({
@@ -185,7 +186,7 @@ Page({
     })
     wx.hideLoading()
     let end
-    data.store_list < this.data.pagenum ? end = true : end = false
+    data.store_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
     data = list.concat(data.store_list)
     
@@ -218,12 +219,15 @@ Page({
   },
 
   async load() {
+    this.setData({
+      list: [],
+      page: 1,
+    })
     try {
       this.getTypes();
       this.getAds(100)
       this.getList()
       this.getCart()
-      this.pay()
     } catch (err) {
       console.log(err == -14)
       if(err == -14) {
@@ -232,29 +236,8 @@ Page({
         this.getAds(100)
         this.getList()
         this.getCart()
-        this.pay()
       }
     }
-  },
-
-  async pay() {
-    let res = await wxLogin()
-    let data = await getData('/api/5b33064ad13bd.html', { oid: 10148})
-    let info = JSON.parse(data.info)
-    console.log(info.timeStamp)
-    console.log(info.nonceStr)
-    console.log(info.package)
-    console.log(info.signType)
-    console.log(info.paySign)
-    wx.requestPayment({
-      timeStamp: info.timeStamp,
-      nonceStr: info.nonceStr,
-      package: 'prepay_id=wx27142943939068470e5e62191476957628',
-      signType: info.signType,
-      paySign: info.paySign,
-      success: res => {
-      }
-    })
   },
 
   async reachBottom() {
@@ -270,7 +253,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.load();
+    
   },
 
   /**
@@ -284,6 +267,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.load();
     this.setData({
       keyword: '',
     })
@@ -295,7 +279,7 @@ Page({
   onHide: function () {
     setTimeout(() => {
       this.setData({
-        top: 0
+        top: 0,
       })
     }, 500)
   },

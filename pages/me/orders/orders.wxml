@@ -25,13 +25,17 @@
         <!-- 1:待付款 2:待发货 6:已取消 8:已完成 -->
         <view class='order-status red' wx:if='{{item.ostate == 1}}'>待付款</view>
         <view class='order-status red' wx:if='{{item.ostate == 2}}'>待发货</view>
+        <view class='order-status red' wx:if='{{item.ostate == 3}}'>已发货</view>
+        <view class='order-status red' wx:if='{{item.ostate == 4}}'>已签收</view>
+        <view class='order-status red' wx:if='{{item.ostate == 5}}'>退货中</view>
         <view class='order-status red' wx:if='{{item.ostate == 6}}'>已取消</view>
+        <view class='order-status red' wx:if='{{item.ostate == 7}}'>已关闭</view>
         <view class='order-status red' wx:if='{{item.ostate == 8}}'>已完成</view>
       </view>
 
       <view
         class='flex-r-fs order-info'
-        data-id='1'
+        data-id='{{good.gid}}'
         wx:for='{{item.details_data}}'
         wx:for-item='good'
         wx:for-index='idx'
@@ -54,9 +58,11 @@
         </view>
       </view>
 
-      <view class='flex-r-fe btn-wrap'>
-        <view class='pay' wx:if='{{item.ostate == 1}}'>立即支付</view>
-        <view class='pay' wx:if='{{item.ostate == 1}}'>取消订单</view>
+      <view class='flex-r-fe order-money'>共 {{item.details_data.length}} 件 合计 <text>￥{{item.total}}（含运费）</text></view>
+
+      <view class='flex-r-fe btn-wrap' wx:if='{{item.ostate == 1}}'>
+        <view class='pay' wx:if='{{item.ostate == 1}}' data-id='{{item.oid}}' bindtap='payFor'>立即支付</view>
+        <view class='pay' wx:if='{{item.ostate == 1}}' data-id='{{item.oid}}' bindtap='cancle'>取消订单</view>
       </view>
 
     </view>
@@ -65,8 +71,6 @@
   
   <view class='flex-c-fs nodata' style='padding-top: 230rpx;' wx:if='{{noData}}'>
     <image mode='aspectFit' src='../../../images/nodata.png'></image>
-    <view style='margin-top: 30rpx;color: #acacac;'>您还未有购买记录</view>
-    <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='qugg'>去逛逛</view>
   </view>
 </view>
 

@@ -42,8 +42,8 @@
           </view>
 
           <view class='flex-r-fs icon-wrap' data-id='{{item.id}}' catchtap='collection'>
-            <image wx:if='{{item.is_collection != 1}}' mode='aspectFill' src='../../../images/heart.png'></image>
-            <image wx:if='{{item.is_collection == 1}}' mode='aspectFill' src='../../../images/heart_fill.png'></image>
+            <image wx:if='{{item.is_collection != 1}}' data-id='{{item.id}}' data-index='{{index}}' catchtap='collect'  mode='aspectFill' src='../../../images/heart.png'></image>
+            <image wx:if='{{item.is_collection == 1}}' data-id='{{item.id}}' data-index='{{index}}' catchtap='collect'  mode='aspectFill' src='../../../images/heart_fill.png'></image>
             <text>{{item.collection}}</text>    
           </view>
         </view>

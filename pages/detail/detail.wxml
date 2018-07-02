@@ -6,7 +6,7 @@
   <view class='cover'>
     <image mode='aspectFill' src='{{imgUrl+detail.artpic}}'></image>
   </view>
-  <view class='red name'>￥{{detail.sell_price}}{{detail.spec?'/'+detail.spec:''}} (麻辣)</view>
+  <view class='red name'>￥{{detail.sell_price}}{{detail.spec?'/'+detail.spec:''}}</view>
   <view class='des'>
     <text class='red'>[简介] </text>
     <text>{{detail.introduction}}</text>
@@ -25,10 +25,10 @@
 
 <!-- 底部固定 -->
 <view class='flex-r-fs goods-footer'>
-  <view class='flex-c-c icon-wrap' data-url='/pages/classify/classify' bindtap='switchTap'>
+  <!-- <view class='flex-c-c icon-wrap' data-url='/pages/classify/classify' bindtap='switchTap'>
     <image src='../../images/shop.png'></image>
     <text>店铺</text>
-  </view>
+  </view>  -->
   <view class='flex-c-c icon-wrap' data-url='/pages/cart/cart' bindtap='switchTap'>
     <image src='../../images/cart.png'></image>
     <text>购物车</text>

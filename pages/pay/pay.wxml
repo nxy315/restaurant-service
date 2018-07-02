@@ -2,7 +2,7 @@
 <!-- 订单金额 -->
 <view class='flex-r-sb useless'>
   <text class='t1'>订单金额</text>
-  <text class='t2'>￥789</text>
+  <text class='t2'>￥{{order.total}}</text>
 </view>
 
 <!-- 支付方式 -->
@@ -17,4 +17,4 @@
 </view>
 
 <!-- 确认支付 -->
-<view class='button-primary' style='margin: 40rpx auto 0;width: 400rpx;'>确认支付</view>
+<view class='button-primary' style='margin: 40rpx auto 0;width: 400rpx;' bindtap='payFor'>确认支付</view>

@@ -1,4 +1,4 @@
-/* pages/forum/post/post.wxss */
+/* pages/forum/edit/edit.wxss */
 page{
   background-color: #fff;
 }

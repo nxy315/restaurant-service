@@ -1,4 +1,11 @@
 <!--pages/forum/mypost/mypost.wxml-->
+<scroll-view style="height: 100vh;" class="flex-c-fs"
+  scroll-top='{{top}}'
+  enable-back-to-top='{{true}}'
+  bindscrolltolower='reachBottom'
+  scroll-y="true"
+>
+
 
 <view class='flex-r-sa top-types-wrap'>
   <view
@@ -18,7 +25,7 @@
     wx:if='{{item.status == currentType || currentType == 0}}'
   >
     <view class='cover'>
-      <image class='avatar' mode='aspectFill' src='{{"https://api.youcanwuchu.com/Public/UserUploads/"+item.user_pic}}'></image>
+      <image class='avatar' mode='aspectFill' src='{{item.user_pic}}'></image>
     </view>
 
     <view class='posts-content'>
@@ -38,7 +45,11 @@
           wx:key='{{idx}}'
           wx:for-item='itm'
           wx:for-index='idx'
-          src='{{itm.image}}'></image>
+          src='{{itm.image}}'
+          data-index='{{index}}'
+          data-idx='{{idx}}'
+          bindtap='preview'  
+        ></image>
       </view>
 
       <view class='flex-r-sb location'>
@@ -68,7 +79,7 @@
         </view>
         
         <view class='flex-r-fs'>
-          <view class='handle-btn' bindtap='editPost'>修改</view>
+          <view class='handle-btn' data-id='{{item.id}}' bindtap='editPost'>修改</view>
           <view class='handle-btn'
             data-status='{{item.status}}'
             data-id='{{item.id}}'
@@ -78,5 +89,13 @@
       </view>
     </view>
   </view>
-
+  
 </view>
+
+<view class='flex-c-fs nodata' wx:if='{{list.length <= 0 && !loading}}'>
+  <image mode='aspectFit' src='../../../images/nodata.png'></image>
+  <view style='margin-top: 30rpx;color: #acacac;'>暂无数据</view>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;background:transparent;border:1rpx solid #fe4070;color:#fe4070;' bindtap='qugg'>去发布</view>
+</view>
+
+</scroll-view>

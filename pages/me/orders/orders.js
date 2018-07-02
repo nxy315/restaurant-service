@@ -1,6 +1,6 @@
 // pages/me/orders/orders.js
 const app = getApp()
-import { getData, postData } from '../../../utils/ajax'
+import { getData, pay, postData } from '../../../utils/ajax'
 import { wxSetData } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
 Page({
@@ -46,8 +46,35 @@ Page({
       await wxSetData(this, {noData: true})
     } else {
       await wxSetData(this, { noData: false, orders: data.orders_list })
-
     }
+  },
+
+  payFor(e) {
+    let oid = e.currentTarget.dataset.id
+    pay(oid)
+  },
+
+  /**
+   * 取消订单
+   * @method: GET 
+   * @url: /api/5b39c6f948c37.html
+   *
+   * @param ostate:Int              id
+   * @header[version]               版本号
+   * @header[access-token]          验签
+   * @header[user-token]            验签
+   */
+  async cancle(e) {
+    let oid = e.currentTarget.dataset.id
+    let data = await getData('/api/5b39c6f948c37.html', {oid})
+    if(data.status == 1) {
+      wx.showToast({
+        title: data.info,
+        icon: 'none'
+      })
+      this.getOrderList()
+    }
+
   },
 
   async tapTypes(e) {
@@ -65,10 +92,11 @@ Page({
 
   // 跳转详情
   toDetail(e) {
+    console.log(e)
     let id = e.currentTarget.dataset.id;
-
+    console.log(id)
     wx.navigateTo({
-      url: '/pages/detail/detail',
+      url: `/pages/detail/detail?id=${id}`,
     })
   },
 

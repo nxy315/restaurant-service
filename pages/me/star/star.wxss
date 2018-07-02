@@ -1,5 +1,12 @@
 /* pages/me/star/star.wxss */
-.star-wrap{
+
+.result-list{
+  margin-top: 15rpx;
+  flex-wrap: wrap;
+  padding: 0 2vw;
+}
+
+/* .star-wrap{
   background-color: #fff;
 }
 
@@ -17,7 +24,7 @@
   height: 140rpx;
   background-color: #f2f2f2;
   border-radius: 8rpx;
-}
+} 
 .text{
   align-items: flex-start;
   flex: 1;
@@ -31,7 +38,7 @@
 .to{
   width: 40rpx;
   height: 40rpx;
-  /* color: #bfbfbf; */
+  color: #bfbfbf; 
 }
 
 .icon-wrap{}
@@ -42,4 +49,4 @@
 }
 .icon1{
   margin-right: 60rpx;
-}
+} */

@@ -69,6 +69,7 @@ Page({
             login()
           }
         } else {
+          wx.hideLoading()
           this.setData({
             hasScope: false
           })

@@ -76,8 +76,27 @@
           </view>
           <view class='flex-r-sb des-bottom'>
             <text class='price'>￥{{item.products_list[0].sell_price}}{{item.products_list[0].spec_1?'/'+item.products_list[0].spec_1:''}}</text>
-            <view wx:if='{{item.products_list.length <= 1}}' class='flex-r-sb'>
-              <image
+            <view wx:if='{{item.products_list.length <= 1}}' class='flex-r-sb count-wrap'>
+              <view class='flex-r-c reduce'
+                data-index='{{index}}'
+                bindtap='reduceCount'
+                data-gid='{{item.products_list[0].goods_id}}'
+                data-pid='{{item.products_list[0].id}}'
+                data-price='{{item.products_list[0].sell_price}}'
+                data-spec='{{item.products_list[0].spec_1}}'
+                data-gname='{{item.name}}'
+              >-</view>
+              <view class='count'>{{item.nums}}</view>
+              <view class='flex-r-c add'
+                data-index='{{index}}'
+                bindtap='addCount'
+                data-gid='{{item.products_list[0].goods_id}}'
+                data-pid='{{item.products_list[0].id}}'
+                data-price='{{item.products_list[0].sell_price}}'
+                data-spec='{{item.products_list[0].spec_1}}'
+                data-gname='{{item.name}}'
+              >+</view> 
+              <!-- <image
                 class='count-btn'
                 src='../../images/reduce2.png'
                 data-index='{{index}}'
@@ -99,7 +118,7 @@
                 data-price='{{item.products_list[0].sell_price}}'
                 data-spec='{{item.products_list[0].spec_1}}'
                 data-gname='{{item.name}}'
-              ></image>
+              ></image>   -->
             </view>  
             <view data-index='{{index}}' bindtap='chooseSize' wx:if='{{item.products_list.length > 1}}' class='choose-size'>{{item.fold  ? '选规格' : '收起'}}</view>
           </view>
@@ -115,8 +134,31 @@
           wx:key='{{i}}'
         >
           <text class='price'>￥{{size.sell_price}}/{{size.spec_1}}</text>
-          <view class='flex-r-sb'>
-            <image
+          <view class='flex-r-sb count-wrap'>
+            <view class='flex-r-c reduce'
+              data-type='2'
+              data-index='{{index}}'
+              data-i='{{i}}'
+              data-gid='{{size.goods_id}}'
+              data-pid='{{size.id}}'
+              data-price='{{size.sell_price}}'
+              data-spec='{{size.spec_1}}'
+              data-gname='{{item.name}}'
+              bindtap='reduceCount'
+            >-</view>
+            <view class='count'>{{size.nums}}</view>
+            <view class='flex-r-c add'
+              data-type='2'
+              data-index='{{index}}'
+              data-i='{{i}}'
+              data-gid='{{size.goods_id}}'
+              data-pid='{{size.id}}'
+              data-price='{{size.sell_price}}'
+              data-spec='{{size.spec_1}}'
+              data-gname='{{item.name}}'
+              bindtap='addCount'
+            >+</view>
+            <!-- <image
               class='count-btn'
               src='../../images/reduce2.png'
               data-type='2'
@@ -142,7 +184,7 @@
               data-spec='{{size.spec_1}}'
               data-gname='{{item.name}}'
               bindtap='addCount'
-            ></image>
+            ></image> -->
           </view>
         </view>
       </view> 

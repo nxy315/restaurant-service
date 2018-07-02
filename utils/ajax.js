@@ -43,6 +43,44 @@ let getData = async (url, params) => {
   })
 }
 
+let pay = async (oid) => {
+  wx.showLoading({
+    title: '',
+  })
+  let res = await wxLogin()
+  let data = await getData('/api/5b33064ad13bd.html', { oid })
+  let info = JSON.parse(data.info)
+  wx.hideLoading()
+  wx.requestPayment({
+    timeStamp: info.timeStamp,
+    nonceStr: info.nonceStr,
+    package: info.package,
+    signType: info.signType,
+    paySign: info.paySign,
+    success: res => {
+      wx.showToast({
+        title: '支付成功',
+        icon: 'none',
+        duration: 2000
+      })
+    },
+    fail: err => {
+      wx.showToast({
+        title: '支付失败',
+        icon: 'none',
+        duration: 2000
+      })
+    },
+    complete: () => {
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/me/me',
+        })
+      }, 2000)
+    }
+  })
+}
+
 /**
  * post请求
  */
@@ -65,6 +103,8 @@ let postData = async (url, params) => {
           resolve(response.data.data)
         } else if(response.data.code == -14) {
           reject(-14)
+        } else {
+          reject(response.data.code)
         }
       },
       fail: error => {
@@ -116,6 +156,7 @@ let collectStore = async id => {
 
 module.exports = {
   login: login,
+  pay: pay,
   getData: getData,
   postData: postData,
   collectStore: collectStore

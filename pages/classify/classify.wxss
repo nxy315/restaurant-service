@@ -42,7 +42,7 @@
   width: 25%;
   height: 72rpx;
   line-height: 72rpx;
-  border-bottom: 1rpx dashed #ededed;
+  border-bottom: 1rpx solid #ededed;
   text-align: center;
   font-size: 26rpx;
   color: #666666;
@@ -123,8 +123,8 @@
   height: 40rpx;
   line-height: 40rpx;
   font-size: 22rpx;
-  color: #f36132;
-  border: 1rpx solid #f36132;
+  color: #fe4070;
+  border: 1rpx solid #fe4070;
   border-radius: 8rpx;
 }
 

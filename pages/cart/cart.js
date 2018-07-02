@@ -219,24 +219,44 @@ Page({
   },
 
   /**
-   * 全选、取消全选
-   */ 
-  handleAll() {
-    let list = [...this.data.cartList];
-    this.setData({
-      checkAll: !this.data.checkAll
-    }, () => {
-      for(let i = 0; i < list.length; i++) {
-        list[i].check = this.data.checkAll
-        if(this.data.checkAll && list[i].count == 0) list[i].count = 1
-      }
+   * 清空购物车
+   * @method: GET
+   * @url: /api/5b29af242231d.html
+   *
+   * @header[version]                 版本号
+   * @header[access-token]            验签
+   * @header[user-token]              验签
+   */
+  async clear() {
+    let data = await getData('/api/5b29af242231d.html', {})
 
-      this.setData({
-        cartList: list
-      }, () => {
-        this.calc();
+    if(data.status == 1) {
+      wx.showToast({
+        title: '购物车已清空',
+        icon: 'success'
       })
-    })
+      wx.setTabBarBadge({
+        index: 3,
+        text: '0'
+      })
+      await wxSetData(this, { cartList: [], noData: true })
+    }
+
+    // let list = [...this.data.cartList];
+    // this.setData({
+    //   checkAll: !this.data.checkAll
+    // }, () => {
+    //   for(let i = 0; i < list.length; i++) {
+    //     list[i].check = this.data.checkAll
+    //     if(this.data.checkAll && list[i].count == 0) list[i].count = 1
+    //   }
+
+    //   this.setData({
+    //     cartList: list
+    //   }, () => {
+    //     this.calc();
+    //   })
+    // })
   },
 
   /**

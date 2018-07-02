@@ -1,6 +1,26 @@
 <!--pages/me/star/star.wxml-->
-<view class='star-wrap'>
+<view class='flex-r-sb result-list'>
   <navigator
+    url='/pages/store/store?id={{item.store_id}}'
+    class='result-list-item'
+    wx:for='{{starList}}'
+    wx:key='{{index}}'
+  >
+    <view class='cover' style='background-image: url("{{imgUrl+item.store_info.artpic}}")'></view>
+    <view class='name'>{{item.store_info.brand}}</view>
+    <view class='flex-r-sb info'>
+      <view class='flex-r-fs icon-wrap'>
+        <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
+        <text>{{item.store_info.hit}}</text>    
+      </view>
+
+      <view class='flex-r-fs icon-wrap' data-index='{{index}}' data-id='{{item.store_id}}' catchtap='removeCollection'>
+        <image mode='aspectFill' src='../../../images/heart_fill.png'></image>
+        <text>{{item.store_info.collection}}</text>    
+      </view>
+    </view>
+  </navigator>
+  <!-- <navigator
     url='/pages/store/store?id={{item.store_id}}'
     wx:for='{{starList}}'
     wx:key='{{index}}'
@@ -16,21 +36,21 @@
             <text>{{item.store_info.hit}}</text>    
           </view>
 
-          <!-- <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
+          <view class='flex-r-fs icon-wrap' data-index='{{index}}' bindtap='collect'>
             <image mode='aspectFill' src='../../../images/star.png'></image>
             <text>{{item.store_info.collection}}</text>
-          </view> -->
+          </view> 
         </view>
       </view>
     </view>
     
     <image class='to' src='../../../images/arrow_down.png'></image>
-  </navigator>
+  </navigator> -->
 </view>
 
 
-<view class='flex-c-fs nodata' wx:if='{{noData}}'>
+<view class='flex-c-fs nodata' wx:if='{{starList.length <= 0}}'>
   <image mode='aspectFit' src='../../../images/nodata.png'></image>
-  <view style='margin-top: 30rpx;color: #acacac;'>您还未有收藏商家</view>
-  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='qugg'>去逛逛</view>
+  <view style='margin-top: 30rpx;color: #acacac;'>您还没有收藏商家哦~</view>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;background:transparent;border:1rpx solid #fe4070;color:#fe4070;' bindtap='qugg'>去逛逛</view>
 </view>

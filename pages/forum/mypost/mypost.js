@@ -1,7 +1,7 @@
 // pages/forum/mypost/mypost.js
 const app = getApp();
 import { getData } from '../../../utils/ajax'
-import { wxSetData } from '../../../utils/wxApi.Pkg'
+import { wxSetData, wxPreview } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
 Page({
 
@@ -10,18 +10,20 @@ Page({
    */
   data: {
 
+    top: 0,
+    loadMore: true,
+    end: false,
     types: [
       { name: '全部', status: 0 },
       { name: '显示中', status: 1 },
       { name: '未显示', status: 2 },
     ],
     currentType: 0,
-    params: {
-      page: 1,
-      pagenum: 6,
-      status: 0,
-    },
+    page: 1,
+    pagenum: 6,
+    status: 0,
     list: [],
+    loading: true,
   },
 
   /**
@@ -37,24 +39,64 @@ Page({
    * @header[user-token]        验签
    */
   async getMyPost() {
+    this.setData({
+      loading: true
+    })
     wx.showLoading({
       title: '',
     })
-    let data = await getData('/api/5b2fa57747221.html', this.data.params)
+    let data = await getData('/api/5b2fa57747221.html', {page: this.data.page, pagenum: this.data.pagenum, status: this.data.status})
     wx.hideLoading()
-    
-    this.setData({
-      list: data.quan_list
+    let end
+    data.quan_list.length < this.data.pagenum ? end = true : end = false
+    let list = [...this.data.list]
+    data = list.concat(data.quan_list)
+
+    await wxSetData(this, {
+      list: data,
+      loadMore: true,
+      end,
     })
+    setTimeout(() => {
+      this.setData({
+        loading: false
+      })
+    }, 500)
+  },
+
+  /**
+   * 触底加载更多
+   */
+  async reachBottom() {
+    if (!this.data.loadMore || this.data.end) return
+
+    let page = this.data.page + 1
+    await wxSetData(this, { loadMore: false, page })
+    this.getMyPost()
+  },
+
+  /**
+   * 预览
+   */
+  async preview(e) {
+    let index = e.currentTarget.dataset.index
+    let idx = e.currentTarget.dataset.idx
+    let list = [...this.data.list]
+    let preUrls = list[index].quan_image_list
+    let urls = []
+    for (let i = 0; i < preUrls.length; i++) {
+      urls.push(preUrls[i].image)
+    }
+    wxPreview(urls[idx], urls)
   },
 
   /**
    * 修改圈
    */
-  editPost() {
-    wx.showModal({
-      title: '提示',
-      content: '开发中',
+  editPost(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/forum/edit/edit?id=${id}`,
     })
   },
 
@@ -77,14 +119,14 @@ Page({
     status == 1 ? status = 2 : status = 1
     let data = await getData('/api/5b2faa213ffcd.html', { id, status })
     let list = [...this.data.list]
-    // if(this.data.currentType == 0) {
-      list.splice(index, 1, { ...list[index], status })
-    // } else {
-    //   list.splice(index, 1)
-    // }
-    this.setData({
-      list
-    })
+    list.splice(index, 1)
+    if(list.length <= 0) {
+      this.getMyPost()
+    } else {
+      this.setData({
+        list
+      })
+    }
   },
 
   /**
@@ -124,15 +166,15 @@ Page({
   /* change type */
   async tapTypes(e) {
     let i = e.currentTarget.dataset.index;
-    await wxSetData(this, { currentType: i, params: {...this.data.params, status: i}})
-    // let data = await this.getMyPost()
+    await wxSetData(this, { currentType: i, list: [], page: 1, status: i })
+    this.getMyPost()
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMyPost()
+    
   },
 
   /**
@@ -146,7 +188,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getMyPost()
   },
 
   /**

@@ -98,3 +98,22 @@ export function wxGetLocation() {
     })
   })
 }
+
+/**
+ * 预览图片
+ */
+export function wxPreview(i, urls) {
+  return new Promise((resolve, reject) => {
+    wx.previewImage({
+      current: urls[i],
+      urls,
+      success: () => {
+        resolve()
+      },
+      fail: err => {
+        reject(err)
+      }
+    })
+  })
+}
+

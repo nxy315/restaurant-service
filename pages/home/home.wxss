@@ -34,7 +34,7 @@
   /* height: 386rpx; */
   height: 220px;
   background-color: #fff;
-  border-bottom: 1rpx solid #f0f0f0;
+  /* border-bottom: 1rpx solid #f0f0f0; */
 }
 .banner-wrap{
   height: 100%;

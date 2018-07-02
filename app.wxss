@@ -124,6 +124,7 @@ button{
   background-color: #fff;
   font-size: 26rpx;
   color: #454545;
+  border-top: 1rpx solid #eaeaea;
   border-bottom: 1rpx solid #eaeaea;
 }
 
@@ -342,7 +343,7 @@ button{
 /* 返回顶部 */
 .to-top{
   position: fixed;
-  bottom: 4vh;
+  bottom: 10vh;
   right: 20rpx;
   width: 80rpx;
   height: 80rpx;
@@ -352,4 +353,26 @@ button{
 .to-top image{
   width: 80rpx;
   height: 80rpx;
+}
+
+/* 增减购物车 */
+.count-wrap{
+  margin-bottom: 2rpx;
+  width: 150rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  color: #fe4070;
+  border: 1rpx solid #fe4070;
+  border-radius: 8rpx;
+}
+.count-wrap .reduce{
+  width: 40rpx;
+  height: 40rpx;
+  border-right: 1rpx solid #f5a3b8;
+}
+.count-wrap .count{}
+.count-wrap .add{
+  width: 40rpx;
+  height: 40rpx;
+  border-left: 1rpx solid #f5a3b8;
 }

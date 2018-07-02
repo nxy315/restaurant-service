@@ -1,4 +1,7 @@
 /* pages/me/used/used.wxss */
+page{
+  background-color: #fff;
+}
 .star-wrap{
   background-color: #fff;
 }

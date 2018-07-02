@@ -1,4 +1,4 @@
-<!--pages/forum/post/post.wxml-->
+<!--pages/forum/edit/edit.wxml-->
 <view class='flex-c-fs input-wrap'>
   <textarea class='textarea' value='{{ajaxData.content}}' bindinput='handleInput' auto-height='{{true}}' style='width: 702rpx;' placeholder='{{typePlaceholder[type]}}'></textarea>
 
@@ -43,4 +43,4 @@
   <image class='arrow' src='../../../images/arrow_down.png'></image>
 </view> 
 
-<view class='post' bindtap='prePost'>发布</view>
+<view class='post' bindtap='prePost'>修改并发布</view>

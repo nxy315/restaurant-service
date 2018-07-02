@@ -1,5 +1,11 @@
 <!--pages/forum/forum.wxml-->
-<scroll-view style="height: 100vh;" class="flex-c-fs" scroll-y="true" bindscroll="scroll">
+<scroll-view style="height: 100vh;" class="flex-c-fs"
+  scroll-top='{{top}}'
+  enable-back-to-top='{{true}}'
+  bindscrolltolower='reachBottom'
+  scroll-y="true"
+  bindscroll="scroll"
+>
 
 
 <!-- banner -->
@@ -38,7 +44,7 @@
     wx:key='{{index}}'
   >
     <view class='cover'>
-      <image class='avatar' mode='aspectFill' src='{{"https://api.youcanwuchu.com/Public/UserUploads/"+item.user_pic}}'></image>
+      <image class='avatar' mode='aspectFill' src='{{item.user_pic}}'></image>
     </view>
 
     <view class='posts-content'>
@@ -58,7 +64,11 @@
           wx:key='{{idx}}'
           wx:for-item='itm'
           wx:for-index='idx'
-          src='{{itm.image}}'></image>
+          src='{{itm.image}}'
+          data-index='{{index}}'
+          data-idx='{{idx}}'
+          bindtap='preview'
+        ></image>
       </view>
 
       <view class='flex-r-sb location'>

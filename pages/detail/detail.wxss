@@ -65,20 +65,19 @@
   background-color: #fff;
 }
 .goods-footer .icon-wrap{
-  flex: 1;
+  width: 119rpx;
   height: 98rpx;
   font-size: 20rpx;
   color: #959595
 }
-.goods-footer .icon-wrap:first-child{
-  border-right: 1rpx solid #ebebeb;
-}
+
 .goods-footer .icon-wrap image{
   width: 46rpx;
   height: 46rpx;
 }
 
 .goods-footer .goods-btn{
+  flex: 1;  
   width: 256rpx;
   height: 98rpx;
   line-height: 98rpx;
@@ -90,5 +89,9 @@
   background-color: #ffd6e4;
 }
 .goods-footer .goods-btn.buy{
-  background-color: #fe4f88;
+  background-color: #fe4070;
+}
+
+.introduce-wrap{
+  padding-bottom: 100rpx;
 }

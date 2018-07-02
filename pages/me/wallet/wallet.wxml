@@ -1,7 +1,7 @@
 <!--pages/me/wallet/wallet.wxml-->
 <view class='flex-c-c balance-wrap'>
   <view class='title'>账户金额</view>
-  <view class='balance'>100000</view>
+  <view class='balance'>{{balance}}</view>
   <view class='recharge' bindtap='toRecharge'>充值</view>
 </view>
 <!-- 

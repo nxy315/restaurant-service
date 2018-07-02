@@ -1,14 +1,17 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/classify/classify",
+    "pages/me/me",
+    "pages/me/wallet/wallet",
+    "pages/clearing/clearing",
+    "pages/me/address/chooseAddress/chooseAddress",
     "pages/forum/forum",
     "pages/forum/detail/detail",
-    "pages/me/me",
     "pages/forum/mypost/mypost",
     "pages/me/orders/orders",
     "pages/cart/cart",
     "pages/home/home",
-    "pages/classify/classify",
     "pages/me/address/address",
     "pages/me/address/addAddress/addAddress",
     "pages/me/star/star",
@@ -17,16 +20,14 @@
     "pages/me/userinfo/userinfo",
     "pages/store/store",
     "pages/pay/pay",
-    "pages/clearing/clearing",
     "pages/home/list/list",
-    "pages/me/wallet/wallet",
     "pages/detail/detail",
     "pages/me/used/used",
     "pages/seller/seller",
     "pages/location/location",
     "pages/forum/city/city",
-    "pages/me/address/chooseAddress/chooseAddress",
-    "pages/me/address/editAddress/editAddress"
+    "pages/me/address/editAddress/editAddress",
+    "pages/forum/edit/edit"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,7 +42,7 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "text": "推荐",
+        "text": "厂商",
         "pagePath": "pages/home/home",
         "iconPath": "images/homepage.png",
         "selectedIconPath": "images/homepage_fill.png"

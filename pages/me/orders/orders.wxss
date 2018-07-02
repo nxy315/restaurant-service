@@ -69,8 +69,9 @@
 }
 .info2{}
 .btn-wrap{
+  padding-bottom: 24rpx;
+  align-items: flex-start;
   padding-right: 24rpx;
-  height: 90rpx;
 }
 .pay{
   margin-left: 15rpx;
@@ -93,4 +94,15 @@
   text-align: center;
   border: 1rpx solid #eaeaea;
   border-radius: 8rpx;
+}
+
+.order-money{
+  margin-top: 18rpx;
+  padding-bottom: 18rpx;
+  font-size: 24rpx;
+  color: #848484;
+}
+.order-money text{
+  font-size: 28rpx;
+  color: #000;
 }

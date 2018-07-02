@@ -2,7 +2,7 @@
 @import "../../utils/wxParse/wxParse.wxss"; 
 /* 图文介绍 */
 .introduce-wrap{
-  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
 }
 
 /* 底部按钮 */

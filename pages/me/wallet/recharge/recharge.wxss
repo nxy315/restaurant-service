@@ -1,6 +1,6 @@
 /* pages/me/wallet/recharge/recharge.wxss */
 .wrap{
-  padding-top: 40rpx;
+  padding-top: 16rpx;
 }
 
 .picker{

@@ -75,6 +75,12 @@ Page({
    * @header[user-token]               验签
    */
   async saveInfo() {
+    if (!this.data.ajaxData.nickname) {
+      return wx.showToast({
+        title: '填写您的昵称',
+        icon: 'none'
+      })
+    }
     await wxShowLoading('保存中')
     let data = await postData('/api/5b266d4146e02.html', this.data.ajaxData)
     wx.hideLoading()

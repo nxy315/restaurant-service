@@ -17,9 +17,11 @@
     <input placeholder='请输入渠道码' value='{{ajaxData.channel!="null" ? ajaxData.channel : ""}}' data-key='channel' bindinput='inputHandler'></input>
   </view>
 
-  <view class='flex-r-c'>
-    <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='saveAddress'>保存地址</view>
-  </view>
+</view>
+
+
+<view class='flex-r-c'>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;background:transparent;border:1rpx solid #fe4070;color:#fe4070;' bindtap='saveAddress'>保存地址</view>
 </view>
 
 
