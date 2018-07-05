@@ -41,7 +41,8 @@ Page({
     },
     banner: '',//广告数据
 
-    swiperHeight: 500
+    swiperHeight: 500,
+    loading: true,
   },
 
   goTop() {
@@ -179,22 +180,27 @@ Page({
    * @header[user-token]        验签
    */
   async getList() {
-    let data = await getData('/api/5b16a8b915bff.html', { 
+    wx.showNavigationBarLoading()
+    await wxSetData(this, {loading: true})
+    let data = await getData('/api/5b16a8b915bff.html', {
       sort: this.data.sort[this.data.currentType],
       page: this.data.page,
       pagenum: this.data.pagenum
     })
-    wx.hideLoading()
+    
     let end
     data.store_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
-    data = list.concat(data.store_list)
+    data = this.data.page == 1 ? data.store_list : list.concat(data.store_list)
     
     this.setData({
+      loading: false,
       list: data,
       loadMore: true,
       end
     })
+    
+    wx.hideNavigationBarLoading()
   },
 
   /* 跳转厂商列表页 */
@@ -210,7 +216,6 @@ Page({
     let i = e.currentTarget.dataset.index;
     await wxSetData(this, {
       currentType: i,
-      list: [],
       page: 1,
       end: false,
       top: 420,
@@ -240,6 +245,12 @@ Page({
     }
   },
 
+  async pullFresh() {
+    if(this.data.loading) return
+    await wxSetData(this, {page: 1})
+    this.getList()
+  },
+
   async reachBottom() {
 
     if (!this.data.loadMore || this.data.end) return
@@ -253,7 +264,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
   },
 
   /**
@@ -295,7 +305,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh()
+    wx.showNavigationBarLoading()
+    // wx.stopPullDownRefresh()
   },
 
   

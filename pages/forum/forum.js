@@ -34,6 +34,7 @@ Page({
     bannerList: [],//广告数据
     open: false,
     list: [],
+    loading: true,
   },
 
   toCity() {
@@ -77,21 +78,30 @@ Page({
    * @header[user-token]        验签
    */
   async getList() {
-    wx.showLoading({
-      title: '',
-    })
+    wx.showNavigationBarLoading()
+    await wxSetData(this, { loading: true })
     let data = await getData('/api/5b2b753401e58.html', { page: this.data.page, pagenum: this.data.pagenum, type: this.data.currentType})
-    wx.hideLoading()
+    
     let end
     data.quan_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
-    data = list.concat(data.quan_list)
+
+    data = this.data.page == 1 ? data.quan_list : list.concat(data.quan_list)
 
     this.setData({
       list: data,
       loadMore: true,
-      end
+      end,
+      loading: false
     })
+    wx.hideNavigationBarLoading()
+  },
+
+
+  async pullFresh() {
+    if (this.data.loading) return
+    await wxSetData(this, { page: 1 })
+    this.getList()
   },
 
   /**
@@ -162,9 +172,8 @@ Page({
 
 
   async tapTypes(e) {
-    await wxSetData(this, {page: 1})
     let i = e.currentTarget.dataset.index;
-    await wxSetData(this, { currentType: i, list: [] })
+    await wxSetData(this, { currentType: i, top: 200, page: 1 })
     this.getList()
   },
 
@@ -196,6 +205,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(102)
+    this.getList()
   },
 
   /**
@@ -209,12 +219,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      page: 1,
-      list: []
-    }, () => {
-      this.getList()
-    })
+    
   },
 
   /**

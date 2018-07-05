@@ -71,6 +71,7 @@
   
   <view class='flex-c-fs nodata' style='padding-top: 230rpx;' wx:if='{{noData}}'>
     <image mode='aspectFit' src='../../../images/nodata.png'></image>
+    <view style='margin-top: 30rpx;color: #acacac;'>暂无数据</view>
   </view>
 </view>
 

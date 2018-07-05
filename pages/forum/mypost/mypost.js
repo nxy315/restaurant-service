@@ -39,29 +39,31 @@ Page({
    * @header[user-token]        验签
    */
   async getMyPost() {
-    this.setData({
-      loading: true
-    })
-    wx.showLoading({
-      title: '',
-    })
+    wx.showNavigationBarLoading()
+    await wxSetData(this, { loading: true })
+    
     let data = await getData('/api/5b2fa57747221.html', {page: this.data.page, pagenum: this.data.pagenum, status: this.data.status})
-    wx.hideLoading()
+    
     let end
     data.quan_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
-    data = list.concat(data.quan_list)
+
+    data = this.data.page == 1 ? data.quan_list : list.concat(data.quan_list)
 
     await wxSetData(this, {
       list: data,
       loadMore: true,
       end,
+      loading: false
     })
-    setTimeout(() => {
-      this.setData({
-        loading: false
-      })
-    }, 500)
+    wx.hideNavigationBarLoading()
+  },
+
+
+  async pullFresh() {
+    if (this.data.loading) return
+    await wxSetData(this, { page: 1 })
+    this.getList()
   },
 
   /**
@@ -166,7 +168,7 @@ Page({
   /* change type */
   async tapTypes(e) {
     let i = e.currentTarget.dataset.index;
-    await wxSetData(this, { currentType: i, list: [], page: 1, status: i })
+    await wxSetData(this, { currentType: i, page: 1, status: i })
     this.getMyPost()
   },
 
@@ -174,7 +176,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getMyPost()
   },
 
   /**
@@ -188,7 +190,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getMyPost()
+    
   },
 
   /**

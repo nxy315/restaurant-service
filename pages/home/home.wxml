@@ -1,14 +1,16 @@
 <!--pages/home/home.wxml-->
+
 <scroll-view
   style='height: 100vh'
   class="flex-c-fs"
+  upper-threshold='{{-50}}'
   scroll-top='{{top}}'
   enable-back-to-top='{{true}}'
+  bindscrolltoupper='pullFresh'
   bindscrolltolower='reachBottom'
   scroll-y="true"
   bindscroll="scroll"
 >
-
   <!-- 搜索 -->
   <view class='flex-r-c search-wrap' style='background-image: url("{{imgUrl+banner}}")'>
     <view class='flex-r-sb search-box'>
@@ -95,7 +97,7 @@
       </navigator>
     </view>
 
-    <view class='load-more' style='height: 88rpx;line-height: 68rpx;text-align: center;'>{{end ? '无更多数据' : '数据加载中...'}}</view>
+    <view class='load-more' style='height: 88rpx;line-height: 68rpx;text-align: center;'>{{end ? '无更多数据' : list.length > 0 ? '数据加载中...' : ''}}</view>
   </view>
   
 

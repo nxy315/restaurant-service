@@ -1,7 +1,9 @@
 <!--pages/forum/mypost/mypost.wxml-->
 <scroll-view style="height: 100vh;" class="flex-c-fs"
+  upper-threshold='{{-50}}'
   scroll-top='{{top}}'
   enable-back-to-top='{{true}}'
+  bindscrolltoupper='pullFresh'
   bindscrolltolower='reachBottom'
   scroll-y="true"
 >
@@ -22,7 +24,6 @@
   <view class='flex-r-fs posts-item'
     wx:for='{{list}}'
     wx:key='{{index}}'
-    wx:if='{{item.status == currentType || currentType == 0}}'
   >
     <view class='cover'>
       <image class='avatar' mode='aspectFill' src='{{item.user_pic}}'></image>

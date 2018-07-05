@@ -113,7 +113,7 @@
       </view>
     </view>
 
-    <view bindtap='logout' class='flex-r-sb menu-item'>
+    <!-- <view bindtap='logout' class='flex-r-sb menu-item'>
       <view class='flex-r-c left'>
         <image src='../../images/exit.png'></image>
         <text class='tc'>退出登录</text>
@@ -121,7 +121,7 @@
       <view class='flex-r-c right'>
         <image src='../../images/arrow_down.png'></image>
       </view>
-    </view>
+    </view> -->
 
   </view>
 

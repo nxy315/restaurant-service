@@ -53,6 +53,7 @@ Page({
     for (let i = 0; i < preUrls.length; i++) {
       urls.push(preUrls[i].image)
     }
+    
     wxPreview(urls[index], urls)
   },
 

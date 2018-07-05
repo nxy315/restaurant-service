@@ -1,7 +1,9 @@
 <!--pages/forum/forum.wxml-->
 <scroll-view style="height: 100vh;" class="flex-c-fs"
+  upper-threshold='{{-50}}'
   scroll-top='{{top}}'
   enable-back-to-top='{{true}}'
+  bindscrolltoupper='pullFresh'
   bindscrolltolower='reachBottom'
   scroll-y="true"
   bindscroll="scroll"
@@ -42,6 +44,8 @@
   <view class='flex-r-fs posts-item'
     wx:for='{{list}}'
     wx:key='{{index}}'
+    data-id='{{item.id}}'
+    bindtap='checkDetail'
   >
     <view class='cover'>
       <image class='avatar' mode='aspectFill' src='{{item.user_pic}}'></image>
@@ -53,7 +57,7 @@
         <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
       </view>
 
-      <view class='article' data-id='{{item.id}}' bindtap='checkDetail'>
+      <view class='article'>
         {{item.content}}
       </view>
 
@@ -67,7 +71,7 @@
           src='{{itm.image}}'
           data-index='{{index}}'
           data-idx='{{idx}}'
-          bindtap='preview'
+          catchtap='preview'
         ></image>
       </view>
 
@@ -84,7 +88,7 @@
         <view class='flex-r-fs info-wrap i1'
           data-index='{{index}}'
           data-id='{{item.id}}'
-          bindtap='like'
+          catchtap='like'
         >
           <image src='../../images/like.png'></image>
           <text>{{item.zan}}</text>

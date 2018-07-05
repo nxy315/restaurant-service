@@ -30,7 +30,7 @@
     "pages/forum/edit/edit"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "有餐无厨",
     "navigationBarTextStyle": "black"

@@ -56,26 +56,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '',
-    })
-    let token = wx.getStorageSync('token')
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          if(token) {
-            this.getUserData()
-          } else {
-            login()
-          }
-        } else {
-          wx.hideLoading()
-          this.setData({
-            hasScope: false
-          })
-        }
-      }
-    })
+    
   },
 
   /**
@@ -89,7 +70,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      hasScope: true
+    }, () => {
+      wx.showLoading({
+        title: '',
+      })
+      let token = wx.getStorageSync('token')
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            if (token) {
+              this.getUserData()
+            } else {
+              login().then(res => {
+                wx.switchTab({
+                  url: '/pages/home/home',
+                })
+              })
+            }
+          } else {
+            wx.hideLoading()
+            this.setData({
+              hasScope: false
+            })
+          }
+        }
+      })
+    })
+    
   },
 
   /**

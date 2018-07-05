@@ -79,7 +79,7 @@ Page({
       variety: data.sort_lsit,
       varietyIndex: 0,
       resultId: data.sort_lsit[0].id,
-      result: [],
+      // result: [],
       page: 1
     })
   },
@@ -107,9 +107,9 @@ Page({
       list[i].fold = true
     }
     let end
-    data.shop_list < this.data.pagenum ? end = true : end = false
+    list.length < this.data.pagenum ? end = true : end = false
     let result = [...this.data.result]
-    result = result.concat(data.shop_list)
+    result = this.data.page == 1 ? list : result.concat(list)
 
     await wxSetData(this, {
       result,
@@ -279,7 +279,6 @@ Page({
     await wxSetData(this, {
       varietyIndex: i,
       resultId: id,
-      result: [],
       page: 1,
       end: false,
       top: 200,
@@ -329,6 +328,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(101)
+    this.show()
     // this.getVariety();
   },
 
@@ -343,19 +343,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.show()
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    setTimeout(() => {
-      this.setData({
-        varietyIndex: 0,
-        result: []
-      })
-    }, 1000)
+    // setTimeout(() => {
+    //   this.setData({
+    //     varietyIndex: 0,
+    //     result: []
+    //   })
+    // }, 1000)
   },
 
   /**

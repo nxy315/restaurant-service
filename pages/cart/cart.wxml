@@ -23,7 +23,7 @@
     </view>
 
     <view class='flex-r-fs goods-info-wrap'>
-      <view class='cover' data-id='{{item.id}}' catchtap='toDetail'>
+      <view class='cover' data-id='{{item.gid}}' catchtap='toDetail'>
         <image mode='aspectFill' src='{{imgUrl+item.artpic}}'></image>
       </view>
       <view class='flex-c-sb goods-info'>

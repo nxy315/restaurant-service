@@ -291,7 +291,8 @@ button{
 }
 .info-wrap{}
 .info-wrap.i1{
-  margin-right: 90rpx;
+  padding-right: 15rpx;
+  margin-right: 75rpx;
 }
 .info-wrap.i2{}
 .info-wrap image{
