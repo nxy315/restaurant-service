@@ -147,7 +147,7 @@ Page({
    */
   chooseImage() {
     wx.chooseImage({
-      count: this.data.type == 1 ? 9 : 1,
+      count: this.data.type == 1 ? (9 - this.data.images.length) : 1,
       sizeType: ['original'],
       success: res => {
         let tempFilePaths = res.tempFilePaths
