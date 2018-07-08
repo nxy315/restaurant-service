@@ -15,8 +15,17 @@ Page({
       realname: '',
       tel: '',
       user_work: '',
-      address: ''
-    }
+      address: '',
+      province_id: null,
+      city_id: null,
+      district_id: null,
+    },
+    province: null,
+    i1: 0,
+    city: null,
+    i2: 0,
+    county: null,
+    i3: 0,
   },
 
   /**
@@ -31,6 +40,69 @@ Page({
     })
   },
 
+  /**
+   * 获取省
+   * @method: GET
+   * @url: /api/5b3ec0a8d89f5.html
+   *
+   * @param pid:Int                    城市ID pid =0 获取所有的省份 pid 传递省份id 例如1046 获取安徽省下的城市 pid 传递城市id 例如1047 获取合肥市下面的区
+   * @header[version]                  版本号
+   * @header[access-token]             验签
+   * @header[user-token]               验签
+   */
+  async getProvince() {
+    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: 0 })
+    let provinceId = data1.area_list[0].id
+    await wxSetData(this, { province: data1.area_list, ajaxData: { ...this.data.ajaxData, province_id: provinceId} })
+
+    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: provinceId })
+    let cityId = data2.area_list[0].id
+    await wxSetData(this, { city: data2.area_list, ajaxData: { ...this.data.ajaxData, city_id: cityId } })
+
+    let data3 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })
+    await wxSetData(this, { county: data3.area_list, ajaxData: { ...this.data.ajaxData, district_id: data3.area_list[0].id } } )
+  },
+
+  /**
+   * 选择省
+   * 
+   * 选择省 -> 获取市数据，市索引、区索引变为0、市id、区id、变为对应索引的id
+   */
+  async chooseProvince(e) {
+    let id = this.data.province[e.detail.value].id
+    
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, province_id: id }, i1: e.detail.value, i2: 0, i3: 0 })
+    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: id })
+    let cityId = data1.area_list[0].id
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, city_id: cityId }, city: data1.area_list })
+
+    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })
+    let countyId = data2.area_list[0].id
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, district_id: countyId }, county: data2.area_list })
+  },
+
+  /**
+   * 选择市
+   */
+  async chooseCity(e) {
+    let id = this.data.city[e.detail.value].id
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, city_id: id }, i2: e.detail.value, i3: 0 })
+    // 通过选择的市id获取区列表
+    let data = await getData('/api/5b3ec0a8d89f5.html', { pid: id })
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, district_id: data.area_list[0].id }, county: data.area_list })
+  },
+
+  /**
+   * 选择区
+   */
+  async chooseCounty(e) {
+    let id = this.data.county[e.detail.value].id
+    await wxSetData(this, { ajaxData: { ...this.data.ajaxData, district_id: id }, i3: e.detail.value })
+  },
+
+  /**
+   * 选择头像
+   */
   chooseAvatar() {
     wx.chooseImage({
       count: 1,
@@ -83,6 +155,9 @@ Page({
     }
     await wxShowLoading('保存中')
     let data = await postData('/api/5b266d4146e02.html', this.data.ajaxData)
+    let info = await getData('/api/5b260352d8f9e.html', {})
+    app.globalData.userInfo = info.info
+
     wx.hideLoading()
     wx.navigateBack({
       delta: 1
@@ -93,6 +168,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getProvince()
     let { nickname, realname, tel, user_work, address } = app.globalData.userInfo
     this.setData({
       cover: app.globalData.userInfo.user_pic,

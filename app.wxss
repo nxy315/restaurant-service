@@ -124,8 +124,8 @@ button{
   background-color: #fff;
   font-size: 26rpx;
   color: #454545;
-  border-top: 1rpx solid #eaeaea;
-  border-bottom: 1rpx solid #eaeaea;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .top-types-wrap .top-types-item{
@@ -149,7 +149,7 @@ button{
   width: 47vw;
   height: 485rpx;
   /* background-color: rgba(255, 60, 119, .8); */
-   background-color: #fff; 
+  background-color: #fff; 
   color: #333;
   font-size: 26rpx;
   box-shadow: 0 4rpx 6rpx 3rpx rgba(0,0,0,0.05);
@@ -161,7 +161,7 @@ button{
   height: 49vw;
   background-color: #fff;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 .result-list-item .name{
@@ -344,36 +344,40 @@ button{
 /* 返回顶部 */
 .to-top{
   position: fixed;
-  bottom: 10vh;
+  bottom: 2.1vh;
   right: 20rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .to-top image{
-  width: 80rpx;
-  height: 80rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 /* 增减购物车 */
 .count-wrap{
   margin-bottom: 2rpx;
-  width: 150rpx;
-  height: 40rpx;
+  width: 160rpx;
+  height: 52rpx;
   font-size: 22rpx;
   color: #fe4070;
   border: 1rpx solid #fe4070;
   border-radius: 8rpx;
 }
 .count-wrap .reduce{
-  width: 40rpx;
-  height: 40rpx;
+  width: 51rpx;
+  height: 51rpx;
   border-right: 1rpx solid #f5a3b8;
 }
 .count-wrap .count{}
 .count-wrap .add{
-  width: 40rpx;
-  height: 40rpx;
+  width: 51rpx;
+  height: 51rpx;
   border-left: 1rpx solid #f5a3b8;
 }

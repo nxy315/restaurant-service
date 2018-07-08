@@ -65,6 +65,7 @@
   background-color: #fff;
 }
 .goods-footer .icon-wrap{
+  position: relative;
   width: 119rpx;
   height: 98rpx;
   font-size: 20rpx;
@@ -90,6 +91,18 @@
 }
 .goods-footer .goods-btn.buy{
   background-color: #fe4070;
+}
+
+.count{
+  position: absolute;
+  padding: 0 8rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  right: 22rpx;
+  top: 10rpx;
+  background-color: #f43530;
+  color: #fff;
+  border-radius: 15rpx;
 }
 
 .introduce-wrap{

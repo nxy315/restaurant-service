@@ -34,6 +34,10 @@ Page({
     end: false,
     result: [],//商品列表数据
     top: 0,
+    cartGid: [],
+    cartPid: [],
+    cartcount: {},
+    cartcount2: {}
   },
 
   loadImage(e) {
@@ -94,7 +98,7 @@ Page({
    * @header[access-token]      验签
    * @header[user-token]        验签
    */
-  async getResult(id) {
+  async getResult() {
     let data = await getData('/api/5b16b2ab1de15.html', {
       sortid: this.data.resultId,
       page: this.data.page,
@@ -194,7 +198,7 @@ Page({
       list = [...this.data.result]
 
     await this.operaCard(gid, pid, price, spec, 1, gname)
-    console.log(list[i])
+
     if (!type) {
       list[i].nums = parseInt(list[i].nums) + 1
     } else {
@@ -298,10 +302,14 @@ Page({
     this.getResult()
   },
 
-  async show() {
+  async load() {
     await this.getVariety();
     this.getResult();
-    this.getCart();
+    
+  },
+
+  async show() {
+    this.getCart()
   },
 
   /**
@@ -315,6 +323,45 @@ Page({
    */
   async getCart() {
     let data = await getData('/api/5b29aaa68d36e.html', {})
+    let list = data.shoppingcart
+    console.log(list)
+    let gids = []
+    let pids = []
+    let count = {}
+
+    for (let i = 0; i < list.length; i++) {
+      gids.push(parseInt(list[i].gid))
+      pids.push(parseInt(list[i].pid))
+      count[`${list[i].gid}_${list[i].pid}`] = parseInt(list[i].nums)
+    }
+
+    if(this.data.result.length > 0) {
+      let result = [...this.data.result]
+      for (let i = 0; i < result.length; i++) {
+        if (gids.indexOf(parseInt(result[i].id)) != -1) {
+          for (let j = 0; j < result[i].products_list.length; j++) {
+            if (pids.indexOf(parseInt(result[i].products_list[j].id)) != -1) {
+              if (result[i].products_list.length == 1) {
+                result[i].nums = count[`${result[i].products_list[0].goods_id}_${result[i].products_list[0].id}`]
+              } else {
+                result[i].products_list[j].nums = count[`${result[i].products_list[j].goods_id}_${result[i].products_list[j].id}`]
+              }
+            } else {
+              result[i].products_list[j].nums = 0
+            }
+          }
+        } else {
+          if (result[i].products_list.length == 1) {
+            result[i].nums = 0
+          } else {
+            for (let j = 0; j < result[i].products_list.length; j++) {
+              result[i].products_list[j].nums = 0
+            }
+          }
+        }
+      }
+      await wxSetData(this, {result})
+    }
 
     await wxSetData(this, { allCount: data.total_num != null ? data.total_num : 0 })
     wx.setTabBarBadge({
@@ -328,7 +375,7 @@ Page({
    */
   onLoad: function (options) {
     this.getAds(101)
-    this.show()
+    this.load()
     // this.getVariety();
   },
 
@@ -343,7 +390,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.show()
+    // this.setData({
+    //   cartGid: app.globalData.cartGid,
+    //   cartPid: app.globalData.cartPid,
+    //   cartcount: app.globalData.cartCount,
+    //   cartcount2: JSON.stringify(app.globalData.cartCount),
+    // }, () => {
+    //   if (this.data.result.length <= 0) return 
+
+    //   let list = [...this.data.result]
+    //   for (let i = 0; i < list.length; i++) {
+    //     console.log(this.data.cartGid.indexOf(parseInt(list[i].id)))
+    //     if (this.data.cartGid.indexOf(parseInt(list[i].id)) != -1) {
+    //       for (let j = 0; j < list[i].products_list.length; j++) {
+    //         if (this.data.cartPid.indexOf(parseInt(list[i].products_list[j].id)) != -1) {
+    //           if (list[i].products_list.length == 1) {
+    //             list[i].nums = this.data.cartcount[list[i].products_list[j].goods_id + '_' + list[i].products_list[j].id]
+    //           } else {
+    //             list[i].products_list[j].nums = this.data.cartcount[list[i].products_list[j].goods_id + '_' + list[i].products_list[j].id]
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   console.log(list)
+    //   this.setData({
+    //     result: list
+    //   })
+    // })
   },
 
   /**

@@ -12,6 +12,18 @@
   margin-bottom: 0;
   position: relative;
 }
+.location-fixed{
+  position: fixed;
+  left: 10rpx;
+  top: 10rpx;
+  color: #fff;
+}
+
+.location-fixed image{
+  margin-right: 5rpx;
+  width: 34rpx;
+  height: 34rpx;
+}
 
 
 /* 添加需求 */

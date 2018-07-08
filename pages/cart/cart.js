@@ -41,12 +41,10 @@ Page({
     if(list.length <= 0) {
       await wxSetData(this, { noData: true })
     } else {
-      await wxSetData(this, { noData: false })
-
       for (let i = 0; i < list.length; i++) {
         list[i].check = true
       }
-      await wxSetData(this, { cartList: data.shoppingcart });
+      await wxSetData(this, { noData: false, cartList: data.shoppingcart });
 
       this.calc();
     }
@@ -99,10 +97,9 @@ Page({
 
     
 
-    if (parseInt(list[i].nums) <= 0) return
+    // if (parseInt(list[i].nums) <= 0) return
 
     await this.operaCard(gid, pid, price, spec, -1, gname)
-    console.log(parseInt(this.data.allCount))
     await wxSetData(this, { allCount: (parseInt(this.data.allCount) - 1) == 0 ? 0 : (parseInt(this.data.allCount) - 1)})
     wx.setTabBarBadge({
       index: 3,
@@ -163,6 +160,21 @@ Page({
     await postData('/api/5b29ad2a751fa.html', {
       gid, pid, price, spec, nums, gname
     })
+  },
+
+
+  async delThis(e) {
+    let data = e.currentTarget.dataset
+    let type = data.type,
+      i = data.index,
+      gid = parseInt(data.gid),
+      pid = parseInt(data.pid),
+      price = parseFloat(data.price),
+      spec = data.spec,
+      gname = data.gname,
+      list = [...this.data.cartList]
+
+    await this.operaCard(gid, pid, price, spec, 0, gname)
   },
 
   judgeFn(check) {

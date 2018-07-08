@@ -3,18 +3,23 @@
   <textarea class='textarea' value='{{ajaxData.content}}' bindinput='handleInput' auto-height='{{true}}' style='width: 702rpx;' placeholder='{{typePlaceholder[type]}}'></textarea>
 
 
-  <view class='flex-r-fs'>
+  <view class='flex-r-fs camera-container'>
     <view
       class='camera-wrap'
       wx:for='{{images}}'
       wx:key='{{index}}'
     >
-      <image class='upload-img' mode='aspectFill' src='{{item}}'></image>
+      <view class='img-wrap'>
+        <image class='upload-img' mode='aspectFill' src='{{item}}'></image>
+      </view>
+      <view class='del-wrap' data-index='{{index}}' bindtap='delImage'>
+        <image src='../../../images/del.png'></image>
+      </view>
     </view> 
 
 
-    <view wx:if='{{images.length < 3}}' class='flex-c-c camera-wrap' bindtap='uploadImage'>
-      <image src='../../../images/camera.png'></image>
+    <view wx:if='{{(type == 1 && images.length < 9)||(type == 2 && images.length < 1)}}' class='flex-c-c camera-wrap' bindtap='chooseImage'>
+      <image class='camera-icon' src='../../../images/camera.png'></image>
       <view>上传图片</view>
     </view>
   </view>
@@ -27,16 +32,15 @@
   <view class='title'>联系信息</view>
 </view> 
 
-<view class='flex-r-sb address' bindtap='chooseAddress'>
+<view class='flex-r-sb address' bindtap='editInfo'>
   <view class='flex-r-fs'>
     <image class='arrow' src='../../../images/location.png'></image>
     <view class='flex-c-c address-info'>
       <view class='flex-r-fs address-title'>
-        <view class='default'>默认</view>
-        <view class='name'>{{address.realname}}</view>
-        <view class='tel'>{{address.tel}}</view>
+        <view class='name'>{{userInfo.realname}}</view>
+        <view class='tel'>{{userInfo.tel}}</view>
       </view>
-      <view class='adres'>{{address.address}}</view>
+      <view class='adres'>{{userInfo.address}}</view>
     </view>
   </view>
   

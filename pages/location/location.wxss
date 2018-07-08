@@ -1,1 +1,21 @@
 /* pages/location/location.wxss */
+.title{
+  padding: 20rpx 27rpx;
+}
+.handle-wrap{
+  padding: 20rpx 27rpx;
+  background-color: #fff;
+}
+.handle{
+  color: #97e95f;
+}
+.handle image{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.address-wrap{
+  margin-top: 40rpx;
+  padding: 20rpx 27rpx;
+  background-color: #fff;
+}

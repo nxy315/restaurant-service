@@ -31,8 +31,16 @@
   </view>  -->
   <view class='flex-c-c icon-wrap' data-url='/pages/cart/cart' bindtap='switchTap'>
     <image src='../../images/cart.png'></image>
+    <text class='count' wx:if='{{count}}'>{{count}}</text>
     <text>购物车</text>
   </view>
-  <view class='goods-btn add-cart'>加入购物车</view>
+  <view class='goods-btn add-cart'
+    data-gid='{{detail.id}}'
+    data-pid='{{detail.default_spec}}'
+    data-price='{{detail.sell_price}}'
+    data-spec='{{detail.spec}}'
+    data-gname='{{detail.name}}'
+    bindtap='addCart'
+  >加入购物车</view>
   <view class='goods-btn buy' bindtap='toClearing'>立即购买</view>
 </view>

@@ -125,4 +125,8 @@
 
   </view>
 
+  <view class='flex-r-c logo-wrap'>
+    <image mode='aspectFit' src='../../images/logo.png'></image>
+  </view>
+
 </view>

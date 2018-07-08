@@ -41,6 +41,11 @@ App({
 
   
   globalData: {
+    province: null,
+    city: null,
+    area: null,
+    changeArea: false,
+    areaname: '',
     userInfo: null,
     imgUrl: 'http://www.youcanwuchu.com/Public/Uploads/',//图片拼接路径
   }

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toTop: false,
     top: 0,
     loadMore: true,
     end: false,
@@ -35,6 +36,17 @@ Page({
     open: false,
     list: [],
     loading: true,
+
+    province_id: '',
+    city_id: '',
+    district_id: '',
+    areaname: '',
+  },
+
+  locaiton() {
+    wx.navigateTo({
+      url: '/pages/location/location',
+    })
   },
 
   toCity() {
@@ -48,6 +60,11 @@ Page({
     app.scroll(e, 200, 'suck', this)
   },
 
+  goTop() {
+    this.setData({
+      top: 200
+    })
+  },
   /**
    * 获取广告图
    * @method: GET 
@@ -80,7 +97,15 @@ Page({
   async getList() {
     wx.showNavigationBarLoading()
     await wxSetData(this, { loading: true })
-    let data = await getData('/api/5b2b753401e58.html', { page: this.data.page, pagenum: this.data.pagenum, type: this.data.currentType})
+    let data = await getData('/api/5b2b753401e58.html', {
+      page: this.data.page,
+      pagenum: this.data.pagenum,
+      type: this.data.currentType,
+      province_id: this.data.province_id,
+      city_id: this.data.city_id,
+      district_id: this.data.district_id,
+    })
+    app.globalData.changeArea = false
     
     let end
     data.quan_list.length < this.data.pagenum ? end = true : end = false
@@ -219,7 +244,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let change = app.globalData.changeArea
+    if(change) {
+      this.setData({
+        province_id: app.globalData.province,
+        city_id: app.globalData.city,
+        district_id: app.globalData.area,
+        areaname: app.globalData.areaname,
+      }, () => {
+        this.getList()
+      })
+    }
   },
 
   /**

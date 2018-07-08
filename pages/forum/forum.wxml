@@ -27,6 +27,11 @@
       </swiper-item>
     </block>
   </swiper>
+
+  <view class='flex-r-c location-fixed' catchtap='locaiton'>
+    <image src='../../images/location_w.png'></image>
+    {{areaname ? areaname : '全国'}}
+  </view>
 </view>
 
 <!-- 占位块 -->
@@ -68,7 +73,7 @@
           wx:key='{{idx}}'
           wx:for-item='itm'
           wx:for-index='idx'
-          src='{{itm.image}}'
+          src='{{itm.th_image}}'
           data-index='{{index}}'
           data-idx='{{idx}}'
           catchtap='preview'
@@ -114,5 +119,12 @@
   <image src='../../images/add.png'></image>
 </view>
 
+<view class='flex-c-fs nodata' wx:if='{{list.length <= 0 && !loading}}'>
+  <image mode='aspectFit' src='../../images/nodata.png'></image>
+  <view style='margin-top: 30rpx;color: #acacac;'>暂无数据</view>
+</view>
 
+<view class='to-top' wx:if='{{toTop}}' bindtap='goTop'>
+  <image src='../../images/top.png'></image>
+</view>
 </scroll-view>

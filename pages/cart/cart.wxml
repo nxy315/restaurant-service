@@ -28,10 +28,8 @@
       </view>
       <view class='flex-c-sb goods-info'>
         <text class='name'>{{item.gname}}</text>
-        <view class='flex-r-fs count'>
-          <image
-            class='reduce'
-            src='../../images/reduce2.png'
+        <view class='flex-r-sb count-wrap' style='color: #4b4b4b; border-color: #999;'>
+          <view class='flex-r-c reduce' style='border-color: #999;'
             data-index='{{index}}'
             catchtap='reduceCount'
             data-gid='{{item.gid}}'
@@ -39,11 +37,9 @@
             data-price='{{item.price}}'
             data-spec='{{item.spec}}'
             data-gname='{{item.gname}}'
-          ></image>
-          <text class='count-num'>{{item.nums}}</text>
-          <image
-            class='plus'
-            src='../../images/add2.png'
+          >-</view>
+          <view class='count'>{{item.nums}}</view>
+          <view class='flex-r-c add' style='border-color: #999;'
             data-index='{{index}}'
             catchtap='plusCount'
             data-gid='{{item.gid}}'
@@ -51,9 +47,23 @@
             data-price='{{item.price}}'
             data-spec='{{item.spec}}'
             data-gname='{{item.gname}}'
-          ></image>
-        </view>
-        <text class='price'>{{item.price}}/{{item.spec}}</text>
+          >+</view> 
+        </view>  
+        <view class='flex-r-sb price'>
+          <text>{{item.price}}/{{item.spec}}</text>
+          <!-- <view class='flex-r-fs del-wrap'
+            data-index='{{index}}'
+            catchtap='delThis'
+            data-gid='{{item.gid}}'
+            data-pid='{{item.pid}}'
+            data-price='{{item.price}}'
+            data-spec='{{item.spec}}'
+            data-gname='{{item.gname}}'
+          >
+            <image src='../../images/delete.png'></image>
+            <text>删除</text>
+          </view> -->
+        </view> 
       </view>
     </view>
   </view>

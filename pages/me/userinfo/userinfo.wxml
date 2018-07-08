@@ -26,11 +26,24 @@
       <input maxlength='20' placeholder='请输入您的公司/品牌/店铺' value='{{ajaxData.user_work}}' data-key='user_work' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
     </view>
     <view class='flex-r-sb form-item'>
-      <text class='name'>所在地</text>
+      <text class='name'>选择地区</text>
+      <view class='flex-r-fs'>
+        <picker bindchange='chooseProvince' value='{{i1}}' range-key='shortname' range='{{province}}'>
+          {{province[i1].shortname}}一
+        </picker>
+        <picker bindchange='chooseCity' value='{{i2}}' range-key='shortname' range='{{city}}'>
+          {{city[i2].shortname ? city[i2].shortname : '请选择市'}}一
+        </picker>
+        <picker bindchange='chooseCounty' value='{{i3}}' range-key='shortname' range='{{county}}'>
+          {{county[i3].shortname ? county[i3].shortname : '请选择区'}}
+        </picker>
+      </view>
+    </view>
+    <view class='flex-r-sb form-item'>
+      <text class='name'>详细地址</text>
       <input placeholder='请输入您的经营所在地' value='{{ajaxData.address}}' data-key='address' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
     </view>
-
-    <view class='button-primary' style='margin: 36rpx auto 0;width: 450rpx;' bindtap='saveInfo'>保存</view>
   </view>
+  <view class='button-primary' style='margin: 36rpx auto 0;width: 450rpx;' bindtap='saveInfo'>保存</view>
 </view>
 

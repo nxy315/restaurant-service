@@ -1,4 +1,5 @@
 /* pages/me/userinfo/userinfo.wxss */
+
 .wrap{
   width: 100vw;
   height: 100vh;
@@ -6,13 +7,14 @@
 /* 头部 */
 .avatar-wrap{
   width: 100%;
-  margin-bottom: 27rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
   background-color: #fff;
 }
 
 /* 详情 */
 .info-wrap{
-  flex: 1;
+  /* flex: 1; */
   width: 100%;
   background-color: #fff;
 }
@@ -21,7 +23,7 @@
   padding: 0 40rpx;
   height: 78rpx;
   line-height: 78rpx;
-  border-bottom: 1rpx solid #e8e8e8; 
+  border-bottom: 1px solid #e4e4e4; 
 }
 .form-item .name{
   margin-right: 30rpx;
@@ -40,4 +42,5 @@
 .avatar{
   height: 148rpx;
   line-height: 148rpx;
+  border-top: 1px solid #e4e4e4;
 }

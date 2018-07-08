@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/forum/forum",
+    "pages/location/location",
     "pages/classify/classify",
     "pages/me/me",
     "pages/me/wallet/wallet",
     "pages/clearing/clearing",
     "pages/me/address/chooseAddress/chooseAddress",
-    "pages/forum/forum",
     "pages/forum/detail/detail",
     "pages/forum/mypost/mypost",
     "pages/me/orders/orders",
@@ -24,7 +25,6 @@
     "pages/detail/detail",
     "pages/me/used/used",
     "pages/seller/seller",
-    "pages/location/location",
     "pages/forum/city/city",
     "pages/me/address/editAddress/editAddress",
     "pages/forum/edit/edit"

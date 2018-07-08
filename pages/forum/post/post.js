@@ -23,7 +23,8 @@ Page({
       image_id: ''
     },
     images: [],
-    address: {}
+    address: {},
+    userInfo: null
   },
 
   /**
@@ -48,11 +49,11 @@ Page({
   },
 
   /**
-   * 选择地址
+   * 去个人中心
    */
-  chooseAddress() {
+  editInfo() {
     wx.navigateTo({
-      url: '/pages/me/address/chooseAddress/chooseAddress',
+      url: '/pages/me/userinfo/userinfo',
     })
   },
 
@@ -140,42 +141,72 @@ Page({
       ajaxData: {...this.data.ajaxData, content: value}
     })
   },
-  
-  uploadImage() {
+
+  /**
+   * 选择图片 
+   */
+  chooseImage() {
     wx.chooseImage({
-      count: 1,
+      count: this.data.type == 1 ? 9 : 1,
       sizeType: ['original'],
       success: res => {
         let tempFilePaths = res.tempFilePaths
-        let token = wx.getStorageSync('token')
-        wx.uploadFile({
-          url: 'https://api.youcanwuchu.com/api/5b2b7662e58d6.html',
-          filePath: tempFilePaths[0],
-          header: {
-            'content-type': 'multipart/form-data',
-            'version': 'v2.0',
-            'user-token': token
-          },
-          name: 'quan_image',
-          success: rs => {
-            let image = JSON.parse(rs.data).data.info.image
-            let imageId = JSON.parse(rs.data).data.info.image_id
-            let ids = this.data.ajaxData.image_id
-            let images = [...this.data.images]
-            images.push(image)
-            if(ids) {
-              ids += `,${imageId}`
-            } else {
-              ids = imageId
-            }
-            console.log(images)
-            this.setData({
-              ajaxData: {...this.data.ajaxData, image_id: ids},
-              images 
-            })
-          }
+        for (let i = 0; i < tempFilePaths.length; i++) {
+          this.uploadFile(tempFilePaths[i])
+        }
+      }
+    })
+  },
+
+  /**
+   * 上传图片
+   */
+  uploadFile(path) {
+    let token = wx.getStorageSync('token')
+
+    wx.uploadFile({
+      url: 'https://api.youcanwuchu.com/api/5b2b7662e58d6.html',
+      filePath: path,
+      header: {
+        'content-type': 'multipart/form-data',
+        'version': 'v2.0',
+        'user-token': token
+      },
+      name: 'quan_image',
+      success: rs => {
+        let image = JSON.parse(rs.data).data.info.image
+        let imageId = JSON.parse(rs.data).data.info.image_id
+        let ids = this.data.ajaxData.image_id
+        let images = [...this.data.images]
+        images.push(image)
+        if (ids) {
+          ids += `,${imageId}`
+        } else {
+          ids = imageId
+        }
+        console.log(images)
+        this.setData({
+          ajaxData: { ...this.data.ajaxData, image_id: ids },
+          images
         })
       }
+    })
+  },
+
+  /**
+   * 删除图片
+   */
+  delImage(e) {
+    let index = e.currentTarget.dataset.index
+    let ids = this.data.ajaxData.image_id
+    let images = [...this.data.images]
+    ids = ids.split(',')
+    ids.splice(index, 1)
+    ids = ids.join(',')
+    images.splice(index, 1)
+    this.setData({
+      ajaxData: { ...this.data.ajaxData, image_id: ids},
+      images
     })
   },
 
@@ -210,6 +241,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     let type = options.type
     this.setData({
       type
@@ -228,7 +260,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getAddress()
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**
