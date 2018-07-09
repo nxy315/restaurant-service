@@ -20,7 +20,7 @@ Page({
       content: '',
       location_x: '',
       location_y: '',
-      image_id: ''
+      image_id: '',
     },
     images: [],
     address: {},
@@ -75,7 +75,23 @@ Page({
     wx.showLoading({
       title: '',
     })
-    let data = await postData('/api/5b2b75c2440a3.html', this.data.ajaxData)
+
+    let { province_id, city_id, district_id, address, short_address } = app.globalData.userInfo
+
+    if (!this.data.ajaxData.content || this.data.images.length < 1) {
+      return wx.showToast({
+        title: '内容不能为空',
+        icon: 'none'
+      })
+    } else if (!province_id || !city_id || !district_id || !address) {
+      return wx.showToast({
+        title: '请完善个人信息',
+        icon: 'none'
+      })
+    }
+
+    let location = { province_id, city_id, district_id, address: short_address + address }//发布时的address需要short_address+address拼接起来
+    let data = await postData('/api/5b2b75c2440a3.html', Object.assign(this.data.ajaxData, location))
     wx.hideLoading()
 
     if(data.status == 1) {

@@ -84,9 +84,7 @@ Page({
               this.getUserData()
             } else {
               login().then(res => {
-                wx.switchTab({
-                  url: '/pages/home/home',
-                })
+                this.getUserData()
               })
             }
           } else {

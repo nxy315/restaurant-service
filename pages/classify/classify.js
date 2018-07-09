@@ -37,7 +37,9 @@ Page({
     cartGid: [],
     cartPid: [],
     cartcount: {},
-    cartcount2: {}
+    cartcount2: {},
+    pending: false,
+    timer: null,
   },
 
   loadImage(e) {
@@ -139,6 +141,7 @@ Page({
    * 减数量
    */
   async reduceCount(e) {
+    if(this.data.pending) return
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -149,44 +152,52 @@ Page({
       gname = data.gname,
       list = [...this.data.result]
 
-    if (!type) {
-      if (list[i].nums > 0) {
-        this.operaCard(gid, pid, price, spec, -1, gname)
-        list[i].nums = list[i].nums - 1
-        await wxSetData(this, {
-          result: list,
-          allCount: this.data.allCount - 1
-        })
-        if (this.data.allCount <= 0) {
-          this.removeCart()
-        } else {
-          this.cartCount();
-        }
-      }
-    } else {
-      let sizeIndex = e.currentTarget.dataset.i
-      if (list[i].products_list[sizeIndex].nums > 0) {
-        await this.operaCard(gid, pid, price, spec, -1, gname)
-        list[i].products_list[sizeIndex].nums = list[i].products_list[sizeIndex].nums - 1
-        await wxSetData(this, {
-          result: list,
-          allCount: this.data.allCount - 1
-        })
+    await wxSetData(this, {pending: true})
 
-        if (this.data.allCount <= 0) {
-          this.removeCart()
-        } else {
-          this.cartCount();
-        }
+    try {
+      if (!type) {
+        // 只有一个规格
+        if (list[i].nums <= 0) return
+        await postData('/api/5b29ad2a751fa.html',{
+          gid, pid, price, spec, nums: -1, gname
+        })
+        list[i].nums = parseInt(list[i].nums) - 1
+        await wxSetData(this, {
+          result: list,
+          allCount: (parseInt(this.data.allCount) - 1) <= 0 ? 0 : (parseInt(this.data.allCount) - 1)
+        })
+      } else {
+        // 有多个规格
+        let sizeIndex = e.currentTarget.dataset.i
+        if (list[i].products_list[sizeIndex].nums <= 0) return
+        await postData('/api/5b29ad2a751fa.html',{
+          gid, pid, price, spec, nums: -1, gname
+        })
+        list[i].products_list[sizeIndex].nums = parseInt(list[i].products_list[sizeIndex].nums) - 1
+        await wxSetData(this, {
+          result: list,
+          allCount: (parseInt(this.data.allCount) - 1) <= 0 ? 0 : (parseInt(this.data.allCount) - 1)
+        })
       }
+      this.cartCount();
+      clearTimeout(this.data.timer)
+      this.data.timer = setTimeout(async () => {
+        await wxSetData(this, {pending: false})  
+      }, 500)
+    } catch (e) {
+      await wxSetData(this, {pending: false})
+      wx.showToast({
+        title: '操作失败'
+      })
     }
+    
   },
 
   /**
    * 加数量
    */
   async addCount(e) {
-    console.log(e)
+    if(this.data.pending) return
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -197,20 +208,35 @@ Page({
       gname = data.gname,
       list = [...this.data.result]
 
-    await this.operaCard(gid, pid, price, spec, 1, gname)
+    await wxSetData(this, {pending: true})
 
-    if (!type) {
-      list[i].nums = parseInt(list[i].nums) + 1
-    } else {
-      let sizeIndex = e.currentTarget.dataset.i
-      list[i].products_list[sizeIndex].nums = parseInt(list[i].products_list[sizeIndex].nums) + 1
+    try{
+      await postData('/api/5b29ad2a751fa.html',{
+        gid, pid, price, spec, nums: 1, gname
+      })
+  
+      if (!type) {
+        list[i].nums = parseInt(list[i].nums) + 1
+      } else {
+        let sizeIndex = e.currentTarget.dataset.i
+        list[i].products_list[sizeIndex].nums = parseInt(list[i].products_list[sizeIndex].nums) + 1
+      }
+      
+      await wxSetData(this, {
+        result: list,
+        allCount: this.data.allCount + 1
+      })
+      this.cartCount();
+      clearTimeout(this.data.timer)
+      setTimeout(async () => {
+        await wxSetData(this, {pending: false})
+      }, 500)
+    } catch(e) {
+      await wxSetData(this, {pending: false})
+      wx.showToast({
+        title: '操作失败'
+      })
     }
-
-    await wxSetData(this, {
-      result: list,
-      allCount: this.data.allCount + 1
-    })
-    this.cartCount();
   },
 
   /**

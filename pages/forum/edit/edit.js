@@ -18,12 +18,17 @@ Page({
     type: 0,
     cover: [],
     ajaxData: {
+      id: '',
       type: '',
       content: '',
       location_x: '',
       location_y: '',
-      image_id: ''
+      province_id: '',
+      city_id: '',
+      district_id: '',
+      address: ''
     },
+    userInfo: null,
     images: [],
     address: {}
   },
@@ -40,18 +45,20 @@ Page({
    */
   async getDetail() {
     let data = await getData('/api/5b2fadb989307.html', {id: this.data.id})
-    let images = [], image_id=[]
+    let images = []
 
     for(let i = 0; i < data.info.quan_image_list.length; i++) {
-      images.push(data.info.quan_image_list[i].image)
-      image_id.push(data.info.quan_image_list[i].id)
+      images.push({
+        id: data.info.quan_image_list[i].id,
+        src: data.info.quan_image_list[i].image
+      })
     }
-    image_id = image_id.join(',')
-    let { id, type, content, location_x, location_y } = data.info
+
+    let { id, type, content, location_x, location_y, province_id, city_id, district_id, address } = data.info
     this.setData({
       images,
       ajaxData: {
-        id, type, content, location_x, location_y, image_id
+        id, type, content, location_x, location_y, province_id, city_id, district_id, address
       }
     })
   },
@@ -78,11 +85,11 @@ Page({
   },
 
   /**
-   * 选择地址
+   * 去个人中心
    */
-  chooseAddress() {
+  editInfo() {
     wx.navigateTo({
-      url: '/pages/me/address/chooseAddress/chooseAddress',
+      url: '/pages/me/userinfo/userinfo',
     })
   },
 
@@ -104,7 +111,22 @@ Page({
     wx.showLoading({
       title: '',
     })
-    let data = await postData('/api/5b2fb2aa38213.html', this.data.ajaxData)
+    let { province_id, city_id, district_id, address, short_address } = app.globalData.userInfo
+
+    if (!this.data.ajaxData.content || this.data.images.length < 1) {
+      return wx.showToast({
+        title: '内容不能为空',
+        icon: 'none'
+      })
+    } else if (!this.data.ajaxData.address || !this.data.ajaxData.province_id || !this.data.ajaxData.city_id || !this.data.ajaxData.district_id || !this.data.userInfo.realname || !this.data.userInfo.tel) {
+      return wx.showToast({
+        title: '请完善个人信息',
+        icon: 'none'
+      })
+    }
+
+    let location = { province_id, city_id, district_id, address: short_address + address }//发布时的address需要short_address+address拼接起来
+    let data = await postData('/api/5b2fb2aa38213.html', Object.assign(this.data.ajaxData, location))
     wx.hideLoading()
 
     if (data.status == 1) {
@@ -129,10 +151,12 @@ Page({
    * 发布
    */
   async prePost() {
-    
     this.postTie()
   },
 
+  /**
+   * 输入帖子内容
+   */
   handleInput(e) {
     let value = e.detail.value
     this.setData({
@@ -140,42 +164,83 @@ Page({
     })
   },
 
-  uploadImage() {
+  /**
+   * 选择图片 
+   */
+  chooseImage() {
     wx.chooseImage({
-      count: 1,
+      count: this.data.ajaxData.type == 1 ? (9 - this.data.images.length) : 1,
       sizeType: ['original'],
       success: res => {
         let tempFilePaths = res.tempFilePaths
-        let token = wx.getStorageSync('token')
-        wx.uploadFile({
-          url: 'https://api.youcanwuchu.com/api/5b2b7662e58d6.html',
-          filePath: tempFilePaths[0],
-          header: {
-            'content-type': 'multipart/form-data',
-            'version': 'v2.0',
-            'user-token': token
-          },
-          name: 'quan_image',
-          success: rs => {
-            let image = JSON.parse(rs.data).data.info.image
-            let imageId = JSON.parse(rs.data).data.info.image_id
-            let ids = this.data.ajaxData.image_id
-            let images = [...this.data.images]
-            images.push(image)
-            if (ids) {
-              ids += `,${imageId}`
-            } else {
-              ids = imageId
-            }
-            console.log(images)
-            this.setData({
-              ajaxData: { ...this.data.ajaxData, image_id: ids },
-              images
-            })
-          }
+        for (let i = 0; i < tempFilePaths.length; i++) {
+          this.uploadFile(tempFilePaths[i])
+        }
+      }
+    })
+  },
+
+  /**
+   * 上传图片
+   */
+  uploadFile(path) {
+    let token = wx.getStorageSync('token')
+
+    wx.uploadFile({
+      url: 'https://api.youcanwuchu.com/api/5b2b7662e58d6.html',
+      filePath: path,
+      header: {
+        'content-type': 'multipart/form-data',
+        'version': 'v2.0',
+        'user-token': token
+      },
+      name: 'quan_image',
+      formData: {
+        quan_id: this.data.id
+      },
+      success: rs => {
+        let image = JSON.parse(rs.data).data.info.image
+        let imageId = JSON.parse(rs.data).data.info.image_id
+        let ids = this.data.ajaxData.image_id
+        let images = [...this.data.images]
+        images.push({
+          id: imageId,
+          src: image
+        })
+        
+        this.setData({
+          ajaxData: { ...this.data.ajaxData},
+          images
         })
       }
     })
+  },
+
+  /**
+   * 删除图片
+   * @method: GET
+   * @url: /api/5b2fadf4a5676.html
+   *
+   * @param id:Int              圈子图片ID
+   * @header[version]           版本号
+   * @header[access-token]      验签
+   * @header[user-token]        验签
+   */
+  async delImage(e) {
+    try {
+      let id = e.currentTarget.dataset.id
+      await getData('/api/5b2fadf4a5676.html', {id})
+      let index = e.currentTarget.dataset.index
+      let images = [...this.data.images]
+      images.splice(index, 1)
+      this.setData({
+        images
+      })
+    } catch(e) {
+      wx.showToast({
+        title: '操作失败'
+      })
+    }
   },
 
   /**
@@ -213,6 +278,9 @@ Page({
    */
   onShow: function () {
     this.getAddress()
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
 
   /**

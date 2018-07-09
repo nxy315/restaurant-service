@@ -51,7 +51,7 @@
         </view>  
         <view class='flex-r-sb price'>
           <text>{{item.price}}/{{item.spec}}</text>
-          <!-- <view class='flex-r-fs del-wrap'
+          <view class='flex-r-fs del-wrap'
             data-index='{{index}}'
             catchtap='delThis'
             data-gid='{{item.gid}}'
@@ -62,7 +62,7 @@
           >
             <image src='../../images/delete.png'></image>
             <text>删除</text>
-          </view> -->
+          </view>
         </view> 
       </view>
     </view>

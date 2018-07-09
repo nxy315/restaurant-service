@@ -19,8 +19,9 @@ Page({
       province_id: null,
       city_id: null,
       district_id: null,
+      short_address: ''
     },
-    province: null,
+    province: null, 
     i1: 0,
     city: null,
     i2: 0,
@@ -51,16 +52,35 @@ Page({
    * @header[user-token]               验签
    */
   async getProvince() {
-    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: 0 })
-    let provinceId = data1.area_list[0].id
-    await wxSetData(this, { province: data1.area_list, ajaxData: { ...this.data.ajaxData, province_id: provinceId} })
+    let userInfo = app.globalData.userInfo//取全局userinfo
 
-    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: provinceId })
-    let cityId = data2.area_list[0].id
-    await wxSetData(this, { city: data2.area_list, ajaxData: { ...this.data.ajaxData, city_id: cityId } })
+    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: 0 })//获取省份数据
 
-    let data3 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })
-    await wxSetData(this, { county: data3.area_list, ajaxData: { ...this.data.ajaxData, district_id: data3.area_list[0].id } } )
+    let provinceId = userInfo.province_id ? userInfo.province_id : data1.area_list[0].id//判断用户是否有保存的省份id
+    for (let i = 0; i < data1.area_list.length; i++) {
+      if (provinceId == data1.area_list[i].id) {//循环省份数据，找到对应的id，并设置省份索引：i1
+        await wxSetData(this, {i1: i})
+      }
+    }
+    await wxSetData(this, { province: data1.area_list, ajaxData: { ...this.data.ajaxData, province_id: provinceId } })//设置省份数据
+    
+    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: provinceId })//获取市数据
+    let cityId = userInfo.city_id ? userInfo.city_id : data2.area_list[0].id
+    for (let i = 0; i < data2.area_list.length; i++) {
+      if (cityId == data2.area_list[i].id) {//循环市数据，找到对应的id，并设置市份索引：i2
+        await wxSetData(this, { i2: i })
+      }
+    }
+    await wxSetData(this, { city: data2.area_list, ajaxData: { ...this.data.ajaxData, city_id: cityId } })//设置市数据
+
+    let data3 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })//获取区数据
+    let districtId = userInfo.district_id ? userInfo.district_id : data3.area_list[0].id
+    for (let i = 0; i < data3.area_list.length; i++) {
+      if (districtId == data3.area_list[i].id) {//循环区数据，找到对应的id，并设置区索引：i3
+        await wxSetData(this, { i3: i })
+      }
+    }
+    await wxSetData(this, { county: data3.area_list, ajaxData: { ...this.data.ajaxData, district_id: districtId } })//设置区数据
   },
 
   /**
@@ -154,7 +174,9 @@ Page({
       })
     }
     await wxShowLoading('保存中')
-    let data = await postData('/api/5b266d4146e02.html', this.data.ajaxData)
+    let thisData = this.data
+    let short_address = thisData.province[thisData.i1].name + thisData.city[thisData.i2].name + thisData.county[thisData.i3].name
+    let data = await postData('/api/5b266d4146e02.html', { ...this.data.ajaxData, short_address})
     let info = await getData('/api/5b260352d8f9e.html', {})
     app.globalData.userInfo = info.info
 
@@ -169,10 +191,10 @@ Page({
    */
   onLoad: function (options) {
     this.getProvince()
-    let { nickname, realname, tel, user_work, address } = app.globalData.userInfo
+    let { nickname, realname, tel, user_work, address, province_id, city_id, district_id, short_address } = app.globalData.userInfo
     this.setData({
       cover: app.globalData.userInfo.user_pic,
-      ajaxData: { nickname, realname, tel, user_work, address }
+      ajaxData: { nickname, realname, tel, user_work, address, province_id, city_id, district_id, short_address }
     })
   },
 

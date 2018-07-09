@@ -18,6 +18,7 @@ Page({
       province_id: '',
       city_id: '',
       district_id: '',
+      short_address: ''
     },
     province: null,
     i1: 0,
@@ -62,8 +63,9 @@ Page({
         icon: 'none'
       })
     }
-    
-    await postData('/api/5b2673319f025.html', this.data.ajaxData)
+    let thisData = this.data
+    let address = thisData.province[thisData.i1].name + thisData.city[thisData.i2].name + thisData.county[thisData.i3].name
+    await postData('/api/5b2673319f025.html', { ...thisData.ajaxData, short_address: address })
     wx.navigateBack({
       delta: 1
     })

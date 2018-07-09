@@ -16,6 +16,8 @@ Page({
     money: 0,//合计
     noData: false,
     allCount: 0,
+    pending: false,
+    timer: null,
   },
 
   /**
@@ -83,9 +85,11 @@ Page({
     this.judgeFn(list[i].check)
   },
 
-  // 减
+  /**
+   * 减
+   */
   async reduceCount(e) {
-    let data = e.currentTarget.dataset
+    let data = e.currentTarget.dataset    
     let type = data.type,
       i = data.index,
       gid = parseInt(data.gid),
@@ -95,34 +99,49 @@ Page({
       gname = data.gname,
       list = [...this.data.cartList]
 
-    
+    if(this.data.pending) return
+    await wxSetData(this, {pending: true})
 
-    // if (parseInt(list[i].nums) <= 0) return
+    try{
+      await postData('/api/5b29ad2a751fa.html', {
+        gid, pid, price, spec, nums: -1, gname
+      })
 
-    await this.operaCard(gid, pid, price, spec, -1, gname)
-    await wxSetData(this, { allCount: (parseInt(this.data.allCount) - 1) == 0 ? 0 : (parseInt(this.data.allCount) - 1)})
-    wx.setTabBarBadge({
-      index: 3,
-      text: `${this.data.allCount}`
-    })
-
-    list[i].nums = parseInt(list[i].nums) - 1
-    if (list[i].nums == 0) {
-      list.splice(i, 1)
-    } else {
-      list.splice(i, 1, { ...list[i], nums: list[i].nums, check: list[i].nums == 0 ? false : true })
+      list[i].nums = parseInt(list[i].nums) - 1
+      if (list[i].nums <= 0) {
+        list.splice(i, 1)
+      } else {
+        list.splice(i, 1, { ...list[i], nums: list[i].nums })
+      }
+  
+      await wxSetData(this, { cartList: list, allCount: (parseInt(this.data.allCount) - 1) <= 0 ? 0 : (parseInt(this.data.allCount) - 1)})
+      wx.setTabBarBadge({
+        index: 3,
+        text: `${this.data.allCount}`
+      })
+      this.calc()
+      // 留给小程序渲染时间500毫秒
+      clearTimeout(this.data.timer)
+      this.data.timer = setTimeout(async () => {
+        await wxSetData(this, {pending: false})
+      }, 500)
+      // 判断减掉之后数据的长度，如果长度为0，设置noData为true
+      if (list.length <= 0) {
+        await wxSetData(this, { noData: true })
+        return false
+      }
+    } catch(e) {
+      wx.showToast({
+        title: '操作失败'
+      })
     }
-
-    await wxSetData(this, { cartList: list })
-    if (list.length <= 0) {
-      await wxSetData(this, { noData: true })
-      return false
-    }
-    this.judgeFn(list[i].check)
   },
 
-  // 加
+  /**
+   * 加
+   */
   async plusCount(e) {
+    if (this.data.pending) return
     let data = e.currentTarget.dataset
     let type = data.type,
       i = data.index,
@@ -133,12 +152,33 @@ Page({
       gname = data.gname,
       list = [...this.data.cartList]
 
-    await this.operaCard(gid, pid, price, spec, 1, gname)
-    list[i].nums = parseInt(list[i].nums) + 1
-    list.splice(i, 1, {...list[i], check: true})
+    await wxSetData(this, { pending: true })
 
-    await wxSetData(this, { cartList: list })
-    this.judgeFn(list[i].check)
+    try{
+      await postData('/api/5b29ad2a751fa.html', {
+        gid, pid, price, spec, nums: 1, gname
+      })
+
+      list[i].nums = parseInt(list[i].nums) + 1
+      list.splice(i, 1, {...list[i]})
+
+      await wxSetData(this, { cartList: list, allCount: parseInt(this.data.allCount) + 1})
+      wx.setTabBarBadge({
+        index: 3,
+        text: `${this.data.allCount}`
+      })
+      this.calc()
+      // 留给小程序渲染时间500毫秒
+      clearTimeout(this.data.timer)
+      this.data.timer = setTimeout(async () => {
+        await wxSetData(this, {pending: false})
+      }, 500)
+    } catch(e) {
+      await wxSetData(this, {pending: false})
+      wx.showToast({
+        title: '操作失败'
+      })
+    }
   },
 
   /**
@@ -162,7 +202,9 @@ Page({
     })
   },
 
-
+  /**
+   * 删除购物车
+   */
   async delThis(e) {
     let data = e.currentTarget.dataset
     let type = data.type,
@@ -173,8 +215,27 @@ Page({
       spec = data.spec,
       gname = data.gname,
       list = [...this.data.cartList]
+    try{
+      wx.showLoading({
+        title: ''
+      })
+      let data = await getData('/api/5b29af242231d.html', {cartid: gid})
+      wx.hideLoading()
 
-    await this.operaCard(gid, pid, price, spec, 0, gname)
+      list.splice(i, 1)
+      await wxSetData(this, {cartList: list})
+      wx.showToast({
+        title: '删除成功',
+        icon: 'none'
+      })
+      this.calc()
+    } catch(e) {
+      wx.hideLoading()
+      return wx.showToast({
+        title: '删除失败',
+        icon: 'none'
+      })
+    }
   },
 
   judgeFn(check) {
