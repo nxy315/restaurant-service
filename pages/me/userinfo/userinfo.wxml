@@ -41,7 +41,7 @@
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>详细地址</text>
-      <input placeholder='请输入您的经营所在地' value='{{ajaxData.address}}' data-key='address' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+      <input placeholder='请输入您的经营所在地' value='{{ajaxData.short_address}}' data-key='short_address' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
     </view>
   </view>
   <view class='button-primary' style='margin: 36rpx auto 0;width: 450rpx;' bindtap='saveInfo'>保存</view>

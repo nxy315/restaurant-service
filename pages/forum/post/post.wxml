@@ -40,7 +40,7 @@
         <view class='name'>{{userInfo.realname}}</view>
         <view class='tel'>{{userInfo.tel}}</view>
       </view>
-      <view class='adres'>{{userInfo.short_address + userInfo.address}}</view>
+      <view class='adres'>{{(userInfo.address ? userInfo.address : '空') + (userInfo.short_address ? userInfo.short_address : '') }}</view>
     </view>
   </view>
   <view class="flex-r-fs" wx:if='{{!userInfo.realname || !userInfo.tel || !userInfo.short_address || !userInfo.address}}'>

@@ -90,11 +90,12 @@ Page({
       })
     }
 
-    let location = { province_id, city_id, district_id, address: short_address + address }//发布时的address需要short_address+address拼接起来
+    let location = { province_id, city_id, district_id, address: address + short_address }//发布时的address需要short_address+address拼接起来
     let data = await postData('/api/5b2b75c2440a3.html', Object.assign(this.data.ajaxData, location))
     wx.hideLoading()
 
     if(data.status == 1) {
+      app.globalData.update = true
       wx.showToast({
         title: '发布成功',
         icon: 'success',

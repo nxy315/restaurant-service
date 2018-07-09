@@ -41,12 +41,14 @@ App({
 
   
   globalData: {
-    province: null,
-    city: null,
-    area: null,
-    changeArea: false,
-    areaname: '',
-    userInfo: null,
+    province: null,//餐饮圈选择完城市后需要
+    city: null,//餐饮圈选择完城市后需要
+    area: null,//餐饮圈选择完城市后需要
+    changeArea: false,//餐饮圈选择完城市后需要
+    areaname: '',//餐饮圈选择完城市后需要
+    userInfo: null,//用户信息
+    changeAddress: false,//餐饮圈修改地址
+    update: false,//发布圈子或者修改完之后，触发更新列表
     imgUrl: 'http://www.youcanwuchu.com/Public/Uploads/',//图片拼接路径
   }
 })

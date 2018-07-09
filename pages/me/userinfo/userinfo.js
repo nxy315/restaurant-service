@@ -27,6 +27,7 @@ Page({
     i2: 0,
     county: null,
     i3: 0,
+    type: '',//1 编辑餐饮圈过来的
   },
 
   /**
@@ -167,20 +168,67 @@ Page({
    * @header[user-token]               验签
    */
   async saveInfo() {
+    //   nickname: '',
+    //   realname: '',
+    //   tel: '',
+    //   user_work: '',
+    //   address: '',
+    //   province_id: null,
+    //   city_id: null,
+    //   district_id: null,
+    //   short_address: ''
     if (!this.data.ajaxData.nickname) {
       return wx.showToast({
-        title: '填写您的昵称',
+        title: '昵称不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.realname) {
+      return wx.showToast({
+        title: '姓名不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.tel) {
+      return wx.showToast({
+        title: '昵电话不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.user_work) {
+      return wx.showToast({
+        title: '公司名称不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.province_id) {
+      return wx.showToast({
+        title: '省份不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.city_id) {
+      return wx.showToast({
+        title: '市不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.district_id) {
+      return wx.showToast({
+        title: '区不能为空',
+        icon: 'none'
+      })
+    } else if(!this.data.ajaxData.address) {
+      return wx.showToast({
+        title: '地址不能为空',
         icon: 'none'
       })
     }
     await wxShowLoading('保存中')
     let thisData = this.data
-    let short_address = thisData.province[thisData.i1].name + thisData.city[thisData.i2].name + thisData.county[thisData.i3].name
-    let data = await postData('/api/5b266d4146e02.html', { ...this.data.ajaxData, short_address})
+    let address = thisData.province[thisData.i1].name + thisData.city[thisData.i2].name + thisData.county[thisData.i3].name
+    await postData('/api/5b266d4146e02.html', { ...this.data.ajaxData, address})
     let info = await getData('/api/5b260352d8f9e.html', {})
     app.globalData.userInfo = info.info
 
     wx.hideLoading()
+    if(this.data.type == 1)  {
+      app.globalData.changeAddress = true
+    }
     wx.navigateBack({
       delta: 1
     })
@@ -190,9 +238,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let type = options.type ? options.type : ''
     this.getProvince()
     let { nickname, realname, tel, user_work, address, province_id, city_id, district_id, short_address } = app.globalData.userInfo
     this.setData({
+      type,
       cover: app.globalData.userInfo.user_pic,
       ajaxData: { nickname, realname, tel, user_work, address, province_id, city_id, district_id, short_address }
     })

@@ -21,6 +21,7 @@ page{
   border-radius: 32rpx;
 }
 .topic-info{
+  flex: 1;
   align-items: flex-start;
 }
 .topic-name{

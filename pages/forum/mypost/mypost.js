@@ -43,7 +43,7 @@ Page({
     await wxSetData(this, { loading: true })
     
     let data = await getData('/api/5b2fa57747221.html', {page: this.data.page, pagenum: this.data.pagenum, status: this.data.status})
-    
+    app.globalData.update = false
     let end
     data.quan_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
@@ -190,7 +190,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let update = app.globalData.update
+    if(update) this.getMyPost()
   },
 
   /**

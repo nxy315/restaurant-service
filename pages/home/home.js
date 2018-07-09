@@ -204,10 +204,12 @@ Page({
   },
 
   /* 跳转厂商列表页 */
-  toList(e) {
+  async toList(e) {
     let id = e.currentTarget.dataset.id ? e.currentTarget.dataset.id : ''
+    let keyword = this.data.keyword
+    await wxSetData(this, {keyword: ''})
     wx.navigateTo({
-      url: `/pages/home/list/list?id=${id}&&keyword=${this.data.keyword}`,
+      url: `/pages/home/list/list?id=${id}&&keyword=${keyword}`,
     })
   },
 
@@ -264,6 +266,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.load()
   },
 
   /**
@@ -277,21 +280,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.load();
-    this.setData({
-      keyword: '',
-    })
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    setTimeout(() => {
-      this.setData({
-        top: 0,
-      })
-    }, 500)
+    
   },
 
   /**

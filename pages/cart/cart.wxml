@@ -53,12 +53,9 @@
           <text>{{item.price}}/{{item.spec}}</text>
           <view class='flex-r-fs del-wrap'
             data-index='{{index}}'
+            data-nums='{{item.nums}}'
             catchtap='delThis'
-            data-gid='{{item.gid}}'
-            data-pid='{{item.pid}}'
-            data-price='{{item.price}}'
-            data-spec='{{item.spec}}'
-            data-gname='{{item.gname}}'
+            data-cartid='{{item.cartid}}'
           >
             <image src='../../images/delete.png'></image>
             <text>删除</text>

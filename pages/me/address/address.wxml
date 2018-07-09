@@ -10,7 +10,7 @@
         <text class='name'>{{item.realname}}</text>
         <text class='tel'>{{item.tel}}</text>
       </view>
-      <view class='address'>{{(item.short_address ? item.short_address : '') + item.address}}</view>
+      <view class='address'>{{item.address + (item.short_address ? item.short_address : '')}}</view>
     </view>
     <view class='flex-r-sb foot-wrap'>
       <view class='flex-r-fs foot-left' data-id='{{item.id}}' data-index='{{index}}' bindtap='setDefault'>

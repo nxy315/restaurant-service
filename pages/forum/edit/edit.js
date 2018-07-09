@@ -28,7 +28,6 @@ Page({
       district_id: '',
       address: ''
     },
-    userInfo: null,
     images: [],
     address: {}
   },
@@ -54,34 +53,14 @@ Page({
       })
     }
 
-    let { id, type, content, location_x, location_y, province_id, city_id, district_id, address } = data.info
+    let { id, type, content, location_x, location_y, province_id, city_id, district_id, address, nickname, tel } = data.info
     this.setData({
       images,
       ajaxData: {
         id, type, content, location_x, location_y, province_id, city_id, district_id, address
-      }
+      },
+      tieInfo: { province_id, city_id, district_id, address, nickname, tel }
     })
-  },
-
-  /**
-   * 获取地址列表
-   * @method: GET 
-   * @url: /api/5b266fc349914.html
-   *
-   * @header[version]           版本号
-   * @header[access-token]      验签
-   * @header[user-token]        验签
-   */
-  async getAddress() {
-    let data = await getData('/api/5b266fc349914.html', {})
-    let list = data.address_list
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].is_default == 1) {
-        this.setData({
-          address: list[i]
-        })
-      }
-    }
   },
 
   /**
@@ -89,7 +68,7 @@ Page({
    */
   editInfo() {
     wx.navigateTo({
-      url: '/pages/me/userinfo/userinfo',
+      url: '/pages/me/userinfo/userinfo?type=1',
     })
   },
 
@@ -108,28 +87,30 @@ Page({
    * @header[user-token]        验签
    */
   async postTie() {
+    let tieInfo = this.data.tieInfo
     wx.showLoading({
       title: '',
     })
-    let { province_id, city_id, district_id, address, short_address } = app.globalData.userInfo
 
     if (!this.data.ajaxData.content || this.data.images.length < 1) {
       return wx.showToast({
         title: '内容不能为空',
         icon: 'none'
       })
-    } else if (!this.data.ajaxData.address || !this.data.ajaxData.province_id || !this.data.ajaxData.city_id || !this.data.ajaxData.district_id || !this.data.userInfo.realname || !this.data.userInfo.tel) {
+    } else if (!tieInfo.nickname || !tieInfo.tel || !tieInfo.address || !tieInfo.province_id || !tieInfo.city_id || !tieInfo.district_id) {
       return wx.showToast({
-        title: '请完善个人信息',
+        title: '请先完善个人信息',
         icon: 'none'
       })
     }
 
-    let location = { province_id, city_id, district_id, address: short_address + address }//发布时的address需要short_address+address拼接起来
-    let data = await postData('/api/5b2fb2aa38213.html', Object.assign(this.data.ajaxData, location))
-    wx.hideLoading()
+    let { province_id, city_id, district_id, address } = tieInfo
+    let location = { province_id, city_id, district_id, address }
 
-    if (data.status == 1) {
+    try {
+      await postData('/api/5b2fb2aa38213.html', Object.assign(this.data.ajaxData, location))
+      wx.hideLoading()
+      app.globalData.update = true
       wx.showToast({
         title: '编辑成功',
         icon: 'success',
@@ -138,9 +119,9 @@ Page({
       setTimeout(() => {
         wx.navigateBack({})
       }, 2000)
-    } else {
+    } catch(e) {
       wx.showToast({
-        title: data.info,
+        title: `保存失败 code:${e}`,
         icon: 'none',
         duration: 2000
       })
@@ -277,9 +258,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getAddress()
+    let change = app.globalData.changeAddress
+    if(!change) return
+    // 地址更新
+    let { province_id, city_id, district_id, short_address, address, nickname, tel } = app.globalData.userInfo
     this.setData({
-      userInfo: app.globalData.userInfo
+      tieInfo: { province_id, city_id, district_id, short_address, address, nickname, tel }
+    }, () => {
+      console.log(this.data.tieInfo)
+      app.globalData.changeAddress = false
     })
   },
 

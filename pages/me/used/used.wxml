@@ -1,29 +1,23 @@
 <!--pages/me/used/used.wxml-->
 <view class='star-wrap'>
   
-  <!-- <navigator url='/pages/store/store' class='flex-r-sb star-item'>
+  <navigator class='flex-r-sb star-item' url='/pages/store/store?id={{item.gid}}'
+    wx:for='{{list}}'
+    wx:key='{{index}}'
+  >
     <view class='flex-r-fs left'>
-      <image class='cover' src=''></image>
+      <image class='cover' src='{{imgUrl+item.artpic}}'></image>
       <view class='flex-c-sb text'>
-        <view class='t1'>重庆小面</view>
+        <view class='t1'>{{item.gname}}</view>
         <view class='flex-r-fs t2'>
-          <view class='flex-r-fs icon-wrap icon1'>
-            <image mode='aspectFill' src='../../../images/eye_gray.png'></image>
-            <text>123</text>    
-          </view>
-
-          <view class='flex-r-fs icon-wrap'>
-            <image mode='aspectFill' src='../../../images/star_gray.png'></image>
-            <text>123</text>    
-          </view>
+          <view>￥{{item.gprice + '/' + item.gspec}}</view>
         </view>
       </view>
     </view>
     
     <image class='to' src='../../../images/arrow_down.png'></image>
   </navigator>
-   -->
-  <view class='flex-c-c nodata' wx:if='{{list.length <= 0}}'>
+  <view class='flex-c-c nodata' wx:if='{{list.length <= 0 && !loading}}'>
     <image mode='aspectFit' src='../../../images/nodata.png'></image>
     <view style='margin-top: 30rpx;color: #acacac;'>清单是空的</view>
   <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;background:transparent;border:1rpx solid #fe4070;color:#fe4070;' bindtap='qugg'>去逛逛</view>

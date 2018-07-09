@@ -52,7 +52,7 @@ Page({
         title: '手机号不能为空',
         icon: 'none'
       })
-    } else if (!this.data.ajaxData.address) {
+    } else if (!this.data.ajaxData.short_address) {
       return wx.showToast({
         title: '详细地址不能为空',
         icon: 'none'
@@ -65,7 +65,7 @@ Page({
     }
     let thisData = this.data
     let address = thisData.province[thisData.i1].name + thisData.city[thisData.i2].name + thisData.county[thisData.i3].name
-    await postData('/api/5b2673319f025.html', { ...thisData.ajaxData, short_address: address })
+    await postData('/api/5b2673319f025.html', { ...thisData.ajaxData, address })
     wx.navigateBack({
       delta: 1
     })

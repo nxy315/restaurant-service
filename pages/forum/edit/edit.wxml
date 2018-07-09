@@ -32,18 +32,15 @@
 </view> 
 
 <view class='flex-r-sb address' bindtap='editInfo'>
-  <view class='flex-r-fs' wx:if='{{userInfo.realname && userInfo.tel && ajaxData.address}}'>
+  <view class='flex-r-fs'>
     <image class='arrow' src='../../../images/location.png'></image>
     <view class='flex-c-c address-info'>
       <view class='flex-r-fs address-title'>
-        <view class='name'>{{userInfo.realname}}</view>
-        <view class='tel'>{{userInfo.tel}}</view>
+        <view class='name'>{{tieInfo.nickname ? tieInfo.nickname : '姓名（无）'}}</view>
+        <view class='tel'>{{tieInfo.tel ? tieInfo.tel : '电话（无）'}}</view>
       </view>
-      <view class='adres'>{{ajaxData.address}}</view>
+      <view class='adres'>{{(tieInfo.address ? tieInfo.address : '省市区（无）') + (tieInfo.short_address ? tieInfo.short_address : '地址（无）')}}</view>
     </view>
-  </view>
-  <view class="flex-r-fs" wx:if='{{!userInfo.realname || !userInfo.tel || !ajaxData.address}}'>
-    个人信息不完整
   </view>
   
   <image class='arrow' src='../../../images/arrow_down.png'></image>

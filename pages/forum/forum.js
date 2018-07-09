@@ -43,6 +43,16 @@ Page({
     areaname: '',
   },
 
+  /**
+   * 打电话
+   */
+  showAction(e) {
+    let tel = e.currentTarget.dataset.tel
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
+  },
+
   locaiton() {
     wx.navigateTo({
       url: '/pages/location/location',
@@ -106,6 +116,7 @@ Page({
       district_id: this.data.district_id,
     })
     app.globalData.changeArea = false
+    app.globalData.update = false
     
     let end
     data.quan_list.length < this.data.pagenum ? end = true : end = false
@@ -245,6 +256,7 @@ Page({
    */
   onShow: function () {
     let change = app.globalData.changeArea
+    let update = app.globalData.update
     if(change) {
       this.setData({
         province_id: app.globalData.province,
@@ -255,6 +267,7 @@ Page({
         this.getList()
       })
     }
+    if(update) this.getList()
   },
 
   /**

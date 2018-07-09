@@ -15,6 +15,17 @@ Page({
     info: null
   },
 
+  
+  /**
+   * 打电话
+   */
+  showAction(e) {
+    let tel = e.currentTarget.dataset.tel
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
+  },
+
   /**
    * 获取圈内容
    * @method: GET 

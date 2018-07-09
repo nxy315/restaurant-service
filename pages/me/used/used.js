@@ -1,5 +1,5 @@
 // pages/me/used/used.js
-
+const app = getApp();
 import { getData, postData } from '../../../utils/ajax'
 import { wxSetData } from '../../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../../libs/runtime')
@@ -9,7 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    imgUrl: app.globalData.imgUrl,
+    list: [],
+    loading: true,
   },
 
   qugg() {
@@ -28,8 +30,9 @@ Page({
    * @header[user-token]        验签
    */
   async getUsedList() {
+    await wxSetData(this, {loading: true})
     let data = await postData('/api/5b30b4b3b7c8d.html', {})
-    console.log(data)
+    await wxSetData(this, {list: data.qingdan_list, loading: false})
   },
 
   /**
@@ -37,6 +40,7 @@ Page({
    */
   onLoad: function (options) {
     this.getUsedList()
+    getData('/api/5b430946d557f.html', {})
   },
 
   /**

@@ -207,19 +207,15 @@ Page({
    */
   async delThis(e) {
     let data = e.currentTarget.dataset
-    let type = data.type,
-      i = data.index,
-      gid = parseInt(data.gid),
-      pid = parseInt(data.pid),
-      price = parseFloat(data.price),
-      spec = data.spec,
-      gname = data.gname,
+    let i = data.index,
+      nums = parseInt(data.nums),
+      cid = parseInt(data.cartid),
       list = [...this.data.cartList]
     try{
       wx.showLoading({
         title: ''
       })
-      let data = await getData('/api/5b29af242231d.html', {cartid: gid})
+      let data = await getData('/api/5b29af242231d.html', {cartid: cid})
       wx.hideLoading()
 
       list.splice(i, 1)
@@ -227,6 +223,11 @@ Page({
       wx.showToast({
         title: '删除成功',
         icon: 'none'
+      })
+      await wxSetData(this, {allCount: parseInt(this.data.allCount) - nums, noData: (parseInt(this.data.allCount) - nums) <= 0 ? true : false})
+      wx.setTabBarBadge({
+        index: 3,
+        text: `${this.data.allCount}`
       })
       this.calc()
     } catch(e) {

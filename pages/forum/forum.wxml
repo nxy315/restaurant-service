@@ -57,9 +57,12 @@
     </view>
 
     <view class='posts-content'>
-      <view class='flex-r-fs name-wrap'>
-        <view class='name'>{{item.nickname}}</view>
-        <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
+      <view class='flex-r-sb name-wrap'>
+        <view class='flex-r-fs'>
+          <view class='name'>{{item.nickname}}</view>
+          <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
+        </view>
+        <image style='width: 40rpx; height: 40rpx;' src='../../images/phone.png' data-tel='{{item.tel}}' catchtap='showAction'></image>
       </view>
 
       <view class='article'>
@@ -69,6 +72,7 @@
       <view class='imgs-wrap'>
         <image
           mode='aspectFill'
+          wx:if='{{idx <= 2}}'
           wx:for='{{item.quan_image_list}}'
           wx:key='{{idx}}'
           wx:for-item='itm'
