@@ -122,6 +122,12 @@ Page({
     data.quan_list.length < this.data.pagenum ? end = true : end = false
     let list = [...this.data.list]
 
+    if (data.quan_list && data.quan_list.length > 0) {
+      for (let i = 0; i < data.quan_list.length; i++) {
+        data.quan_list[i].fold = true
+      }
+    }
+
     data = this.data.page == 1 ? data.quan_list : list.concat(data.quan_list)
 
     this.setData({
@@ -133,6 +139,17 @@ Page({
     wx.hideNavigationBarLoading()
   },
 
+  /**
+   * 展开、收起
+   */
+  async foldToggle(e) {
+    let dataset = e.currentTarget.dataset
+    let fold = dataset.fold,
+        index = dataset.index,
+        list = [...this.data.list]
+    list[index].fold = !fold
+    await wxSetData(this, {list})
+  },
 
   async pullFresh() {
     if (this.data.loading) return

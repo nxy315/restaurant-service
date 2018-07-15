@@ -5,6 +5,7 @@ import { wxSetData, wxShowLoading } from '../../utils/wxApi.Pkg'
 var regeneratorRuntime = require('../../libs/runtime')
 var bmap = require('../../libs/bmap-wx/bmap-wx.js')
 var wxMarkerData = []
+
 Page({
 
   /**
@@ -13,85 +14,73 @@ Page({
   data: {
     ak: 'SFwtGeUpn30BF6a0ETfNOk8QGGgD4ISG',
     address: '',
-    province: null,
-    province_id: null,
-    i1: 0,
-    city: null,
-    city_id: null,
-    i2: 0,
-    county: null,
-    district_id: null,
-    i3: 0,
+
+    address: '',
+    objectMultiArray: [],
+    multiIndex: [0, 0, 0]
   },
 
-  /**
-     * 获取省
-     * @method: GET
-     * @url: /api/5b3ec0a8d89f5.html
-     *
-     * @param pid:Int                    城市ID pid =0 获取所有的省份 pid 传递省份id 例如1046 获取安徽省下的城市 pid 传递城市id 例如1047 获取合肥市下面的区
-     * @header[version]                  版本号
-     * @header[access-token]             验签
-     * @header[user-token]               验签
-     */
-  async getProvince() {
-    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: 0 })
-    let provinceId = data1.area_list[0].id
-    await wxSetData(this, { province: data1.area_list,province_id: provinceId })
-
-    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: provinceId })
-    let cityId = data2.area_list[0].id
-    await wxSetData(this, { city: data2.area_list, city_id: cityId })
-
-    let data3 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })
-    await wxSetData(this, { county: data3.area_list, district_id: data3.area_list[0].id })
+  bindMultiPickerChange(e) {
+    console.log(e)
   },
-
   /**
-   * 选择省
-   * 
-   * 选择省 -> 获取市数据，市索引、区索引变为0、市id、区id、变为对应索引的id
+   * 选择每列的时候
    */
-  async chooseProvince(e) {
-    let id = this.data.province[e.detail.value].id
+  bindMultiPickerColumnChange(e) {
+    let thisData = this.data
+    let appData = app.globalData
+    let province_range = appData.province_range
+    let city_range = appData.city_range
+    let district_range = appData.district_range
+    let i = e.detail.value
+    let data = {
+      objectMultiArray: this.data.objectMultiArray,
+      multiIndex: this.data.multiIndex,
+      address: this.data.address
+    }
 
-    await wxSetData(this, { province_id: id, i1: e.detail.value, i2: 0, i3: 0 })
-    let data1 = await getData('/api/5b3ec0a8d89f5.html', { pid: id })
-    let cityId = data1.area_list[0].id
-    await wxSetData(this, { city_id: cityId , city: data1.area_list })
-
-    let data2 = await getData('/api/5b3ec0a8d89f5.html', { pid: cityId })
-    let countyId = data2.area_list[0].id
-    await wxSetData(this, { district_id: countyId, county: data2.area_list })
-  },
-
-  /**
-   * 选择市
-   */
-  async chooseCity(e) {
-    let id = this.data.city[e.detail.value].id
-    await wxSetData(this, { city_id: id, i2: e.detail.value, i3: 0 })
-    // 通过选择的市id获取区列表
-    let data = await getData('/api/5b3ec0a8d89f5.html', { pid: id })
-    await wxSetData(this, { district_id: data.area_list[0].id, county: data.area_list })
-  },
-
-  /**
-   * 选择区
-   */
-  async chooseCounty(e) {
-    let id = this.data.county[e.detail.value].id
-    await wxSetData(this, { district_id: id , i3: e.detail.value })
+    switch (e.detail.column) {
+      case 0:
+        let range = province_range[i]
+        data.objectMultiArray[1] = city_range[range.id]
+        data.objectMultiArray[2] = district_range[city_range[range.id][0].id]
+        data.multiIndex[0] = i;
+        data.multiIndex[1] = 0;
+        data.multiIndex[2] = 0;
+        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id].name
+        break
+      case 1:
+        let range2 = data.objectMultiArray[1][i]
+        data.objectMultiArray[2] = district_range[range2.id]
+        data.multiIndex[1] = i;
+        data.multiIndex[2] = 0;
+        data.address = province_range[data.multiIndex[0]].name + range2.name + district_range[range2.id][0].name
+        break
+      case 2:
+        let range3 = data.objectMultiArray[2][i]
+        data.multiIndex[2] = i;
+        data.address = province_range[data.multiIndex[0]].name + data.objectMultiArray[1][data.multiIndex[1]].name + data.objectMultiArray[2][i].name
+        break
+    }
+    this.setData(data)
   },
 
   /**
    * 确定
    */
   async chooseLocation() {
-    app.globalData.province = this.data.province_id
-    app.globalData.city = this.data.city_id
-    app.globalData.area = this.data.district_id
-    app.globalData.areaname = this.data.county[this.data.i3].shortname
+    let thisData = this.data
+    let objectMultiArray = thisData.objectMultiArray
+    let multiIndex = thisData.multiIndex
+    let province_id, city_id, district_id;
+    province_id = objectMultiArray[0][multiIndex[0]].id
+    city_id = objectMultiArray[1][multiIndex[1]].id
+    district_id = objectMultiArray[2][multiIndex[2]].id
+
+    app.globalData.province = province_id
+    app.globalData.city = province_id
+    app.globalData.area = district_id
+    app.globalData.areaname = objectMultiArray[2][multiIndex[2]].name
     app.globalData.changeArea = true
 
     wx.navigateBack({
@@ -138,7 +127,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getProvince()
+    let province_range = app.globalData.province_range
+    let city_range = app.globalData.city_range
+    let district_range = app.globalData.district_range
+    let city = [], district = [], multiIndex = [0, 0, 0], address = ''
+
+    city = city_range[province_range[0].id]
+
+    district = district_range[city[0].id]
+    address = province_range[0].name + city[0].name + district[0].name
+    this.setData({
+      address,
+      objectMultiArray: [[...province_range], [...city], [...district]],
+      multiIndex
+    })
 
     this.location()
   },

@@ -206,37 +206,46 @@ Page({
    * 删除购物车
    */
   async delThis(e) {
-    let data = e.currentTarget.dataset
-    let i = data.index,
-      nums = parseInt(data.nums),
-      cid = parseInt(data.cartid),
-      list = [...this.data.cartList]
-    try{
-      wx.showLoading({
-        title: ''
-      })
-      let data = await getData('/api/5b29af242231d.html', {cartid: cid})
-      wx.hideLoading()
+    wx.showModal({
+      title: '提示',
+      content: '您确定删除此收货地址？',
+      confirmColor: '#000000',
+      success: async res => {
+        if (res.cancel) return
 
-      list.splice(i, 1)
-      await wxSetData(this, {cartList: list})
-      wx.showToast({
-        title: '删除成功',
-        icon: 'none'
-      })
-      await wxSetData(this, {allCount: parseInt(this.data.allCount) - nums, noData: (parseInt(this.data.allCount) - nums) <= 0 ? true : false})
-      wx.setTabBarBadge({
-        index: 3,
-        text: `${this.data.allCount}`
-      })
-      this.calc()
-    } catch(e) {
-      wx.hideLoading()
-      return wx.showToast({
-        title: '删除失败',
-        icon: 'none'
-      })
-    }
+        let data = e.currentTarget.dataset
+        let i = data.index,
+          nums = parseInt(data.nums),
+          cid = parseInt(data.cartid),
+          list = [...this.data.cartList]
+        try {
+          wx.showLoading({
+            title: ''
+          })
+          let data = await getData('/api/5b29af242231d.html', { cartid: cid })
+          wx.hideLoading()
+
+          list.splice(i, 1)
+          await wxSetData(this, { cartList: list })
+          wx.showToast({
+            title: '删除成功',
+            icon: 'none'
+          })
+          await wxSetData(this, { allCount: parseInt(this.data.allCount) - nums, noData: (parseInt(this.data.allCount) - nums) <= 0 ? true : false })
+          wx.setTabBarBadge({
+            index: 3,
+            text: `${this.data.allCount}`
+          })
+          this.calc()
+        } catch (e) {
+          wx.hideLoading()
+          return wx.showToast({
+            title: '删除失败',
+            icon: 'none'
+          })
+        }
+      }
+    })
   },
 
   judgeFn(check) {

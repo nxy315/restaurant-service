@@ -18,7 +18,7 @@
     </view> 
 
 
-    <view wx:if='{{(type == 1 && images.length < 9)||(type == 2 && images.length < 1)}}' class='flex-c-c camera-wrap' bindtap='chooseImage'>
+    <view class='flex-c-c camera-wrap' bindtap='chooseImage'>
       <image class='camera-icon' src='../../../images/camera.png'></image>
       <view>上传图片</view>
     </view>
@@ -44,7 +44,7 @@
     </view>
   </view>
   <view class="flex-r-fs" wx:if='{{!userInfo.realname || !userInfo.tel || !userInfo.short_address || !userInfo.address}}'>
-    个人信息不完整
+    请填写您的联系信息
   </view>
   
   <image class='arrow' src='../../../images/arrow_down.png'></image>

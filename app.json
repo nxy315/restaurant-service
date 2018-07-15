@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/detail/detail",
     "pages/forum/forum",
     "pages/location/location",
     "pages/classify/classify",
@@ -22,7 +23,6 @@
     "pages/store/store",
     "pages/pay/pay",
     "pages/home/list/list",
-    "pages/detail/detail",
     "pages/me/used/used",
     "pages/seller/seller",
     "pages/forum/city/city",

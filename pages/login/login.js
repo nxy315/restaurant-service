@@ -24,6 +24,7 @@ Page({
   async getUserData() {
     try {
       let data = await getData('/api/5b260352d8f9e.html',{})
+      
       app.globalData.userInfo = data.info
       wx.switchTab({
         url: '/pages/home/home',

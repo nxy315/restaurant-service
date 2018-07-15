@@ -2,6 +2,7 @@
 const WxParse = require('../../utils/wxParse/wxParse.js')
 const app = getApp();
 import { getData, postData } from '../../utils/ajax'
+import { wxSetData } from '../../utils/wxApi.Pkg.js'
 var regeneratorRuntime = require('../../libs/runtime')
 
 Page({
@@ -14,6 +15,8 @@ Page({
     detail: {},
     brand: '',//产品标题
     count: '',
+    showModal: false,
+    specs: []
   },
 
   /**
@@ -33,7 +36,10 @@ Page({
     wx.setNavigationBarTitle({
       title: detail.name,
     })
-    this.setData({ detail })
+    for (let i = 0; i < detail.products_list.length; i++) {
+      detail.products_list[i].count = 0
+    }
+    this.setData({ detail, specs: detail.products_list })
   },
 
   /**
@@ -68,16 +74,82 @@ Page({
    * @header[user-token]              验签
    */
   async addCart(e) {
-    let { gid, pid, price, spec, gname } = e.currentTarget.dataset
-    let data = await postData('/api/5b29ad2a751fa.html', {
-      gid, pid, price, spec, nums: 1, gname
-    })
-    if(data.status == 1) {
-      console.log(this.data.count+1)
-      this.setData({
-        count: this.data.count+1
+    console.log(this.data.specs)
+    if (this.data.specs && this.data.specs.length > 1) {
+      await wxSetData(this, { showModal: !this.data.showModal })
+    } else {
+      let { gid, pid, price, spec, gname } = e.currentTarget.dataset
+      let data = await postData('/api/5b29ad2a751fa.html', {
+        gid, pid, price, spec, nums: 1, gname
+      })
+      if (data.status == 1) {
+        console.log(this.data.count + 1)
+        this.setData({
+          count: this.data.count + 1
+        })
+      }
+    }
+  },
+
+  /**
+   * 收起规格选择器
+   */
+  async hide() {
+    await wxSetData(this, {showModal: false})
+  },
+
+  /**
+   * 确认选择
+   */
+  async confirm() {
+    let specs = [...this.data.specs]
+    console.log(specs)
+    let gname = this.data.detail.name
+    let countc = 0
+    for(let i = 0; i < specs.length; i++) {
+      countc += specs[i].count
+      if (specs[i].count == 0) continue
+      await postData('/api/5b29ad2a751fa.html', {
+        gid: specs[i].goods_id,
+        pid: specs[i].id,
+        price: parseFloat(specs[i].sell_price),
+        spec: specs[i].spec_1,
+        nums: specs[i].count,
+        gname
       })
     }
+    await wxSetData(this, { count: this.data.count + countc })
+    this.hide()
+  },
+
+  /**
+   * 减少数量
+   */
+  async reduceCount(e) {
+    let index = e.currentTarget.dataset.index
+    let specs = [...this.data.specs]
+    if (specs[index].nums <= 0) return
+    specs[index].nums = parseInt(specs[index].nums) - 1
+    specs[index].count = specs[index].count - 1
+    await wxSetData(this, { specs })
+  },
+
+  /**
+   * 增加数量
+   */
+  async addCount(e) {
+    let index = e.currentTarget.dataset.index
+    let specs = [...this.data.specs]
+    if (specs[index].nums >= parseInt(specs[index].store_nums)) {
+      return wx.showToast({
+        title: '库存不足',
+        icon: 'none'
+      })
+    }
+
+    specs[index].nums = parseInt(specs[index].nums) + 1
+    specs[index].count = specs[index].count + 1
+    await wxSetData(this, { specs })
   },
 
   /**

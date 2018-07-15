@@ -76,7 +76,7 @@ Page({
 
   showAction: function () {
     wx.makePhoneCall({
-      phoneNumber: '13916344088'
+      phoneNumber: '18721823536'
     })
   },
 

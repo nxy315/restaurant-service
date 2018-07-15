@@ -12,7 +12,7 @@
   </view>
 
   <view class='info-wrap'>
-    <view class='info-title' style='padding: 24rpx;font-weight: bold;'>联系信息</view>
+    <view class='info-title' style='padding: 24rpx 40rpx;border-bottom: 1rpx solid #e4e4e4;'>联系信息</view>
     <view class='flex-r-sb form-item'>
       <text class='name'>姓名</text>
       <input placeholder='2-6个汉字或字母' value='{{ajaxData.realname}}' data-key='realname' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
@@ -28,14 +28,10 @@
     <view class='flex-r-sb form-item'>
       <text class='name'>选择地区</text>
       <view class='flex-r-fs'>
-        <picker bindchange='chooseProvince' value='{{i1}}' range-key='name' range='{{province}}'>
-          {{province[i1].name ? province[i1].name : '请选择省'}}一
-        </picker>
-        <picker bindchange='chooseCity' value='{{i2}}' range-key='name' range='{{city}}'>
-          {{city[i2].name ? city[i2].name : '请选择市'}}一
-        </picker>
-        <picker bindchange='chooseCounty' value='{{i3}}' range-key='name' range='{{county}}'>
-          {{county[i3].name ? county[i3].name : '请选择区'}}
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" range-key='name' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectMultiArray}}">
+          <view class="picker">
+            {{address}}
+          </view>
         </picker>
       </view>
     </view>
@@ -44,6 +40,7 @@
       <input placeholder='请输入您的经营所在地' value='{{ajaxData.short_address}}' data-key='short_address' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
     </view>
   </view>
-  <view class='button-primary' style='margin: 36rpx auto 0;width: 450rpx;' bindtap='saveInfo'>保存</view>
+  <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='saveInfo'>保存</view>
 </view>
+
 

@@ -158,33 +158,6 @@
               data-gname='{{item.name}}'
               bindtap='addCount'
             >+</view>
-            <!-- <image
-              class='count-btn'
-              src='../../images/reduce2.png'
-              data-type='2'
-              data-index='{{index}}'
-              data-i='{{i}}'
-              data-gid='{{size.goods_id}}'
-              data-pid='{{size.id}}'
-              data-price='{{size.sell_price}}'
-              data-spec='{{size.spec_1}}'
-              data-gname='{{item.name}}'
-              bindtap='reduceCount'
-            ></image>
-            <view class='count'>{{size.nums}}</view>
-            <image
-              class='count-btn'
-              src='../../images/add2.png'
-              data-type='2'
-              data-index='{{index}}'
-              data-i='{{i}}'
-              data-gid='{{size.goods_id}}'
-              data-pid='{{size.id}}'
-              data-price='{{size.sell_price}}'
-              data-spec='{{size.spec_1}}'
-              data-gname='{{item.name}}'
-              bindtap='addCount'
-            ></image> -->
           </view>
         </view>
       </view> 

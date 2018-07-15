@@ -1,4 +1,5 @@
 //app.js
+var Area = require('./utils/citys.js')
 App({
   onLaunch: function () {
 
@@ -41,6 +42,9 @@ App({
 
   
   globalData: {
+    province_range: Area.province,
+    city_range: Area.city,
+    district_range: Area.district,
     province: null,//餐饮圈选择完城市后需要
     city: null,//餐饮圈选择完城市后需要
     area: null,//餐饮圈选择完城市后需要

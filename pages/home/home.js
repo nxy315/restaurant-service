@@ -25,13 +25,13 @@ Page({
     //   [], [], []
     // ],//厂商列表
     list: [],//厂商列表
-    sort: ['', 'id-desc', 'hit-desc'],//厂商排序
+    sort: ['recommend-desc', 'id-desc', 'hit-desc'],//厂商排序
     page: 1,
     pagenum: 6,
     loadMore: true,
     end: false,
     types: [
-      { name: '全部' },
+      { name: '精选推荐' },
       { name: '最新入驻' },
       { name: '人气排名' },
     ],

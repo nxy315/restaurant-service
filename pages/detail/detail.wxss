@@ -88,12 +88,13 @@
 }
 .goods-footer .goods-btn.add-cart{
   background-color: #ffd6e4;
+  color: #fe4070;
 }
 .goods-footer .goods-btn.buy{
   background-color: #fe4070;
 }
 
-.count{
+.cart-count{
   position: absolute;
   padding: 0 8rpx;
   height: 30rpx;
@@ -107,4 +108,41 @@
 
 .introduce-wrap{
   padding-bottom: 100rpx;
+}
+
+/* 选择规格 */
+.header-btn{
+  padding: 0 24rpx;
+  height: 70rpx;
+  background-color: #fff;
+}
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+}
+.choose-size-modal{
+  position: fixed;
+  bottom: 98rpx;
+  left:0;
+  width: 100vw;
+  background-color: pink;
+  transition: 0.2s;
+  /* position: absolute; */
+}
+.choose-size-modal.show{
+  transform: translateY(0)
+}
+.choose-size-modal.hide{
+  transform: translateY(100%)
+}
+.size-item{
+  padding: 0 24rpx;
+  width: 702rpx;
+  height:  100rpx;
+  background-color: #f5f5f5;
+  border-top: 1rpx solid #eeeeee;
 }

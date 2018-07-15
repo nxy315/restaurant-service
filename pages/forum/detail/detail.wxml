@@ -6,12 +6,12 @@
     </view>
 
     <view class='flex-r-sb topic-info'>
-      <view class='flex-c-c'>
+      <view class='flex-c-c' style='align-items: flex-start;'>
         <view class='flex-r-fs topic-name'>
           <text>{{info.nickname}}</text>
-          <image mode='aspectFit' src='../../../images/verdor.png'></image>
+          <image wx:if='{{info.type == 2}}' mode='aspectFit' src='../../../images/verdor.png'></image>
         </view>
-        <view class='topic-des'>
+        <view class='topic-des' style='margin: 5rpx 0 5rpx;'>
           <view class='flex-r-fs address'>
             <!-- <image mode='aspectFill' src='../../../images/location.png'></image> -->
             <text>{{info.add_time}}</text>
@@ -43,6 +43,11 @@
     <view>赞 {{info.zan}}</view>
   </view>
 
+  <view class='flex-r-fs' style='margin-bottom: 30rpx; padding: 0 30rpx;'>
+    <image style='width: 32rpx;height:32rpx;' mode='aspectFill' src='../../../images/location.png'></image> 
+    <text style='color:#919191;font-size: 22rpx;'>{{info.address}}</text>
+  </view>
+
   <view class='block'></view>
 
   <!-- 评论 -->
@@ -69,11 +74,8 @@
         <view class='foot'>{{item.add_time}}</view>
       </view>
     </view>
-
   </view>
-
 </view>
-
 
 <!-- 评论输入框 -->
 <view class='flex-r-sb huifu-wrap'>

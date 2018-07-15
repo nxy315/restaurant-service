@@ -163,16 +163,29 @@ Page({
    * 选择图片 
    */
   chooseImage() {
-    wx.chooseImage({
-      count: this.data.type == 1 ? (9 - this.data.images.length) : 1,
-      sizeType: ['original'],
-      success: res => {
-        let tempFilePaths = res.tempFilePaths
-        for (let i = 0; i < tempFilePaths.length; i++) {
-          this.uploadFile(tempFilePaths[i])
+    // (type == 1 && images.length < 9) || (type == 2 && images.length < 1)
+    if ((this.data.type == 1 && this.data.images.length < 9) || (this.data.type == 2 && this.data.images.length < 1)) {
+      wx.chooseImage({
+        count: this.data.type == 1 ? (9 - this.data.images.length) : 1,
+        sizeType: ['original'],
+        success: res => {
+          let tempFilePaths = res.tempFilePaths
+          for (let i = 0; i < tempFilePaths.length; i++) {
+            this.uploadFile(tempFilePaths[i])
+          }
         }
-      }
-    })
+      })
+    } else if (this.data.type == 1 && this.data.images.length >= 9) {
+      wx.showToast({
+        title: '只能上传9张图片',
+        icon: 'none'
+      })
+    } else if (this.data.type == 2 && this.data.images.length >= 1) {
+      wx.showToast({
+        title: '只能上传1张图片',
+        icon: 'none'
+      })
+    }
   },
 
   /**

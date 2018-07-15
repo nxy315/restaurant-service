@@ -20,7 +20,7 @@ Page({
   // 信息报错
   callErr() {
     wx.makePhoneCall({
-      phoneNumber: '13916344088'
+      phoneNumber: '18721823536'
     })
   },
 
@@ -50,6 +50,15 @@ Page({
   showAction: function () {
     wx.makePhoneCall({
       phoneNumber: this.data.num
+    })
+  },
+
+  /**
+   * 流量入口
+   */
+  entrance() {
+    wx.redirectTo({
+      url: '/pages/store/store',
     })
   },
 

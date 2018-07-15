@@ -58,15 +58,25 @@
 
     <view class='posts-content'>
       <view class='flex-r-sb name-wrap'>
-        <view class='flex-r-fs'>
-          <view class='name'>{{item.nickname}}</view>
-          <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
+        <view class='flex-c-fs name-time'>
+          <view class='flex-r-fs'>
+            <view class='name' style='font-weight: bold;'>{{item.nickname}}</view>
+            <image wx:if='{{item.type == 2}}' mode='aspectFill' class='type' src='../../images/verdor.png'></image>
+          </view>
+          <view class='time' style='margin-top: 5rpx;font-size: 22rpx;color: #919191;'>{{item.add_time}}</view>
         </view>
         <image style='width: 40rpx; height: 40rpx;' src='../../images/phone.png' data-tel='{{item.tel}}' catchtap='showAction'></image>
       </view>
 
-      <view class='article'>
-        {{item.content}}
+      <view class='article' style='max-height: {{item.content.length >= 66 ? item.fold ? "108rpx" : "auto" : "auto" }}'>
+        <view class='article-content'>
+          {{item.content}}
+        </view>
+        <view class='fold'
+          wx:if='{{item.content.length > 66}}'
+          data-fold='{{item.fold}}'
+          data-index='{{index}}'
+          catchtap='foldToggle'>{{item.fold ? '展开' : '收起'}}</view>
       </view>
 
       <view class='imgs-wrap'>

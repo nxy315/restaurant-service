@@ -1,7 +1,7 @@
 <!--pages/me/used/used.wxml-->
 <view class='star-wrap'>
   
-  <navigator class='flex-r-sb star-item' url='/pages/store/store?id={{item.gid}}'
+  <navigator class='flex-r-sb star-item' url='/pages/detail/detail?id={{item.gid}}'
     wx:for='{{list}}'
     wx:key='{{index}}'
   >
