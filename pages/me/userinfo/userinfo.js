@@ -57,7 +57,7 @@ Page({
         data.multiIndex[0] = i;
         data.multiIndex[1] = 0;
         data.multiIndex[2] = 0;
-        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id].name
+        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id][0].name
         break
       case 1:
         let range2 = data.objectMultiArray[1][i]
@@ -93,6 +93,7 @@ Page({
   chooseAvatar() {
     wx.chooseImage({
       count: 1,
+      sizeType: ['compressed'],
       success: res => {
         let tempFilePaths = res.tempFilePaths
         let token = wx.getStorageSync('token')
@@ -239,8 +240,8 @@ Page({
     let district_range = app.globalData.district_range
     let city = [], district = [], multiIndex = [0, 0, 0]
 
-    city = city_range[province_id]
-    district = district_range[city_id]
+    city = city_range[province_id] ? city_range[province_id] : city_range[province_range[0].id]
+    district = district_range[city_id] ? district_range[city_id] : district_range[city[0].id]
 
     for (let i = 0; i < province_range.length; i++) {
       if (province_id == province_range[i].id) {

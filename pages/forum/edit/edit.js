@@ -151,7 +151,7 @@ Page({
   chooseImage() {
     wx.chooseImage({
       count: this.data.ajaxData.type == 1 ? (9 - this.data.images.length) : 1,
-      sizeType: ['original'],
+      sizeType: ['compressed'],
       success: res => {
         let tempFilePaths = res.tempFilePaths
         for (let i = 0; i < tempFilePaths.length; i++) {

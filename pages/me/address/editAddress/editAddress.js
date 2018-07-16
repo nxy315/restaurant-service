@@ -55,7 +55,7 @@ Page({
         data.multiIndex[0] = i;
         data.multiIndex[1] = 0;
         data.multiIndex[2] = 0;
-        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id].name
+        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id][0].name
         break
       case 1:
         let range2 = data.objectMultiArray[1][i]

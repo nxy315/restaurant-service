@@ -15,7 +15,7 @@ Page({
     ak: 'SFwtGeUpn30BF6a0ETfNOk8QGGgD4ISG',
     address: '',
 
-    address: '',
+    address2: '',
     objectMultiArray: [],
     multiIndex: [0, 0, 0]
   },
@@ -36,7 +36,7 @@ Page({
     let data = {
       objectMultiArray: this.data.objectMultiArray,
       multiIndex: this.data.multiIndex,
-      address: this.data.address
+      address2: this.data.address2
     }
 
     switch (e.detail.column) {
@@ -47,19 +47,19 @@ Page({
         data.multiIndex[0] = i;
         data.multiIndex[1] = 0;
         data.multiIndex[2] = 0;
-        data.address = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id].name
+        data.address2 = range.name + city_range[range.id][0].name + district_range[city_range[range.id][0].id][0].name
         break
       case 1:
         let range2 = data.objectMultiArray[1][i]
         data.objectMultiArray[2] = district_range[range2.id]
         data.multiIndex[1] = i;
         data.multiIndex[2] = 0;
-        data.address = province_range[data.multiIndex[0]].name + range2.name + district_range[range2.id][0].name
+        data.address2 = province_range[data.multiIndex[0]].name + range2.name + district_range[range2.id][0].name
         break
       case 2:
         let range3 = data.objectMultiArray[2][i]
         data.multiIndex[2] = i;
-        data.address = province_range[data.multiIndex[0]].name + data.objectMultiArray[1][data.multiIndex[1]].name + data.objectMultiArray[2][i].name
+        data.address2 = province_range[data.multiIndex[0]].name + data.objectMultiArray[1][data.multiIndex[1]].name + data.objectMultiArray[2][i].name
         break
     }
     this.setData(data)
@@ -130,14 +130,14 @@ Page({
     let province_range = app.globalData.province_range
     let city_range = app.globalData.city_range
     let district_range = app.globalData.district_range
-    let city = [], district = [], multiIndex = [0, 0, 0], address = ''
+    let city = [], district = [], multiIndex = [0, 0, 0], address2 = ''
 
     city = city_range[province_range[0].id]
 
     district = district_range[city[0].id]
-    address = province_range[0].name + city[0].name + district[0].name
+    address2 = province_range[0].name + city[0].name + district[0].name
     this.setData({
-      address,
+      address2,
       objectMultiArray: [[...province_range], [...city], [...district]],
       multiIndex
     })

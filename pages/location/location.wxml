@@ -14,7 +14,7 @@
     <view class='flex-r-fs'>
       <picker mode="multiSelector" bindchange="bindMultiPickerChange" range-key='name' bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{objectMultiArray}}">
         <view class="picker">
-          {{address}}
+          {{address2}}
         </view>
       </picker>
     </view>

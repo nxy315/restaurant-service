@@ -424,6 +424,7 @@ button{
 .entrance .logo{
   width: 80rpx;
   height: 80rpx;
+  border-radius: 8rpx;
 }
 .entrance .desc{
   flex: 1;
