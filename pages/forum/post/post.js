@@ -179,7 +179,7 @@ Page({
     if ((this.data.type == 1 && this.data.images.length < 9) || (this.data.type == 2 && this.data.images.length < 1)) {
       wx.chooseImage({
         count: this.data.type == 1 ? (9 - this.data.images.length) : 1,
-        sizeType: ['original'],
+        sizeType: ['compressed'],
         success: res => {
           let tempFilePaths = res.tempFilePaths
           for (let i = 0; i < tempFilePaths.length; i++) {

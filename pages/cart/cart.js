@@ -208,7 +208,7 @@ Page({
   async delThis(e) {
     wx.showModal({
       title: '提示',
-      content: '您确定删除此收货地址？',
+      content: '您确定删除此商品？',
       confirmColor: '#000000',
       success: async res => {
         if (res.cancel) return

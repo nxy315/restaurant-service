@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: '',
     imgUrl: app.globalData.imgUrl,
     list: [],//图片列表
     name: '',//店铺名字
@@ -58,7 +59,7 @@ Page({
    */
   entrance() {
     wx.redirectTo({
-      url: '/pages/store/store',
+      url: '/pages/store/store?id=512',
     })
   },
 
@@ -67,6 +68,9 @@ Page({
    */
   onLoad: function (options) {
     let id = options.id
+    this.setData({
+      id
+    })
     this.getDetail(id)
   },
 
