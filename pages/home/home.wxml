@@ -14,7 +14,14 @@
   <!-- 搜索 -->
   <view class='flex-r-c search-wrap' style='background-image: url("{{imgUrl+banner}}")'>
     <view class='flex-r-sb search-box'>
-      <input placeholder='请输入您要查找产品或品牌' bindinput='handelInput' value='{{keyword}}'></input>
+      <input
+        type='text'
+        confirm-type='search'
+        placeholder='请输入您要查找产品或品牌'
+        bindinput='handelInput'
+        value='{{keyword}}'
+        bindconfirm='toList'
+      ></input>
       <view class='flex-r-c search-btn' bindtap='toList'>
         <image src='../../images/search_w.png'></image>
       </view>

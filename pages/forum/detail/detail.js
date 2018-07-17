@@ -39,7 +39,15 @@ Page({
   async getInfo() {
     let data = await getData('/api/5b2fadb989307.html', {id: this.data.id})
     await wxSetData(this, { info: data.info })
-    console.log(data)
+    if(data.info.type == 1) {
+      wx.setNavigationBarTitle({
+        title: '需求详情',
+      })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '产品详情',
+      })
+    }
   },
 
   /**

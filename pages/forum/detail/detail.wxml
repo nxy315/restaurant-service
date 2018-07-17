@@ -38,14 +38,14 @@
     ></image>
   </view>
 
-  <view class='flex-r-sb' style='margin-bottom: 30rpx; padding: 0 30rpx;'>
-    <view>评论（{{info.quan_huifu_list.length}}条）</view>
-    <view>赞 {{info.zan}}</view>
-  </view>
-
   <view class='flex-r-fs' style='margin-bottom: 30rpx; padding: 0 30rpx;'>
     <image style='width: 32rpx;height:32rpx;' mode='aspectFill' src='../../../images/location.png'></image> 
     <text style='color:#919191;font-size: 22rpx;'>{{info.address}}</text>
+  </view>
+
+  <view class='flex-r-sb' style='margin-bottom: 30rpx; padding: 0 30rpx;'>
+    <view>评论（{{info.quan_huifu_list.length}}条）</view>
+    <view>赞 {{info.zan}}</view>
   </view>
 
   <view class='block'></view>

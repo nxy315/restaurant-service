@@ -390,10 +390,11 @@ button{
   margin-bottom: 2rpx;
   width: 160rpx;
   height: 52rpx;
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #fe4070;
   border: 1rpx solid #fe4070;
   border-radius: 8rpx;
+  font-weight: bold;
 }
 .count-wrap .reduce{
   width: 51rpx;

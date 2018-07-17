@@ -135,7 +135,7 @@
 
 <view class='flex-c-fs nodata' wx:if='{{list.length <= 0 && !loading}}'>
   <image mode='aspectFit' src='../../images/nodata.png'></image>
-  <view style='margin-top: 30rpx;color: #acacac;'>暂无数据</view>
+  <view style='margin-top: 30rpx;color: #acacac;'>此区域还没有相关信息哦~</view>
 </view>
 
 <view class='to-top' wx:if='{{toTop}}' bindtap='goTop'>

@@ -57,9 +57,6 @@ Page({
         id = dataset.id
     let list = [...this.data.list]
 
-    wx.showLoading({
-      title: '',
-    })
     let data = await collectStore(id)
     if (list[index].is_collection == 1) {
       list[index].is_collection = 0
@@ -76,7 +73,6 @@ Page({
         title: '收藏成功',
       })
     }
-    wx.hideLoading()
   },
 
   /**

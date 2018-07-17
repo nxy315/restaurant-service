@@ -74,7 +74,7 @@ let pay = async (oid) => {
     complete: () => {
       setTimeout(() => {
         wx.switchTab({
-          url: '/pages/me/me',
+          url: '/pages/me/orders/orders?index=0',
         })
       }, 2000)
     }

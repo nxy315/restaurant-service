@@ -78,14 +78,26 @@ Page({
 
     let { province_id, city_id, district_id, address, short_address } = app.globalData.userInfo
 
-    if (!this.data.ajaxData.content || this.data.images.length < 1) {
+    if (!this.data.ajaxData.content) {
+      if(this.data.ajaxData.type == 1) {
+        return wx.showToast({
+          title: '请输入您要寻找的商品或服务等的具体描述',
+          icon: 'none'
+        })
+      } else {
+        return wx.showToast({
+          title: '请输入您要发布的商品或服务等的具体描述',
+          icon: 'none'
+        })
+      }
+    } else if (this.data.ajaxData.type != 1 && this.data.images.length < 1) {
       return wx.showToast({
-        title: '内容不能为空',
+        title: '产品图片不能为空',
         icon: 'none'
       })
     } else if (!province_id || !city_id || !district_id || !address) {
       return wx.showToast({
-        title: '请完善个人信息',
+        title: '请填写您的联系信息',
         icon: 'none'
       })
     }

@@ -32,6 +32,6 @@
 </view>
 
 <view class='flex-r-c add-address-wrap'>
-  <view class='button-primary' style='width: 400rpx;' bindtap='editAddress'>新增地址</view>
+  <view class='button-primary' style='width: 400rpx;' bindtap='addAddress'>新增地址</view>
 </view>
 

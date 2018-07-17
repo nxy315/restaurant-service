@@ -18,7 +18,7 @@
     </view> 
 
 
-    <view class='flex-c-c camera-wrap' bindtap='chooseImage'>
+    <view class='flex-c-c camera-wrap' wx:if='{{(type == 1 && images.length < 9) || type == 2 && images.length < 1}}' bindtap='chooseImage'>
       <image class='camera-icon' src='../../../images/camera.png'></image>
       <view>上传图片</view>
     </view>
@@ -37,10 +37,10 @@
     <image class='arrow' src='../../../images/location.png'></image>
     <view class='flex-c-c address-info'>
       <view class='flex-r-fs address-title'>
-        <view class='name'>{{userInfo.realname}}</view>
-        <view class='tel'>{{userInfo.tel}}</view>
+        <view class='name'>{{userInfo.realname ? userInfo.realname : '空'}}</view>
+        <view class='tel'>{{userInfo.tel ? userInfo.tel : '空'}}</view>
       </view>
-      <view class='adres'>{{(userInfo.address ? userInfo.address : '空') + (userInfo.short_address ? userInfo.short_address : '') }}</view>
+      <view class='adres'>{{userInfo.address ? userInfo.address : '空'}}</view>
     </view>
   </view>
   <view class="flex-r-fs" wx:if='{{!userInfo.realname || !userInfo.tel || !userInfo.short_address || !userInfo.address}}'>
