@@ -20,5 +20,17 @@
     </view>
   </view>
 
+  <view class='location-wrap'>
+    <view class='flex-r-sb location-item'
+      wx:for='{{list}}'
+      wx:key='{{index}}'
+      data-index='{{index}}'
+      bindtap='checkoutLocation'
+    >
+      <view class='location-name'>{{item.name}}</view>
+      <image wx:if='{{currentIndex == index}}' style='width: 56rpx;height: 50rpx;' src='../../images/checkout.png'></image>
+    </view>
+  </view>
+
   <view class='button-primary' style='margin: 36rpx auto 0;width: 450rpx;' bindtap='chooseLocation'>确定</view>
 </view>

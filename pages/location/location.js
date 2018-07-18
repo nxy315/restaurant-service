@@ -17,7 +17,34 @@ Page({
 
     address2: '',
     objectMultiArray: [],
-    multiIndex: [0, 0, 0]
+    multiIndex: [0, 0, 0],
+    list: [
+      {
+        name: '全国',
+        id: ''
+      },
+      {
+        name: '上海',
+        id: ''
+      },
+      {
+        name: '上海市',
+        id: ''
+      },
+      {
+        name: '松江',
+        id: ''
+      },
+    ],
+    currentIndex: 0
+  },
+
+  checkoutLocation(e) {
+    let index = e.currentTarget.dataset.index
+
+    this.setData({
+      currentIndex: index
+    })
   },
 
   bindMultiPickerChange(e) {

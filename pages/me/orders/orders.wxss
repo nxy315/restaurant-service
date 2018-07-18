@@ -76,7 +76,8 @@
 .pay{
   margin-left: 15rpx;
   padding: 0 20rpx;
-  height: 40rpx;
+  height: 52rpx;
+  line-height: 52rpx;
   border: 1rpx solid #fe4070;
   text-align: center;
   border-radius: 8rpx;
@@ -86,6 +87,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 .cancel{
   padding: 0 25rpx;

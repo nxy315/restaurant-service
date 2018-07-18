@@ -27,6 +27,16 @@ Page({
   },
 
   /**
+   * 跳转详情页
+   */
+  checkDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/forum/detail/detail?id=${id}`,
+    })
+  },
+
+  /**
    * 获取发布列表
    * @method: GET 
    * @url: /api/5b2fa57747221.html

@@ -45,7 +45,13 @@
 
   <view class='flex-r-sb' style='margin-bottom: 30rpx; padding: 0 30rpx;'>
     <view>评论（{{info.quan_huifu_list.length}}条）</view>
-    <view>赞 {{info.zan}}</view>
+    <view class='flex-r-fs'
+      data-id='{{info.id}}'
+      catchtap='like'
+    >
+      <image style='margin-right: 10rpx;width: 32rpx;height: 32rpx;' src='../../../images/like.png'></image>
+      <text>{{info.zan}}</text>
+    </view>
   </view>
 
   <view class='block'></view>
@@ -79,6 +85,7 @@
 
 <!-- 评论输入框 -->
 <view class='flex-r-sb huifu-wrap'>
+  <image class='huifu-icon' src='../../../images/huifu_icon.png'></image>
   <input value='{{content}}' bindinput='handleInput' cursor-spacing='20' placeholder='请输入您的评论'></input>
   <view class='flex-r-c send' bindtap='sendHuifu'>发送</view>
 </view>

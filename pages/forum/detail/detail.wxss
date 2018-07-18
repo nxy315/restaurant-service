@@ -136,11 +136,16 @@ page{
   position: fixed;
   bottom: 0;
   left: 0;
-  padding: 0 2vw;
-  width: 96vw;
+  padding: 0 30rpx;
+  width: 690rpx;
   height: 88rpx;
   background-color: #fff;
   border-top: 1rpx solid #eaeaea;
+}
+.huifu-icon{
+  margin-right: 10rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 .huifu-wrap input{
   flex: 1;

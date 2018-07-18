@@ -15,13 +15,16 @@ page{
 }
 .camera-wrap{
   position: relative;
-  margin-top: 40rpx;
+  margin-top: 24rpx;
   margin-right: 24rpx;
-  width: 130rpx;
-  height: 130rpx;
+  width: 214rpx;
+  height: 214rpx;
   border-radius: 8rpx;
   border: 1rpx solid #eeeaeb;
   background-color: #fbfbfb;
+}
+.camera-wrap:nth-child(3n) {
+  margin-right: 0;
 }
 .img-wrap{
   margin-bottom: 5rpx;

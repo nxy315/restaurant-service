@@ -10,8 +10,8 @@
   height: 100%;
 }
 .address-item .address-check image{
-  width: 30rpx;
-  height: 30rpx;
+  width: 45rpx;
+  height: 45rpx;
 }
 .address-item .address-info{
   flex: 1;

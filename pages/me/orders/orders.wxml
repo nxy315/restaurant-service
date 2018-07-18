@@ -61,8 +61,8 @@
       <view class='flex-r-fe order-money'>共 {{item.details_data.length}} 件 合计 <text>￥{{item.total}}（含运费）</text></view>
 
       <view class='flex-r-fe btn-wrap' wx:if='{{item.ostate == 1}}'>
+        <view class='pay' style='color: #4b4b4b; border-color: #4b4b4b;' wx:if='{{item.ostate == 1}}' data-id='{{item.oid}}' bindtap='cancle'>取消订单</view>
         <view class='pay' wx:if='{{item.ostate == 1}}' data-id='{{item.oid}}' bindtap='payFor'>立即支付</view>
-        <view class='pay' wx:if='{{item.ostate == 1}}' data-id='{{item.oid}}' bindtap='cancle'>取消订单</view>
       </view>
 
     </view>

@@ -15,7 +15,17 @@
 }
 
 .address-wrap{
+  height: 35rpx;
   margin-top: 40rpx;
   padding: 20rpx 27rpx;
   background-color: #fff;
+}
+
+.location-wrap{
+  background-color: #fff;
+}
+.location-item{
+  height: 35rpx;
+  padding:20rpx 27rpx;
+  border-top: 1rpx solid #e4e4e4;
 }

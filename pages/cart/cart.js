@@ -100,6 +100,12 @@ Page({
       list = [...this.data.cartList]
 
     if(this.data.pending) return
+    if(list[i].nums <= 1) {
+      return wx.showToast({
+        title: '亲，不能再少了，再少就没了',
+        icon: 'none'
+      })
+    }
     await wxSetData(this, {pending: true})
 
     try{

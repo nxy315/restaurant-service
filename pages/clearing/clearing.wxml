@@ -10,7 +10,7 @@
       <text class='user-tel'>{{address.tel}}</text>
       <view class='default-address'>默认</view>
     </view>
-    <view class='address-detail'>{{address.address}}</view>
+    <view class='address-detail'>{{address.address + address.short_address}}</view>
   </view>
   <view class='flex-r-c edit-wrap'>
     <image src='../../images/arrow_down.png'></image>

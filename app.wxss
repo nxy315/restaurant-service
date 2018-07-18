@@ -260,7 +260,6 @@ button{
 
 .article{
   position: relative;
-  margin-bottom: 15rpx;
   line-height: 36rpx;
   overflow: hidden;
 }
@@ -269,11 +268,8 @@ button{
   
 }
 
-.article .fold{
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 0 10rpx;
+.article-fold{
+  text-align: right;
   color: #2b99ff;
   background-color: #fff;
 }
@@ -330,7 +326,8 @@ button{
 .handle-btn{
   margin-left: 15rpx;
   padding: 0 20rpx;
-  height: 40rpx;
+  height:52rpx;
+  line-height:52rpx;
   border: 1rpx solid #fe4070;
   text-align: center;
   border-radius: 8rpx;
@@ -339,6 +336,7 @@ button{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 /* 占位块 */

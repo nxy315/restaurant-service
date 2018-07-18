@@ -240,8 +240,8 @@ Page({
     let district_range = app.globalData.district_range
     let city = [], district = [], multiIndex = [0, 0, 0]
 
-    city = city_range[province_id] ? city_range[province_id] : city_range[province_range[0].id]
-    district = district_range[city_id] ? district_range[city_id] : district_range[city[0].id]
+    city = (province_id && province_id != 0) ? city_range[province_id] : city_range[province_range[0].id]
+    district = (dcity_id && city_id != 0) ? district_range[city_id] : district_range[city[0].id]
 
     for (let i = 0; i < province_range.length; i++) {
       if (province_id == province_range[i].id) {

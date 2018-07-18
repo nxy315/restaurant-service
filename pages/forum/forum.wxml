@@ -72,12 +72,12 @@
         <view class='article-content'>
           {{item.content}}
         </view>
-        <view class='fold'
+      </view>
+      <view class='article-fold'
           wx:if='{{item.content.length > 66}}'
           data-fold='{{item.fold}}'
           data-index='{{index}}'
           catchtap='foldToggle'>{{item.fold ? '展开' : '收起'}}</view>
-      </view>
 
       <view class='imgs-wrap'>
         <image

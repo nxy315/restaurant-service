@@ -93,7 +93,7 @@
       </view>
     </view>
 
-    <view class='flex-r-sb menu-item' bindtap="showAction">
+    <view class='flex-r-sb menu-item' bindtap="showAction2">
       <view class='flex-r-c left'>
         <image src='../../images/service.png'></image>
         <text class='tc'>售后服务</text>

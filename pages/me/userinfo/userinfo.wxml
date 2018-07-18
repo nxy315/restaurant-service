@@ -7,7 +7,7 @@
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>昵称</text>
-      <input maxlength='20' placeholder='请填写您的昵称' value='{{ajaxData.nickname}}' data-key='nickname' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+      <input maxlength='20' placeholder='请填写您的昵称' value='{{ajaxData.nickname}}' data-key='nickname' bindinput='inputHandler' placeholder-style='font-size: 30rpx; color: #989898;'></input>
     </view>
   </view>
 
@@ -15,7 +15,7 @@
     <view class='info-title' style='padding: 24rpx 40rpx;border-bottom: 1rpx solid #e4e4e4;'>联系信息</view>
     <view class='flex-r-sb form-item'>
       <text class='name'>姓名</text>
-      <input placeholder='2-6个汉字或字母' value='{{ajaxData.realname}}' data-key='realname' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+      <input placeholder='2-6个汉字或字母' value='{{ajaxData.realname}}' data-key='realname' bindinput='inputHandler' placeholder-style='font-size: 30rpx; color: #989898;'></input>
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>手机号码</text>
@@ -23,7 +23,7 @@
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>公司名称</text>
-      <input maxlength='20' placeholder='请输入您的公司/品牌/店铺' value='{{ajaxData.user_work}}' data-key='user_work' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+      <input maxlength='20' placeholder='请输入您的公司/品牌/店铺' value='{{ajaxData.user_work}}' data-key='user_work' bindinput='inputHandler' placeholder-style='font-size: 30rpx; color: #989898;'></input>
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>选择地区</text>
@@ -37,7 +37,7 @@
     </view>
     <view class='flex-r-sb form-item'>
       <text class='name'>详细地址</text>
-      <input placeholder='请输入您的经营所在地' value='{{ajaxData.short_address}}' data-key='short_address' bindinput='inputHandler' placeholder-style='font-size: 24rpx; color: #989898;'></input>
+      <input placeholder='请输入您的经营所在地' value='{{ajaxData.short_address}}' data-key='short_address' bindinput='inputHandler' placeholder-style='font-size: 30rpx; color: #989898;'></input>
     </view>
   </view>
   <view class='button-primary' style='margin-top: 40rpx;width: 400rpx;' bindtap='saveInfo'>保存</view>

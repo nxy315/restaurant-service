@@ -34,7 +34,7 @@
 
 <view class='flex-c-fs nodata' wx:if='{{addressList.length <= 0}}'>
   <image mode='aspectFit' src='../../../images/nodata.png'></image>
-  <view style='margin-top: 30rpx;color: #acacac;'>暂无地址</view>
+  <view style='margin-top: 30rpx;color: #acacac;'>您还未添加收货地址哦~</view>
 </view>
 
 <view class='flex-r-c add-address-wrap'>

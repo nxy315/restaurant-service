@@ -51,6 +51,36 @@ Page({
   },
 
   /**
+   * 点赞
+   * @method: GET 
+   * @url: /api/5b309d0170036.html
+   *
+   * @param quan_id:Int @require    id
+   * @header[version]               版本号
+   * @header[access-token]          验签
+   * @header[user-token]            验签
+   */
+  async like(e) {
+    let target = e.currentTarget.dataset
+    let quan_id = target.id
+
+    try {
+      await getData('/api/5b309d0170036.html', { quan_id })
+      this.setData({
+        info: { ...this.data.info, zan: parseInt(this.data.info.zan)+1}
+      })
+      wx.showToast({
+        title: '点赞成功',
+      })
+    } catch (e) {
+      wx.showModal({
+        title: '提示',
+        content: '您已经赞过了',
+      })
+    }
+  },
+
+  /**
    * 回复内容
    */
   handleInput(e) {

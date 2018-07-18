@@ -7,7 +7,7 @@
     data-id='{{item.id}}'
     data-index='{{index}}' 
     bindtap='setDefault'>
-    <view class='flex-r-fs address-check'>
+    <view class='flex-r-fs check-box'>
       <image wx:if='{{item.is_default == 1}}' src='../../../../images/check_fill.png'></image>
       <image wx:if='{{item.is_default != 1}}' src='../../../../images/check.png'></image> 
     </view>
@@ -17,7 +17,7 @@
         <text class='user-tel'>{{item.tel}}</text>
         <view wx:if='{{item.is_default == 1}}' class='default-address'>默认</view>
       </view>
-      <view class='address-detail'>{{item.address}}</view>
+      <view class='address-detail'>{{item.address + item.short_address}}</view>
     </view>
     <view class='flex-r-c edit-wrap' data-id="{{item.id}}" catchtap='editAddress'>
       <image src='../../../../images/edit.png'></image>

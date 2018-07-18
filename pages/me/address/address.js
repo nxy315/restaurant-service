@@ -84,30 +84,40 @@ Page({
    * @header[user-token]        验签
    */
   async delAddress(e) {
-    let id = e.currentTarget.dataset.id
-    let index = e.currentTarget.dataset.index
+    wx.showModal({
+      title: '提示',
+      content: '您确定要删除此地址吗？',
+      // confirmColor: '#000000',
+      success: async res => {
+        if (res.cancel) return
 
-    wx.showLoading({
-      title: '',
+        let id = e.currentTarget.dataset.id
+        let index = e.currentTarget.dataset.index
+
+        wx.showLoading({
+          title: '',
+        })
+        let data = await getData('/api/5b2f94c3df504.html', { id })
+        wx.hideLoading()
+
+        if (data.status == 1) {
+          let list = [...this.data.addressList]
+          list.splice(index, 1)
+          this.setData({
+            addressList: list
+          })
+          wx.showToast({
+            icon: 'success',
+            title: '删除成功',
+          })
+        } else {
+          wx.showToast({
+            title: '删除失败',
+          })
+        }
+      }
     })
-    let data = await getData('/api/5b2f94c3df504.html', {id})
-    wx.hideLoading()
     
-    if(data.status == 1) {
-      let list = [...this.data.addressList]
-      list.splice(index, 1)
-      this.setData({
-        addressList: list
-      })
-      wx.showToast({
-        icon: 'success',
-        title: '删除成功',
-      })
-    } else {
-      wx.showToast({
-        title: '删除失败',
-      })
-    }
   },
 
   /**
